@@ -1,0 +1,4 @@
+ana madre_de luis? -> SI
+luis madre_de ana? -> NO
+luis edad 7, luis vive_en madrid? -> SI
+luis edad 7, luis vive_en lugo? -> NO
