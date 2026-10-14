@@ -15,7 +15,23 @@ for tipo, hechos in cargar_script(carpeta / "script.sbq"):
         for hecho in hechos:
             ans = True
             if hecho[0] in hash_map:
-                ans = ans and (hecho[1], hecho[2]) in hash_map[hecho[0]]
+                if len(hecho[1]) == 1 and len(hecho[2]) > 1:
+                    encontrado = any(hecho[2] in pareja for pareja in hash_map[hecho[0]])
+                    ans = ans and encontrado
+                    statements.append(" ".join(hecho))
+                elif len(hecho[1]) > 1 and len(hecho[2]) == 1:
+                    encontrado = any(hecho[1] in pareja for pareja in hash_map[hecho[0]])
+                    ans = ans and encontrado
+                    statements.append(" ".join(hecho))
+                else:
+                    ans = ans and (hecho[1], hecho[2]) in hash_map[hecho[0]]
+                    statements.append(" ".join(hecho))
+
+            elif len(hecho[0]) == 1:
+                pareja = (hecho[1], hecho[2])
+                encontrado = any(pareja in valores for valores in hash_map.values())
+
+                ans = ans and encontrado
                 statements.append(" ".join(hecho))
                     
         if ans:
