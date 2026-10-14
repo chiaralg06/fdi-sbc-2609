@@ -2,7 +2,14 @@
 
 from pathlib import Path
 
-from pyparsing import DelimitedList, Group, Suppress, Word, alphas
+from pyparsing import (
+    DelimitedList,
+    Group,
+    Suppress,
+    Word,
+    alphas,
+    python_style_comment,
+)
 
 # Un término es una palabra con caracteres alfanuméricos
 _termino = Word(alphas + "_:ñ0123456789")
@@ -28,6 +35,10 @@ _kb = _afirmacion * ...
 _linea = _pregunta | _afirmacion
 _script = _linea * ...
 
+# Comentarios estilo python, que van desde # hasta el final de la línea
+_kb.ignore(python_style_comment)
+_script.ignore(python_style_comment)
+
 
 def cargar_KB(directorio: Path):
     for p in sorted(directorio.glob("*.sbc")):
@@ -36,6 +47,3 @@ def cargar_KB(directorio: Path):
 
 def cargar_script(fichero: Path):
     yield from _script.parse_file(fichero, parse_all=True)
-
-
-

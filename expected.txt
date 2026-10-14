@@ -1,4 +1,19 @@
-ana madre_de luis? -> SI
-luis madre_de ana? -> NO
-luis edad 7, luis vive_en madrid? -> SI
-luis edad 7, luis vive_en lugo? -> NO
+X madre_de luis? -> SI
+ana madre_de X? -> SI
+ana X luis? -> SI
+X madre_de ana? -> NO
+luis madre_de X? -> NO
+luis X ana? -> NO
+X admira Y? -> SI
+X Y narciso? -> SI
+X odia Y? -> NO
+X admira X? -> SI
+X madre_de X? -> NO
+X edad 7, X vive_en madrid? -> SI
+X edad 7, X vive_en lugo? -> NO
+X vive_en madrid, X edad 7? -> SI
+X vive_en madrid, X edad 9? -> SI
+X vive_en madrid, X edad 8? -> NO
+ana madre_de X, X vive_en lugo? -> SI
+X madre_de Y, Y vive_en paris? -> NO
+X vive_en madrid, X ocupacion O, ana madre_de X? -> SI

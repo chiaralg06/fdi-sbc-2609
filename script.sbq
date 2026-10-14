@@ -1,5 +1,28 @@
-ana madre_de luis?
-luis madre_de ana?
-pepe edad 3.
-luis edad 7, luis vive_en madrid?
-luis edad 7, luis vive_en lugo?
+# Una variable
+X madre_de luis?
+ana madre_de X?
+ana X luis?
+X madre_de ana?
+luis madre_de X?
+luis X ana?
+
+# Dos variables
+X admira Y?
+X Y narciso?
+X odia Y?
+
+# Variable repetida
+X admira X?
+X madre_de X?
+X edad 7, X vive_en madrid?
+X edad 7, X vive_en lugo?
+
+# Varios candidatos
+X vive_en madrid, X edad 7?
+X vive_en madrid, X edad 9?
+X vive_en madrid, X edad 8?
+ana madre_de X, X vive_en lugo?
+X madre_de Y, Y vive_en paris?
+
+# Objetivo
+X vive_en madrid, X ocupacion O, ana madre_de X?
