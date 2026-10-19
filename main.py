@@ -8,6 +8,10 @@ for tipo, hechos in cargar_KB(carpeta):
     for hecho in hechos:
         hash_map[hecho[0]].append((hecho[1], hecho[2])) #sujeto : (predicado, objeto)
 
+
+def esVar(hecho):
+    return len(hecho) == 1 and isinstance(hecho, str) and hecho.isalpha()
+
     
 for tipo, hechos in cargar_script(carpeta / "script.sbq"):
     if tipo != "afirmacion":
@@ -15,11 +19,11 @@ for tipo, hechos in cargar_script(carpeta / "script.sbq"):
         for hecho in hechos:
             ans = True
             if hecho[0] in hash_map:
-                if len(hecho[1]) == 1 and len(hecho[2]) > 1:
+                if esVar(hecho[1]) and not esVar(hecho[2]):
                     encontrado = any(hecho[2] in pareja for pareja in hash_map[hecho[0]])
                     ans = ans and encontrado
                     statements.append(" ".join(hecho))
-                elif len(hecho[1]) > 1 and len(hecho[2]) == 1:
+                elif not esVar(hecho[1]) and esVar(hecho[2]):
                     encontrado = any(hecho[1] in pareja for pareja in hash_map[hecho[0]])
                     ans = ans and encontrado
                     statements.append(" ".join(hecho))
@@ -27,7 +31,7 @@ for tipo, hechos in cargar_script(carpeta / "script.sbq"):
                     ans = ans and (hecho[1], hecho[2]) in hash_map[hecho[0]]
                     statements.append(" ".join(hecho))
 
-            elif len(hecho[0]) == 1:
+            elif esVar(hecho[0]):
                 pareja = (hecho[1], hecho[2])
                 encontrado = any(pareja in valores for valores in hash_map.values())
 
