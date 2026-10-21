@@ -1,0 +1,19 @@
+{"consulta": "X madre_de luis", "soluciones": [{"X": "ana"}]}
+{"consulta": "ana madre_de X", "soluciones": [{"X": "eva"}, {"X": "luis"}]}
+{"consulta": "ana X luis", "soluciones": [{"X": "madre_de"}]}
+{"consulta": "X madre_de ana", "soluciones": []}
+{"consulta": "luis madre_de X", "soluciones": []}
+{"consulta": "luis X ana", "soluciones": []}
+{"consulta": "X admira Y", "soluciones": [{"X": "ana", "Y": "sara"}, {"X": "narciso", "Y": "narciso"}]}
+{"consulta": "X Y narciso", "soluciones": [{"X": "narciso", "Y": "admira"}]}
+{"consulta": "X odia Y", "soluciones": []}
+{"consulta": "X admira X", "soluciones": [{"X": "narciso"}]}
+{"consulta": "X madre_de X", "soluciones": []}
+{"consulta": "X edad 7, X vive_en madrid", "soluciones": [{"X": "luis"}]}
+{"consulta": "X edad 7, X vive_en lugo", "soluciones": []}
+{"consulta": "X vive_en madrid, X edad 7", "soluciones": [{"X": "luis"}]}
+{"consulta": "X vive_en madrid, X edad 9", "soluciones": [{"X": "sara"}]}
+{"consulta": "X vive_en madrid, X edad 8", "soluciones": []}
+{"consulta": "ana madre_de X, X vive_en lugo", "soluciones": [{"X": "eva"}]}
+{"consulta": "X madre_de Y, Y vive_en paris", "soluciones": []}
+{"consulta": "X vive_en madrid, X ocupacion O, ana madre_de X", "soluciones": [{"X": "luis", "O": "estudiante"}]}

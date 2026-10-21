@@ -1,10 +1,13 @@
 # Código de ayuda para gestionar bases de conocimiento
 
+import json
 from pathlib import Path
 
+from loguru import logger
 from pyparsing import (
     DelimitedList,
     Group,
+    ParseException,
     Suppress,
     Word,
     alphas,
@@ -40,10 +43,35 @@ _kb.ignore(python_style_comment)
 _script.ignore(python_style_comment)
 
 
+def _cargar(gramatica, fichero: Path):
+    logger.info(f"Cargando {fichero}")
+    try:
+        yield from gramatica.parse_file(fichero, parse_all=True)
+    except ParseException as e:
+        logger.error(f"Error de sintaxis en {fichero}: {e}")
+
+
 def cargar_KB(directorio: Path):
     for p in sorted(directorio.glob("*.sbc")):
-        yield from _kb.parse_file(p, parse_all=True)
+        yield from _cargar(_kb, p)
 
 
 def cargar_script(fichero: Path):
-    yield from _script.parse_file(fichero, parse_all=True)
+    yield from _cargar(_script, fichero)
+
+
+def imprimir_jsonl(consulta, soluciones):
+    """Imprime por stdout la respuesta a una consulta en formato JSON Lines.
+    `consulta` es la lista de hechos tal como la entrega `cargar_script`, y cada
+    solución algo que `dict()` pueda convertir en `{variable: valor}`."""
+    terminos = dict.fromkeys(t for hecho in consulta for t in hecho)
+    unicas = {
+        tuple((t, s[t]) for t in terminos if t in s) for s in map(dict, soluciones)
+    }
+    respuesta = {
+        "consulta": ", ".join(" ".join(hecho) for hecho in consulta),
+        "soluciones": [
+            dict(s) for s in sorted(unicas, key=lambda s: [v for _, v in s])
+        ],
+    }
+    print(json.dumps(respuesta, ensure_ascii=False))
