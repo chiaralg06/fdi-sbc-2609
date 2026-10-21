@@ -70,9 +70,10 @@ for tipo, hechos in cargar_script(carpeta / "script.sbq"):
                     else:
                         # Ej. X admira Y
                         encontrado = any(
-                            pareja[0] == v1
-                            for lista_parejas in hash_map.values()
+                            k != pareja[1]
+                            for k, lista_parejas in hash_map.items()
                             for pareja in lista_parejas
+                            if pareja[0] == v1
                         )
 
                 elif esVar(v0) and esVar(v1):
