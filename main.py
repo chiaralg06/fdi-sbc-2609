@@ -1,12 +1,12 @@
 from pathlib import Path
-from parser import cargar_KB, cargar_script
+from profesor import cargar_KB, cargar_script
 from collections import defaultdict
 
 hash_map = defaultdict(list)
 carpeta = Path(__file__).parent
 for tipo, hechos in cargar_KB(carpeta):
     for hecho in hechos:
-        hash_map[hecho[0]].append((hecho[1], hecho[2])) #sujeto : (predicado, objeto)
+        hash_map[hecho[0]].append((hecho[1], hecho[2]))  # sujeto : (predicado, objeto)
 
 
 def esVar(hecho):
@@ -45,14 +45,14 @@ def resolver(hechos, sustitucion=None):
                         return True
     return False
 
-    
+
 for tipo, hechos in cargar_script(carpeta / "script.sbq"):
     if tipo != "afirmacion":
         statements = []
         for hecho in hechos:
             ans = True
             variables = 0
-            encontrado = False  
+            encontrado = False
             variables += sum(1 for palabra in hecho if esVar(palabra))
 
             if variables == 2:
@@ -86,12 +86,15 @@ for tipo, hechos in cargar_script(carpeta / "script.sbq"):
                     encontrado = v0 in hash_map and len(hash_map[v0]) > 0
 
             else:
-
                 if hecho[0] in hash_map:
                     if esVar(hecho[1]) and not esVar(hecho[2]):
-                        encontrado = any(hecho[2] in pareja for pareja in hash_map[hecho[0]])
+                        encontrado = any(
+                            hecho[2] in pareja for pareja in hash_map[hecho[0]]
+                        )
                     elif not esVar(hecho[1]) and esVar(hecho[2]):
-                        encontrado = any(hecho[1] in pareja for pareja in hash_map[hecho[0]])
+                        encontrado = any(
+                            hecho[1] in pareja for pareja in hash_map[hecho[0]]
+                        )
                     else:
                         encontrado = (hecho[1], hecho[2]) in hash_map[hecho[0]]
 
@@ -104,10 +107,10 @@ for tipo, hechos in cargar_script(carpeta / "script.sbq"):
 
         if len(hechos) > 1:
             ans = resolver(hechos)
-                    
+
         if ans:
-            print(f"{", ".join(statements)}? -> SI")
+            print(f"{', '.join(statements)}? -> SI")
         else:
-            print(f"{", ".join(statements)}? -> NO")
+            print(f"{', '.join(statements)}? -> NO")
 
     # else: ignoramos
