@@ -1,0 +1,12 @@
+#!/bin/sh
+# Si algún .py del commit no cumple el formato de ruff, lo formatea y lo vuelve a añadir
+archivos=$(git diff --cached --name-only --diff-filter=ACMR -- '*.py')
+[ -z "$archivos" ] && exit 0
+
+mal=$(uv format --preview-features format --check -- $archivos 2>&1 |
+    sed -n 's/^Would reformat: //p' | sed 's|\\|/|g')
+[ -z "$mal" ] && exit 0
+
+echo "Aplicando uv format a: $mal"
+uv format --preview-features format -- $mal || exit 1
+git add -- $mal
