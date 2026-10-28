@@ -1,28 +1,13 @@
-# Una variable
-X madre_de luis?
-ana madre_de X?
-ana X luis?
-X madre_de ana?
-luis madre_de X?
-luis X ana?
+# Literales
+X nombre "Fëanor"?
+X nombre "fëanor"?
+X nombre "Batalla de Dagorlad"?
+X nombre "lenguas construidas por J.R.R. Tolkien"?
 
-# Dos variables
-X admira Y?
-X Y narciso?
-X odia Y?
+# Literales en las respuestas
+q1135680 nombre N?
+q1135680 nombre "Turgon"?
+X nombre "Elendil", X hijo_de P, P nombre N?
 
-# Variable repetida
-X admira X?
-X madre_de X?
-X edad 7, X vive_en madrid?
-X edad 7, X vive_en lugo?
-
-# Varios candidatos
-X vive_en madrid, X edad 7?
-X vive_en madrid, X edad 9?
-X vive_en madrid, X edad 8?
-ana madre_de X, X vive_en lugo?
-X madre_de Y, Y vive_en paris?
-
-# Objetivo
-X vive_en madrid, X ocupacion O, ana madre_de X?
+# Vocabulario
+X es_un peredhil, X nombre N?

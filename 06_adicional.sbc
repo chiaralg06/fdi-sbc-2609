@@ -1,0 +1,18 @@
+# Tierra Media: hechos adicionales, que no están en Wikidata
+
+# Arwen, hija de Elrond y Celebrían, y esposa de Aragorn
+q206018 nombre "Arwen".
+q206018 es_un peredhil, q206018 sexo femenino.
+q206018 hijo_de q208426, q206018 hijo_de q1643661.
+q206018 conyuge_de q180322, q180322 conyuge_de q206018.
+
+# Aragorn (por Arathorn II) desciende de Isildur por su hijo Valandil, rey de
+# Arnor
+q2293032 nombre "Valandil".
+q2293032 hijo_de q206324.
+q2068026 descendiente_de q2293032.
+
+# Elendil (por Númendil) desciende de Elros por Silmariën, de la que vienen los
+# señores de Andúnië
+q1131806 descendiente_de q2572667.
+q2572667 descendiente_de q1637307.

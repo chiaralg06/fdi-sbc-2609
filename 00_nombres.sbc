@@ -1,0 +1,922 @@
+# Tierra Media: personajes y lugares del Silmarillion
+# Generado con herramientas/tierra_media.py a partir de Wikidata (CC0)
+
+acontecimiento nombre "acontecimiento ficticio".
+aguila nombre "águila de la Tierra Media".
+aguila nombre "águila ficticia".
+ainur nombre "ainur".
+alfabeto nombre "alfabeto".
+alfabeto_unicameral nombre "alfabeto unicameral".
+alfasilabario nombre "alfasilabario".
+anillo nombre "anillo ficticio".
+anillos_de_poder nombre "anillos de poder".
+animal_de_ficcion nombre "animal de ficción".
+arañas nombre "arañas".
+arbol nombre "árbol ficticio".
+arbol_blanco nombre "árbol blanco".
+arco nombre "arco ficticio".
+asentamiento nombre "asentamiento ficticio".
+avari nombre "avari".
+bahia nombre "bahía ficticia".
+balrogs nombre "balrogs".
+barco nombre "barco ficticio".
+barranco nombre "barranco ficticio".
+batalla nombre "batalla ficticia".
+bosque nombre "bosque ficticio".
+caballo_de_ficcion nombre "caballo de ficción".
+calaquendi nombre "calaquendi".
+capital nombre "capital ficticia".
+carretera nombre "carretera ficticia".
+casa_de_beor nombre "Casa de Bëor".
+casa_de_durin nombre "Casa de Durin".
+casa_de_finwe nombre "Casa de Finwë".
+casa_de_hador nombre "Casa de Hador".
+casa_de_haleth nombre "Casa de Haleth".
+cascada nombre "cascada ficticia".
+clase_de_entidades_ficticias nombre "clase de entidades ficticias".
+constelacion nombre "constelación ficticia".
+continente nombre "continente ficticio".
+cordillera nombre "cordillera ficticia".
+cota_de_malla nombre "cota de malla".
+cuerpo_de_agua nombre "cuerpo de agua ficticio".
+cueva nombre "cueva ficticia".
+deidad nombre "deidad ficticia".
+demonio nombre "demonio ficticio".
+desfiladero nombre "desfiladero ficticio".
+dimension nombre "dimensión ficticia".
+dragon nombre "dragón ficticio".
+dragones nombre "dragones".
+dunedain nombre "dúnedain".
+duo_de_hombres nombre "dúo de hombres".
+dwarf_in_a_work_of_fiction nombre "dwarf in a work of fiction".
+edad_historica nombre "edad histórica de la Tierra Media".
+edificio nombre "edificio ficticio".
+eldar nombre "eldar".
+elfo_de_una_obra_de_ficcion nombre "elfo de una obra de ficción".
+elfos_silvanos nombre "elfos silvanos".
+enano nombre "enano de la Tierra Media".
+enanos_mezquinos nombre "enanos mezquinos".
+escultura nombre "escultura ficticia".
+espada nombre "espada ficticia".
+especie nombre "especie ficticia".
+especie_animal nombre "especie animal ficticia".
+especie_ficticia_de_planta nombre "especie ficticia de planta".
+especie_inteligente nombre "especie inteligente ficticia".
+espejo nombre "espejo".
+estrecho nombre "estrecho ficticio".
+estrella nombre "estrella ficticia".
+estructura_arquitectonica nombre "estructura arquitectónica ficticia".
+estructura_subterranea nombre "estructura subterránea ficticia".
+etnia nombre "etnia ficticia".
+falathrim nombre "falathrim".
+falmari nombre "falmari".
+familia_de_lenguas nombre "familia de lenguas ficticia".
+familia_noble nombre "familia noble ficticia".
+featural_writing_system nombre "featural writing system".
+felido_de_ficcion nombre "félido de ficción".
+femenino nombre "femenino".
+fictional_arrow nombre "fictional arrow".
+fictional_axe nombre "fictional axe".
+fictional_corps nombre "fictional corps".
+fictional_hammer nombre "fictional hammer".
+fictional_hill nombre "fictional hill".
+fictional_knife nombre "fictional knife".
+fictional_marsh nombre "fictional marsh".
+fictional_metal nombre "fictional metal".
+fictional_nephilim nombre "fictional nephilim".
+fictional_rock nombre "fictional rock".
+fictional_volcano nombre "fictional volcano".
+fortaleza nombre "fortaleza ficticia".
+grond nombre "Grond".
+grupo_de_lenguas nombre "grupo de lenguas ficticio".
+grupo_de_objetos_ficticios nombre "grupo de objetos ficticios".
+guerra nombre "guerra ficticia".
+hembra nombre "hembra".
+hobbits nombre "hobbits".
+hombres_del_este nombre "hombres del Este".
+instalacion nombre "instalación ficticia".
+isla nombre "isla ficticia".
+istari nombre "istari".
+jardin_fictico nombre "jardín fictico".
+juramento nombre "juramento".
+lago nombre "lago ficticio".
+lanza nombre "lanza ficticia".
+lengua nombre "lengua ficticia".
+lengua_construida nombre "lengua construida".
+lenguas_construidas_por_j_r_r_tolkien nombre "lenguas construidas por J.R.R. Tolkien".
+lenguas_elficas nombre "lenguas élficas".
+linea_ficticia_de_tiempo nombre "línea ficticia de tiempo".
+llanura nombre "llanura ficticia".
+localidad nombre "localidad de la Tierra Media".
+localidad nombre "localidad ficticia".
+lugar nombre "lugar ficticio".
+macho nombre "macho".
+maiar nombre "maiar".
+maldicion nombre "maldición".
+manantial nombre "manantial ficticio".
+mar nombre "mar ficticio".
+masculino nombre "masculino".
+mito_de_la_creacion nombre "mito de la creación ficticio".
+montaraces_del_norte nombre "montaraces del Norte".
+montaña nombre "montaña ficticia".
+moriquendi nombre "moriquendi".
+nandor nombre "nandor".
+noldor nombre "noldor".
+numenoreanos nombre "númenóreanos".
+objeto nombre "objeto ficticio".
+obra_creativa nombre "obra creativa ficticia".
+oceano nombre "océano ficticio".
+orcos nombre "orcos".
+organizacion nombre "organización ficticia".
+pais nombre "país ficticio".
+pantano nombre "pantano ficticio".
+paso_de_montaña nombre "paso de montaña ficticio".
+peredhil nombre "peredhil".
+periodo_historico nombre "periodo histórico ficticio".
+perro_de_ficcion nombre "perro de ficción".
+planeta nombre "planeta ficticio".
+planta nombre "planta ficticia".
+posicion_politica nombre "posición política ficticia".
+principe_de_ficcion nombre "príncipe de ficción".
+pueblo nombre "pueblo de la Tierra Media".
+puente nombre "puente ficticio".
+puerta nombre "puerta ficticia".
+q1018962 nombre "Marach".
+q10272032 nombre "Yelmo-Dragón de Dor-lómin".
+q1027691 nombre "Gothmog".
+q10282204 nombre "hijos de Fëanor".
+q10301265 nombre "Enchanted Isles".
+q10301359 nombre "Ilmen".
+q10316558 nombre "Laurelin".
+q10332032 nombre "Mount Rerir".
+q10335376 nombre "Nahar".
+q10379325 nombre "Telperion".
+q10380801 nombre "Tierras Imperecederas".
+q10386016 nombre "Túna".
+q10463475 nombre "despertar de los elfos".
+q1047639 nombre "Quebradas de los Túmulos".
+q1053279 nombre "Camino Recto".
+q10537599 nombre "Casa de Finarfin".
+q10729490 nombre "hombres cetrinos".
+q1074874 nombre "Ilmarë".
+q10749428 nombre "Ringwil".
+q10750536 nombre "cota de malla de mithril".
+q10750937 nombre "Dorlas".
+q10751072 nombre "Aglarond".
+q1075565 nombre "batallas de Beleriand".
+q1075692 nombre "Uinen".
+q1076166 nombre "drúedain".
+q10857773 nombre "lossoth".
+q1089000 nombre "sarati".
+q1091455 nombre "Tilion".
+q10955605 nombre "Nindalf".
+q1098873 nombre "Andúnië".
+q110656358 nombre "Andróg".
+q11075385 nombre "Dailir".
+q11078410 nombre "Morinehtar".
+q11143560 nombre "Caída de las Falas".
+q11285364 nombre "Annael".
+q11301630 nombre "Gelmir y Arminas".
+q1131806 nombre "Númendil".
+q1131930 nombre "Gimilkhâd".
+q1133721 nombre "Ælfwine of England".
+q1135676 nombre "Finarfin".
+q1135680 nombre "Turgon".
+q11454954 nombre "Valmar".
+q1154417 nombre "Gondolin".
+q1154861 nombre "Finwë".
+q115694269 nombre "Belthil".
+q115694293 nombre "Bór".
+q115694297 nombre "Borlach".
+q115694308 nombre "Borlad".
+q115694318 nombre "Borthand".
+q115736088 nombre "Dagnir".
+q115736153 nombre "Dairuin".
+q115736193 nombre "Casa de Fëanor".
+q115753602 nombre "eglath".
+q115784066 nombre "Ormal".
+q115784310 nombre "Illuin".
+q1166729 nombre "Varda".
+q11680169 nombre "Batalla de la Cima".
+q11680171 nombre "Batalla del Campamento".
+q11680191 nombre "Belthronding".
+q11680897 nombre "Corriente del Bajo".
+q11681216 nombre "Durin III".
+q11681701 nombre "estancias de Mandos".
+q11681976 nombre "Frontera del Oeste".
+q11690667 nombre "Cirith Ninniach".
+q11699949 nombre "Glithui".
+q11703412 nombre "Río Encantado".
+q11743886 nombre "Kortirion".
+q11755466 nombre "Reino del Bosque".
+q11762630 nombre "Losgar".
+q11785912 nombre "Brandywine Bridge".
+q11816700 nombre "First War with Melkor".
+q11829427 nombre "Pass of Sirion".
+q11905176 nombre "High-Kings of Arnor and Gondor".
+q11960613 nombre "Bereg".
+q11961983 nombre "Boron".
+q11961984 nombre "Boromir de Ladros".
+q11963345 nombre "Celebros".
+q11966179 nombre "Duilwen".
+q11966202 nombre "Durin II".
+q11966207 nombre "Durin V".
+q11969839 nombre "Farin".
+q11971471 nombre "Gamil Zirak".
+q11973038 nombre "Gróin".
+q11986682 nombre "Guerra de Eregion".
+q12005279 nombre "Taur-nu-Fuin".
+q12021056 nombre "Valian Years".
+q12034945 nombre "Makar and Meássë".
+q12275804 nombre "caza del gran lobo".
+q1227698 nombre "Ungoliant".
+q12297003 nombre "Trollshaws".
+q12298057 nombre "Khîm".
+q1232044 nombre "Dagor Dagorath".
+q1233029 nombre "Fornost".
+q1234609 nombre "Anduin".
+q1234628 nombre "Angband".
+q1234666 nombre "Silmarils".
+q1235245 nombre "Montañas Azules".
+q1235499 nombre "Baranduin".
+q1235995 nombre "Eriador".
+q1236814 nombre "Belegaer".
+q12378032 nombre "Alcarinquë".
+q1249153 nombre "Annúminas".
+q12639396 nombre "Arthad".
+q12785052 nombre "Aranwë".
+q12785117 nombre "Arminas".
+q12787150 nombre "Cuind".
+q12791197 nombre "Hwenti".
+q12793659 nombre "Kinn-lai".
+q12793666 nombre "Q12793666".
+q12803458 nombre "Old Sindarin".
+q12806365 nombre "Q12806365".
+q12863314 nombre "Eärráme".
+q12866456 nombre "Elemmírë".
+q1307185 nombre "Hador".
+q13403334 nombre "Frór".
+q13403416 nombre "Húrin de Emyn Arnen".
+q13403504 nombre "Battle of Mirkwood".
+q134571084 nombre "año de la Primera Edad".
+q13586541 nombre "Tolfalas".
+q13636183 nombre "Findis".
+q1408534 nombre "Finrod Felagund".
+q14088252 nombre "Himring".
+q14192406 nombre "Amon Gwareth".
+q1451581 nombre "Beleriand".
+q14905944 nombre "Dol Baran".
+q14905961 nombre "Eglarest".
+q15355217 nombre "Belegund".
+q15355321 nombre "Bregolas".
+q15355850 nombre "Baranor".
+q15356343 nombre "Belen".
+q15363695 nombre "Irimë".
+q15545767 nombre "Cabed-en-Aras".
+q15731071 nombre "personaje del legendarium de J. R. R. Tolkien".
+q15894257 nombre "Haldar".
+q15912434 nombre "Minohtar".
+q15921178 nombre "Mithrellas".
+q15932470 nombre "Haldad".
+q15978807 nombre "Brilthor".
+q16141399 nombre "Siete Padres de los Enanos".
+q16143852 nombre "Adrahil II".
+q16145207 nombre "Alcarondas".
+q16157857 nombre "Bar-en-Danwedh".
+q16160921 nombre "Anghabar".
+q1631082 nombre "Glaurung".
+q16331571 nombre "Anach".
+q1637307 nombre "Elros".
+q1637341 nombre "Fingon".
+q1643661 nombre "Celebrían".
+q16540960 nombre "Dor-Cúarthol".
+q16545148 nombre "Caída de Gondolin".
+q16557124 nombre "Haudh-en-Elleth".
+q16565142 nombre "Piedra de los Desventurados".
+q16574304 nombre "Helevorn".
+q16585595 nombre "Westfold".
+q16620380 nombre "Destruction of the Two Lamps".
+q16699918 nombre "Union of Maedhros".
+q1698465 nombre "Aman".
+q17317946 nombre "Sarn Ford".
+q17335743 nombre "Río Celos".
+q17395279 nombre "Baran".
+q17397220 nombre "Beregond and Bergil".
+q17397558 nombre "Thorondur".
+q17399200 nombre "Ibûn".
+q17400466 nombre "Batalla de Dagorlad".
+q17400520 nombre "Batalla de Dagorlad".
+q17401823 nombre "Río de la Comarca".
+q17483917 nombre "Eluréd y Elurín".
+q1750964 nombre "Elwing".
+q1751007 nombre "Anárion".
+q1751491 nombre "Maglor".
+q1752322 nombre "Maedhros".
+q1752918 nombre "Nienna".
+q1755479 nombre "Dol Guldur".
+q17622492 nombre "Battle of Sarn Athrad".
+q1765728 nombre "Dagor Bragollach".
+q1767102 nombre "Dior Eluchíl".
+q1767115 nombre "Idril".
+q1769873 nombre "Orodreth".
+q1769879 nombre "Caranthir".
+q1769882 nombre "Edades de los Árboles".
+q17709205 nombre "Lindórië".
+q17709237 nombre "Inzilbêth".
+q1771124 nombre "Yavanna".
+q1771996 nombre "Bergil".
+q1772314 nombre "Grór".
+q1772457 nombre "Borin".
+q1772818 nombre "Amon Ereb".
+q1772939 nombre "Barahir".
+q1772960 nombre "Durin VII".
+q1772976 nombre "Tol Eressëa".
+q1773153 nombre "Thorin I".
+q1773257 nombre "Nenning".
+q177329 nombre "Frodo Bolsón".
+q1773672 nombre "Brithon".
+q1773675 nombre "Nimrodel".
+q1773797 nombre "Thalos".
+q1773832 nombre "Lefnui".
+q1773841 nombre "Limclaro".
+q1773933 nombre "Tol Galen".
+q1773944 nombre "Sirith".
+q177499 nombre "Gandalf".
+q1776981 nombre "Anguirel".
+q1777016 nombre "Elostirion".
+q1777908 nombre "Sirion".
+q1782197 nombre "Campos Gladios".
+q1783114 nombre "Nírnaeth Arnoediad".
+q1797799 nombre "Pallando".
+q1798200 nombre "Hithlum".
+q1798207 nombre "Irmo".
+q1800274 nombre "Belegost".
+q1800277 nombre "Carcharoth".
+q180322 nombre "Aragorn".
+q1806136 nombre "Tuor".
+q18233495 nombre "Galadhon".
+q18233710 nombre "Hareth".
+q18233712 nombre "Hathol".
+q18236713 nombre "Handir".
+q18236787 nombre "Magor".
+q1828562 nombre "Denethor de Ossiriand".
+q18379925 nombre "Núath".
+q18381143 nombre "Havens of the Falas".
+q18507190 nombre "Penni".
+q1851004 nombre "Eärwen".
+q18548407 nombre "Battle of Osgiliath".
+q1896618 nombre "Celon".
+q1930042 nombre "Amdír".
+q19414239 nombre "Tol Sirion".
+q1968744 nombre "Ulfang".
+q1978203 nombre "Ered Lómin".
+q1980565 nombre "Ancalagon".
+q1982793 nombre "Curufin".
+q1984461 nombre "Celegorm".
+q1989015 nombre "Eöl".
+q19933420 nombre "Edrahil".
+q1994025 nombre "Amrod".
+q1996218 nombre "Angrod".
+q1996702 nombre "Finduilas".
+q1997611 nombre "Rhûn".
+q1998135 nombre "Ar-Pharazôn".
+q2003257 nombre "cirth".
+q2006244 nombre "Montañas Grises".
+q20111568 nombre "Dimrost".
+q2012487 nombre "Vairë".
+q2014805 nombre "Dorthonion".
+q2017256 nombre "Dagor Aglareb".
+q2021322 nombre "Tornasauce".
+q2024863 nombre "Cintura de Melian".
+q2034757 nombre "Anglachel".
+q204274 nombre "Galadriel".
+q2059159 nombre "juramento de Fëanor".
+q206324 nombre "Isildur".
+q2067156 nombre "Dagor-nuin-Giliath".
+q20672093 nombre "Anarríma".
+q2068026 nombre "Arathorn II".
+q2068620 nombre "Beleg".
+q2068808 nombre "Utumno".
+q2070581 nombre "Batalla de Morannon".
+q2070943 nombre "Tirion".
+q2070960 nombre "Indis".
+q20794740 nombre "Arossiach".
+q208363 nombre "Ilúvatar".
+q2083726 nombre "Campos del Pelennor".
+q208426 nombre "Elrond".
+q2084841 nombre "Amon Rûdh".
+q2088108 nombre "Glamdring".
+q2104066 nombre "Dolmed".
+q210877 nombre "Arda".
+q211686 nombre "Númenor".
+q2123989 nombre "Ered Lithui".
+q21281206 nombre "Malach".
+q21281218 nombre "Imlach".
+q21281228 nombre "Meldis".
+q21281244 nombre "Belemir".
+q21281252 nombre "Gildis".
+q21281256 nombre "Gundor".
+q21281323 nombre "Haudh-en-Arwen".
+q21281327 nombre "Haldan".
+q21281368 nombre "Hundar".
+q21281373 nombre "Hunleth".
+q21281375 nombre "Hundad".
+q21281376 nombre "Hiril".
+q21281390 nombre "Enthor".
+q21281392 nombre "Meleth".
+q21281396 nombre "Agathor".
+q21281400 nombre "Hunthor".
+q21281414 nombre "Beldis".
+q21281429 nombre "Beldir".
+q21281448 nombre "Belegor".
+q21281476 nombre "Beril".
+q21281480 nombre "Bregil".
+q21281482 nombre "Hirwen".
+q21281484 nombre "Gilwen".
+q21281486 nombre "Arachon".
+q21281487 nombre "Brandir".
+q21281497 nombre "Beleth".
+q21281501 nombre "Beregar".
+q213223 nombre "Arnor".
+q213586 nombre "Gondor".
+q2149167 nombre "Drengist".
+q2149249 nombre "Río Nevado".
+q2160901 nombre "Malduin".
+q216489 nombre "Saruman".
+q217190 nombre "Fingolfin".
+q2178107 nombre "Himlad".
+q2189600 nombre "Dimbar".
+q2200823 nombre "Ainulindalë".
+q220110 nombre "Rohan".
+q2205841 nombre "Dagorlad".
+q2213675 nombre "asedio de Angband".
+q2220947 nombre "Talath Dirnen".
+q2252783 nombre "Galdor".
+q2253424 nombre "eldarin".
+q2254651 nombre "Thráin I".
+q2261688 nombre "Herucalmo".
+q2261918 nombre "Calenardhon".
+q2263409 nombre "Thorondor".
+q2265058 nombre "númenóreanos negros".
+q2265976 nombre "Huor".
+q2266913 nombre "Angainor".
+q2267079 nombre "Montañas Blancas".
+q2269239 nombre "Eldamar".
+q2271362 nombre "Mahtan".
+q2273483 nombre "Erkenbrand".
+q2278239 nombre "Barad Nimras".
+q2280167 nombre "Frontera de Maedhros".
+q2281 nombre "Sauron".
+q2288937 nombre "Brethil".
+q2290764 nombre "Anairë".
+q2292783 nombre "haradrim".
+q2293761 nombre "Huan".
+q2294060 nombre "Cuiviénen".
+q2294726 nombre "Minas Tirith".
+q2294734 nombre "Ephel Dúath".
+q2294759 nombre "Nogrod".
+q2294785 nombre "Alqualondë".
+q2296086 nombre "Nenya".
+q2319203 nombre "Primera batalla de Beleriand".
+q2319914 nombre "Lammoth".
+q2328228 nombre "Nessa".
+q23309511 nombre "Barahir".
+q2333920 nombre "Falas".
+q2336076 nombre "Eluréd".
+q2339109 nombre "Oropher".
+q2339123 nombre "Morwen".
+q2339166 nombre "hijos de Ilúvatar".
+q2339170 nombre "Emyn Muil".
+q2339182 nombre "Tar-Palantir".
+q2341525 nombre "Maeglin".
+q2342795 nombre "Cardolan".
+q2345120 nombre "Olwë".
+q2347844 nombre "Dor Dínen".
+q2348360 nombre "Menegroth".
+q2349670 nombre "cronología de Arda".
+q2352491 nombre "Pelóri".
+q2353372 nombre "Ered Wethrin".
+q2354291 nombre "Vilya".
+q2357694 nombre "Aegnor".
+q2363061 nombre "Forodwaith".
+q2369345 nombre "Elenwë".
+q23783768 nombre "Ivriniel".
+q23783782 nombre "Angelimir".
+q23784053 nombre "Aglahad".
+q23785246 nombre "Imrazôr".
+q23785262 nombre "Gilmith".
+q23792754 nombre "Calimehtar".
+q23793538 nombre "Eärendur".
+q23794644 nombre "Elphir".
+q23794647 nombre "Erchirion".
+q23794650 nombre "Amrothos".
+q23795035 nombre "Alphros".
+q23797184 nombre "Arciryas".
+q23797186 nombre "Calimmacil".
+q23797189 nombre "Siriondil".
+q23797193 nombre "Artamir".
+q23797196 nombre "Faramir".
+q23799082 nombre "Ithilbor".
+q23809768 nombre "Gilbarad".
+q23809776 nombre "Morwen".
+q23809789 nombre "Rían".
+q23809800 nombre "Angrim".
+q23809802 nombre "Eilinel".
+q2396392 nombre "Gran Marcha de los elfos".
+q2402530 nombre "Parth Galen".
+q2403024 nombre "Emyn Uial".
+q2407616 nombre "Mindeb".
+q2413396 nombre "Gelion".
+q2420247 nombre "Rivil".
+q2425582 nombre "Haleth".
+q2449280 nombre "Ingwë".
+q2449916 nombre "Estolad".
+q2454008 nombre "Dor Firn-i-Guinar".
+q2464895 nombre "Bëor el Viejo".
+q2467002 nombre "año valiano".
+q2472094 nombre "anillo de Barahir".
+q2475686 nombre "Nerdanel".
+q2476462 nombre "Eärnur".
+q2478152 nombre "Armenelos".
+q2488627 nombre "Elendur".
+q2493698 nombre "Ginglith".
+q2512113 nombre "Montañas de Hierro".
+q2519058 nombre "Rauros".
+q2519065 nombre "Taniquetil".
+q2520441 nombre "Cirith Gorgor".
+q2526203 nombre "Ar-Abbatârik".
+q2526449 nombre "Edhellond".
+q2528036 nombre "Ar-Sakalthôr".
+q2529234 nombre "Ciryon".
+q2533118 nombre "Belfalas".
+q25400395 nombre "lago Mithrim".
+q25416655 nombre "Brithiach".
+q2555110 nombre "Azanulbizar".
+q2560990 nombre "Ost-in-Edhil".
+q2568965 nombre "Rían".
+q2572667 nombre "Silmariën".
+q2577137 nombre "Lothíriel".
+q2590648 nombre "Daeron".
+q2596441 nombre "Estë".
+q2599594 nombre "Gorlim".
+q2604645 nombre "Dor Daedeloth".
+q2608145 nombre "Batalla de Azanulbizar".
+q2609014 nombre "Nevrast".
+q2609610 nombre "Eärnil II".
+q2610397 nombre "Mablung".
+q2620680 nombre "Pelargir".
+q2620849 nombre "Almaren".
+q2621137 nombre "Minhiriath".
+q2630867 nombre "Tar-Súrion".
+q2630882 nombre "Tar-Minastir".
+q2631058 nombre "Batalla de Dagorlad".
+q2634165 nombre "Dor-lómin".
+q2638853 nombre "Helcaraxë".
+q2641717 nombre "Tumladen".
+q2641742 nombre "Echoriath".
+q2657303 nombre "Ladros".
+q2684602 nombre "Landas de Etten".
+q2690864 nombre "Amon Ethir".
+q2698714 nombre "Ramdal".
+q2705102 nombre "quendiano primitivo".
+q2707677 nombre "Eärendur".
+q2708121 nombre "Anórien".
+q2708313 nombre "Llama Imperecedera".
+q2713758 nombre "Ar-Gimilzôr".
+q2716930 nombre "Aredhel".
+q2717254 nombre "Aratan".
+q2718967 nombre "Tumhalad".
+q2721743 nombre "Ossiriand".
+q2723873 nombre "Lalaith".
+q2724753 nombre "Ered Gorgoroth".
+q2732172 nombre "Argonath".
+q2736938 nombre "bahía de Belfalas".
+q2738089 nombre "Mindolluin".
+q2753812 nombre "Hildórien".
+q2756417 nombre "Edades del Sol".
+q2779736 nombre "galvorn".
+q279589 nombre "Salmar".
+q287669 nombre "Concilio Blanco".
+q2878558 nombre "Elemmírë".
+q2918364 nombre "Paso de Rohan".
+q2919307 nombre "Sitio de Barad-dûr".
+q3024666 nombre "Teiglin".
+q3044157 nombre "Batalla de Fornost".
+q3046182 nombre "Gwindor".
+q3049615 nombre "Ekkaia".
+q3078960 nombre "Formenos".
+q30925717 nombre "Erellont".
+q3092950 nombre "Fëanturi".
+q3094480 nombre "galadhrim".
+q3122514 nombre "Gwaith-i-Mírdain".
+q3176644 nombre "Desastre de los Campos Gladios".
+q3179209 nombre "Thuringwethil".
+q3234134 nombre "Argon".
+q3234792 nombre "Tar-Míriel".
+q3238678 nombre "Brithombar".
+q3241398 nombre "Ard-galen".
+q3241496 nombre "Azaghâl".
+q3245060 nombre "Mîm".
+q3266102 nombre "Boldog".
+q3267181 nombre "Voronwë".
+q3305662 nombre "Men-I-Naugrim".
+q3306553 nombre "Ringil".
+q3312360 nombre "aratar".
+q3312378 nombre "Anar".
+q3319097 nombre "Crissaegrim".
+q3320654 nombre "Celebrant".
+q3321251 nombre "Monte Gundabad".
+q3341927 nombre "Nimloth".
+q3355922 nombre "Emeldir".
+q3355927 nombre "Angrist".
+q3356430 nombre "Frár".
+q3356553 nombre "Aerin".
+q3356703 nombre "Emyn Beraid".
+q3357191 nombre "Ascar".
+q3358862 nombre "Aglon".
+q3359356 nombre "Marjal de Serech".
+q3370353 nombre "Eithel Sirion".
+q3374722 nombre "Pengolodh".
+q3410711 nombre "Ceorl".
+q3412934 nombre "Aeglos".
+q3414246 nombre "Narog".
+q3423546 nombre "Aerandir".
+q3423799 nombre "Náin I".
+q3423808 nombre "Durin VI".
+q3423924 nombre "Náin II".
+q3423926 nombre "Telchar".
+q3423972 nombre "Sirannon".
+q3433468 nombre "Adorn".
+q3477006 nombre "segunda matanza de parientes".
+q3492975 nombre "Mithrim".
+q3493126 nombre "Hondonada de Maglor".
+q3493442 nombre "Tharbad".
+q3501967 nombre "Arvernien".
+q3564640 nombre "Araman".
+q3606568 nombre "Swanfleet".
+q3609058 nombre "Aldarion".
+q3614517 nombre "Halifirien".
+q3621448 nombre "Archet".
+q3630947 nombre "Avallónë".
+q3630996 nombre "Avathar".
+q3638491 nombre "Beren de Gondor".
+q3639373 nombre "White Company".
+q3642708 nombre "Borondir".
+q3647114 nombre "Barad Eithel".
+q368572 nombre "Valinor".
+q3714162 nombre "Dor-en-Ernil".
+q3731267 nombre "Erech".
+q3736336 nombre "Ezellohar".
+q3744329 nombre "Frasco de Galadriel".
+q3750313 nombre "Tar-Telperiën".
+q3750404 nombre "Entaguas".
+q3750567 nombre "Harnen".
+q3750696 nombre "Elendilmir".
+q3752469 nombre "High Hay".
+q3752829 nombre "Nan Dungortheb".
+q3752878 nombre "Dagmor".
+q3756581 nombre "Matanza de Alqualondë".
+q3775595 nombre "Gran Camino del Este".
+q3784491 nombre "Helcar".
+q3814983 nombre "Kheled-zâram".
+q384430 nombre "Malbeth".
+q3861637 nombre "Haunted Mountain".
+q387325 nombre "tarn Aeluin".
+q390046 nombre "Amandil".
+q3921669 nombre "Primavera de Arda".
+q3930941 nombre "rey bajo la Montaña".
+q3932040 nombre "Mina del Enano".
+q395521 nombre "telerin".
+q3967715 nombre "Staddle".
+q3972967 nombre "estrella del universo de la Tierra Media".
+q4008657 nombre "Vanyarin".
+q428531 nombre "Árbol Blanco de Minas Tirith".
+q4305783 nombre "Wise".
+q431704 nombre "Amras".
+q4412666 nombre "Gorgoroth".
+q4582973 nombre "Draugluin".
+q4590243 nombre "Baragund".
+q4590977 nombre "Ornendil".
+q4591801 nombre "Grislin".
+q4591809 nombre "Morgulduin".
+q4591817 nombre "Esgalduin".
+q4592698 nombre "Morthond".
+q46289 nombre "Bosque Negro".
+q46854 nombre "Moria".
+q473725 nombre "tengwar".
+q4798939 nombre "Ephel Brandir".
+q4829445 nombre "Avranc".
+q48477 nombre "Aulë".
+q4956710 nombre "Brandir".
+q4989940 nombre "bahía de Balar".
+q4991352 nombre "Nan-Tathren".
+q5060146 nombre "Serni".
+q509110 nombre "Calacirya".
+q5109214 nombre "Río Nimrodel".
+q5110112 nombre "Dís".
+q513414 nombre "Ciénaga de los Muertos".
+q514982 nombre "Vingilot".
+q5173143 nombre "corsarios de Umbar".
+q5257257 nombre "Ohtar".
+q5257855 nombre "Woodmen".
+q538499 nombre "Guerra de la Cólera".
+q5420295 nombre "Exilio de los Noldor".
+q5423093 nombre "Lucha entre parientes".
+q5423334 nombre "Berúthiel".
+q548759 nombre "Ecthelion de la Fuente".
+q5575350 nombre "Río del Bosque".
+q56383 nombre "quenya".
+q5643283 nombre "Halmir".
+q5655678 nombre "Hardang".
+q5672729 nombre "Amlach".
+q5675276 nombre "Andreth".
+q5705583 nombre "Arroyo Cepeda".
+q5723080 nombre "Batalla de Tumhalad".
+q5723229 nombre "Batalla de las Mil Cavernas".
+q5723256 nombre "batalla de los Llanos".
+q572434 nombre "Túrin Turambar".
+q5733607 nombre "Bregor".
+q5734168 nombre "Brodda".
+q5739971 nombre "Calenhir".
+q5748800 nombre "Carach Angren".
+q5758992 nombre "Cavernas del rey Thranduil".
+q5759426 nombre "Caída de Doriath".
+q5760069 nombre "Celeborn".
+q5790640 nombre "Creación de los enanos".
+q5803547 nombre "Éofor".
+q5804379 nombre "despertar de los hombres".
+q5820519 nombre "Eithel Ivrin".
+q5829273 nombre "Elentir".
+q5850050 nombre "Ethring".
+q5876648 nombre "Gelmir de Nargothrond".
+q588135 nombre "Ar-Adûnakhôr".
+q5881551 nombre "Glóin hijo de Thorin".
+q5885896 nombre "Grond".
+q5887740 nombre "Guerra de Enanos contra Orcos".
+q5887925 nombre "Guerras de los valar contra Melkor".
+q5891223 nombre "Hado de los Noldor".
+q593531 nombre "Eärendil".
+q5935943 nombre "Lórien".
+q5939065 nombre "hombres medios".
+q5973010 nombre "Lenwë".
+q5994557 nombre "Óin hijo de Glóin".
+q5999348 nombre "Morgul Vale".
+q6011061 nombre "Mereth Aderthad".
+q6018469 nombre "Ivorwen".
+q6022274 nombre "Emyn Duir".
+q6036812 nombre "Dírhael".
+q6039569 nombre "Nellas".
+q6042054 nombre "Thorin III".
+q6053282 nombre "Orophin".
+q6071337 nombre "Penlodh".
+q6075285 nombre "Piedra de Erech".
+q61100284 nombre "Aldudénië".
+q6115943 nombre "Rómenna".
+q6115981 nombre "Rôg".
+q6146755 nombre "Tierras Brunas".
+q615219 nombre "Andram".
+q6155273 nombre "Uldor".
+q641238 nombre "lámparas de los valar".
+q641375 nombre "Doriath".
+q65165633 nombre "Galathilion".
+q6516809 nombre "Lóni".
+q6516843 nombre "Uldor".
+q6604556 nombre "Río Gladio".
+q6752069 nombre "Manthor".
+q6792759 nombre "Starkhorn".
+q6836588 nombre "Adanel".
+q6852898 nombre "Anillo del Juicio".
+q686048 nombre "Evendim".
+q6957037 nombre "Haldir".
+q6957256 nombre "Adurant".
+q6960345 nombre "Amarië".
+q716794 nombre "Fëanor".
+q718383 nombre "Gil-galad".
+q719208 nombre "Celeborn".
+q719647 nombre "Círdan".
+q719736 nombre "Elendil".
+q725898 nombre "Lúthien".
+q725935 nombre "Beren".
+q734128 nombre "Thingol".
+q7398036 nombre "Sador".
+q746728 nombre "los dos árboles de Valinor".
+q7467451 nombre "Alatar".
+q7468501 nombre "Erui".
+q7468643 nombre "Aelin-uial".
+q7469469 nombre "Espejo de Galadriel".
+q7473393 nombre "Durin I".
+q7474061 nombre "nandorin".
+q7476426 nombre "Aranrúth".
+q7476450 nombre "Dramborleg".
+q7505605 nombre "Legolin".
+q750797 nombre "Arien".
+q7514421 nombre "Tevildo".
+q7515806 nombre "uruk-hai".
+q753773 nombre "Glorfindel".
+q753788 nombre "Melian".
+q770363 nombre "Húrin".
+q78507 nombre "Manwë".
+q78523 nombre "Ulmo".
+q78555 nombre "Oromë".
+q7899425 nombre "Aros".
+q7901113 nombre "Langwell".
+q7901669 nombre "Río Poros".
+q7903756 nombre "Taur-en-Faroth".
+q795205 nombre "Vána".
+q79734 nombre "Tierra Media".
+q80224 nombre "Mandos".
+q80297 nombre "Tulkas".
+q80453 nombre "Morgoth".
+q8125562 nombre "Elboron".
+q81615651 nombre "Firebeards".
+q81615854 nombre "Broadbeams".
+q81616012 nombre "Ironfists".
+q81616163 nombre "Stiffbeards".
+q81616331 nombre "Blacklocks".
+q81616452 nombre "Stonefoots".
+q81907591 nombre "West-March".
+q81908441 nombre "Eastfold".
+q81908582 nombre "Eastemnet".
+q81908708 nombre "Westemnet".
+q81908913 nombre "Fenmarch".
+q8196779 nombre "Aluin".
+q8200321 nombre "Annon-in-Gelydh".
+q82025054 nombre "Cuaderna del Este".
+q82025079 nombre "Cuaderna del Sur".
+q8256342 nombre "Carnil".
+q833015 nombre "Celebrimbor".
+q8346403 nombre "Ciril".
+q83528989 nombre "Sarn Athrad".
+q835833 nombre "Rúmil".
+q837339 nombre "Magos Azules".
+q838470 nombre "Doriathrin".
+q840539 nombre "Eregion".
+q843151 nombre "Barad-dûr".
+q847157 nombre "Ossë".
+q847292 nombre "Primera Edad".
+q8768426 nombre "Dior de Gondor".
+q8771009 nombre "Durin IV".
+q8775173 nombre "Elurín".
+q8964077 nombre "Gilrain".
+q901109 nombre "Eönwë".
+q901288 nombre "Cima de los Vientos".
+q9022775 nombre "Linhir".
+q90276414 nombre "Quebradas del Sur".
+q9035150 nombre "Morgai".
+q9068714 nombre "Rhimdath".
+q9069358 nombre "Ringló".
+q9072580 nombre "Saeros".
+q9088483 nombre "Torech Ungol".
+q909264 nombre "Dorwinion".
+q9151386 nombre "Androth".
+q9192790 nombre "Cirith Thoronath".
+q920877 nombre "Niënor".
+q9286756 nombre "Haudh-en-Ndengin".
+q931279 nombre "Narya".
+q931519 nombre "Batalla de los Campos del Pelennor".
+q932923 nombre "Bosque Viejo".
+q9364536 nombre "Bocas del Sirion".
+q9372926 nombre "Great West Road".
+q939694 nombre "Míriel".
+q947130 nombre "Nan Elmoth".
+q96199899 nombre "Ring of Durin".
+q9696430 nombre "Caragdûr".
+q97208669 nombre "Gelmir".
+q97267266 nombre "Amon Obel".
+q982944 nombre "Monte del Destino".
+q986558 nombre "Glóredhel".
+q986604 nombre "Tol Morwen".
+q986610 nombre "Dáin I".
+q986655 nombre "Lothlann".
+q986734 nombre "Orocarni".
+q987372 nombre "isla de Balar".
+q987380 nombre "Thargelion".
+q994518 nombre "Eä".
+q996004 nombre "laiquendi".
+q997218 nombre "White Towers".
+ranger_in_tolkien_s_legendarium nombre "Ranger in Tolkien's legendarium".
+razas_de_arda nombre "razas de Arda".
+region nombre "región ficticia".
+rey nombre "rey ficticio".
+rio nombre "río ficticio".
+sepultura nombre "sepultura ficticia".
+ser_elfico nombre "ser élfico de la Tierra Media".
+ser_humano nombre "ser humano de la Tierra Media".
+ser_humano nombre "ser humano ficticio".
+seto nombre "seto ficticio".
+sindar nombre "sindar".
+sistema_de_escritura nombre "sistema de escritura ficticio".
+sistema_de_escritura_artificial nombre "sistema de escritura artificial".
+teleri nombre "teleri".
+torre nombre "torre ficticia".
+umanyar nombre "úmanyar".
+unidad_de_tiempo nombre "unidad de tiempo ficticia".
+universo_paralelo nombre "universo paralelo ficticio".
+vado nombre "vado ficticio".
+valar nombre "valar".
+valle nombre "valle ficticio".
+vampire nombre "Vampire".
+vanyar nombre "vanyar".
+vial nombre "vial".
+werewolf nombre "werewolf".
+werewolf_in_a_work_of_fiction nombre "werewolf in a work of fiction".

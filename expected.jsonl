@@ -1,0 +1,8 @@
+{"consulta": "X nombre \"Fëanor\"", "soluciones": [{"X": "q716794"}]}
+{"consulta": "X nombre \"fëanor\"", "soluciones": []}
+{"consulta": "X nombre \"Batalla de Dagorlad\"", "soluciones": [{"X": "q17400466"}, {"X": "q17400520"}, {"X": "q2631058"}]}
+{"consulta": "X nombre \"lenguas construidas por J.R.R. Tolkien\"", "soluciones": [{"X": "lenguas_construidas_por_j_r_r_tolkien"}]}
+{"consulta": "q1135680 nombre N", "soluciones": [{"N": "\"Turgon\""}]}
+{"consulta": "q1135680 nombre \"Turgon\"", "soluciones": [{}]}
+{"consulta": "X nombre \"Elendil\", X hijo_de P, P nombre N", "soluciones": [{"X": "q719736", "P": "q390046", "N": "\"Amandil\""}]}
+{"consulta": "X es_un peredhil, X nombre N", "soluciones": [{"X": "q1637307", "N": "\"Elros\""}, {"X": "q1750964", "N": "\"Elwing\""}, {"X": "q1767102", "N": "\"Dior Eluchíl\""}, {"X": "q206018", "N": "\"Arwen\""}, {"X": "q208426", "N": "\"Elrond\""}, {"X": "q2336076", "N": "\"Eluréd\""}, {"X": "q593531", "N": "\"Eärendil\""}, {"X": "q8775173", "N": "\"Elurín\""}]}
