@@ -21,7 +21,7 @@ hash_map = defaultdict(list)
 
 
 def es_variable(termino):
-    return termino[0].isupper()
+    return termino[0].isupper() or termino[0] == "_"
 
 
 def unifica(termino, valor, sustitucion):
@@ -84,20 +84,44 @@ def afirma(hechos):
         hash_map[hecho[0]].append((hecho[1], hecho[2]))
 
 
-def responde(hechos, jsonl):
+def sin_comillas(valor):
+    """'"Fëanor"' -> 'Fëanor' (los literales guardan sus comillas)."""
+    return valor[1:-1] if valor.startswith('"') else valor
+
+
+def imprime_soluciones(hechos, soluciones):
+    # variables de la consulta, en orden de aparición y sin repetir,
+    # quitando las auxiliares (las que empiezan por _)
+    terminos = dict.fromkeys(t for hecho in hechos for t in hecho)
+    variables = [t for t in terminos if es_variable(t) and not t.startswith("_")]
+    if not variables:
+        return  # consulta sin variables visibles: basta con el SI/NO
+
+    # quitar duplicados y ordenar
+    filas = sorted({tuple(s[v] for v in variables) for s in soluciones})
+    for fila in filas:
+        print(
+            "   ",
+            ", ".join(f"{v} = {sin_comillas(x)}" for v, x in zip(variables, fila)),
+        )
+
+
+def responde(hechos, jsonl, detalle=False):
     soluciones = list(resolver(hechos))
     if jsonl:
         imprimir_jsonl(hechos, soluciones)
     else:
         texto = ", ".join(" ".join(hecho) for hecho in hechos)
         print(f"{texto}? -> {'SI' if soluciones else 'NO'}")
+        if detalle:
+            imprime_soluciones(hechos, soluciones)
 
 
-def procesa(tipo, hechos, jsonl):
+def procesa(tipo, hechos, jsonl, detalle=False):
     if tipo == "afirmacion":
         afirma(hechos)
     else:
-        responde(hechos, jsonl)
+        responde(hechos, jsonl, detalle)
 
 
 def ejecuta_script(fichero, jsonl):
@@ -120,7 +144,9 @@ def modo_interactivo(jsonl):
     except ImportError:
         logger.warning("readline no disponible: sin historial ni edición de línea")
 
-    logger.info("Modo interactivo: afirmaciones (.) o consultas (?). Ctrl+D para salir.")
+    logger.info(
+        "Modo interactivo: afirmaciones (.) o consultas (?). Ctrl+D para salir."
+    )
     while True:
         try:
             linea = input("sbc> ")
@@ -132,12 +158,18 @@ def modo_interactivo(jsonl):
             continue
 
         for tipo, hechos in cargar_linea(linea):
-            procesa(tipo, hechos, jsonl)
+            procesa(tipo, hechos, jsonl, detalle=True)
 
 
 @click.command()
-@click.argument("directorio", type=click.Path(exists=True, file_okay=False, path_type=Path))
-@click.argument("script", required=False, type=click.Path(exists=True, dir_okay=False, path_type=Path))
+@click.argument(
+    "directorio", type=click.Path(exists=True, file_okay=False, path_type=Path)
+)
+@click.argument(
+    "script",
+    required=False,
+    type=click.Path(exists=True, dir_okay=False, path_type=Path),
+)
 @click.option(
     "-i",
     "--interactive",
