@@ -1,0 +1,29 @@
+# Consultas sobre nuestra casa
+
+# 1. ¿Qué hay directamente en el salón?
+X esta_en salon?
+
+# 2. ¿Dónde está el portátil, y en qué habitación está ese sitio? (dos saltos)
+portatil esta_en M, M esta_en H, H nombre N?
+
+# 3. ¿Qué electrodomésticos hay y en qué estancia?
+X es_un electrodomestico, X esta_en H, H nombre N?
+
+# 4. ¿Quién duerme en cada habitación?
+P duerme_en H, P nombre NP, H nombre NH?
+
+# 5. ¿A qué estancias se llega desde la cocina en dos pasos?
+cocina conecta_con P, P conecta_con X?
+
+# 6. ¿Qué sabemos del gato? (variable en el predicado)
+gato R X?
+
+# 7. ¿De quién es cada cosa y dónde está?
+X pertenece_a P, X esta_en L?
+
+# 8. ¿Qué tareas hace cada uno?
+P tarea T, P nombre N?
+
+# 9. Consultas de sí/no
+nevera esta_en salon?
+yo hermano_de hermana?

@@ -1,0 +1,10 @@
+X esta_en salon? -> SI
+portatil esta_en M, M esta_en H, H nombre N? -> SI
+X es_un electrodomestico, X esta_en H, H nombre N? -> SI
+P duerme_en H, P nombre NP, H nombre NH? -> SI
+cocina conecta_con P, P conecta_con X? -> SI
+gato R X? -> SI
+X pertenece_a P, X esta_en L? -> SI
+P tarea T, P nombre N? -> SI
+nevera esta_en salon? -> NO
+yo hermano_de hermana? -> SI

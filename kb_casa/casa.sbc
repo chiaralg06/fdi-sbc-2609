@@ -1,0 +1,99 @@
+# Base de conocimiento: nuestra casa
+#
+# Términos SIN tildes: fuera de comillas la gramática solo admite letras
+# ASCII, dígitos, "_", ":" y "ñ". Un "salón" sin comillas haría que se
+# descartara el fichero entero. Los nombres bonitos, con tildes, van entre
+# comillas con el predicado "nombre".
+
+# ---------- La casa y sus estancias ----------
+casa es_un vivienda, casa nombre "Nuestra casa".
+
+recibidor es_un estancia, recibidor parte_de casa, recibidor nombre "Recibidor".
+pasillo es_un estancia, pasillo parte_de casa, pasillo nombre "Pasillo".
+salon es_un estancia, salon parte_de casa, salon nombre "Salón".
+cocina es_un estancia, cocina parte_de casa, cocina nombre "Cocina".
+baño es_un estancia, baño parte_de casa, baño nombre "Baño".
+terraza es_un estancia, terraza parte_de casa, terraza nombre "Terraza".
+dormitorio_1 es_un estancia, dormitorio_1 parte_de casa, dormitorio_1 nombre "Dormitorio de mis padres".
+dormitorio_2 es_un estancia, dormitorio_2 parte_de casa, dormitorio_2 nombre "Mi habitación".
+dormitorio_3 es_un estancia, dormitorio_3 parte_de casa, dormitorio_3 nombre "Habitación de mi hermana".
+
+# ---------- Cómo se conectan ----------
+# En los dos sentidos: el motor no tiene reglas, así que no sabe que
+# "conecta_con" es simétrico.
+recibidor conecta_con pasillo, pasillo conecta_con recibidor.
+recibidor conecta_con salon, salon conecta_con recibidor.
+salon conecta_con terraza, terraza conecta_con salon.
+pasillo conecta_con cocina, cocina conecta_con pasillo.
+pasillo conecta_con baño, baño conecta_con pasillo.
+pasillo conecta_con dormitorio_1, dormitorio_1 conecta_con pasillo.
+pasillo conecta_con dormitorio_2, dormitorio_2 conecta_con pasillo.
+pasillo conecta_con dormitorio_3, dormitorio_3 conecta_con pasillo.
+
+# ---------- Clases ----------
+mueble subclase_de objeto.
+electrodomestico subclase_de objeto.
+aparato_electronico subclase_de objeto.
+
+# ---------- Muebles ----------
+sofa es_un mueble, sofa esta_en salon, sofa nombre "Sofá".
+mesa_comedor es_un mueble, mesa_comedor esta_en salon.
+estanteria es_un mueble, estanteria esta_en salon, estanteria nombre "Estantería".
+zapatero es_un mueble, zapatero esta_en recibidor.
+cama_1 es_un mueble, cama_1 esta_en dormitorio_1.
+cama_2 es_un mueble, cama_2 esta_en dormitorio_2.
+cama_3 es_un mueble, cama_3 esta_en dormitorio_3.
+armario_1 es_un mueble, armario_1 esta_en dormitorio_1.
+armario_2 es_un mueble, armario_2 esta_en dormitorio_2.
+escritorio es_un mueble, escritorio esta_en dormitorio_2.
+
+# ---------- Electrodomésticos ----------
+nevera es_un electrodomestico, nevera esta_en cocina.
+horno es_un electrodomestico, horno esta_en cocina.
+microondas es_un electrodomestico, microondas esta_en cocina.
+lavavajillas es_un electrodomestico, lavavajillas esta_en cocina.
+lavadora es_un electrodomestico, lavadora esta_en terraza.
+
+# ---------- Electrónica ----------
+television es_un aparato_electronico, television esta_en salon, television nombre "Televisión".
+router es_un aparato_electronico, router esta_en salon.
+consola es_un aparato_electronico, consola esta_en salon.
+portatil es_un aparato_electronico, portatil esta_en escritorio, portatil nombre "Portátil".
+
+# ---------- Cosas pequeñas (dentro o encima de muebles) ----------
+llaves esta_en zapatero.
+mando_tele esta_en sofa.
+libros esta_en estanteria.
+
+# ---------- Personas ----------
+yo es_un persona, yo nombre "Yo".
+madre es_un persona, madre nombre "Mamá".
+padre es_un persona, padre nombre "Papá".
+hermana es_un persona, hermana nombre "Mi hermana".
+
+madre conyuge_de padre, padre conyuge_de madre.
+madre madre_de yo, madre madre_de hermana.
+padre padre_de yo, padre padre_de hermana.
+yo hijo_de madre, yo hijo_de padre.
+hermana hijo_de madre, hermana hijo_de padre.
+yo hermano_de hermana, hermana hermano_de yo.
+
+madre duerme_en dormitorio_1.
+padre duerme_en dormitorio_1.
+yo duerme_en dormitorio_2.
+hermana duerme_en dormitorio_3.
+
+# ---------- Mascota ----------
+gato es_un mascota, gato nombre "Misi", gato duerme_en sofa, gato pertenece_a hermana.
+
+# ---------- De quién es cada cosa ----------
+portatil pertenece_a yo.
+escritorio pertenece_a yo.
+consola pertenece_a hermana.
+
+# ---------- Tareas de casa ----------
+yo tarea sacar_basura.
+yo tarea poner_lavavajillas.
+hermana tarea dar_de_comer_al_gato.
+madre tarea hacer_compra.
+padre tarea poner_lavadora.
