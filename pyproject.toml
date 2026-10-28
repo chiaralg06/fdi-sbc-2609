@@ -5,6 +5,8 @@ description = "Proyecto de SBC 26/27"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "click",
     "loguru",
     "pyparsing",
+    "pyreadline3; sys_platform == 'win32'",
 ]
