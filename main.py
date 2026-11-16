@@ -18,6 +18,7 @@ from pyparsing import ParseException
 from profesor import _script, cargar_KB, cargar_script, imprimir_jsonl
 
 hash_map = defaultdict(list)
+reglas = []
 
 
 def es_variable(termino):
@@ -80,8 +81,34 @@ def resolver(preguntas, sustitucion=None):
 
 
 def afirma(hechos):
-    for hecho in hechos:
-        hash_map[hecho[0]].append((hecho[1], hecho[2]))
+    nuevo = False
+    for sujeto, predicado, objeto in hechos:
+        if es_variable(sujeto) or es_variable(predicado) or es_variable(objeto):
+            continue
+
+        pareja = (predicado, objeto)
+        if pareja not in hash_map[sujeto]:
+            hash_map[sujeto].append(pareja)
+            nuevo = True
+
+    return nuevo
+
+
+def descubre():
+    while True:
+        cambios = False
+
+        for consecuente, antecedente in reglas:
+            soluciones = list(resolver(antecedente))
+
+            for sust in soluciones:
+                for s, p, o in consecuente:
+                    hecho_nuevo = (sust.get(s, s), sust.get(p, p), sust.get(o, o))
+                    if afirma([hecho_nuevo]):
+                        cambios = True
+
+        if not cambios:
+            break
 
 
 def sin_comillas(valor):
@@ -117,11 +144,17 @@ def responde(hechos, jsonl, detalle=False):
             imprime_soluciones(hechos, soluciones)
 
 
-def procesa(tipo, hechos, jsonl, detalle=False):
+def procesa(tipo, hechos, jsonl=False, detalle=False):
     if tipo == "afirmacion":
         afirma(hechos)
-    else:
+    elif tipo == "pregunta":
         responde(hechos, jsonl, detalle)
+    elif tipo == "regla":
+        if hechos not in reglas:
+            reglas.append(hechos)
+    elif tipo == "comando":
+        if hechos[0] == "descubre":
+            descubre()
 
 
 def ejecuta_script(fichero, jsonl):
@@ -188,8 +221,8 @@ def cli(directorio, script, interactivo, jsonl):
     Si se da SCRIPT, ejecuta sus afirmaciones y consultas. Si no se da,
     entra en modo interactivo, leyendo afirmaciones y consultas del usuario.
     """
-    for _, hechos in cargar_KB(directorio):
-        afirma(hechos)
+    for tipo, hechos in cargar_KB(directorio):
+        procesa(tipo, hechos)
 
     if script is not None:
         ejecuta_script(script, jsonl)
