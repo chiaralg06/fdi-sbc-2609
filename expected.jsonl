@@ -1,8 +1,13 @@
-{"consulta": "X nombre \"Fëanor\"", "soluciones": [{"X": "q716794"}]}
-{"consulta": "X nombre \"fëanor\"", "soluciones": []}
-{"consulta": "X nombre \"Batalla de Dagorlad\"", "soluciones": [{"X": "q17400466"}, {"X": "q17400520"}, {"X": "q2631058"}]}
-{"consulta": "X nombre \"lenguas construidas por J.R.R. Tolkien\"", "soluciones": [{"X": "lenguas_construidas_por_j_r_r_tolkien"}]}
-{"consulta": "q1135680 nombre N", "soluciones": [{"N": "\"Turgon\""}]}
-{"consulta": "q1135680 nombre \"Turgon\"", "soluciones": [{}]}
-{"consulta": "X nombre \"Elendil\", X hijo_de P, P nombre N", "soluciones": [{"X": "q719736", "P": "q390046", "N": "\"Amandil\""}]}
-{"consulta": "X es_un peredhil, X nombre N", "soluciones": [{"X": "q1637307", "N": "\"Elros\""}, {"X": "q1750964", "N": "\"Elwing\""}, {"X": "q1767102", "N": "\"Dior Eluchíl\""}, {"X": "q206018", "N": "\"Arwen\""}, {"X": "q208426", "N": "\"Elrond\""}, {"X": "q2336076", "N": "\"Eluréd\""}, {"X": "q593531", "N": "\"Eärendil\""}, {"X": "q8775173", "N": "\"Elurín\""}]}
+{"consulta": "X progenitor_de luis", "soluciones": []}
+{"consulta": "X progenitor_de luis", "soluciones": [{"X": "ana"}, {"X": "juan"}]}
+{"consulta": "X progenitor_de ana", "soluciones": [{"X": "pepe"}, {"X": "rosa"}]}
+{"consulta": "X abuelo_de nora", "soluciones": [{"X": "ana"}, {"X": "juan"}]}
+{"consulta": "nora nieto_de X", "soluciones": [{"X": "ana"}, {"X": "juan"}]}
+{"consulta": "X abuelo_de Y, X padre_de ana", "soluciones": [{"X": "pepe", "Y": "eva"}, {"X": "pepe", "Y": "luis"}]}
+{"consulta": "X antepasado_de nora", "soluciones": [{"X": "ana"}, {"X": "juan"}, {"X": "luis"}, {"X": "pepe"}, {"X": "rosa"}]}
+{"consulta": "pepe antepasado_de X", "soluciones": [{"X": "ana"}, {"X": "eva"}, {"X": "luis"}, {"X": "nora"}]}
+{"consulta": "nora antepasado_de X", "soluciones": []}
+{"consulta": "X antepasado_de lia", "soluciones": []}
+{"consulta": "X antepasado_de lia", "soluciones": [{"X": "ana"}, {"X": "juan"}, {"X": "luis"}, {"X": "nora"}, {"X": "pepe"}, {"X": "rosa"}]}
+{"consulta": "X bisabuelo_de Y", "soluciones": []}
+{"consulta": "X bisabuelo_de Y", "soluciones": [{"X": "ana", "Y": "lia"}, {"X": "juan", "Y": "lia"}, {"X": "pepe", "Y": "nora"}, {"X": "rosa", "Y": "nora"}]}
