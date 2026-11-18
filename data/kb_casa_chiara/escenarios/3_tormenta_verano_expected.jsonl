@@ -1,0 +1,8 @@
+{"consulta": "D accion A", "soluciones": [{"D": "aire_salon", "A": "encender"}, {"D": "aspiradora", "A": "apagar"}, {"D": "toldo", "A": "desplegar"}]}
+{"consulta": "D encender_por calor, D nombre N", "soluciones": [{"D": "aire_salon", "N": "\"Aire acondicionado del salón\""}]}
+{"consulta": "casa situacion S", "soluciones": [{"S": "calor"}, {"S": "lluvia"}]}
+{"consulta": "toldo conflicto M", "soluciones": [{"M": "calor"}, {"M": "lluvia"}]}
+{"consulta": "toldo decision A", "soluciones": [{"A": "recoger"}]}
+{"consulta": "alexa avisar_por M, M nombre N", "soluciones": [{"M": "ropa_tendida", "N": "\"Llueve y hay ropa tendida fuera\""}]}
+{"consulta": "D encender_por humedad", "soluciones": [{"D": "extractor_baño"}]}
+{"consulta": "D accion A", "soluciones": [{"D": "aire_salon", "A": "encender"}, {"D": "alexa", "A": "avisar"}, {"D": "aspiradora", "A": "apagar"}, {"D": "extractor_baño", "A": "encender"}, {"D": "toldo", "A": "desplegar"}, {"D": "toldo", "A": "recoger"}]}

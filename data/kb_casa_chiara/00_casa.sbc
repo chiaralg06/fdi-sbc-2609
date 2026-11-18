@@ -16,19 +16,23 @@ recibidor es_un zona_comun, recibidor parte_de casa, recibidor nombre "Recibidor
 pasillo es_un zona_comun, pasillo parte_de casa, pasillo nombre "Pasillo".
 salon es_un zona_comun, salon parte_de casa, salon nombre "Salón".
 cocina es_un zona_comun, cocina es_un cuarto_humedo, cocina parte_de casa, cocina nombre "Cocina".
-baño es_un cuarto_humedo, baño parte_de casa, baño nombre "Baño".
-terraza es_un exterior, terraza parte_de casa, terraza nombre "Terraza".
+baño_1 es_un cuarto_humedo, baño_1 parte_de casa, baño_1 nombre "Baño pequeño".
+baño_2 es_un cuarto_humedo, baño_2 parte_de casa, baño_2 nombre "Baño grande".
+terraza_1 es_un exterior, terraza_1 parte_de casa, terraza_1 nombre "Terraza grande".
+terraza_2 es_un exterior, terraza_2 parte_de casa, terraza_2 nombre "Terraza de la cocina".
 dormitorio_1 es_un dormitorio, dormitorio_1 parte_de casa, dormitorio_1 nombre "Dormitorio de mis padres".
 dormitorio_2 es_un dormitorio, dormitorio_2 parte_de casa, dormitorio_2 nombre "Mi habitación".
-dormitorio_3 es_un dormitorio, dormitorio_3 parte_de casa, dormitorio_3 nombre "Habitación de mi hermana".
+dormitorio_3 es_un dormitorio, dormitorio_3 parte_de casa, dormitorio_3 nombre "Habitación de invitados".
 
 # Cada puerta o paso se escribe una sola vez, con "acceso_a". La regla de
 # 10_reglas_casa.sbc deduce "conecta_con" en los dos sentidos.
 recibidor acceso_a pasillo.
 recibidor acceso_a salon.
-salon acceso_a terraza.
-pasillo acceso_a cocina.
-pasillo acceso_a baño.
+recibidor acceso_a cocina.
+cocina acceso_a terraza_2.
+salon acceso_a terraza_1.
+pasillo acceso_a baño_1.
 pasillo acceso_a dormitorio_1.
 pasillo acceso_a dormitorio_2.
 pasillo acceso_a dormitorio_3.
+dormitorio_1 acceso_a baño_2.

@@ -1,0 +1,16 @@
+D bajar_por descanso? -> SI
+D apagar_por descanso? -> SI
+alexa silenciar_por M? -> SI
+persiana_dormitorio_3 bajar_por M? -> NO
+aspiradora accion A? -> SI
+aspiradora conflicto M? -> NO
+pasillo situacion paso_nocturno? -> SI
+luz_pasillo conflicto M? -> SI
+luz_pasillo decision A? -> SI
+luz_salon encender_por M? -> NO
+persiana_dormitorio_3 bajar_por M? -> SI
+E situacion humo, E nombre N? -> SI
+D conflicto M? -> SI
+D se_impone M? -> SI
+D decision A, D nombre N? -> SI
+alexa avisar_por M, M nombre N? -> SI

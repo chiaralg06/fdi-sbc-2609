@@ -3,6 +3,7 @@
 # "esta_en" es la ubicación directa: una estancia o un mueble. La regla
 # "en_estancia" de 10_reglas_casa.sbc deduce en qué estancia acaba cada cosa
 # (el portátil está en el escritorio, que está en mi habitación).
+# Los dispositivos domóticos están en 04_domotica.sbc.
 
 # ---------- Muebles ----------
 sofa es_un mueble, sofa esta_en salon, sofa nombre "Sofá".
@@ -15,16 +16,19 @@ cama_3 es_un mueble, cama_3 esta_en dormitorio_3.
 armario_1 es_un mueble, armario_1 esta_en dormitorio_1.
 armario_2 es_un mueble, armario_2 esta_en dormitorio_2.
 escritorio es_un mueble, escritorio esta_en dormitorio_2.
+tendedero es_un mueble, tendedero esta_en terraza_2.
 
 # ---------- Electrodomésticos ----------
 nevera es_un electrodomestico, nevera esta_en cocina.
 horno es_un electrodomestico, horno esta_en cocina.
 microondas es_un electrodomestico, microondas esta_en cocina.
 lavavajillas es_un electrodomestico, lavavajillas esta_en cocina.
-lavadora es_un electrodomestico, lavadora esta_en terraza.
+lavadora es_un electrodomestico, lavadora esta_en terraza_2.
 
 # ---------- Electrónica ----------
-television es_un aparato_electronico, television esta_en salon, television nombre "Televisión".
+# La tele es una smart TV: además de aparato electrónico, se puede controlar
+# (ver 01_clases.sbc), así que la Alexa la controla.
+television es_un smart_tv, television esta_en salon, television nombre "Televisión".
 router es_un aparato_electronico, router esta_en salon.
 consola es_un aparato_electronico, consola esta_en salon.
 portatil es_un aparato_electronico, portatil esta_en escritorio, portatil nombre "Portátil".
@@ -37,4 +41,3 @@ libros esta_en estanteria.
 # ---------- De quién es cada cosa ----------
 portatil pertenece_a yo.
 escritorio pertenece_a yo.
-consola pertenece_a hermana.

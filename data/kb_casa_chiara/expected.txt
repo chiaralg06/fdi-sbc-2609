@@ -3,21 +3,29 @@ portatil esta_en M, M esta_en H, H nombre N? -> SI
 X es_un electrodomestico, X esta_en H, H nombre N? -> SI
 P duerme_en H, P nombre NP, H nombre NH? -> SI
 miko R X? -> SI
-X pertenece_a P, X esta_en L? -> SI
 P tarea T, P nombre N? -> SI
 nevera esta_en salon? -> NO
-yo hermano_de hermana? -> SI
+yo hijo_de madre? -> NO
 X conecta_con salon? -> NO
-X hijo_de madre? -> NO
+alexa controla D? -> NO
 X conecta_con salon? -> SI
-cocina conecta_con P, P conecta_con X? -> SI
+X conecta_con pasillo, X tipo dormitorio? -> SI
+baño_2 conecta_con X, X conecta_con Y? -> SI
 portatil en_estancia E? -> SI
 X en_estancia dormitorio_2? -> SI
 llaves en_estancia E, E nombre N? -> SI
 miko tipo C? -> SI
+television tipo C? -> SI
 X tipo dormitorio, P duerme_en X, P nombre N? -> SI
 X tipo habitante, X nombre N? -> SI
-X tipo objeto, X en_estancia cocina? -> SI
-X hijo_de madre? -> SI
+X tipo sensor, X en_estancia E? -> SI
+X tipo cuarto_humedo, D tipo controlable, D en_estancia X? -> SI
 yo hijo_de P, P nombre N? -> SI
+alexa controla D? -> SI
+alexa controla consola? -> SI
+alexa controla luz_pasillo? -> NO
+seguridad prevalece_sobre C? -> SI
+C prevalece_sobre ahorro? -> SI
+confort prevalece_sobre descanso? -> NO
+D accion A? -> NO
 X conecta_con salon? -> NO

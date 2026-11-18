@@ -1,37 +1,34 @@
 # Quién vive en la casa: la familia y Miko.
+#
+# Dónde está cada uno EN ESTE MOMENTO ("ubicacion") no se escribe aquí: lo
+# afirma cada escenario, porque cambia a lo largo del día.
 
 yo es_un persona, yo nombre "Yo".
 madre es_un persona, madre nombre "Mamá".
 padre es_un persona, padre nombre "Papá".
-hermana es_un persona, hermana nombre "Mi hermana".
 
-miko es_un gato, miko nombre "Miko", miko pertenece_a hermana.
+miko es_un gato, miko nombre "Miko", miko pertenece_a yo.
 
 # ---------- Familia ----------
 # Solo se escriben padre_de y madre_de. "progenitor_de" e "hijo_de" se deducen
 # en 11_reglas_familia.sbc.
-madre madre_de yo, madre madre_de hermana.
-padre padre_de yo, padre padre_de hermana.
+madre madre_de yo.
+padre padre_de yo.
 
-# conyuge_de y hermano_de se escriben en los dos sentidos a propósito:
-# - Una regla simétrica (X conyuge_de Y <- Y conyuge_de X) se llama a sí misma
-#   en bucle con razona si!.
-# - "Dos hijos de los mismos padres son hermanos" deduciría también que cada
-#   uno es hermano de sí mismo, porque el motor no permite decir X distinto
-#   de Y.
+# conyuge_de se escribe en los dos sentidos a propósito: una regla simétrica
+# (X conyuge_de Y <- Y conyuge_de X) se llama a sí misma en bucle con
+# razona si!.
 madre conyuge_de padre, padre conyuge_de madre.
-yo hermano_de hermana, hermana hermano_de yo.
 
 # ---------- Dónde duerme cada uno ----------
 madre duerme_en dormitorio_1.
 padre duerme_en dormitorio_1.
 yo duerme_en dormitorio_2.
-hermana duerme_en dormitorio_3.
 miko duerme_en sofa.
 
 # ---------- Tareas de casa ----------
 yo tarea sacar_basura.
 yo tarea poner_lavavajillas.
-hermana tarea dar_de_comer_al_gato.
+yo tarea dar_de_comer_al_gato.
 madre tarea hacer_compra.
 padre tarea poner_lavadora.

@@ -1,0 +1,50 @@
+# Qué hace cada dispositivo en cada situación, agrupado por categoría de
+# motivo (de más a menos prioritaria). Todas usan tipos de dispositivo, nunca
+# dispositivos concretos.
+
+# ---------- Seguridad ----------
+# Humo: luces encendidas y persianas arriba para salir, el clima apagado para
+# no mover el humo, y la Alexa avisa.
+L encender_por humo <- E situacion humo, L tipo luz_inteligente.
+P subir_por humo <- E situacion humo, P tipo persiana_motorizada.
+C apagar_por humo <- E situacion humo, C tipo aparato_clima.
+A avisar_por humo <- E situacion humo, A tipo asistente_voz.
+
+# Intrusión: se encienden todas las luces para disuadir y la Alexa avisa.
+L encender_por intrusion <- casa situacion intrusion, L tipo luz_inteligente.
+A avisar_por intrusion <- casa situacion intrusion, A tipo asistente_voz.
+
+# De noche, si alguien pasa, se enciende la luz de esa estancia.
+L encender_por paso_nocturno <- E situacion paso_nocturno, L tipo luz_inteligente, L en_estancia E.
+
+# ---------- Bienestar de la mascota ----------
+# Si se queda sola: en invierno se mantiene la calefacción; en verano, el aire
+# de la estancia donde esté.
+C encender_por mascota_sola <- casa situacion mascota_sola, casa estacion invierno, C tipo calefaccion_central.
+C encender_por mascota_sola <- casa situacion mascota_sola, casa estacion verano, M tipo mascota, M ubicacion E, C tipo aire_acondicionado, C en_estancia E.
+
+# El robot aspirador no funciona si hay una mascota en casa.
+R apagar_por mascota_en_casa <- M tipo mascota, M ubicacion E, E parte_de casa, R tipo robot_aspirador.
+
+# ---------- Protección de la casa ----------
+T recoger_por lluvia <- casa situacion lluvia, T tipo toldo_motorizado.
+A avisar_por ropa_tendida <- casa situacion lluvia, X tiene ropa, X en_estancia E, E tipo exterior, A tipo asistente_voz.
+
+# ---------- Descanso ----------
+# Persianas abajo donde duerme alguien, luces de zonas comunes apagadas y la
+# Alexa en silencio.
+P bajar_por descanso <- casa modo noche, P tipo persiana_motorizada, P en_estancia E, X duerme_en E, X tipo persona.
+L apagar_por descanso <- casa modo noche, L tipo luz_inteligente, L en_estancia E, E tipo zona_comun.
+A silenciar_por descanso <- casa modo noche, A tipo asistente_voz.
+
+# ---------- Confort ----------
+T desplegar_por calor <- casa situacion calor, T tipo toldo_motorizado.
+C encender_por calor <- casa situacion calor, C tipo aire_acondicionado, C en_estancia E, P ubicacion E, P tipo persona.
+X encender_por humedad <- E situacion humedad_alta, X tipo extractor, X en_estancia E.
+R encender_por casa_vacia <- casa modo fuera, R tipo robot_aspirador.
+
+# ---------- Ahorro ----------
+L apagar_por ahorro_energia <- casa modo fuera, L tipo luz_inteligente.
+C apagar_por ahorro_energia <- casa modo fuera, C tipo aparato_clima.
+T apagar_por ahorro_energia <- casa modo fuera, T tipo smart_tv.
+S apagar_por ahorro_energia <- casa modo fuera, X enchufada_a S, S tipo enchufe_inteligente.

@@ -1,0 +1,47 @@
+# Reglas generales de la domótica: control, situaciones y conflictos.
+#
+# El estado del momento lo dan los escenarios con hechos como
+# "casa modo fuera", "casa estacion invierno", "miko ubicacion salon" o
+# "sensor_lluvia detecta lluvia". Estas reglas los convierten en situaciones,
+# y 13_reglas_acciones.sbc decide qué hacer en cada una.
+
+# ---------- Qué controla la Alexa ----------
+# Todo lo controlable que esté en su misma estancia. Un enchufe inteligente
+# nuevo en el salón queda controlado sin tocar nada más.
+A controla D <- A tipo asistente_voz, A en_estancia E, D tipo controlable, D en_estancia E.
+# Y lo que está enchufado a algo que controla (la consola).
+A controla X <- X enchufada_a S, A controla S.
+
+# ---------- Situaciones ----------
+# Los sensores informan con "S detecta ...". Que el dato venga de un sensor
+# del tipo adecuado evita que, por ejemplo, el termómetro "detecte" humo.
+casa situacion lluvia <- S detecta lluvia, S tipo sensor_lluvia.
+casa situacion calor <- S detecta calor, S tipo sensor_temperatura.
+E situacion humo <- S detecta humo, S tipo sensor_humo, S en_estancia E.
+E situacion humedad_alta <- S detecta humedad_alta, S tipo sensor_humedad, S en_estancia E.
+
+# Lo que significa un dato depende del contexto: abrir la puerta es normal,
+# salvo que no haya nadie en casa. Moverse por el pasillo solo importa de
+# noche.
+casa situacion intrusion <- casa modo fuera, S detecta apertura, S tipo sensor_apertura.
+E situacion paso_nocturno <- casa modo noche, S detecta movimiento, S tipo sensor_movimiento, S en_estancia E.
+
+# Una mascota se queda sola si la familia ha salido y ella está en casa.
+casa situacion mascota_sola <- casa modo fuera, M tipo mascota, M ubicacion E, E parte_de casa.
+
+# ---------- Acciones y conflictos ----------
+# Qué acción hace cada dispositivo, sin el motivo.
+D accion A <- V verbo A, D V M.
+
+# Un dispositivo está en conflicto si dos motivos piden acciones opuestas.
+# Se apuntan los motivos enfrentados.
+D conflicto M1 <- V1 opuesto V2, D V1 M1, D V2 M2.
+
+# En un conflicto se impone el motivo de categoría más prioritaria, y la
+# decisión final es la acción que pedía ese motivo.
+D se_impone M1 <- V1 opuesto V2, D V1 M1, D V2 M2, M1 categoria C1, M2 categoria C2, C1 prevalece_sobre C2.
+D decision A <- D se_impone M, V verbo A, D V M.
+
+# Orden de prioridad completo a partir de los escalones de 05_motivos.sbc.
+C1 prevalece_sobre C2 <- C1 por_encima_de C2.
+C1 prevalece_sobre C3 <- C1 por_encima_de C2, C2 prevalece_sobre C3.

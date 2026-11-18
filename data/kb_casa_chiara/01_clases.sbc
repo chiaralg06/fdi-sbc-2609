@@ -3,21 +3,49 @@
 # Cada cosa dice solo su tipo más concreto con "es_un". Las reglas de
 # 10_reglas_casa.sbc deducen el resto con "tipo": un dormitorio es una
 # estancia, Miko es un gato, una mascota y un habitante.
-# La jerarquía no tiene ciclos (nada es subclase de sí mismo, ni directa ni
-# indirectamente), así que las reglas recursivas terminan con razona si!.
+# Una clase puede tener varias superclases (la smart TV es un aparato
+# electrónico y también algo controlable). La jerarquía no tiene ciclos, así
+# que las reglas recursivas terminan con razona si!.
 
-# Estancias
+# ---------- Estancias ----------
 dormitorio subclase_de estancia.
 zona_comun subclase_de estancia.
 cuarto_humedo subclase_de estancia.
 exterior subclase_de estancia.
 
-# Objetos
+# ---------- Objetos ----------
 mueble subclase_de objeto.
 electrodomestico subclase_de objeto.
 aparato_electronico subclase_de objeto.
 
-# Quién vive en la casa
+# ---------- Quién vive en la casa ----------
 persona subclase_de habitante.
 mascota subclase_de habitante.
 gato subclase_de mascota.
+
+# ---------- Domótica ----------
+# Tres familias de dispositivos: el asistente de voz que da órdenes, los
+# sensores que informan y lo controlable, sobre lo que se actúa.
+dispositivo_inteligente subclase_de objeto.
+asistente_voz subclase_de dispositivo_inteligente.
+sensor subclase_de dispositivo_inteligente.
+controlable subclase_de dispositivo_inteligente.
+
+luz_inteligente subclase_de controlable.
+persiana_motorizada subclase_de controlable.
+toldo_motorizado subclase_de controlable.
+enchufe_inteligente subclase_de controlable.
+extractor subclase_de controlable.
+robot_aspirador subclase_de controlable.
+smart_tv subclase_de controlable, smart_tv subclase_de aparato_electronico.
+
+aparato_clima subclase_de controlable.
+aire_acondicionado subclase_de aparato_clima.
+calefaccion_central subclase_de aparato_clima.
+
+sensor_movimiento subclase_de sensor.
+sensor_apertura subclase_de sensor.
+sensor_humo subclase_de sensor.
+sensor_humedad subclase_de sensor.
+sensor_lluvia subclase_de sensor.
+sensor_temperatura subclase_de sensor.

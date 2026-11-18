@@ -1,0 +1,54 @@
+# Acciones, motivos y prioridades.
+#
+# Cada acción que deduce la base se guarda como "D <verbo>_por M": el
+# dispositivo D hace esa acción por el motivo M. Así cada conclusión lleva su
+# explicación pegada: "luz_pasillo encender_por paso_nocturno".
+#
+# Cada motivo pertenece a una categoría, y las categorías tienen un orden de
+# prioridad. Cuando dos motivos piden acciones opuestas sobre el mismo
+# dispositivo, gana el de la categoría más prioritaria (12_reglas_domotica.sbc).
+
+# ---------- Acciones ----------
+encender_por verbo encender.
+apagar_por verbo apagar.
+subir_por verbo subir.
+bajar_por verbo bajar.
+desplegar_por verbo desplegar.
+recoger_por verbo recoger.
+avisar_por verbo avisar.
+silenciar_por verbo silenciar.
+
+# Acciones incompatibles sobre un mismo dispositivo (en los dos sentidos).
+encender_por opuesto apagar_por, apagar_por opuesto encender_por.
+subir_por opuesto bajar_por, bajar_por opuesto subir_por.
+desplegar_por opuesto recoger_por, recoger_por opuesto desplegar_por.
+avisar_por opuesto silenciar_por, silenciar_por opuesto avisar_por.
+
+# ---------- Prioridades ----------
+# De más a menos importante. Solo se escribe cada escalón con el siguiente;
+# la regla "prevalece_sobre" deduce el resto (seguridad está por encima de
+# todo lo demás).
+seguridad por_encima_de bienestar_mascota.
+bienestar_mascota por_encima_de proteccion_casa.
+proteccion_casa por_encima_de descanso.
+descanso por_encima_de confort.
+confort por_encima_de ahorro.
+
+# ---------- Motivos ----------
+humo categoria seguridad, humo nombre "Hay humo en casa".
+intrusion categoria seguridad, intrusion nombre "Se ha abierto la puerta sin nadie en casa".
+paso_nocturno categoria seguridad, paso_nocturno nombre "Alguien camina de noche y no debe tropezar".
+
+mascota_sola categoria bienestar_mascota, mascota_sola nombre "Una mascota se ha quedado sola en casa".
+mascota_en_casa categoria bienestar_mascota, mascota_en_casa nombre "Hay una mascota en casa y el robot la asusta".
+
+lluvia categoria proteccion_casa, lluvia nombre "Está lloviendo".
+ropa_tendida categoria proteccion_casa, ropa_tendida nombre "Llueve y hay ropa tendida fuera".
+
+descanso categoria descanso, descanso nombre "Es de noche y hay gente durmiendo".
+
+calor categoria confort, calor nombre "Hace calor fuera".
+humedad categoria confort, humedad nombre "Hay mucha humedad".
+casa_vacia categoria confort, casa_vacia nombre "No hay nadie: buen momento para limpiar".
+
+ahorro_energia categoria ahorro, ahorro_energia nombre "No hay nadie en casa: ahorro de energía".

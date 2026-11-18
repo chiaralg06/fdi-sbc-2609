@@ -1,0 +1,31 @@
+# Escenario 3: tarde de verano. Hace calor, estoy en el salón y hay ropa
+# tendida. Luego llega una tormenta y alguien se ducha en el baño grande.
+# uv run -m sbc data/kb_casa_chiara data/kb_casa_chiara/escenarios/3_tormenta_verano.sbq
+
+razona si!
+
+casa modo normal, casa estacion verano.
+yo ubicacion salon.
+miko ubicacion dormitorio_2.
+tendedero tiene ropa.
+sensor_temp_exterior detecta calor.
+
+# Con calor: toldo fuera y aire del salón, porque estoy ahí
+D accion A?
+D encender_por calor, D nombre N?
+
+# ---------- Llega la tormenta ----------
+sensor_lluvia detecta lluvia.
+
+casa situacion S?
+toldo conflicto M?
+toldo decision A?
+alexa avisar_por M, M nombre N?
+
+# ---------- Alguien se ducha ----------
+sensor_humedad_baño detecta humedad_alta.
+
+D encender_por humedad?
+
+# Todo lo que hace la casa ahora
+D accion A?

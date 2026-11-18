@@ -1,0 +1,8 @@
+D accion A? -> SI
+D encender_por calor, D nombre N? -> SI
+casa situacion S? -> SI
+toldo conflicto M? -> SI
+toldo decision A? -> SI
+alexa avisar_por M, M nombre N? -> SI
+D encender_por humedad? -> SI
+D accion A? -> SI

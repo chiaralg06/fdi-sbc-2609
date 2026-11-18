@@ -1,0 +1,40 @@
+# Dispositivos domóticos y dónde están.
+#
+# Aquí solo se dice QUÉ hay y DÓNDE. Qué controla la Alexa y qué hace cada
+# dispositivo en cada situación lo deducen las reglas (12_ y 13_), así que
+# añadir un dispositivo nuevo solo pide escribir una línea aquí.
+
+# ---------- Salón: la Alexa y lo que tiene alrededor ----------
+alexa es_un asistente_voz, alexa esta_en salon, alexa nombre "Alexa".
+luz_salon es_un luz_inteligente, luz_salon esta_en salon, luz_salon nombre "Luz del salón".
+persiana_salon es_un persiana_motorizada, persiana_salon esta_en salon, persiana_salon nombre "Persiana del salón".
+aire_salon es_un aire_acondicionado, aire_salon esta_en salon, aire_salon nombre "Aire acondicionado del salón".
+enchufe_consola es_un enchufe_inteligente, enchufe_consola esta_en salon, enchufe_consola nombre "Enchufe de la consola".
+aspiradora es_un robot_aspirador, aspiradora esta_en salon, aspiradora nombre "Robot aspirador".
+
+# La consola no es inteligente, pero está enchufada a un enchufe que sí.
+consola enchufada_a enchufe_consola.
+
+# ---------- Resto de la casa ----------
+luz_recibidor es_un luz_inteligente, luz_recibidor esta_en recibidor, luz_recibidor nombre "Luz del recibidor".
+luz_pasillo es_un luz_inteligente, luz_pasillo esta_en pasillo, luz_pasillo nombre "Luz del pasillo".
+luz_cocina es_un luz_inteligente, luz_cocina esta_en cocina, luz_cocina nombre "Luz de la cocina".
+luz_dormitorio_1 es_un luz_inteligente, luz_dormitorio_1 esta_en dormitorio_1, luz_dormitorio_1 nombre "Luz del dormitorio de mis padres".
+luz_dormitorio_2 es_un luz_inteligente, luz_dormitorio_2 esta_en dormitorio_2, luz_dormitorio_2 nombre "Luz de mi habitación".
+
+persiana_dormitorio_1 es_un persiana_motorizada, persiana_dormitorio_1 esta_en dormitorio_1, persiana_dormitorio_1 nombre "Persiana del dormitorio de mis padres".
+persiana_dormitorio_2 es_un persiana_motorizada, persiana_dormitorio_2 esta_en dormitorio_2, persiana_dormitorio_2 nombre "Persiana de mi habitación".
+persiana_dormitorio_3 es_un persiana_motorizada, persiana_dormitorio_3 esta_en dormitorio_3, persiana_dormitorio_3 nombre "Persiana de la habitación de invitados".
+
+# El termostato de la calefacción central está en el pasillo.
+calefaccion es_un calefaccion_central, calefaccion esta_en pasillo, calefaccion nombre "Calefacción".
+extractor_baño es_un extractor, extractor_baño esta_en baño_2, extractor_baño nombre "Extractor del baño grande".
+toldo es_un toldo_motorizado, toldo esta_en terraza_1, toldo nombre "Toldo de la terraza".
+
+# ---------- Sensores ----------
+sensor_puerta es_un sensor_apertura, sensor_puerta esta_en recibidor, sensor_puerta nombre "Sensor de la puerta de entrada".
+sensor_mov_pasillo es_un sensor_movimiento, sensor_mov_pasillo esta_en pasillo, sensor_mov_pasillo nombre "Sensor de movimiento del pasillo".
+sensor_humo_cocina es_un sensor_humo, sensor_humo_cocina esta_en cocina, sensor_humo_cocina nombre "Detector de humo de la cocina".
+sensor_humedad_baño es_un sensor_humedad, sensor_humedad_baño esta_en baño_2, sensor_humedad_baño nombre "Sensor de humedad del baño".
+sensor_lluvia es_un sensor_lluvia, sensor_lluvia esta_en terraza_1, sensor_lluvia nombre "Sensor de lluvia".
+sensor_temp_exterior es_un sensor_temperatura, sensor_temp_exterior esta_en terraza_1, sensor_temp_exterior nombre "Termómetro exterior".
