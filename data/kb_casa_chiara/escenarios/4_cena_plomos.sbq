@@ -1,0 +1,41 @@
+# Escenario 4: preparando la cena en invierno se van encendiendo aparatos.
+# Con más de dos de alto consumo a la vez saltan los plomos.
+# uv run -m sbc data/kb_casa_chiara data/kb_casa_chiara/escenarios/4_cena_plomos.sbq
+
+razona si!
+
+casa estacion invierno.
+yo ubicacion cocina.
+miko ubicacion salon.
+
+# Vitro y horno: dos aparatos, todavía no pasa nada
+vitroceramica estado encendido, horno estado encendido.
+casa situacion sobrecarga?
+X activo si?
+
+# ---------- Se pone el lavavajillas ----------
+lavavajillas estado encendido.
+
+casa situacion sobrecarga?
+D apagar_por M, M nombre N?
+alexa avisar_por M, M nombre N?
+
+# ---------- También la lavadora ----------
+# Cuatro activos: se cortan los dos menos importantes
+lavadora estado encendido.
+
+D apagar_por sobrecarga?
+
+# ---------- Y la airfryer ----------
+# Tiene encima la vitro y el horno, pero no tiene wifi: la casa no la puede
+# apagar, solo avisar
+airfryer estado encendido.
+
+airfryer apagar_por M?
+airfryer tipo controlable?
+D apagar_por sobrecarga, D nombre N?
+alexa avisar_por sobrecarga?
+
+# La vitro y el horno nunca se cortan: no hay dos aparatos más importantes
+vitroceramica apagar_por M?
+horno apagar_por M?

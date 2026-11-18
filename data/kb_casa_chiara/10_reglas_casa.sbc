@@ -11,7 +11,10 @@ X conecta_con Y <- Y acceso_a X.
 # En qué estancia está cada cosa, aunque esté dentro o encima de un mueble.
 # Es recursiva, pero termina porque esta_en no tiene ciclos (nada está dentro
 # de sí mismo).
-X en_estancia E <- X esta_en E, E tipo estancia.
+# "E parte_de casa" dice que E es una estancia. Se usa en lugar de
+# "E tipo estancia" porque se consulta directamente, sin recorrer las
+# subclases de estancia, y esta regla se usa muchísimo.
+X en_estancia E <- X esta_en E, E parte_de casa.
 X en_estancia E <- X esta_en M, M en_estancia E.
 
 # ---------- Tipos ----------
@@ -20,5 +23,10 @@ C hereda_de D <- C subclase_de D.
 C hereda_de E <- C subclase_de D, D hereda_de E.
 
 # X tipo C: X es de la clase C o de alguna subclase suya.
+# La recursión baja por la jerarquía desde C (sus subclases, las subclases de
+# esas...) en vez de subir desde X. Así, para saber qué cosas son luces
+# inteligentes, solo se recorre lo que cuelga de luz_inteligente, no todos
+# los objetos de la casa. Con razona si! es la diferencia entre segundos y
+# minutos en los escenarios.
 X tipo C <- X es_un C.
-X tipo C <- X es_un D, D hereda_de C.
+X tipo C <- D subclase_de C, X tipo D.

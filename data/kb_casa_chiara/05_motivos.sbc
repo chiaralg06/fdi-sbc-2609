@@ -1,12 +1,15 @@
 # Acciones, motivos y prioridades.
 #
 # Cada acción que deduce la base se guarda como "D <verbo>_por M": el
-# dispositivo D hace esa acción por el motivo M. Así cada conclusión lleva su
-# explicación pegada: "luz_pasillo encender_por paso_nocturno".
+# dispositivo (o persona) D hace esa acción por el motivo M. Así cada
+# conclusión lleva su explicación pegada: "luz_pasillo encender_por
+# paso_nocturno".
 #
 # Cada motivo pertenece a una categoría, y las categorías tienen un orden de
 # prioridad. Cuando dos motivos piden acciones opuestas sobre el mismo
 # dispositivo, gana el de la categoría más prioritaria (12_reglas_domotica.sbc).
+# Por eso dos motivos que puedan chocar nunca deben ser de la misma categoría:
+# el conflicto quedaría sin resolver.
 
 # ---------- Acciones ----------
 encender_por verbo encender.
@@ -15,40 +18,76 @@ subir_por verbo subir.
 bajar_por verbo bajar.
 desplegar_por verbo desplegar.
 recoger_por verbo recoger.
+abrir_por verbo abrir.
+cerrar_por verbo cerrar.
+bloquear_por verbo bloquear.
+grabar_por verbo grabar.
 avisar_por verbo avisar.
 silenciar_por verbo silenciar.
+notificar_por verbo notificar.
+dispensar_por verbo dispensar.
+limpiar_por verbo limpiar.
+detener_por verbo detener.
 
+# "bloquear" es no tocar el dispositivo (ni encenderlo ni apagarlo), por
+# eso choca con las dos.
+#
 # Acciones incompatibles sobre un mismo dispositivo (en los dos sentidos).
 encender_por opuesto apagar_por, apagar_por opuesto encender_por.
 subir_por opuesto bajar_por, bajar_por opuesto subir_por.
 desplegar_por opuesto recoger_por, recoger_por opuesto desplegar_por.
+abrir_por opuesto cerrar_por, cerrar_por opuesto abrir_por.
 avisar_por opuesto silenciar_por, silenciar_por opuesto avisar_por.
+limpiar_por opuesto detener_por, detener_por opuesto limpiar_por.
+bloquear_por opuesto encender_por, encender_por opuesto bloquear_por.
+bloquear_por opuesto apagar_por, apagar_por opuesto bloquear_por.
 
 # ---------- Prioridades ----------
 # De más a menos importante. Solo se escribe cada escalón con el siguiente;
-# la regla "prevalece_sobre" deduce el resto (seguridad está por encima de
-# todo lo demás).
+# la regla "prevalece_sobre" deduce el resto.
+riesgo_explosion por_encima_de emergencia.
+emergencia por_encima_de seguridad.
 seguridad por_encima_de bienestar_mascota.
 bienestar_mascota por_encima_de proteccion_casa.
 proteccion_casa por_encima_de descanso.
-descanso por_encima_de confort.
+descanso por_encima_de peticion.
+peticion por_encima_de confort.
 confort por_encima_de ahorro.
 
 # ---------- Motivos ----------
-humo categoria seguridad, humo nombre "Hay humo en casa".
+fuga_gas categoria riesgo_explosion, fuga_gas nombre "Hay una fuga de gas".
+
+humo categoria emergencia, humo nombre "Hay humo en casa".
+
 intrusion categoria seguridad, intrusion nombre "Se ha abierto la puerta sin nadie en casa".
 paso_nocturno categoria seguridad, paso_nocturno nombre "Alguien camina de noche y no debe tropezar".
+cierre_seguridad categoria seguridad, cierre_seguridad nombre "La casa se cierra porque es de noche o no hay nadie".
+vigilancia categoria seguridad, vigilancia nombre "No hay nadie en casa: se vigila la entrada".
 
 mascota_sola categoria bienestar_mascota, mascota_sola nombre "Una mascota se ha quedado sola en casa".
 mascota_en_casa categoria bienestar_mascota, mascota_en_casa nombre "Hay una mascota en casa y el robot la asusta".
+mascota_dentro categoria bienestar_mascota, mascota_dentro nombre "La mascota está dentro del arenero".
+hora_comida categoria bienestar_mascota, hora_comida nombre "Es la hora de comer de la mascota".
+comedero_vacio categoria bienestar_mascota, comedero_vacio nombre "El comedero se ha quedado sin comida".
+arenero_lleno categoria bienestar_mascota, arenero_lleno nombre "El depósito del arenero está lleno".
 
 lluvia categoria proteccion_casa, lluvia nombre "Está lloviendo".
 ropa_tendida categoria proteccion_casa, ropa_tendida nombre "Llueve y hay ropa tendida fuera".
+sobrecarga categoria proteccion_casa, sobrecarga nombre "Hay demasiados aparatos encendidos y pueden saltar los plomos".
 
 descanso categoria descanso, descanso nombre "Es de noche y hay gente durmiendo".
+
+# Órdenes a la Alexa (14_reglas_ordenes.sbc). Ceden ante el descanso, la
+# casa, Miko y la seguridad, pero se imponen al confort y al ahorro.
+modo_pelicula categoria peticion, modo_pelicula nombre "Orden: modo película".
+buenos_dias categoria peticion, buenos_dias nombre "Orden: buenos días".
+buenas_noches categoria peticion, buenas_noches nombre "Orden: buenas noches".
+aspirar categoria peticion, aspirar nombre "Orden: aspirar".
+dar_de_comer categoria peticion, dar_de_comer nombre "Orden: dar de comer a Miko".
 
 calor categoria confort, calor nombre "Hace calor fuera".
 humedad categoria confort, humedad nombre "Hay mucha humedad".
 casa_vacia categoria confort, casa_vacia nombre "No hay nadie: buen momento para limpiar".
+uso_arenero categoria confort, uso_arenero nombre "La mascota ha usado el arenero".
 
 ahorro_energia categoria ahorro, ahorro_energia nombre "No hay nadie en casa: ahorro de energía".

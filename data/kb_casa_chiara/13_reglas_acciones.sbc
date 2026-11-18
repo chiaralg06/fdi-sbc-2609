@@ -1,18 +1,43 @@
 # Qué hace cada dispositivo en cada situación, agrupado por categoría de
 # motivo (de más a menos prioritaria). Todas usan tipos de dispositivo, nunca
-# dispositivos concretos.
+# dispositivos concretos. Las órdenes a la Alexa están en
+# 14_reglas_ordenes.sbc y los plomos en 15_reglas_energia.sbc.
 
-# ---------- Seguridad ----------
-# Humo: luces encendidas y persianas arriba para salir, el clima apagado para
-# no mover el humo, y la Alexa avisa.
+# ---------- Riesgo de explosión ----------
+# Fuga de gas: se corta el gas, se abren las ventanas de donde está la fuga,
+# se abre la puerta para salir, no se toca nada que pueda hacer chispa, la
+# Alexa avisa y a cada persona le llega una notificación al móvil.
+V cerrar_por fuga_gas <- E situacion fuga_gas, V tipo valvula_gas.
+W abrir_por fuga_gas <- E situacion fuga_gas, W tipo ventana_motorizada, W en_estancia E.
+C abrir_por fuga_gas <- E situacion fuga_gas, C tipo cerradura_inteligente.
+D bloquear_por fuga_gas <- E situacion fuga_gas, K riesgo_chispa si, D tipo K.
+A avisar_por fuga_gas <- E situacion fuga_gas, A tipo asistente_voz.
+P notificar_por fuga_gas <- E situacion fuga_gas, P tipo persona.
+
+# ---------- Emergencia ----------
+# Humo: luces encendidas y persianas arriba para salir, la puerta abierta, el
+# clima apagado para no mover el humo, y la Alexa avisa.
 L encender_por humo <- E situacion humo, L tipo luz_inteligente.
 P subir_por humo <- E situacion humo, P tipo persiana_motorizada.
+C abrir_por humo <- E situacion humo, C tipo cerradura_inteligente.
 C apagar_por humo <- E situacion humo, C tipo aparato_clima.
 A avisar_por humo <- E situacion humo, A tipo asistente_voz.
+P notificar_por humo <- E situacion humo, P tipo persona.
 
-# Intrusión: se encienden todas las luces para disuadir y la Alexa avisa.
+# ---------- Seguridad ----------
+# Intrusión: se encienden todas las luces para disuadir, la cámara graba, la
+# Alexa avisa y a cada persona le llega una notificación.
 L encender_por intrusion <- casa situacion intrusion, L tipo luz_inteligente.
+C grabar_por intrusion <- casa situacion intrusion, C tipo camara.
 A avisar_por intrusion <- casa situacion intrusion, A tipo asistente_voz.
+P notificar_por intrusion <- casa situacion intrusion, P tipo persona.
+
+# Sin nadie en casa la cámara vigila. De noche o sin nadie en casa, puerta
+# cerrada con llave; sin nadie, también las ventanas.
+C grabar_por vigilancia <- casa modo fuera, C tipo camara.
+C cerrar_por cierre_seguridad <- casa modo fuera, C tipo cerradura_inteligente.
+C cerrar_por cierre_seguridad <- casa modo noche, C tipo cerradura_inteligente.
+W cerrar_por cierre_seguridad <- casa modo fuera, W tipo ventana_motorizada.
 
 # De noche, si alguien pasa, se enciende la luz de esa estancia.
 L encender_por paso_nocturno <- E situacion paso_nocturno, L tipo luz_inteligente, L en_estancia E.
@@ -26,22 +51,38 @@ C encender_por mascota_sola <- casa situacion mascota_sola, casa estacion verano
 # El robot aspirador no funciona si hay una mascota en casa.
 R apagar_por mascota_en_casa <- M tipo mascota, M ubicacion E, E parte_de casa, R tipo robot_aspirador.
 
+# Comedero: a la hora de comer sirve la ración, si la mascota está en casa.
+# Si se vacía, avisa a quien la cuida.
+C dispensar_por hora_comida <- casa hora H, H es_un hora_comida, C tipo comedero_automatico, C sirve_a M, M ubicacion E, E parte_de casa.
+P notificar_por comedero_vacio <- C detecta vacio, C tipo comedero_automatico, C sirve_a M, P cuida_de M.
+
+# Arenero: nunca se limpia con la mascota dentro. Si el depósito se llena,
+# avisa a quien la cuida.
+R detener_por mascota_dentro <- R detecta mascota_dentro, R tipo arenero_automatico.
+P notificar_por arenero_lleno <- R detecta lleno, R tipo arenero_automatico, R sirve_a M, P cuida_de M.
+
 # ---------- Protección de la casa ----------
 T recoger_por lluvia <- casa situacion lluvia, T tipo toldo_motorizado.
+W cerrar_por lluvia <- casa situacion lluvia, W tipo ventana_motorizada.
 A avisar_por ropa_tendida <- casa situacion lluvia, X tiene ropa, X en_estancia E, E tipo exterior, A tipo asistente_voz.
 
 # ---------- Descanso ----------
-# Persianas abajo donde duerme alguien, luces de zonas comunes apagadas y la
-# Alexa en silencio.
-P bajar_por descanso <- casa modo noche, P tipo persiana_motorizada, P en_estancia E, X duerme_en E, X tipo persona.
+# Persianas abajo donde hay alguien dormido, luces de zonas comunes, tele y
+# lo enchufado apagados, la Alexa en silencio y el arenero sin hacer ruido hasta mañana.
+P bajar_por descanso <- casa modo noche, X estado dormido, X duerme_en E, P tipo persiana_motorizada, P en_estancia E.
 L apagar_por descanso <- casa modo noche, L tipo luz_inteligente, L en_estancia E, E tipo zona_comun.
+T apagar_por descanso <- casa modo noche, T tipo smart_tv.
+S apagar_por descanso <- casa modo noche, X enchufada_a S, S tipo enchufe_inteligente.
 A silenciar_por descanso <- casa modo noche, A tipo asistente_voz.
+R detener_por descanso <- casa modo noche, R tipo arenero_automatico.
 
 # ---------- Confort ----------
 T desplegar_por calor <- casa situacion calor, T tipo toldo_motorizado.
 C encender_por calor <- casa situacion calor, C tipo aire_acondicionado, C en_estancia E, P ubicacion E, P tipo persona.
 X encender_por humedad <- E situacion humedad_alta, X tipo extractor, X en_estancia E.
 R encender_por casa_vacia <- casa modo fuera, R tipo robot_aspirador.
+# Después de cada uso, el arenero se limpia solo.
+R limpiar_por uso_arenero <- R detecta uso, R tipo arenero_automatico.
 
 # ---------- Ahorro ----------
 L apagar_por ahorro_energia <- casa modo fuera, L tipo luz_inteligente.

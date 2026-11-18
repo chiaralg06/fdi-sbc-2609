@@ -1,17 +1,19 @@
 # Escenario 2: noche entre semana, todos duermen.
-# Alguien se levanta, luego llega una invitada y por último salta el detector
-# de humo de la cocina.
+# Miko usa el arenero, alguien se levanta, luego llega una invitada y por
+# último salta el detector de humo de la cocina.
 # uv run -m sbc data/kb_casa_chiara data/kb_casa_chiara/escenarios/2_noche.sbq
 
 razona si!
 
 casa modo noche.
+madre estado dormido, padre estado dormido, yo estado dormido.
 miko ubicacion salon.
 
 # Modo noche
 D bajar_por descanso?
 D apagar_por descanso?
 alexa silenciar_por M?
+cerradura cerrar_por M?
 
 # La habitación de invitados está vacía: su persiana no se toca
 persiana_dormitorio_3 bajar_por M?
@@ -19,6 +21,13 @@ persiana_dormitorio_3 bajar_por M?
 # El robot no sale porque Miko está en casa (no hay conflicto: nadie pide encenderlo)
 aspiradora accion A?
 aspiradora conflicto M?
+
+# ---------- Miko usa el arenero ----------
+# Limpiarlo ahora haría ruido: espera a mañana
+arenero_miko detecta uso.
+
+arenero_miko conflicto M?
+arenero_miko decision A?
 
 # ---------- Alguien se levanta ----------
 sensor_mov_pasillo detecta movimiento.
@@ -31,6 +40,7 @@ luz_salon encender_por M?
 
 # ---------- Llega una invitada ----------
 invitada es_un persona, invitada nombre "Invitada", invitada duerme_en dormitorio_3.
+invitada estado dormido.
 
 persiana_dormitorio_3 bajar_por M?
 
@@ -42,3 +52,5 @@ D conflicto M?
 D se_impone M?
 D decision A, D nombre N?
 alexa avisar_por M, M nombre N?
+P notificar_por humo?
+D decision_dudosa si?

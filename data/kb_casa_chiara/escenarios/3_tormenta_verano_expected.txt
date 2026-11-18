@@ -3,6 +3,10 @@ D encender_por calor, D nombre N? -> SI
 casa situacion S? -> SI
 toldo conflicto M? -> SI
 toldo decision A? -> SI
+D cerrar_por lluvia? -> SI
 alexa avisar_por M, M nombre N? -> SI
 D encender_por humedad? -> SI
+casa situacion sobrecarga? -> NO
+casa situacion sobrecarga? -> SI
+D apagar_por sobrecarga? -> SI
 D accion A? -> SI

@@ -1,0 +1,12 @@
+{"consulta": "casa situacion sobrecarga", "soluciones": []}
+{"consulta": "X activo si", "soluciones": [{"X": "horno"}, {"X": "vitroceramica"}]}
+{"consulta": "casa situacion sobrecarga", "soluciones": [{}]}
+{"consulta": "D apagar_por M, M nombre N", "soluciones": [{"D": "aspiradora", "M": "mascota_en_casa", "N": "\"Hay una mascota en casa y el robot la asusta\""}, {"D": "lavavajillas", "M": "sobrecarga", "N": "\"Hay demasiados aparatos encendidos y pueden saltar los plomos\""}]}
+{"consulta": "alexa avisar_por M, M nombre N", "soluciones": [{"M": "sobrecarga", "N": "\"Hay demasiados aparatos encendidos y pueden saltar los plomos\""}]}
+{"consulta": "D apagar_por sobrecarga", "soluciones": [{"D": "lavadora"}, {"D": "lavavajillas"}]}
+{"consulta": "airfryer apagar_por M", "soluciones": []}
+{"consulta": "airfryer tipo controlable", "soluciones": []}
+{"consulta": "D apagar_por sobrecarga, D nombre N", "soluciones": [{"D": "lavadora", "N": "\"Lavadora\""}, {"D": "lavavajillas", "N": "\"Lavavajillas\""}]}
+{"consulta": "alexa avisar_por sobrecarga", "soluciones": [{}]}
+{"consulta": "vitroceramica apagar_por M", "soluciones": []}
+{"consulta": "horno apagar_por M", "soluciones": []}

@@ -1,0 +1,34 @@
+# Órdenes a la Alexa.
+#
+# El escenario dice quién da la orden ("yo ordena modo_pelicula") y dónde está
+# esa persona ("yo ubicacion salon"). La orden la recibe el asistente de esa
+# estancia, y solo actúa sobre lo que ese asistente controla: "buenos días"
+# en mi habitación sube mi persiana, no la de mis padres.
+#
+# En cada regla se comprueba el tipo de dispositivo antes que "A controla":
+# es mucho más barato y descarta enseguida lo que no es de ese tipo.
+#
+# Las órdenes son motivos de categoría "peticion": se cumplen salvo que choquen
+# con algo más importante (el descanso de alguien, Miko, la seguridad...).
+# "buenas_noches" y "me_voy" además cambian el modo de la casa
+# (12_reglas_domotica.sbc).
+
+# ---------- Modo película ----------
+P bajar_por modo_pelicula <- O ordena modo_pelicula, O habla_con A, P tipo persiana_motorizada, A controla P.
+L apagar_por modo_pelicula <- O ordena modo_pelicula, O habla_con A, L tipo luz_inteligente, A controla L.
+T encender_por modo_pelicula <- O ordena modo_pelicula, O habla_con A, T tipo smart_tv, A controla T.
+S encender_por modo_pelicula <- O ordena modo_pelicula, O habla_con A, S tipo enchufe_inteligente, A controla S.
+
+# ---------- Buenos días ----------
+P subir_por buenos_dias <- O ordena buenos_dias, O habla_con A, P tipo persiana_motorizada, A controla P.
+
+# ---------- Buenas noches ----------
+# Además de poner la casa en modo noche, baja las persianas de la estancia
+# donde se dice.
+P bajar_por buenas_noches <- O ordena buenas_noches, O habla_con A, P tipo persiana_motorizada, A controla P.
+
+# ---------- Aspirar ----------
+R encender_por aspirar <- O ordena aspirar, O habla_con A, R tipo robot_aspirador, A controla R.
+
+# ---------- Dar de comer a Miko ----------
+C dispensar_por dar_de_comer <- O ordena dar_de_comer, O habla_con A, C tipo comedero_automatico, A controla C.

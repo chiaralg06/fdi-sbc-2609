@@ -1,0 +1,14 @@
+{"consulta": "E situacion fuga_gas, E nombre N", "soluciones": [{"E": "terraza_1", "N": "\"Terraza grande\""}]}
+{"consulta": "D cerrar_por fuga_gas", "soluciones": [{"D": "electrovalvula"}]}
+{"consulta": "D abrir_por fuga_gas", "soluciones": [{"D": "cerradura"}, {"D": "ventanal_terraza"}]}
+{"consulta": "D bloquear_por fuga_gas", "soluciones": [{"D": "aire_salon"}, {"D": "aspiradora"}, {"D": "calefaccion"}, {"D": "enchufe_salon"}, {"D": "extractor_baño"}, {"D": "lavadora"}, {"D": "lavavajillas"}, {"D": "luz_cocina"}, {"D": "luz_dormitorio_1"}, {"D": "luz_dormitorio_2"}, {"D": "luz_pasillo"}, {"D": "luz_recibidor"}, {"D": "luz_salon"}, {"D": "television"}]}
+{"consulta": "A avisar_por fuga_gas", "soluciones": [{"A": "alexa"}, {"A": "echo_mi_habitacion"}, {"A": "echo_padres"}]}
+{"consulta": "P notificar_por fuga_gas", "soluciones": [{"P": "madre"}, {"P": "padre"}, {"P": "yo"}]}
+{"consulta": "ventanal_terraza conflicto M", "soluciones": [{"M": "fuga_gas"}, {"M": "lluvia"}]}
+{"consulta": "ventanal_terraza decision A", "soluciones": [{"A": "abrir"}]}
+{"consulta": "ventana_cocina accion A", "soluciones": [{"A": "cerrar"}]}
+{"consulta": "persiana_salon bajar_por M", "soluciones": [{"M": "modo_pelicula"}]}
+{"consulta": "television conflicto M", "soluciones": [{"M": "fuga_gas"}, {"M": "modo_pelicula"}]}
+{"consulta": "television decision A", "soluciones": [{"A": "bloquear"}]}
+{"consulta": "luz_salon decision A", "soluciones": [{"A": "bloquear"}]}
+{"consulta": "D decision_dudosa si", "soluciones": []}

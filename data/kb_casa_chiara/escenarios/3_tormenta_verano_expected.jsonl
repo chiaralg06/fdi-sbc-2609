@@ -3,6 +3,10 @@
 {"consulta": "casa situacion S", "soluciones": [{"S": "calor"}, {"S": "lluvia"}]}
 {"consulta": "toldo conflicto M", "soluciones": [{"M": "calor"}, {"M": "lluvia"}]}
 {"consulta": "toldo decision A", "soluciones": [{"A": "recoger"}]}
+{"consulta": "D cerrar_por lluvia", "soluciones": [{"D": "ventana_cocina"}, {"D": "ventanal_terraza"}]}
 {"consulta": "alexa avisar_por M, M nombre N", "soluciones": [{"M": "ropa_tendida", "N": "\"Llueve y hay ropa tendida fuera\""}]}
 {"consulta": "D encender_por humedad", "soluciones": [{"D": "extractor_baño"}]}
-{"consulta": "D accion A", "soluciones": [{"D": "aire_salon", "A": "encender"}, {"D": "alexa", "A": "avisar"}, {"D": "aspiradora", "A": "apagar"}, {"D": "extractor_baño", "A": "encender"}, {"D": "toldo", "A": "desplegar"}, {"D": "toldo", "A": "recoger"}]}
+{"consulta": "casa situacion sobrecarga", "soluciones": []}
+{"consulta": "casa situacion sobrecarga", "soluciones": [{}]}
+{"consulta": "D apagar_por sobrecarga", "soluciones": [{"D": "lavavajillas"}]}
+{"consulta": "D accion A", "soluciones": [{"D": "aire_salon", "A": "encender"}, {"D": "alexa", "A": "avisar"}, {"D": "aspiradora", "A": "apagar"}, {"D": "echo_mi_habitacion", "A": "avisar"}, {"D": "echo_padres", "A": "avisar"}, {"D": "extractor_baño", "A": "encender"}, {"D": "lavavajillas", "A": "apagar"}, {"D": "toldo", "A": "desplegar"}, {"D": "toldo", "A": "recoger"}, {"D": "ventana_cocina", "A": "cerrar"}, {"D": "ventanal_terraza", "A": "cerrar"}]}

@@ -1,0 +1,13 @@
+D bajar_por descanso? -> SI
+P habla_con A? -> SI
+persiana_dormitorio_2 accion A? -> SI
+persiana_dormitorio_2 conflicto M? -> NO
+persiana_salon subir_por M? -> NO
+persiana_dormitorio_1 conflicto M? -> SI
+persiana_dormitorio_1 se_impone M, M nombre N? -> SI
+persiana_dormitorio_1 decision A? -> SI
+comedero_miko dispensar_por M, M nombre N? -> SI
+P notificar_por comedero_vacio? -> SI
+arenero_miko decision A? -> SI
+arenero_miko detener_por M, M nombre N? -> SI
+P notificar_por M, M nombre N? -> SI

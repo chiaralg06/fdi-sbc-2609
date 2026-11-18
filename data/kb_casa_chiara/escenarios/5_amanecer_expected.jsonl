@@ -1,0 +1,13 @@
+{"consulta": "D bajar_por descanso", "soluciones": [{"D": "persiana_dormitorio_1"}]}
+{"consulta": "P habla_con A", "soluciones": [{"P": "madre", "A": "echo_padres"}, {"P": "yo", "A": "echo_mi_habitacion"}]}
+{"consulta": "persiana_dormitorio_2 accion A", "soluciones": [{"A": "subir"}]}
+{"consulta": "persiana_dormitorio_2 conflicto M", "soluciones": []}
+{"consulta": "persiana_salon subir_por M", "soluciones": []}
+{"consulta": "persiana_dormitorio_1 conflicto M", "soluciones": [{"M": "buenos_dias"}, {"M": "descanso"}]}
+{"consulta": "persiana_dormitorio_1 se_impone M, M nombre N", "soluciones": [{"M": "descanso", "N": "\"Es de noche y hay gente durmiendo\""}]}
+{"consulta": "persiana_dormitorio_1 decision A", "soluciones": [{"A": "bajar"}]}
+{"consulta": "comedero_miko dispensar_por M, M nombre N", "soluciones": [{"M": "hora_comida", "N": "\"Es la hora de comer de la mascota\""}]}
+{"consulta": "P notificar_por comedero_vacio", "soluciones": [{"P": "yo"}]}
+{"consulta": "arenero_miko decision A", "soluciones": [{"A": "detener"}]}
+{"consulta": "arenero_miko detener_por M, M nombre N", "soluciones": [{"M": "descanso", "N": "\"Es de noche y hay gente durmiendo\""}, {"M": "mascota_dentro", "N": "\"La mascota está dentro del arenero\""}]}
+{"consulta": "P notificar_por M, M nombre N", "soluciones": [{"P": "yo", "M": "arenero_lleno", "N": "\"El depósito del arenero está lleno\""}, {"P": "yo", "M": "comedero_vacio", "N": "\"El comedero se ha quedado sin comida\""}]}

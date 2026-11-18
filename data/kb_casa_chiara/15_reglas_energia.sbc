@@ -1,0 +1,20 @@
+# Plomos: con más de dos aparatos de alto consumo a la vez, saltan.
+#
+# Un aparato cuenta como activo si está encendido (lo dice el escenario con
+# "X estado encendido") o si la casa ha decidido encenderlo por algún motivo
+# (por ejemplo el aire por el calor).
+X activo si <- X consumo alto, X estado encendido.
+X activo si <- X consumo alto, X encender_por M.
+
+# Tres aparatos activos distintos: X por encima de Y e Y por encima de Z
+# (06_energia.sbc explica por qué así son distintos sin poder decirlo).
+casa situacion sobrecarga <- Z activo si, Y prevalece_sobre Z, Y activo si, X prevalece_sobre Y, X activo si.
+
+# Se corta lo que tiene encendidos otros dos más importantes que él, si la
+# casa lo puede controlar. Con tres activos se corta el menos importante; con
+# cuatro, los dos menos importantes. Siempre quedan los dos primeros.
+Z apagar_por sobrecarga <- Z activo si, Y prevalece_sobre Z, Y activo si, X prevalece_sobre Y, X activo si, Z tipo controlable.
+
+# La Alexa avisa siempre, también cuando lo que sobra no se puede apagar
+# solo (la airfryer o el hervidor no tienen wifi).
+A avisar_por sobrecarga <- casa situacion sobrecarga, A tipo asistente_voz.

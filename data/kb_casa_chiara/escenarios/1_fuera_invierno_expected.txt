@@ -1,7 +1,10 @@
+casa modo M? -> SI
 casa situacion S? -> SI
 D accion A? -> SI
 D apagar_por M, M nombre N? -> SI
 D encender_por M, M nombre N? -> SI
+D cerrar_por M? -> SI
+camara_recibidor grabar_por M? -> SI
 D conflicto M? -> SI
 calefaccion se_impone M? -> SI
 calefaccion decision A? -> SI
@@ -9,7 +12,10 @@ aspiradora decision A? -> SI
 D accion A, alexa controla D? -> SI
 casa situacion intrusion? -> SI
 alexa avisar_por M, M nombre N? -> SI
+P notificar_por intrusion? -> SI
+camara_recibidor grabar_por M? -> SI
 D encender_por intrusion? -> SI
 luz_salon conflicto M? -> SI
 D se_impone intrusion? -> SI
 luz_salon decision A? -> SI
+D decision_dudosa si? -> NO

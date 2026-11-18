@@ -1,0 +1,30 @@
+# Consumo eléctrico: qué aparatos gastan mucho y cuáles importan más.
+#
+# Con más de dos aparatos de alto consumo encendidos a la vez saltan los
+# plomos. El motor no sabe contar ni decir "X distinto de Y", así que se usa
+# un orden de importancia: tres aparatos X, Y, Z con X por encima de Y e Y por
+# encima de Z son distintos a la fuerza. El orden sirve además para decidir qué
+# cortar: se apaga el que tiene encendidos otros dos más importantes que él
+# (15_reglas_energia.sbc).
+#
+# Se usa el mismo "por_encima_de" que en las categorías de motivos
+# (05_motivos.sbc), así que la regla "prevalece_sobre" vale para los dos.
+
+vitroceramica consumo alto.
+horno consumo alto.
+airfryer consumo alto.
+microondas consumo alto.
+kettle consumo alto.
+aire_salon consumo alto.
+lavadora consumo alto.
+lavavajillas consumo alto.
+
+# Primero lo que se está cocinando, que no puede esperar; después el aire; y
+# al final la ropa y los platos, que pueden terminar más tarde.
+vitroceramica por_encima_de horno.
+horno por_encima_de airfryer.
+airfryer por_encima_de microondas.
+microondas por_encima_de kettle.
+kettle por_encima_de aire_salon.
+aire_salon por_encima_de lavadora.
+lavadora por_encima_de lavavajillas.

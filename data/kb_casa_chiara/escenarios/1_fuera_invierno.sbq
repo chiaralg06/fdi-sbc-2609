@@ -4,8 +4,12 @@
 
 razona si!
 
-casa modo fuera, casa estacion invierno.
+casa estacion invierno.
 miko ubicacion salon.
+
+# Al salir le digo a la Alexa "me voy": la casa pasa a modo fuera
+yo ordena me_voy.
+casa modo M?
 
 # ¿Qué situaciones detecta la casa?
 casa situacion S?
@@ -14,6 +18,8 @@ casa situacion S?
 D accion A?
 D apagar_por M, M nombre N?
 D encender_por M, M nombre N?
+D cerrar_por M?
+camara_recibidor grabar_por M?
 
 # Conflictos: ahorrar energía o cuidar de Miko
 D conflicto M?
@@ -21,7 +27,7 @@ calefaccion se_impone M?
 calefaccion decision A?
 aspiradora decision A?
 
-# ¿Qué de todo esto puede hacer la Alexa?
+# ¿Qué de todo esto puede hacer la Alexa del salón?
 D accion A, alexa controla D?
 
 # ---------- Información nueva: se abre la puerta ----------
@@ -29,9 +35,14 @@ sensor_puerta detecta apertura.
 
 casa situacion intrusion?
 alexa avisar_por M, M nombre N?
+P notificar_por intrusion?
+camara_recibidor grabar_por M?
 D encender_por intrusion?
 
 # Las luces: ahorro contra seguridad
 luz_salon conflicto M?
 D se_impone intrusion?
 luz_salon decision A?
+
+# Ningún dispositivo con decisiones contradictorias
+D decision_dudosa si?

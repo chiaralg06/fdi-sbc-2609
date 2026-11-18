@@ -1,16 +1,32 @@
-# Reglas generales de la domótica: control, situaciones y conflictos.
+# Reglas generales de la domótica: control, contexto, situaciones y
+# conflictos.
 #
 # El estado del momento lo dan los escenarios con hechos como
-# "casa modo fuera", "casa estacion invierno", "miko ubicacion salon" o
-# "sensor_lluvia detecta lluvia". Estas reglas los convierten en situaciones,
-# y 13_reglas_acciones.sbc decide qué hacer en cada una.
+# "casa estacion invierno", "miko ubicacion salon", "padre estado dormido",
+# "yo ordena modo_pelicula" o "sensor_lluvia detecta lluvia". Estas reglas los
+# convierten en situaciones, y los ficheros 13_ a 15_ deciden qué hacer en
+# cada una.
 
-# ---------- Qué controla la Alexa ----------
+# ---------- Qué controla cada asistente ----------
 # Todo lo controlable que esté en su misma estancia. Un enchufe inteligente
 # nuevo en el salón queda controlado sin tocar nada más.
 A controla D <- A tipo asistente_voz, A en_estancia E, D tipo controlable, D en_estancia E.
 # Y lo que está enchufado a algo que controla (el deco de Movistar).
 A controla X <- X enchufada_a S, A controla S.
+
+# Una persona habla con el asistente que tiene en la estancia donde está.
+# Si está en una estancia sin asistente, sus órdenes no llegan a nadie.
+# (Miko no da órdenes, aunque esté en el salón con la Alexa.)
+P habla_con A <- P ubicacion E, A tipo asistente_voz, A en_estancia E, P tipo persona.
+
+# Quien cuida de una mascota es su dueño: le llegan los avisos de Miko.
+P cuida_de M <- M pertenece_a P, M tipo mascota.
+
+# ---------- Modo de la casa ----------
+# El escenario puede decir el modo directamente ("casa modo noche"), o
+# deducirse de una orden a la Alexa.
+casa modo noche <- P ordena buenas_noches.
+casa modo fuera <- P ordena me_voy.
 
 # ---------- Situaciones ----------
 # Los sensores informan con "S detecta ...". Que el dato venga de un sensor
@@ -18,6 +34,7 @@ A controla X <- X enchufada_a S, A controla S.
 casa situacion lluvia <- S detecta lluvia, S tipo sensor_lluvia.
 casa situacion calor <- S detecta calor, S tipo sensor_temperatura.
 E situacion humo <- S detecta humo, S tipo sensor_humo, S en_estancia E.
+E situacion fuga_gas <- S detecta gas, S tipo sensor_gas, S en_estancia E.
 E situacion humedad_alta <- S detecta humedad_alta, S tipo sensor_humedad, S en_estancia E.
 
 # Lo que significa un dato depende del contexto: abrir la puerta es normal,
@@ -37,11 +54,25 @@ D accion A <- V verbo A, D V M.
 # Se apuntan los motivos enfrentados.
 D conflicto M1 <- V1 opuesto V2, D V1 M1, D V2 M2.
 
-# En un conflicto se impone el motivo de categoría más prioritaria, y la
-# decisión final es la acción que pedía ese motivo.
+# En un conflicto se impone el motivo de categoría más prioritaria
+# (se_impone), y gana la acción que pedía ese motivo (gana_con, con el
+# predicado de la acción). La decisión final es esa acción.
 D se_impone M1 <- V1 opuesto V2, D V1 M1, D V2 M2, M1 categoria C1, M2 categoria C2, C1 prevalece_sobre C2.
-D decision A <- D se_impone M, V verbo A, D V M.
+D gana_con V1 <- V1 opuesto V2, D V1 M1, D V2 M2, M1 categoria C1, M2 categoria C2, C1 prevalece_sobre C2.
+D decision A <- D gana_con V, V verbo A.
 
-# Orden de prioridad completo a partir de los escalones de 05_motivos.sbc.
+# Limitación: si en un mismo dispositivo chocan tres motivos de tres
+# categorías distintas (por ejemplo, con Miko solo en casa la calefacción se
+# enciende por Miko, se apaga por ahorro y se apaga por humo), cada pareja se
+# resuelve por separado y pueden salir dos decisiones opuestas: Miko gana al
+# ahorro y el humo gana a Miko. Quedarse solo con la más fuerte exigiría
+# decir "no hay ningún motivo más importante", y el motor no tiene negación.
+# Esta regla al menos lo detecta; en ese caso vale la decisión cuyo motivo
+# (D se_impone M) es de categoría más alta.
+D decision_dudosa si <- D gana_con V1, V1 opuesto V2, D gana_con V2.
+
+# Orden de prioridad completo a partir de los escalones "por_encima_de".
+# Vale para las categorías de motivos (05_motivos.sbc) y para la importancia
+# de los electrodomésticos (06_energia.sbc).
 C1 prevalece_sobre C2 <- C1 por_encima_de C2.
 C1 prevalece_sobre C3 <- C1 por_encima_de C2, C2 prevalece_sobre C3.

@@ -1,0 +1,15 @@
+V verbo A, D V modo_pelicula? -> SI
+movistar enchufada_a S, S encender_por M? -> SI
+aspiradora conflicto M? -> SI
+aspiradora se_impone M, M nombre N? -> SI
+aspiradora decision A? -> SI
+madre habla_con A? -> NO
+comedero_miko dispensar_por M? -> NO
+comedero_miko dispensar_por M? -> SI
+casa modo M? -> SI
+D conflicto M? -> SI
+television decision A? -> SI
+enchufe_salon decision A? -> SI
+D bajar_por M? -> SI
+cerradura cerrar_por M? -> SI
+D decision_dudosa si? -> NO

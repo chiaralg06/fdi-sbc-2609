@@ -1,0 +1,15 @@
+{"consulta": "V verbo A, D V modo_pelicula", "soluciones": [{"V": "apagar_por", "A": "apagar", "D": "luz_salon"}, {"V": "bajar_por", "A": "bajar", "D": "persiana_salon"}, {"V": "encender_por", "A": "encender", "D": "enchufe_salon"}, {"V": "encender_por", "A": "encender", "D": "television"}]}
+{"consulta": "movistar enchufada_a S, S encender_por M", "soluciones": [{"S": "enchufe_salon", "M": "modo_pelicula"}]}
+{"consulta": "aspiradora conflicto M", "soluciones": [{"M": "aspirar"}, {"M": "mascota_en_casa"}]}
+{"consulta": "aspiradora se_impone M, M nombre N", "soluciones": [{"M": "mascota_en_casa", "N": "\"Hay una mascota en casa y el robot la asusta\""}]}
+{"consulta": "aspiradora decision A", "soluciones": [{"A": "apagar"}]}
+{"consulta": "madre habla_con A", "soluciones": []}
+{"consulta": "comedero_miko dispensar_por M", "soluciones": []}
+{"consulta": "comedero_miko dispensar_por M", "soluciones": [{"M": "dar_de_comer"}]}
+{"consulta": "casa modo M", "soluciones": [{"M": "noche"}]}
+{"consulta": "D conflicto M", "soluciones": [{"D": "aspiradora", "M": "aspirar"}, {"D": "aspiradora", "M": "mascota_en_casa"}, {"D": "enchufe_salon", "M": "descanso"}, {"D": "enchufe_salon", "M": "modo_pelicula"}, {"D": "television", "M": "descanso"}, {"D": "television", "M": "modo_pelicula"}]}
+{"consulta": "television decision A", "soluciones": [{"A": "apagar"}]}
+{"consulta": "enchufe_salon decision A", "soluciones": [{"A": "apagar"}]}
+{"consulta": "D bajar_por M", "soluciones": [{"D": "persiana_salon", "M": "buenas_noches"}, {"D": "persiana_salon", "M": "modo_pelicula"}]}
+{"consulta": "cerradura cerrar_por M", "soluciones": [{"M": "cierre_seguridad"}]}
+{"consulta": "D decision_dudosa si", "soluciones": []}

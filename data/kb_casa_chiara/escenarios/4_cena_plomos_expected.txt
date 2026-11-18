@@ -1,0 +1,12 @@
+casa situacion sobrecarga? -> NO
+X activo si? -> SI
+casa situacion sobrecarga? -> SI
+D apagar_por M, M nombre N? -> SI
+alexa avisar_por M, M nombre N? -> SI
+D apagar_por sobrecarga? -> SI
+airfryer apagar_por M? -> NO
+airfryer tipo controlable? -> NO
+D apagar_por sobrecarga, D nombre N? -> SI
+alexa avisar_por sobrecarga? -> SI
+vitroceramica apagar_por M? -> NO
+horno apagar_por M? -> NO

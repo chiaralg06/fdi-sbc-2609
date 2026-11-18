@@ -57,6 +57,18 @@ alexa controla D?
 alexa controla movistar?
 alexa controla luz_pasillo?
 
+# Cada asistente controla lo de su habitación
+A tipo asistente_voz, A controla D, D tipo persiana_motorizada?
+
+# Dispositivos de Miko y dónde están
+D tipo dispositivo_mascota, D sirve_a miko, D en_estancia E?
+
+# Qué no se puede tocar si hay una fuga de gas
+K riesgo_chispa si, D tipo K, D en_estancia cocina?
+
+# Qué electrodomésticos importan más que la lavadora
+X prevalece_sobre lavadora, X consumo alto?
+
 # Orden de prioridades
 seguridad prevalece_sobre C?
 C prevalece_sobre ahorro?

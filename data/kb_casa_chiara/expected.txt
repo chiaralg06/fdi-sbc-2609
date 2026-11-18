@@ -23,6 +23,10 @@ yo hijo_de P, P nombre N? -> SI
 alexa controla D? -> SI
 alexa controla movistar? -> SI
 alexa controla luz_pasillo? -> NO
+A tipo asistente_voz, A controla D, D tipo persiana_motorizada? -> SI
+D tipo dispositivo_mascota, D sirve_a miko, D en_estancia E? -> SI
+K riesgo_chispa si, D tipo K, D en_estancia cocina? -> SI
+X prevalece_sobre lavadora, X consumo alto? -> SI
 seguridad prevalece_sobre C? -> SI
 C prevalece_sobre ahorro? -> SI
 confort prevalece_sobre descanso? -> NO
