@@ -8,6 +8,7 @@ uv run -m sbc --jsonl . script.sbq (para obtener los expected.jsonl)
 uv run -m sbc . script.sbq (para obtener expected.txt)
 """
 
+import sys
 from collections import defaultdict
 from pathlib import Path
 
@@ -95,6 +96,9 @@ def afirma(hechos):
 
 
 def descubre():
+    """Aplica las reglas hasta que no salen hechos nuevos, y devuelve
+    cuántos hechos nuevos se han añadido."""
+    total = 0
     while True:
         cambios = False
 
@@ -106,9 +110,21 @@ def descubre():
                     hecho_nuevo = (sust.get(s, s), sust.get(p, p), sust.get(o, o))
                     if afirma([hecho_nuevo]):
                         cambios = True
+                        total += 1
 
         if not cambios:
-            break
+            return total
+
+
+def configurar_log(nivel):
+    try:
+        logger.level(nivel)  # ValueError si loguru no conoce el nivel
+    except ValueError:
+        logger.error(f"Nivel de log desconocido: {nivel}")
+        return
+
+    logger.remove()
+    logger.add(sys.stderr, level=nivel)
 
 
 def sin_comillas(valor):
@@ -145,16 +161,26 @@ def responde(hechos, jsonl, detalle=False):
 
 
 def procesa(tipo, hechos, jsonl=False, detalle=False):
-    if tipo == "afirmacion":
-        afirma(hechos)
-    elif tipo == "pregunta":
-        responde(hechos, jsonl, detalle)
-    elif tipo == "regla":
-        if hechos not in reglas:
-            reglas.append(hechos)
-    elif tipo == "comando":
-        if hechos[0] == "descubre":
-            descubre()
+    match (tipo, hechos):
+        case ("afirmacion", _):
+            afirma(hechos)
+        case ("pregunta", _):
+            responde(hechos, jsonl, detalle)
+        case ("regla", _):
+            if hechos not in reglas:
+                reglas.append(hechos)
+        case ("comando", ["descubre"]):
+            nuevos = descubre()
+            logger.info(f"Descubiertos {nuevos} hechos nuevos")
+        case ("comando", ["cargar", fichero]):
+            for tipo_frase, frase in cargar_script(Path(fichero)):
+                procesa(tipo_frase, frase, jsonl, detalle)
+        case ("comando", ["log", nivel]):
+            configurar_log(nivel.upper())
+        case ("comando", ["imprimir"] | ["razona" | "explica", "si" | "no"]):
+            logger.warning(f"{' '.join(hechos)}! todavía no está implementado")
+        case ("comando", palabras):
+            logger.error(f"Comando desconocido: {' '.join(palabras)}!")
 
 
 def ejecuta_script(fichero, jsonl):
