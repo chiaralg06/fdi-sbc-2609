@@ -8,5 +8,4 @@ dependencies = [
     "click",
     "loguru",
     "pyparsing",
-    "pyreadline3; sys_platform == 'win32'",
 ]
