@@ -1,0 +1,24 @@
+# Reglas generales de la casa: conexiones, ubicación y tipos.
+# Funcionan con razona si! (hacia atrás) y con descubre! (hacia delante).
+
+# ---------- Conexiones ----------
+# Una puerta comunica en los dos sentidos. Se deduce conecta_con a partir de
+# acceso_a, que es otro predicado, para que la regla no se llame a sí misma.
+X conecta_con Y <- X acceso_a Y.
+X conecta_con Y <- Y acceso_a X.
+
+# ---------- Ubicación ----------
+# En qué estancia está cada cosa, aunque esté dentro o encima de un mueble.
+# Es recursiva, pero termina porque esta_en no tiene ciclos (nada está dentro
+# de sí mismo).
+X en_estancia E <- X esta_en E, E tipo estancia.
+X en_estancia E <- X esta_en M, M en_estancia E.
+
+# ---------- Tipos ----------
+# C hereda_de D: C es una subclase de D, directa o indirecta.
+C hereda_de D <- C subclase_de D.
+C hereda_de E <- C subclase_de D, D hereda_de E.
+
+# X tipo C: X es de la clase C o de alguna subclase suya.
+X tipo C <- X es_un C.
+X tipo C <- X es_un D, D hereda_de C.

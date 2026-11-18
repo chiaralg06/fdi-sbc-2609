@@ -1,29 +1,60 @@
 # Consultas sobre nuestra casa
+# uv run -m sbc data/kb_casa_chiara data/kb_casa_chiara/consultas.sbq
 
-# 1. ¿Qué hay directamente en el salón?
+# ========== Sin razonar: solo lo escrito ==========
+
+# ¿Qué hay directamente en el salón?
 X esta_en salon?
 
-# 2. ¿Dónde está el portátil, y en qué habitación está ese sitio? (dos saltos)
+# ¿Dónde está el portátil, y en qué habitación está ese sitio? (dos saltos)
 portatil esta_en M, M esta_en H, H nombre N?
 
-# 3. ¿Qué electrodomésticos hay y en qué estancia?
+# ¿Qué electrodomésticos hay y en qué estancia?
 X es_un electrodomestico, X esta_en H, H nombre N?
 
-# 4. ¿Quién duerme en cada habitación?
+# ¿Quién duerme dónde?
 P duerme_en H, P nombre NP, H nombre NH?
 
-# 5. ¿A qué estancias se llega desde la cocina en dos pasos?
-cocina conecta_con P, P conecta_con X?
+# ¿Qué sabemos de Miko? (variable en el predicado)
+miko R X?
 
-# 6. ¿Qué sabemos del gato? (variable en el predicado)
-gato R X?
-
-# 7. ¿De quién es cada cosa y dónde está?
+# ¿De quién es cada cosa y dónde está?
 X pertenece_a P, X esta_en L?
 
-# 8. ¿Qué tareas hace cada uno?
+# ¿Qué tareas hace cada uno?
 P tarea T, P nombre N?
 
-# 9. Consultas de sí/no
+# Sí/no
 nevera esta_en salon?
 yo hermano_de hermana?
+
+# Lo deducido todavía no existe
+X conecta_con salon?
+X hijo_de madre?
+
+# ========== Razonando ==========
+razona si!
+
+# Conexiones en los dos sentidos, escritas una sola vez
+X conecta_con salon?
+cocina conecta_con P, P conecta_con X?
+
+# En qué estancia está cada cosa, aunque esté en un mueble
+portatil en_estancia E?
+X en_estancia dormitorio_2?
+llaves en_estancia E, E nombre N?
+
+# Tipos heredados
+miko tipo C?
+X tipo dormitorio, P duerme_en X, P nombre N?
+X tipo habitante, X nombre N?
+X tipo objeto, X en_estancia cocina?
+
+# Familia
+X hijo_de madre?
+yo hijo_de P, P nombre N?
+
+razona no!
+
+# Sin razonar, otra vez nada deducido
+X conecta_con salon?

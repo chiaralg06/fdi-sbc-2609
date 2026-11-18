@@ -1,0 +1,23 @@
+# Taxonomía: qué tipos de cosas hay en la casa.
+#
+# Cada cosa dice solo su tipo más concreto con "es_un". Las reglas de
+# 10_reglas_casa.sbc deducen el resto con "tipo": un dormitorio es una
+# estancia, Miko es un gato, una mascota y un habitante.
+# La jerarquía no tiene ciclos (nada es subclase de sí mismo, ni directa ni
+# indirectamente), así que las reglas recursivas terminan con razona si!.
+
+# Estancias
+dormitorio subclase_de estancia.
+zona_comun subclase_de estancia.
+cuarto_humedo subclase_de estancia.
+exterior subclase_de estancia.
+
+# Objetos
+mueble subclase_de objeto.
+electrodomestico subclase_de objeto.
+aparato_electronico subclase_de objeto.
+
+# Quién vive en la casa
+persona subclase_de habitante.
+mascota subclase_de habitante.
+gato subclase_de mascota.
