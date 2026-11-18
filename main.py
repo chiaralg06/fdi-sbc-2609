@@ -20,6 +20,8 @@ from profesor import _script, cargar_KB, cargar_script, imprimir_jsonl
 
 hash_map = defaultdict(list)
 reglas = []
+razonar = False  # razona si! / razona no!: encadenamiento hacia atrás
+explicar = False  # explica si! / explica no!: cadena de razonamiento por stderr
 
 
 def es_variable(termino):
@@ -127,6 +129,19 @@ def configurar_log(nivel):
     logger.add(sys.stderr, level=nivel)
 
 
+def imprimir():
+    """Escribe por stderr la base de conocimiento (hechos y reglas), con la
+    misma sintaxis de los .sbc."""
+    for sujeto, parejas in hash_map.items():
+        for predicado, objeto in parejas:
+            print(f"{sujeto} {predicado} {objeto}.", file=sys.stderr)
+
+    for consecuente, antecedente in reglas:
+        consecuente = ", ".join(" ".join(hecho) for hecho in consecuente)
+        antecedente = ", ".join(" ".join(hecho) for hecho in antecedente)
+        print(f"{consecuente} <- {antecedente}.", file=sys.stderr)
+
+
 def sin_comillas(valor):
     """'"Fëanor"' -> 'Fëanor' (los literales guardan sus comillas)."""
     return valor[1:-1] if valor.startswith('"') else valor
@@ -161,6 +176,8 @@ def responde(hechos, jsonl, detalle=False):
 
 
 def procesa(tipo, hechos, jsonl=False, detalle=False):
+    global razonar, explicar
+
     match (tipo, hechos):
         case ("afirmacion", _):
             afirma(hechos)
@@ -177,8 +194,12 @@ def procesa(tipo, hechos, jsonl=False, detalle=False):
                 procesa(tipo_frase, frase, jsonl, detalle)
         case ("comando", ["log", nivel]):
             configurar_log(nivel.upper())
-        case ("comando", ["imprimir"] | ["razona" | "explica", "si" | "no"]):
-            logger.warning(f"{' '.join(hechos)}! todavía no está implementado")
+        case ("comando", ["imprimir"]):
+            imprimir()
+        case ("comando", ["razona", "si" | "no" as valor]):
+            razonar = valor == "si"
+        case ("comando", ["explica", "si" | "no" as valor]):
+            explicar = valor == "si"
         case ("comando", palabras):
             logger.error(f"Comando desconocido: {' '.join(palabras)}!")
 
