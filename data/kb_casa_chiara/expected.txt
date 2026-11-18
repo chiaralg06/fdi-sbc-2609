@@ -1,5 +1,5 @@
 X esta_en salon? -> SI
-portatil esta_en M, M esta_en H, H nombre N? -> SI
+X esta_en terraza_1? -> SI
 X es_un electrodomestico, X esta_en H, H nombre N? -> SI
 P duerme_en H, P nombre NP, H nombre NH? -> SI
 miko R X? -> SI
@@ -11,9 +11,8 @@ alexa controla D? -> NO
 X conecta_con salon? -> SI
 X conecta_con pasillo, X tipo dormitorio? -> SI
 baño_2 conecta_con X, X conecta_con Y? -> SI
-portatil en_estancia E? -> SI
 X en_estancia dormitorio_2? -> SI
-llaves en_estancia E, E nombre N? -> SI
+X tipo mueble, X en_estancia E, E tipo exterior? -> SI
 miko tipo C? -> SI
 television tipo C? -> SI
 X tipo dormitorio, P duerme_en X, P nombre N? -> SI
@@ -22,7 +21,7 @@ X tipo sensor, X en_estancia E? -> SI
 X tipo cuarto_humedo, D tipo controlable, D en_estancia X? -> SI
 yo hijo_de P, P nombre N? -> SI
 alexa controla D? -> SI
-alexa controla consola? -> SI
+alexa controla movistar? -> SI
 alexa controla luz_pasillo? -> NO
 seguridad prevalece_sobre C? -> SI
 C prevalece_sobre ahorro? -> SI

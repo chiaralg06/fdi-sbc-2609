@@ -2,42 +2,70 @@
 #
 # "esta_en" es la ubicación directa: una estancia o un mueble. La regla
 # "en_estancia" de 10_reglas_casa.sbc deduce en qué estancia acaba cada cosa
-# (el portátil está en el escritorio, que está en mi habitación).
+# (algo que esté encima de un mueble acaba en la estancia del mueble).
 # Los dispositivos domóticos están en 04_domotica.sbc.
 
-# ---------- Muebles ----------
+# ---------- Muebles Salón----------
 sofa es_un mueble, sofa esta_en salon, sofa nombre "Sofá".
+sillon_redondo es_un mueble, sillon_redondo esta_en salon, sillon_redondo nombre "Sillón Redondo".
+sillon_cuadrado es_un mueble, sillon_cuadrado esta_en salon, sillon_cuadrado nombre "Sillón Cuadrado".
+mesa_salon es_un mueble, mesa_salon esta_en salon, mesa_salon nombre "Mesa Salon".
 mesa_comedor es_un mueble, mesa_comedor esta_en salon.
-estanteria es_un mueble, estanteria esta_en salon, estanteria nombre "Estantería".
-zapatero es_un mueble, zapatero esta_en recibidor.
+estanteria_1 es_un mueble, estanteria_1 esta_en salon, estanteria_1 nombre "Estantería Grande".
+estanteria_2 es_un mueble, estanteria_2 esta_en salon, estanteria_2 nombre "Estantería Pequeña".
+
+# ---------- Muebles Recibidor----------
+zapatero_1 es_un mueble, zapatero_1 esta_en recibidor.
+zapatero_2 es_un mueble, zapatero_2 esta_en recibidor.
+
+# ---------- Muebles Dormitorio 1----------
 cama_1 es_un mueble, cama_1 esta_en dormitorio_1.
-cama_2 es_un mueble, cama_2 esta_en dormitorio_2.
-cama_3 es_un mueble, cama_3 esta_en dormitorio_3.
 armario_1 es_un mueble, armario_1 esta_en dormitorio_1.
+mesillas_1 es_un mueble, mesillas_1 esta_en dormitorio_1.
+comoda_1 es_un mueble, comoda_1 esta_en dormitorio_1.
+espejo_dormitorio_1 es_un mueble, espejo_dormitorio_1 esta_en dormitorio_1.
+
+# ---------- Muebles Dormitorio 2----------
+cama_2 es_un mueble, cama_2 esta_en dormitorio_2.
 armario_2 es_un mueble, armario_2 esta_en dormitorio_2.
-escritorio es_un mueble, escritorio esta_en dormitorio_2.
-tendedero es_un mueble, tendedero esta_en terraza_2.
+mesillas_2 es_un mueble, mesillas_2 esta_en dormitorio_2.
+comoda_2 es_un mueble, comoda_2 esta_en dormitorio_2.
+escritorio_1 es_un mueble, escritorio_1 esta_en dormitorio_2.
+espejo_dormitorio_2 es_un mueble, espejo_dormitorio_2 esta_en dormitorio_2.
+estanterias_dormitorio es_un mueble, estanterias_dormitorio esta_en dormitorio_2.
+tocador es_un mueble, tocador esta_en dormitorio_2.
+biblioteca es_un mueble, biblioteca esta_en dormitorio_2.
+bahul es_un mueble, bahul esta_en dormitorio_2.
+
+# ---------- Muebles Dormitorio 3----------
+cama_3 es_un mueble, cama_3 esta_en dormitorio_3.
+armario_3 es_un mueble, armario_3 esta_en dormitorio_3.
+mesillas_3 es_un mueble, mesillas_3 esta_en dormitorio_3.
+escritorio_3 es_un mueble, escritorio_3 esta_en dormitorio_3.
+
+# ---------- Muebles Terraza 1----------
+sofas_terraza es_un mueble, sofas_terraza esta_en terraza_1.
+mesa_terraza es_un mueble, mesa_terraza esta_en terraza_1.
+tendedero es_un mueble, tendedero esta_en terraza_1.
+
+# ---------- Muebles Terraza 2----------
+armarios_ropa es_un mueble, armarios_ropa esta_en terraza_2.
 
 # ---------- Electrodomésticos ----------
 nevera es_un electrodomestico, nevera esta_en cocina.
+kettle es_un electrodomestico, kettle esta_en cocina.
+vitroceramica es_un electrodomestico, vitroceramica esta_en cocina.
 horno es_un electrodomestico, horno esta_en cocina.
+airfryer es_un electrodomestico, airfryer esta_en cocina.
 microondas es_un electrodomestico, microondas esta_en cocina.
 lavavajillas es_un electrodomestico, lavavajillas esta_en cocina.
-lavadora es_un electrodomestico, lavadora esta_en terraza_2.
+lavadora es_un electrodomestico, lavadora esta_en cocina.
+calentador es_un electrodomestico, calentador esta_en terraza_1.
+contador_gas es_un electrodomestico, contador_gas esta_en terraza_2.
 
 # ---------- Electrónica ----------
 # La tele es una smart TV: además de aparato electrónico, se puede controlar
 # (ver 01_clases.sbc), así que la Alexa la controla.
 television es_un smart_tv, television esta_en salon, television nombre "Televisión".
 router es_un aparato_electronico, router esta_en salon.
-consola es_un aparato_electronico, consola esta_en salon.
-portatil es_un aparato_electronico, portatil esta_en escritorio, portatil nombre "Portátil".
-
-# ---------- Cosas pequeñas (dentro o encima de muebles) ----------
-llaves esta_en zapatero.
-mando_tele esta_en sofa.
-libros esta_en estanteria.
-
-# ---------- De quién es cada cosa ----------
-portatil pertenece_a yo.
-escritorio pertenece_a yo.
+movistar es_un aparato_electronico, movistar esta_en salon.

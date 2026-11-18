@@ -5,15 +5,16 @@
 # añadir un dispositivo nuevo solo pide escribir una línea aquí.
 
 # ---------- Salón: la Alexa y lo que tiene alrededor ----------
+# La tele y el deco de Movistar están en 02_objetos.sbc.
 alexa es_un asistente_voz, alexa esta_en salon, alexa nombre "Alexa".
 luz_salon es_un luz_inteligente, luz_salon esta_en salon, luz_salon nombre "Luz del salón".
 persiana_salon es_un persiana_motorizada, persiana_salon esta_en salon, persiana_salon nombre "Persiana del salón".
 aire_salon es_un aire_acondicionado, aire_salon esta_en salon, aire_salon nombre "Aire acondicionado del salón".
-enchufe_consola es_un enchufe_inteligente, enchufe_consola esta_en salon, enchufe_consola nombre "Enchufe de la consola".
+enchufe_salon es_un enchufe_inteligente, enchufe_salon esta_en salon, enchufe_salon nombre "Enchufe inteligente del salón".
 aspiradora es_un robot_aspirador, aspiradora esta_en salon, aspiradora nombre "Robot aspirador".
 
-# La consola no es inteligente, pero está enchufada a un enchufe que sí.
-consola enchufada_a enchufe_consola.
+# El deco de Movistar no es inteligente, pero está enchufado a un enchufe que sí.
+movistar enchufada_a enchufe_salon.
 
 # ---------- Resto de la casa ----------
 luz_recibidor es_un luz_inteligente, luz_recibidor esta_en recibidor, luz_recibidor nombre "Luz del recibidor".

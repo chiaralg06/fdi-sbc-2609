@@ -6,8 +6,8 @@
 # ¿Qué hay directamente en el salón?
 X esta_en salon?
 
-# ¿Dónde está el portátil, y en qué habitación está ese sitio? (dos saltos)
-portatil esta_en M, M esta_en H, H nombre N?
+# ¿Qué hay en la terraza grande?
+X esta_en terraza_1?
 
 # ¿Qué electrodomésticos hay y en qué estancia?
 X es_un electrodomestico, X esta_en H, H nombre N?
@@ -38,9 +38,8 @@ X conecta_con pasillo, X tipo dormitorio?
 baño_2 conecta_con X, X conecta_con Y?
 
 # En qué estancia está cada cosa, aunque esté en un mueble
-portatil en_estancia E?
 X en_estancia dormitorio_2?
-llaves en_estancia E, E nombre N?
+X tipo mueble, X en_estancia E, E tipo exterior?
 
 # Tipos heredados
 miko tipo C?
@@ -53,9 +52,9 @@ X tipo cuarto_humedo, D tipo controlable, D en_estancia X?
 # Familia
 yo hijo_de P, P nombre N?
 
-# ¿Qué controla la Alexa? (la consola, a través de su enchufe)
+# ¿Qué controla la Alexa? (el deco de Movistar, a través de su enchufe)
 alexa controla D?
-alexa controla consola?
+alexa controla movistar?
 alexa controla luz_pasillo?
 
 # Orden de prioridades

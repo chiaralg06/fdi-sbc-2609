@@ -9,7 +9,7 @@
 # Todo lo controlable que esté en su misma estancia. Un enchufe inteligente
 # nuevo en el salón queda controlado sin tocar nada más.
 A controla D <- A tipo asistente_voz, A en_estancia E, D tipo controlable, D en_estancia E.
-# Y lo que está enchufado a algo que controla (la consola).
+# Y lo que está enchufado a algo que controla (el deco de Movistar).
 A controla X <- X enchufada_a S, A controla S.
 
 # ---------- Situaciones ----------
