@@ -7,7 +7,10 @@
 {"consulta": "X antepasado_de nora", "soluciones": [{"X": "ana"}, {"X": "juan"}, {"X": "luis"}, {"X": "pepe"}, {"X": "rosa"}]}
 {"consulta": "pepe antepasado_de X", "soluciones": [{"X": "ana"}, {"X": "eva"}, {"X": "luis"}, {"X": "nora"}]}
 {"consulta": "nora antepasado_de X", "soluciones": []}
-{"consulta": "X antepasado_de lia", "soluciones": []}
+{"consulta": "Y progenitor_de nora", "soluciones": [{"Y": "luis"}]}
+{"consulta": "Z abuelo_de nora", "soluciones": [{"Z": "ana"}, {"Z": "juan"}]}
+{"consulta": "Y antepasado_de X, X padre_de nora", "soluciones": [{"Y": "ana", "X": "luis"}, {"Y": "juan", "X": "luis"}, {"Y": "pepe", "X": "luis"}, {"Y": "rosa", "X": "luis"}]}
 {"consulta": "X antepasado_de lia", "soluciones": [{"X": "ana"}, {"X": "juan"}, {"X": "luis"}, {"X": "nora"}, {"X": "pepe"}, {"X": "rosa"}]}
-{"consulta": "X bisabuelo_de Y", "soluciones": []}
 {"consulta": "X bisabuelo_de Y", "soluciones": [{"X": "ana", "Y": "lia"}, {"X": "juan", "Y": "lia"}, {"X": "pepe", "Y": "nora"}, {"X": "rosa", "Y": "nora"}]}
+{"consulta": "X bisabuelo_de lia", "soluciones": [{"X": "ana"}, {"X": "juan"}]}
+{"consulta": "X progenitor_de luis", "soluciones": []}

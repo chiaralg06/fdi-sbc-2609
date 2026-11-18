@@ -1,0 +1,40 @@
+# Reglas para Arda (kb_1028_arda), para comparar forward y backward en clase.
+# uv run -m sbc data/kb_1028_arda, y en la REPL: cargar data/arda_razona.sbq!
+# Tiempos medidos con la implementación del profesor, sin optimizar.
+
+X progenitor_de Y <- X padre_de Y.
+X progenitor_de Y <- X madre_de Y.
+X progenitor_de Y <- Y hijo_de X.
+X antepasado_de Y <- X progenitor_de Y.
+X antepasado_de Y <- X progenitor_de Z, Z antepasado_de Y.
+
+X dentro_de Y <- X esta_en Y.
+X dentro_de Z <- X esta_en Y, Y dentro_de Z.
+
+C hereda_de D <- C subclase_de D.
+C hereda_de E <- C subclase_de D, D hereda_de E.
+X tipo C <- X es_un C.
+X tipo C <- X es_un D, D hereda_de C.
+
+# Forward: descubre! tarda ~5 min (11 pasadas, +3178 hechos), y después
+# cualquier pregunta es inmediata.
+
+razona si!
+
+# Backward: inmediato, solo busca lo que hace falta (~0,4 s)
+X nombre "Arathorn II", X antepasado_de Y, Y nombre N?
+X nombre "Eärendil", X progenitor_de Y, Y nombre N?
+
+# Más descendientes, más lento (~70 s). padre_de e hijo_de suelen repetir el
+# mismo enlace, así que cada camino se demuestra varias veces.
+# X nombre "Finwë", X antepasado_de Y, Y nombre N?
+
+# El sentido importa: la regla de antepasado_de baja desde X, y con X libre
+# recorre todos los pares de progenitores (>2 min)
+# Y nombre "Eärendil", X antepasado_de Y, X nombre N?
+
+# Bucles: los datos de Wikidata tienen ciclos, y backward no termina
+# (forward sí). `aguila subclase_de aguila`, o q46289 y q11755466 cada uno
+# esta_en el otro.
+# X nombre "Aragorn", X tipo C?
+# X dentro_de Y?

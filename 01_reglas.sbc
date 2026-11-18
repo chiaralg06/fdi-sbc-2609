@@ -1,0 +1,10 @@
+# Alternativas ("o"): dos reglas con el mismo consecuente
+X progenitor_de Y <- X padre_de Y.
+X progenitor_de Y <- X madre_de Y.
+
+# Conjunción en el antecedente y en el consecuente
+X abuelo_de Y, Y nieto_de X <- X progenitor_de Z, Z progenitor_de Y.
+
+# Recursiva: hace falta iterar hasta el punto fijo
+X antepasado_de Y <- X progenitor_de Y.
+X antepasado_de Y <- X progenitor_de Z, Z antepasado_de Y.

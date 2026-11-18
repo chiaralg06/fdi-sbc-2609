@@ -1,7 +1,7 @@
 # Sin razonar, las reglas no deducen nada
 X progenitor_de luis?
 
-descubre!
+razona si!
 
 # Alternativas
 X progenitor_de luis?
@@ -17,14 +17,24 @@ X antepasado_de nora?
 pepe antepasado_de X?
 nora antepasado_de X?
 
-# Un hecho nuevo no se razona hasta el siguiente descubre!
+# Las variables de la consulta no son las de la regla
+Y progenitor_de nora?
+Z abuelo_de nora?
+Y antepasado_de X, X padre_de nora?
+
+# Un hecho nuevo se razona sin descubre!
 nora madre_de lia.
 X antepasado_de lia?
-descubre!
-X antepasado_de lia?
 
-# Ni una regla nueva
+# Y una regla nueva
 X bisabuelo_de Y <- X progenitor_de Z, Z abuelo_de Y.
 X bisabuelo_de Y?
-descubre!
-X bisabuelo_de Y?
+
+# Las explicaciones van por stderr, no cambian la salida
+explica si!
+X bisabuelo_de lia?
+explica no!
+
+# Sin razonar, otra vez nada
+razona no!
+X progenitor_de luis?
