@@ -10,6 +10,7 @@ uv run -m sbc . script.sbq (para obtener expected.txt)
 
 import sys
 from collections import defaultdict
+from itertools import count
 from pathlib import Path
 
 import click
@@ -22,40 +23,72 @@ hash_map = defaultdict(list)
 reglas = []
 razonar = False  # razona si! / razona no!: encadenamiento hacia atrás
 explicar = False  # explica si! / explica no!: cadena de razonamiento por stderr
+usos_de_reglas = count()  # para renombrar las variables en cada uso de una regla
 
 
 def es_variable(termino):
     return termino[0].isupper() or termino[0] == "_"
 
 
-def unifica(termino, valor, sustitucion):
-    """
-    Se puede "emparejar" el término con el valor?
-    Si ambos son constantes, sólo se pueden emparejar si son iguales.
-    Si hay variables:
-    - si hay sustitución (valor(es) asignado(s) a la variable), valor debe
-    estar entre ellos
-    - si no la hay, se añade
-    """
-    if not es_variable(termino):
-        if termino == valor:
-            return sustitucion
-        return None  # Son constantes, pero diferentes -> NO
+def valor_de(termino, sustitucion):
+    """Sigue las ligaduras de la sustitución hasta el final: si X -> Y e
+    Y -> ana, el valor de X es ana. Si la variable no tiene valor, la
+    devuelve tal cual."""
+    while es_variable(termino) and termino in sustitucion:
+        termino = sustitucion[termino]
+    return termino
 
-    if termino in sustitucion:
-        if sustitucion[termino] == valor:
-            return sustitucion
-        return None  # ya hay valor asignado, y no es ese -> NO
 
-    # no hay valor asignado -> se asigna
-    nueva_sustitucion = dict(sustitucion)  # copia nueva del diccionario de entrada
-    nueva_sustitucion[termino] = valor
-    return nueva_sustitucion
+def unifica(a, b, sustitucion):
+    """
+    Se pueden "emparejar" los términos a y b?
+    Primero se sustituye cada uno por su valor (si son variables con valor).
+    - Si quedan iguales, ya están emparejados.
+    - Si uno es una variable sin valor, se le asigna el otro (que puede ser
+      una constante u otra variable, al usar reglas).
+    - Si son dos constantes distintas -> NO
+    """
+    a, b = valor_de(a, sustitucion), valor_de(b, sustitucion)
+    if a == b:
+        return sustitucion
+
+    if es_variable(a) or es_variable(b):
+        variable, otro = (a, b) if es_variable(a) else (b, a)
+        nueva_sustitucion = dict(sustitucion)  # copia nueva del diccionario
+        nueva_sustitucion[variable] = otro
+        return nueva_sustitucion
+
+    return None  # Son constantes, pero diferentes -> NO
+
+
+def unifica_tripleta(tripleta_a, tripleta_b, sustitucion):
+    for a, b in zip(tripleta_a, tripleta_b):
+        sustitucion = unifica(a, b, sustitucion)
+        if sustitucion is None:
+            return None
+    return sustitucion
+
+
+def renombra(regla):
+    """Copia de la regla con variables nuevas (X -> X#3), para que no se
+    mezclen con las de la consulta ni con las de otro uso de la misma regla.
+    El parser no admite # en los términos, así que no pueden chocar."""
+    n = next(usos_de_reglas)
+    consecuente, antecedente = regla
+
+    def cambia(hechos):
+        return [
+            tuple(f"{t}#{n}" if es_variable(t) else t for t in hecho)
+            for hecho in hechos
+        ]
+
+    return cambia(consecuente), cambia(antecedente)
 
 
 def resolver(preguntas, sustitucion=None):
     """Genera cada sustitución de variables que satisface TODAS las tripletas
-    de `preguntas` a la vez (una por cada solución distinta)."""
+    de `preguntas` a la vez (una por cada solución distinta). Con `razona si!`
+    usa también las reglas (encadenamiento hacia atrás)."""
     if sustitucion is None:
         sustitucion = {}
 
@@ -66,7 +99,17 @@ def resolver(preguntas, sustitucion=None):
     sujeto, predicado, objeto = preguntas[0]
     resto = preguntas[1:]
 
-    for sujeto_kb, parejas in hash_map.items():
+    # 1) Con los hechos. Si el sujeto ya tiene valor, solo hace falta mirar
+    # ese sujeto (el diccionario está indexado por sujeto)
+    sujeto_valor = valor_de(sujeto, sustitucion)
+    if es_variable(sujeto_valor):
+        candidatos = hash_map.items()  # sujeto libre: hay que mirar todos
+    elif sujeto_valor in hash_map:
+        candidatos = [(sujeto_valor, hash_map[sujeto_valor])]
+    else:
+        candidatos = []  # ese sujeto no tiene ningún hecho
+
+    for sujeto_kb, parejas in candidatos:
         sustitucion_sujeto = unifica(sujeto, sujeto_kb, sustitucion)
         if sustitucion_sujeto is None:
             continue
@@ -81,6 +124,16 @@ def resolver(preguntas, sustitucion=None):
                 continue
 
             yield from resolver(resto, nueva_sustitucion)
+
+    # 2) Con las reglas (razona si!): si un consecuente encaja con la
+    # pregunta, se cambia la pregunta por el antecedente de la regla
+    if razonar:
+        for regla in reglas:
+            consecuente, antecedente = renombra(regla)
+            for hecho in consecuente:
+                nueva_sustitucion = unifica_tripleta(preguntas[0], hecho, sustitucion)
+                if nueva_sustitucion is not None:
+                    yield from resolver(antecedente + resto, nueva_sustitucion)
 
 
 def afirma(hechos):
@@ -109,7 +162,7 @@ def descubre():
 
             for sust in soluciones:
                 for s, p, o in consecuente:
-                    hecho_nuevo = (sust.get(s, s), sust.get(p, p), sust.get(o, o))
+                    hecho_nuevo = tuple(valor_de(t, sust) for t in (s, p, o))
                     if afirma([hecho_nuevo]):
                         cambios = True
                         total += 1
@@ -165,7 +218,11 @@ def imprime_soluciones(hechos, soluciones):
 
 
 def responde(hechos, jsonl, detalle=False):
-    soluciones = list(resolver(hechos))
+    # de cada solución, solo el valor final de las variables de la consulta
+    # (las de las reglas, como X#3, son internas)
+    terminos = dict.fromkeys(t for hecho in hechos for t in hecho)
+    variables = [t for t in terminos if es_variable(t)]
+    soluciones = [{v: valor_de(v, s) for v in variables} for s in resolver(hechos)]
     if jsonl:
         imprimir_jsonl(hechos, soluciones)
     else:
