@@ -74,6 +74,11 @@ class KB:
     def __init__(self):
         self.hash_map = defaultdict(list)  # sujeto -> [(predicado, objeto)]
         self.reglas = []  # [(consecuente, antecedente)]
+        # Índice de reglas por el predicado de su consecuente (posiciones en
+        # self.reglas), para no probar en cada pregunta reglas que no pueden
+        # encajar. Las que tienen el predicado variable valen para todos.
+        self.reglas_por_predicado = defaultdict(list)
+        self.reglas_predicado_variable = []
         self.razonar = False  # razona si! / razona no!: encadenamiento hacia atrás
         self.explicar = False  # explica si! / explica no!: razonamiento por stderr
         self.usos_de_reglas = count()  # para renombrar variables en cada uso
@@ -108,7 +113,28 @@ class KB:
 
     def afirmar_regla(self, regla):
         if regla not in self.reglas:
+            posicion = len(self.reglas)
             self.reglas.append(regla)
+
+            consecuente, _ = regla
+            for predicado in {p for _, p, _ in consecuente}:
+                if es_variable(predicado):
+                    self.reglas_predicado_variable.append(posicion)
+                else:
+                    self.reglas_por_predicado[predicado].append(posicion)
+
+    def reglas_para(self, predicado):
+        """Las reglas cuyo consecuente puede tener ese predicado, en el orden
+        en que se cargaron."""
+        if es_variable(predicado):
+            return self.reglas
+
+        posiciones = []
+        if predicado in self.reglas_por_predicado:
+            posiciones = self.reglas_por_predicado[predicado]
+        if self.reglas_predicado_variable:
+            posiciones = sorted(set(posiciones) | set(self.reglas_predicado_variable))
+        return [self.reglas[i] for i in posiciones]
 
     def renombra(self, regla):
         """Copia de la regla con variables nuevas (X -> X#3), para que no se
@@ -166,9 +192,10 @@ class KB:
                 yield from self.resolver(resto, nueva_sustitucion)
 
         # 2) Con las reglas (razona si!): si un consecuente encaja con la
-        # pregunta, se cambia la pregunta por el antecedente de la regla
+        # pregunta, se cambia la pregunta por el antecedente de la regla.
+        # Solo se prueban (y renombran) las que pueden tener ese predicado
         if self.razonar:
-            for regla in self.reglas:
+            for regla in self.reglas_para(valor_de(predicado, sustitucion)):
                 consecuente, antecedente = self.renombra(regla)
                 for hecho in consecuente:
                     nueva_sustitucion = unifica_tripleta(
