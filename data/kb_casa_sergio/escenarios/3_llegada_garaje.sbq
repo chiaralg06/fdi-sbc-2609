@@ -1,0 +1,53 @@
+# Escenario 3: anochecer de invierno, día de diario. Luis vuelve del trabajo
+# en el coche eléctrico con poca batería. Thor se ha colado en el garaje.
+# uv run -m sbc data/kb_casa_sergio data/kb_casa_sergio/escenarios/3_llegada_garaje.sbq
+
+razona si!
+
+chalet modo normal, chalet momento anochecer, chalet dia laborable, chalet estacion invierno.
+elena ubicacion despacho, sergio ubicacion gimnasio.
+thor ubicacion garaje.
+
+# El garaje reconoce el coche y quiere abrir, pero Thor se escaparía
+coche_luis llegando si.
+porton_garaje disputa M?
+porton_garaje se_queda_con M, M nombre N?
+porton_garaje hace A?
+luz_garaje accion A?
+
+# Luis insiste desde el móvil: Thor sigue pasando por delante
+luis pide_abrir porton_garaje.
+porton_garaje descarta M?
+porton_garaje hace A?
+P notificar_por aviso_perro, P nombre N?
+
+# El cargador: con la luz en punta no carga solo...
+coche_luis enchufado_a cargador, coche_luis bateria baja.
+chalet momento F, F tarifa T?
+cargador accion A?
+
+# ...pero Luis necesita el coche mañana y lo pide: su voluntad pasa por
+# encima del ahorro
+luis pide_encender cargador.
+cargador disputa M?
+cargador se_queda_con M, M nivel N?
+cargador hace A?
+
+# Luis puso la norma de la piscina, así que él se la puede saltar
+luis pide_encender bomba_piscina.
+bomba_piscina disputa M?
+bomba_piscina manda P?
+bomba_piscina hace A?
+
+# Frío en la planta baja: Elena trabaja en el despacho. Abajo calienta el
+# suelo radiante; el aire del despacho solo enfría
+termostato_pb detecta frio.
+suelo_radiante_pb encender_por M, M nombre N?
+aire_despacho accion A?
+
+# El sótano coge humedad mientras Sergio entrena
+sensor_humedad_sotano detecta humedad.
+deshumidificador_sotano accion A?
+
+# Ningún resultado contradictorio
+D contradiccion si?

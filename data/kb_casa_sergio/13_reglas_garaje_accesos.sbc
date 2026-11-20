@@ -1,0 +1,31 @@
+# Garaje, coche eléctrico y puertas a la calle.
+
+# ---------- Llegada de un coche ----------
+# El garaje reconoce los coches de la familia: abre el portón y enciende la luz.
+D abrir_por llegada_coche <- C tipo vehiculo, C llegando si, D tipo puerta_garaje.
+L encender_por llegada_coche <- C tipo vehiculo, C llegando si, L tipo luz, L esta_en E, E tipo zona_garaje.
+
+# ---------- Thor junto a una puerta de la calle ----------
+# Si algo quiere abrir una puerta de la calle y Thor está ahí, se queda
+# cerrada. Se avisa a quien lo cuida, a quien quería abrir y a quien llega.
+D cerrar_por perro_puede_escaparse <- A tipo perro, A ubicacion E, D tipo acceso_calle, D esta_en E, D abrir_por M.
+P notificar_por aviso_perro <- D cerrar_por perro_puede_escaparse, A tipo perro, A cuidado_por P.
+P notificar_por aviso_perro <- D cerrar_por perro_puede_escaparse, D abrir_por P, P tipo habitante.
+P notificar_por aviso_perro <- D cerrar_por perro_puede_escaparse, C llegando si, C pertenece_a P.
+
+# ---------- De noche ----------
+# Lo que se haya quedado abierto se cierra.
+D cerrar_por cierre_nocturno <- chalet momento F, F cierre_accesos si, D tipo acceso, D estado abierta.
+
+# Norma de Luis: Pablo no sale de noche. Si lo intenta, se avisa a los padres.
+D cerrar_por norma_salidas <- chalet momento F, F cierre_accesos si, P pide_abrir D, P rol hijo_menor, D tipo acceso_calle.
+A notificar_por intento_salida <- chalet momento F, F cierre_accesos si, P pide_abrir D, P rol hijo_menor, D tipo acceso_calle, A rol progenitor.
+
+# Sergio puede entrar y salir, pero los padres se enteran.
+A notificar_por llegada_tarde <- chalet momento F, F cierre_accesos si, P pide_abrir D, P rol hijo_mayor, D tipo acceso_calle, A rol progenitor.
+
+# ---------- Cargador del coche eléctrico ----------
+# Carga solo con la luz más barata; en punta se para, salvo que alguien lo
+# pida (por ejemplo, porque necesita el coche).
+D encender_por carga_valle <- chalet momento F, F tarifa valle, C enchufado_a D, C bateria baja, D tipo cargador_coche.
+D apagar_por tarifa_punta <- chalet momento F, F tarifa punta, D tipo cargador_coche, D encender_por M.

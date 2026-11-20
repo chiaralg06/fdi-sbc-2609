@@ -1,0 +1,18 @@
+# Reglas generales: clases, ubicación y familia.
+
+# ---------- Clases ----------
+# Todo lo que es de una clase es también de sus superclases. Se sube desde
+# la clase del objeto hacia arriba (un solo camino), en vez de bajar por
+# todas las subclases: es mucho más rápido.
+X tipo C <- X es_un C.
+X tipo C <- X es_un D, D hereda_de C.
+D hereda_de C <- D subclase_de C.
+D hereda_de C <- D subclase_de E, E hereda_de C.
+
+# ---------- Ubicación ----------
+# Un aparato está en la planta del espacio donde está.
+X en_planta P <- X esta_en E, E en_planta P.
+
+# ---------- Familia ----------
+X hijo_de Y <- Y padre_de X.
+X hijo_de Y <- Y madre_de X.

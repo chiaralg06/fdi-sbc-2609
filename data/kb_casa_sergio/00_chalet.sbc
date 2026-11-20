@@ -1,0 +1,66 @@
+# El chalet de la familia de Sergio: plantas, espacios y quién manda en cada
+# uno.
+#
+# Tres plantas (sótano, planta baja y primera) y una parcela con jardín,
+# piscina y porche. El garaje está en la planta baja, con salida a la calle.
+
+chalet es_un vivienda, chalet nombre "Chalet de la familia de Sergio".
+
+sotano es_un planta, sotano parte_de chalet, sotano nombre "Sótano".
+planta_baja es_un planta, planta_baja parte_de chalet, planta_baja nombre "Planta baja".
+planta_1 es_un planta, planta_1 parte_de chalet, planta_1 nombre "Primera planta".
+parcela es_un exterior, parcela parte_de chalet, parcela nombre "Parcela".
+
+# ---------- Sótano ----------
+# Está bajo tierra: en verano es lo más fresco de la casa.
+sala_cine es_un sala_ocio, sala_cine en_planta sotano, sala_cine nombre "Sala de cine y juegos".
+gimnasio es_un sala_deporte, gimnasio en_planta sotano, gimnasio nombre "Gimnasio".
+cuarto_maquinas es_un cuarto_tecnico, cuarto_maquinas en_planta sotano, cuarto_maquinas nombre "Cuarto de máquinas".
+sala_cine fresco si, gimnasio fresco si.
+
+# ---------- Planta baja ----------
+recibidor es_un zona_paso, recibidor en_planta planta_baja, recibidor nombre "Recibidor".
+salon es_un sala_estar, salon en_planta planta_baja, salon nombre "Salón".
+cocina es_un zona_cocina, cocina en_planta planta_baja, cocina nombre "Cocina".
+despacho es_un zona_trabajo, despacho en_planta planta_baja, despacho nombre "Despacho".
+aseo es_un baño, aseo en_planta planta_baja, aseo nombre "Aseo".
+garaje es_un zona_garaje, garaje en_planta planta_baja, garaje nombre "Garaje".
+
+# ---------- Primera planta ----------
+pasillo_1 es_un zona_paso, pasillo_1 en_planta planta_1, pasillo_1 nombre "Pasillo de arriba".
+dormitorio_padres es_un dormitorio, dormitorio_padres en_planta planta_1, dormitorio_padres nombre "Dormitorio de Luis y Elena".
+dormitorio_sergio es_un dormitorio, dormitorio_sergio en_planta planta_1, dormitorio_sergio nombre "Dormitorio de Sergio".
+dormitorio_pablo es_un dormitorio, dormitorio_pablo en_planta planta_1, dormitorio_pablo nombre "Dormitorio de Pablo".
+baño_padres es_un baño, baño_padres en_planta planta_1, baño_padres nombre "Baño de los padres".
+baño_hijos es_un baño, baño_hijos en_planta planta_1, baño_hijos nombre "Baño de los chicos".
+
+dormitorio_padres dormitorio_de luis, dormitorio_padres dormitorio_de elena.
+dormitorio_sergio dormitorio_de sergio.
+dormitorio_pablo dormitorio_de pablo.
+
+# ---------- Parcela ----------
+jardin es_un zona_verde, jardin parte_de parcela, jardin nombre "Jardín".
+piscina es_un zona_piscina, piscina parte_de parcela, piscina nombre "Piscina".
+porche es_un zona_porche, porche parte_de parcela, porche nombre "Porche".
+
+# ---------- Quién manda en cada sitio ----------
+# Cuando dos personas piden cosas contrarias sobre el mismo aparato, decide
+# el régimen del sitio donde está (11_reglas_decision.sbc):
+# - comun: mandan los padres, después el hijo mayor y después el pequeño.
+# - privado: el cuarto de un hijo mayor de edad; manda su dueño, y nadie
+#   más puede tocar nada de ahí desde la app.
+# - tutela: el cuarto de un menor; mandan los padres, y después su dueño
+#   (sus hermanos no pueden tocar nada de ahí).
+comun nombre "Zona común: mandan los padres, después el mayor".
+privado nombre "Cuarto de un mayor de edad: manda su dueño".
+tutela nombre "Cuarto de un menor: mandan los padres, después su dueño".
+
+dormitorio_sergio regimen privado.
+dormitorio_pablo regimen tutela.
+
+sala_cine regimen comun, gimnasio regimen comun, cuarto_maquinas regimen comun.
+recibidor regimen comun, salon regimen comun, cocina regimen comun.
+despacho regimen comun, aseo regimen comun, garaje regimen comun.
+pasillo_1 regimen comun, dormitorio_padres regimen comun.
+baño_padres regimen comun, baño_hijos regimen comun.
+jardin regimen comun, piscina regimen comun, porche regimen comun.

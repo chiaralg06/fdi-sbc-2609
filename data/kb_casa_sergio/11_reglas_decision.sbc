@@ -1,0 +1,71 @@
+# Cómo decide la casa: peticiones, modos, niveles y autoridad.
+#
+# 1. Cada motivo tiene un nivel según el modo de la casa (05_modos_y_autoridad.sbc).
+# 2. Si dos motivos piden cosas contrarias sobre el mismo aparato y son de
+#    distinto nivel, gana el de nivel más alto.
+# 3. Si los dos son voluntades (personas o normas de los padres), gana quien
+#    tiene autoridad en el sitio donde está el aparato.
+# 4. Si los padres piden cosas contrarias, no gana nadie: hay desacuerdo y se
+#    les avisa a los dos.
+
+# ---------- Peticiones desde la app ----------
+# Cada uno puede usar lo de las zonas comunes y lo de su cuarto; los padres,
+# también lo del cuarto de Pablo. En el cuarto de Sergio solo manda él.
+P puede_usar D <- P tipo habitante, D esta_en E, E regimen comun.
+P puede_usar D <- D esta_en E, E dormitorio_de P.
+P puede_usar D <- P rol progenitor, D esta_en E, E regimen tutela.
+
+D encender_por P <- P pide_encender D, P puede_usar D.
+D apagar_por P <- P pide_apagar D, P puede_usar D.
+D abrir_por P <- P pide_abrir D, P puede_usar D.
+D cerrar_por P <- P pide_cerrar D, P puede_usar D.
+
+# ---------- Modo de la casa ----------
+# Solo los padres cambian el modo. Si lo pide un hijo, se avisa a los padres.
+chalet modo M <- P activa_modo M, P rol progenitor.
+A notificar_por peticion_modo <- P activa_modo M, P rol R, R es_un rol_hijo, A rol progenitor.
+
+# ---------- Quién respalda cada voluntad ----------
+# Una persona se respalda a sí misma; una norma, a su autor, pero solo en los
+# modos en que rigen las normas.
+P respalda P <- P tipo habitante.
+A respalda N <- N autor A, chalet modo O, O respeta normas.
+
+# ---------- Nivel de cada motivo en el modo actual ----------
+M nivel voluntad <- A respalda M.
+M nivel innegociable <- M dominio X, chalet modo O, O impone X.
+M nivel preferente <- M dominio X, chalet modo O, O prefiere X.
+M nivel secundario <- M dominio X, chalet modo O, O admite X.
+
+# Acciones que cuentan en este modo (un motivo sin nivel no cuenta)
+D accion A <- V verbo A, D V M, M nivel N.
+
+# ---------- Disputas ----------
+D disputa M1 <- V1 contrario V2, D V1 M1, M1 nivel N1, D V2 M2, M2 nivel N2.
+
+# Distinto nivel: gana el más alto
+D se_queda_con M1, D descarta M2 <- V1 contrario V2, D V1 M1, M1 nivel N1, D V2 M2, M2 nivel N2, N1 supera N2.
+
+# Dos voluntades: autoridad según el régimen del sitio (00_chalet.sbc)
+# (Se mira primero el régimen del sitio: descarta enseguida las reglas que
+# no tocan.)
+# - Zona común: por rol (padres > hijo mayor > hijo pequeño)
+D se_queda_con M1, D descarta M2, D manda A1 <- D esta_en E, E regimen comun, V1 contrario V2, D V1 M1, A1 respalda M1, D V2 M2, A2 respalda M2, A1 rol R1, A2 rol R2, R1 por_delante_de R2.
+# - Cuarto de un mayor de edad: manda su dueño, también frente a las normas
+#   de sus padres
+D se_queda_con M1, D descarta M2, D manda A1 <- D esta_en E, E regimen privado, E dormitorio_de A1, V1 contrario V2, D V1 M1, A1 respalda M1, D V2 M2, A2 respalda M2.
+# - Cuarto de un menor: los padres por encima de él
+D se_queda_con M1, D descarta M2, D manda A1 <- D esta_en E, E regimen tutela, V1 contrario V2, D V1 M1, A1 respalda M1, A1 rol progenitor, D V2 M2, A2 respalda M2, A2 rol R2, R2 es_un rol_hijo.
+# - Quien pone una norma puede saltársela
+D se_queda_con M1, D descarta M2, D manda M1 <- V1 contrario V2, D V2 M2, M2 autor M1, D V1 M1.
+
+# Los padres piden cosas contrarias (directamente o con sus normas): no gana
+# nadie y se avisa a los dos.
+D desacuerdo si <- V1 contrario V2, D V1 M1, A1 respalda M1, A1 pareja_de A2, D V2 M2, A2 respalda M2.
+P notificar_por desacuerdo_padres <- D desacuerdo si, P rol progenitor.
+
+# ---------- Resultado ----------
+D hace A <- D se_queda_con M, V verbo A, D V M.
+
+# Comprobación: dos resultados opuestos sobre lo mismo (no debería pasar)
+D contradiccion si <- D hace A1, D hace A2, A1 opuesta A2.

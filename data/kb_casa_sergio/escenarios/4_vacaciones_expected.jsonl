@@ -1,0 +1,15 @@
+{"consulta": "chalet modo M, M nombre N", "soluciones": [{"M": "vacaciones", "N": "\"Vacaciones, la casa vacía\""}]}
+{"consulta": "D apagar_por casa_vacia", "soluciones": [{"D": "aire_despacho"}, {"D": "aire_pablo"}, {"D": "aire_padres"}, {"D": "aire_salon"}, {"D": "aire_sergio"}, {"D": "bomba_piscina"}, {"D": "cargador"}, {"D": "suelo_radiante_pb"}]}
+{"consulta": "aire_pablo disputa M", "soluciones": [{"M": "casa_vacia"}, {"M": "pablo"}]}
+{"consulta": "aire_pablo se_queda_con M, M nivel N", "soluciones": [{"M": "casa_vacia", "N": "innegociable"}]}
+{"consulta": "aire_pablo hace A", "soluciones": [{"A": "apagar"}]}
+{"consulta": "depuradora_piscina encender_por M, M nivel N", "soluciones": [{"M": "filtrado_diario", "N": "preferente"}]}
+{"consulta": "riego_jardin accion A", "soluciones": [{"A": "encender"}]}
+{"consulta": "riego_jardin disputa M", "soluciones": [{"M": "llueve"}, {"M": "riego_programado"}]}
+{"consulta": "riego_jardin hace A", "soluciones": [{"A": "apagar"}]}
+{"consulta": "cubierta accion A", "soluciones": [{"A": "cerrar"}]}
+{"consulta": "sergio notificar_por M, M nombre N", "soluciones": [{"M": "aviso_perro", "N": "\"Thor necesita que alguien vaya\""}]}
+{"consulta": "norma_salidas nivel N", "soluciones": []}
+{"consulta": "chalet modo M", "soluciones": [{"M": "vacaciones"}]}
+{"consulta": "P notificar_por peticion_modo, P nombre N", "soluciones": [{"P": "elena", "N": "\"Elena\""}, {"P": "luis", "N": "\"Luis\""}]}
+{"consulta": "D contradiccion si", "soluciones": []}

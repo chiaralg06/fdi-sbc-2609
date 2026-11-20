@@ -1,0 +1,16 @@
+{"consulta": "chalet modo M", "soluciones": []}
+{"consulta": "P notificar_por peticion_modo, P nombre N", "soluciones": [{"P": "elena", "N": "\"Elena\""}, {"P": "luis", "N": "\"Luis\""}]}
+{"consulta": "chalet modo M, M nombre N", "soluciones": [{"M": "fiesta", "N": "\"Fiesta en casa\""}]}
+{"consulta": "luces_jardin accion A", "soluciones": [{"A": "encender"}]}
+{"consulta": "luces_piscina accion A", "soluciones": []}
+{"consulta": "riego_jardin disputa M", "soluciones": [{"M": "no_mojar"}, {"M": "riego_programado"}]}
+{"consulta": "riego_jardin se_queda_con M, M nivel N", "soluciones": [{"M": "no_mojar", "N": "preferente"}]}
+{"consulta": "riego_jardin hace A", "soluciones": [{"A": "apagar"}]}
+{"consulta": "altavoces_porche disputa M", "soluciones": [{"M": "descanso_vecinos"}, {"M": "sergio"}]}
+{"consulta": "altavoces_porche se_queda_con M, M nombre N", "soluciones": [{"M": "descanso_vecinos", "N": "\"Es de madrugada: no se pone música fuera\""}]}
+{"consulta": "altavoces_porche hace A", "soluciones": [{"A": "apagar"}]}
+{"consulta": "consola_cine accion A", "soluciones": [{"A": "encender"}]}
+{"consulta": "norma_pantallas nivel N", "soluciones": []}
+{"consulta": "robot_cesped hace A", "soluciones": [{"A": "apagar"}]}
+{"consulta": "depuradora_piscina accion A", "soluciones": [{"A": "encender"}]}
+{"consulta": "D contradiccion si", "soluciones": []}

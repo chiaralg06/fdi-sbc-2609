@@ -1,0 +1,17 @@
+{"consulta": "cubierta disputa M", "soluciones": [{"M": "menor_sin_adulto"}, {"M": "pablo"}]}
+{"consulta": "cubierta se_queda_con M, M nivel N", "soluciones": [{"M": "menor_sin_adulto", "N": "innegociable"}]}
+{"consulta": "cubierta hace A", "soluciones": [{"A": "cerrar"}]}
+{"consulta": "P notificar_por aviso_menor_piscina, P nombre N", "soluciones": [{"P": "elena", "N": "\"Elena\""}, {"P": "luis", "N": "\"Luis\""}]}
+{"consulta": "robot_cesped se_queda_con M, M nombre N", "soluciones": [{"M": "peligro_cuchillas", "N": "\"Hay alguien en el jardín y el cortacésped es peligroso\""}]}
+{"consulta": "robot_cesped hace A", "soluciones": [{"A": "apagar"}]}
+{"consulta": "bomba_piscina disputa M", "soluciones": []}
+{"consulta": "bomba_piscina accion A", "soluciones": [{"A": "encender"}]}
+{"consulta": "aire_despacho encender_por M, M nombre N", "soluciones": [{"M": "calor", "N": "\"Hace calor donde hay alguien\""}]}
+{"consulta": "aire_salon accion A", "soluciones": []}
+{"consulta": "aire_sergio accion A", "soluciones": [{"A": "encender"}]}
+{"consulta": "aire_pablo accion A", "soluciones": []}
+{"consulta": "sergio notificar_por M, M nombre N", "soluciones": [{"M": "ventana_abierta", "N": "\"Hay una ventana abierta con el clima encendido\""}]}
+{"consulta": "pablo puede_usar aire_sergio", "soluciones": []}
+{"consulta": "aire_sergio disputa M", "soluciones": []}
+{"consulta": "aire_sergio accion A", "soluciones": [{"A": "encender"}]}
+{"consulta": "D contradiccion si", "soluciones": []}

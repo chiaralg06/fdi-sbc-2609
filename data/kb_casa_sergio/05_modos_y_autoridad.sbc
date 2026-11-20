@@ -1,0 +1,84 @@
+# Cómo se decide: acciones, modos de la casa y autoridad.
+#
+# Cada acción que deduce la base se guarda como "D <verbo>_por M": el
+# aparato D hace esa acción por el motivo M. El motivo puede ser:
+# - una persona de la familia que lo pide ("bomba_piscina encender_por pablo"),
+# - una norma que puso uno de los padres (vale lo que valga su autor),
+# - un objetivo automático de la casa, que es de un dominio (seguridad,
+#   bienestar_perro, salud, ahorro, confort, mantenimiento o vecinos).
+#
+# Cuánto pesa cada motivo depende del MODO de la casa: en cada modo, cada
+# dominio es innegociable (pasa por encima de lo que pida cualquiera),
+# preferente o secundario (ceden ante las personas), o no cuenta. Las
+# personas quedan en medio.
+#
+#   innegociable > voluntad (personas y normas) > preferente > secundario
+#
+# Si chocan dos personas (o una persona y una norma), decide la AUTORIDAD:
+# quién manda en el sitio donde está el aparato (00_chalet.sbc).
+
+# ---------- Acciones ----------
+encender_por verbo encender.
+apagar_por verbo apagar.
+abrir_por verbo abrir.
+cerrar_por verbo cerrar.
+notificar_por verbo notificar.
+
+# Acciones contrarias sobre lo mismo (en los dos sentidos)
+encender_por contrario apagar_por, apagar_por contrario encender_por.
+abrir_por contrario cerrar_por, cerrar_por contrario abrir_por.
+encender opuesta apagar, apagar opuesta encender.
+abrir opuesta cerrar, cerrar opuesta abrir.
+
+# ---------- Niveles ----------
+innegociable nombre "Innegociable en este modo de la casa".
+voluntad nombre "Lo quiere alguien de la familia (o una norma de los padres)".
+preferente nombre "Objetivo preferente en este modo".
+secundario nombre "Objetivo secundario en este modo".
+
+innegociable supera voluntad, innegociable supera preferente, innegociable supera secundario.
+voluntad supera preferente, voluntad supera secundario.
+preferente supera secundario.
+
+# ---------- Modos de la casa ----------
+# Solo los padres pueden cambiar el modo. Las normas de los padres rigen en
+# el día a día (normal y ola de calor), no en vacaciones ni en una fiesta.
+normal es_un modo, normal nombre "Día normal".
+normal impone seguridad, normal impone bienestar_perro, normal impone vecinos.
+normal prefiere ahorro, normal prefiere confort.
+normal admite mantenimiento.
+normal respeta normas.
+
+# De vacaciones no hay nadie: se ahorra sin excepciones, aunque alguien lo
+# pida desde el móvil. Lo que necesita la casa (piscina, jardín) sigue.
+vacaciones es_un modo, vacaciones nombre "Vacaciones, la casa vacía".
+vacaciones impone seguridad, vacaciones impone bienestar_perro, vacaciones impone vecinos, vacaciones impone ahorro.
+vacaciones prefiere mantenimiento.
+
+# En una fiesta lo que importa es estar a gusto; el ahorro no cuenta y las
+# normas del día a día tampoco. Los vecinos siguen contando.
+fiesta es_un modo, fiesta nombre "Fiesta en casa".
+fiesta impone seguridad, fiesta impone bienestar_perro, fiesta impone vecinos.
+fiesta prefiere confort.
+fiesta admite mantenimiento.
+
+# En una ola de calor la salud pasa delante de todo lo demás, incluso de lo
+# que pida cada uno. El clima lo lleva la salud, no el confort.
+ola_de_calor es_un modo, ola_de_calor nombre "Ola de calor".
+ola_de_calor impone seguridad, ola_de_calor impone bienestar_perro, ola_de_calor impone vecinos, ola_de_calor impone salud.
+ola_de_calor admite ahorro, ola_de_calor admite mantenimiento.
+ola_de_calor respeta normas.
+
+# ---------- Dominios ----------
+seguridad nombre "Seguridad".
+bienestar_perro nombre "Bienestar de Thor".
+salud nombre "Salud".
+vecinos nombre "Respeto a los vecinos".
+ahorro nombre "Ahorro".
+confort nombre "Confort".
+mantenimiento nombre "Mantenimiento de la casa".
+
+# ---------- Autoridad entre roles (en zonas comunes) ----------
+progenitor por_delante_de hijo_mayor.
+progenitor por_delante_de hijo_menor.
+hijo_mayor por_delante_de hijo_menor.

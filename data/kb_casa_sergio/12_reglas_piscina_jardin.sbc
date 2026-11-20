@@ -1,0 +1,36 @@
+# Piscina y jardín.
+
+# ---------- Seguridad en la piscina ----------
+# La cámara distingue si hay un menor o el perro sin ningún adulto. La
+# cubierta se cierra (aunque se pida abrirla) y se avisa.
+D cerrar_por menor_sin_adulto <- S detecta menor_solo, S tipo camara, S esta_en E, D tipo cubierta_piscina, D esta_en E.
+P notificar_por aviso_menor_piscina <- S detecta menor_solo, S tipo camara, P rol progenitor.
+
+D cerrar_por perro_solo <- S detecta perro_solo, S tipo camara, S esta_en E, D tipo cubierta_piscina, D esta_en E.
+P notificar_por aviso_perro <- S detecta perro_solo, S tipo camara, A tipo perro, A cuidado_por P.
+
+# ---------- Depuradora y climatización ----------
+D encender_por filtrado_diario <- chalet estacion verano, chalet momento F, F hora_filtrado si, D tipo depuradora.
+
+# Norma de Luis: en invierno no se climatiza la piscina, la encienda quien
+# la encienda (salvo él mismo).
+D apagar_por norma_piscina <- chalet estacion invierno, D tipo climatizacion_piscina, D encender_por M.
+
+# ---------- Riego ----------
+D encender_por riego_programado <- chalet estacion verano, chalet momento F, F hora_riego si, D tipo riego.
+D apagar_por llueve <- S detecta lluvia, S tipo sensor_lluvia, D tipo riego.
+D apagar_por no_mojar <- A ubicacion E, A tipo habitante, D tipo riego, D esta_en E.
+
+# ---------- Cortacésped ----------
+# No funciona con nadie en el jardín, ni personas ni Thor.
+D encender_por corte_programado <- chalet dia laborable, chalet momento F, F hora_corte si, D tipo cortacesped.
+D apagar_por peligro_cuchillas <- A ubicacion E, A tipo ser_vivo, D tipo cortacesped, D esta_en E.
+
+# ---------- Luces de fuera ----------
+L encender_por oscuro_con_gente <- chalet momento F, F oscuro si, A ubicacion E, A tipo habitante, E tipo espacio_exterior, L tipo luz_exterior, L esta_en E.
+
+# ---------- Thor con calor ----------
+# En una ola de calor, en las horas de más sol, se le abre la trampilla
+# para que entre en casa y se avisa a quien lo cuida.
+D abrir_por perro_con_calor <- chalet modo ola_de_calor, chalet momento F, F calor_fuerte si, A tipo perro, A ubicacion E, E tipo espacio_exterior, D tipo puerta_perro.
+P notificar_por aviso_perro <- chalet modo ola_de_calor, chalet momento F, F calor_fuerte si, A tipo perro, A ubicacion E, E tipo espacio_exterior, A cuidado_por P.

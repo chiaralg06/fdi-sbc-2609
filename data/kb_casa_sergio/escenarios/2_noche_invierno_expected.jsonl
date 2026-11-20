@@ -1,0 +1,21 @@
+{"consulta": "tele_sergio disputa M", "soluciones": [{"M": "norma_pantallas"}, {"M": "sergio"}]}
+{"consulta": "tele_sergio manda P", "soluciones": [{"P": "sergio"}]}
+{"consulta": "tele_sergio hace A", "soluciones": [{"A": "encender"}]}
+{"consulta": "tele_sergio encender_por M", "soluciones": [{"M": "sergio"}]}
+{"consulta": "tele_salon disputa M", "soluciones": []}
+{"consulta": "tele_salon accion A", "soluciones": [{"A": "encender"}]}
+{"consulta": "puerta_principal disputa M", "soluciones": [{"M": "norma_salidas"}, {"M": "pablo"}]}
+{"consulta": "puerta_principal manda P", "soluciones": [{"P": "luis"}]}
+{"consulta": "puerta_principal hace A", "soluciones": [{"A": "cerrar"}]}
+{"consulta": "P notificar_por intento_salida, P nombre N", "soluciones": [{"P": "elena", "N": "\"Elena\""}, {"P": "luis", "N": "\"Luis\""}]}
+{"consulta": "bomba_piscina manda P", "soluciones": [{"P": "luis"}]}
+{"consulta": "bomba_piscina hace A", "soluciones": [{"A": "apagar"}]}
+{"consulta": "bomba_piscina desacuerdo si", "soluciones": [{}]}
+{"consulta": "P notificar_por desacuerdo_padres, P nombre N", "soluciones": [{"P": "elena", "N": "\"Elena\""}, {"P": "luis", "N": "\"Luis\""}]}
+{"consulta": "bomba_piscina hace A", "soluciones": [{"A": "apagar"}]}
+{"consulta": "suelo_radiante_pb encender_por M", "soluciones": [{"M": "frio"}]}
+{"consulta": "aire_sergio accion A", "soluciones": [{"A": "encender"}]}
+{"consulta": "aire_pablo accion A", "soluciones": []}
+{"consulta": "aire_padres accion A", "soluciones": []}
+{"consulta": "porton_garaje cerrar_por M, M nombre N", "soluciones": [{"M": "cierre_nocturno", "N": "\"De noche la casa se cierra\""}]}
+{"consulta": "D contradiccion si", "soluciones": []}

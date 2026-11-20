@@ -1,0 +1,15 @@
+chalet modo M, M nombre N? -> SI
+D apagar_por casa_vacia? -> SI
+aire_pablo disputa M? -> SI
+aire_pablo se_queda_con M, M nivel N? -> SI
+aire_pablo hace A? -> SI
+depuradora_piscina encender_por M, M nivel N? -> SI
+riego_jardin accion A? -> SI
+riego_jardin disputa M? -> SI
+riego_jardin hace A? -> SI
+cubierta accion A? -> SI
+sergio notificar_por M, M nombre N? -> SI
+norma_salidas nivel N? -> NO
+chalet modo M? -> SI
+P notificar_por peticion_modo, P nombre N? -> SI
+D contradiccion si? -> NO

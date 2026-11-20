@@ -1,0 +1,59 @@
+# Escenario 2: noche de invierno, día de diario. Luis y Elena en el salón;
+# Pablo se ha ido al cuarto de Sergio a ver la tele con él.
+# uv run -m sbc data/kb_casa_sergio data/kb_casa_sergio/escenarios/2_noche_invierno.sbq
+
+razona si!
+
+chalet modo normal, chalet momento noche, chalet dia laborable, chalet estacion invierno.
+luis ubicacion salon, elena ubicacion salon.
+sergio ubicacion dormitorio_sergio, pablo ubicacion dormitorio_sergio.
+thor ubicacion jardin.
+
+# La norma de Elena apaga las pantallas donde esté Pablo... pero es el
+# cuarto de Sergio, y ahí manda él, también frente a las normas de sus padres
+sergio pide_encender tele_sergio.
+tele_sergio disputa M?
+tele_sergio manda P?
+tele_sergio hace A?
+
+# Pablo no puede encender nada en el cuarto de su hermano
+pablo pide_encender tele_sergio.
+tele_sergio encender_por M?
+
+# La tele del salón: Pablo no está, no hay norma que aplicar
+luis pide_encender tele_salon.
+tele_salon disputa M?
+tele_salon accion A?
+
+# Pablo quiere salir a la calle: norma de Luis. En el recibidor (zona común)
+# mandan los padres
+pablo pide_abrir puerta_principal.
+puerta_principal disputa M?
+puerta_principal manda P?
+puerta_principal hace A?
+P notificar_por intento_salida, P nombre N?
+
+# La piscina: Pablo quiere climatizarla en invierno y la norma de Luis gana.
+# Elena se pone de parte de Pablo: los padres no están de acuerdo, se les
+# avisa a los dos, y mientras tanto sigue apagada
+pablo pide_encender bomba_piscina.
+bomba_piscina manda P?
+bomba_piscina hace A?
+elena pide_encender bomba_piscina.
+bomba_piscina desacuerdo si?
+P notificar_por desacuerdo_padres, P nombre N?
+bomba_piscina hace A?
+
+# Frío: calefacción solo donde hay alguien
+termostato_pb detecta frio, termostato_p1 detecta frio.
+suelo_radiante_pb encender_por M?
+aire_sergio accion A?
+aire_pablo accion A?
+aire_padres accion A?
+
+# El portón del garaje se ha quedado abierto: de noche se cierra
+porton_garaje estado abierta.
+porton_garaje cerrar_por M, M nombre N?
+
+# Ningún resultado contradictorio
+D contradiccion si?

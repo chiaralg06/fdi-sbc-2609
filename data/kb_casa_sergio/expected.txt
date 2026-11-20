@@ -1,0 +1,32 @@
+E en_planta sotano, E nombre N? -> SI
+P rol progenitor, P nombre N? -> SI
+sergio R X? -> SI
+pablo tipo habitante? -> NO
+pablo tipo C? -> SI
+thor tipo C? -> SI
+X tipo habitante, X nombre N? -> SI
+D tipo acceso_calle? -> SI
+D tipo clima, D da calor? -> SI
+D climatiza despacho? -> SI
+termostato_p1 en_planta P? -> SI
+D tipo pantalla, D en_planta planta_1? -> SI
+X hijo_de luis? -> SI
+thor cuidado_por P? -> SI
+E regimen privado, E dormitorio_de P? -> SI
+E regimen tutela, E dormitorio_de P? -> SI
+R1 por_delante_de R2? -> SI
+pablo puede_usar tele_sergio? -> NO
+pablo puede_usar tele_pablo? -> SI
+sergio puede_usar tele_pablo? -> NO
+elena puede_usar tele_pablo? -> SI
+elena puede_usar tele_sergio? -> NO
+D tipo pantalla, sergio puede_usar D? -> SI
+M impone ahorro? -> SI
+M respeta normas? -> SI
+M prefiere confort? -> SI
+chalet modo M? -> NO
+pablo nivel N? -> SI
+menor_sin_adulto nivel N? -> NO
+norma_pantallas nivel N? -> NO
+N autor luis, N nombre T? -> SI
+D accion A? -> NO

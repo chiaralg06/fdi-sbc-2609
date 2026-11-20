@@ -1,0 +1,49 @@
+# Escenario 5: sábado de verano de madrugada. Sergio tiene amigos en el
+# jardín y Pablo juega a la consola en el sótano.
+# uv run -m sbc data/kb_casa_sergio data/kb_casa_sergio/escenarios/5_fiesta.sbq
+
+razona si!
+
+chalet momento madrugada, chalet dia festivo, chalet estacion verano.
+sergio ubicacion jardin, pablo ubicacion sala_cine, thor ubicacion jardin.
+
+# Sergio pide el modo fiesta, pero solo sus padres pueden activarlo
+sergio activa_modo fiesta.
+chalet modo M?
+P notificar_por peticion_modo, P nombre N?
+
+# Elena lo acepta y lo activa ella
+elena activa_modo fiesta.
+chalet modo M, M nombre N?
+
+# Es de noche y hay gente en el jardín: luces encendidas. En la piscina no
+# hay nadie
+luces_jardin accion A?
+luces_piscina accion A?
+
+# El riego programado no moja a la gente
+riego_jardin disputa M?
+riego_jardin se_queda_con M, M nivel N?
+riego_jardin hace A?
+
+# Música fuera: de madrugada no, ni en una fiesta
+sergio pide_encender altavoces_porche.
+altavoces_porche disputa M?
+altavoces_porche se_queda_con M, M nombre N?
+altavoces_porche hace A?
+
+# Pablo juega a la consola: en una fiesta no rigen las normas del día a día
+pablo pide_encender consola_cine.
+consola_cine accion A?
+norma_pantallas nivel N?
+
+# El cortacésped no funciona de madrugada, y si alguien lo enciende, no
+# arranca con gente en el jardín
+pablo pide_encender robot_cesped.
+robot_cesped hace A?
+
+# La depuradora sigue con su filtrado de madrugada
+depuradora_piscina accion A?
+
+# Ningún resultado contradictorio
+D contradiccion si?

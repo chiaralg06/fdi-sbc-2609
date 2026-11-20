@@ -1,0 +1,48 @@
+# Momentos del día.
+#
+# El escenario dice en qué momento estamos ("chalet momento noche"), si es
+# día laborable o festivo y la estación. Cada momento dice explícitamente
+# "si" o "no" para cada cosa: el motor no sabe deducir "no" de que algo no
+# esté escrito.
+
+madrugada es_un momento, madrugada nombre "Madrugada, de 00:00 a 07:00".
+mañana es_un momento, mañana nombre "Mañana, de 07:00 a 13:00".
+mediodia es_un momento, mediodia nombre "Mediodía, de 13:00 a 16:00".
+tarde es_un momento, tarde nombre "Tarde, de 16:00 a 19:00".
+anochecer es_un momento, anochecer nombre "Anochecer, de 19:00 a 22:00".
+noche es_un momento, noche nombre "Noche, de 22:00 a 00:00".
+
+# ---------- Luz natural ----------
+madrugada oscuro si, mañana oscuro no, mediodia oscuro no.
+tarde oscuro no, anochecer oscuro si, noche oscuro si.
+
+# ---------- Tarifa de la luz ----------
+valle nombre "Tarifa valle (la más barata)".
+llana nombre "Tarifa llana".
+punta nombre "Tarifa punta (la más cara)".
+madrugada tarifa valle, mañana tarifa punta, mediodia tarifa llana.
+tarde tarifa llana, anochecer tarifa punta, noche tarifa llana.
+
+# ---------- Cierre de la casa por la noche ----------
+madrugada cierre_accesos si, noche cierre_accesos si.
+mañana cierre_accesos no, mediodia cierre_accesos no, tarde cierre_accesos no, anochecer cierre_accesos no.
+
+# ---------- Pantallas (norma de Elena para Pablo los días de diario) ----------
+madrugada horario_pantallas no, noche horario_pantallas no.
+mañana horario_pantallas si, mediodia horario_pantallas si, tarde horario_pantallas si, anochecer horario_pantallas si.
+
+# ---------- Silencio por los vecinos ----------
+madrugada horario_silencio si.
+mañana horario_silencio no, mediodia horario_silencio no, tarde horario_silencio no.
+anochecer horario_silencio no, noche horario_silencio no.
+
+# ---------- Horas fuertes de sol (en una ola de calor) ----------
+mediodia calor_fuerte si, tarde calor_fuerte si.
+madrugada calor_fuerte no, mañana calor_fuerte no, anochecer calor_fuerte no, noche calor_fuerte no.
+
+# ---------- Mantenimiento programado ----------
+# Riego al anochecer y de madrugada (sin sol); cortacésped por la mañana;
+# depuradora de madrugada (luz barata) y al mediodía (más sol, más algas).
+madrugada hora_riego si, anochecer hora_riego si.
+mañana hora_corte si.
+madrugada hora_filtrado si, mediodia hora_filtrado si.

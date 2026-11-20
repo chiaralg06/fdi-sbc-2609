@@ -1,0 +1,17 @@
+cubierta disputa M? -> SI
+cubierta se_queda_con M, M nivel N? -> SI
+cubierta hace A? -> SI
+P notificar_por aviso_menor_piscina, P nombre N? -> SI
+robot_cesped se_queda_con M, M nombre N? -> SI
+robot_cesped hace A? -> SI
+bomba_piscina disputa M? -> NO
+bomba_piscina accion A? -> SI
+aire_despacho encender_por M, M nombre N? -> SI
+aire_salon accion A? -> NO
+aire_sergio accion A? -> SI
+aire_pablo accion A? -> NO
+sergio notificar_por M, M nombre N? -> SI
+pablo puede_usar aire_sergio? -> NO
+aire_sergio disputa M? -> NO
+aire_sergio accion A? -> SI
+D contradiccion si? -> NO

@@ -1,0 +1,43 @@
+# Escenario 6: tarde de ola de calor, día de diario. Elena teletrabaja, los
+# chicos están en sus cuartos y Thor en el jardín.
+# uv run -m sbc data/kb_casa_sergio data/kb_casa_sergio/escenarios/6_ola_de_calor.sbq
+
+razona si!
+
+chalet modo ola_de_calor, chalet momento tarde, chalet dia laborable, chalet estacion verano.
+elena ubicacion despacho, pablo ubicacion dormitorio_pablo.
+sergio ubicacion dormitorio_sergio, thor ubicacion jardin.
+termostato_pb detecta calor, termostato_p1 detecta calor.
+
+# El aire se enciende por salud donde hay alguien; el confort no cuenta
+aire_pablo encender_por M?
+calor nivel N?
+calor_extremo nivel N?
+aire_pablo accion A?
+aire_salon accion A?
+
+# Pablo quiere apagarlo: la salud es innegociable en una ola de calor
+pablo pide_apagar aire_pablo.
+aire_pablo disputa M?
+aire_pablo se_queda_con M, M nombre N?
+aire_pablo hace A?
+
+# Tiene la ventana abierta: se le avisa. Y se les propone bajar al sótano
+ventana_pablo estado abierta.
+pablo notificar_por M?
+pablo sugerencia E, E nombre N?
+elena sugerencia E?
+
+# Thor tiene calor: se abre su trampilla para que entre y se avisa a Sergio
+trampilla_thor abrir_por M, M nombre N?
+sergio notificar_por M?
+
+# Pablo quiere ver la tele; Elena le dice que no (está en su cuarto: mandan
+# los padres)
+pablo pide_encender tele_pablo, elena pide_apagar tele_pablo.
+tele_pablo disputa M?
+tele_pablo manda P?
+tele_pablo hace A?
+
+# Ningún resultado contradictorio
+D contradiccion si?

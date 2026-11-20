@@ -1,0 +1,25 @@
+# Clima por plantas y ahorro.
+#
+# Cada planta tiene su termostato. Se climatiza solo la estancia donde hay
+# alguien, con el aparato que llega a ella y sabe hacerlo: abajo el suelo
+# radiante calienta y los aires enfrían; arriba la bomba de calor de cada
+# cuarto hace las dos cosas. El sótano no tiene clima: es fresco, pero
+# coge humedad.
+
+# ---------- Confort ----------
+D encender_por frio <- S detecta frio, S tipo termostato, S en_planta Pl, A ubicacion H, A tipo habitante, H en_planta Pl, D climatiza H, D da calor.
+D encender_por calor <- S detecta calor, S tipo termostato, S en_planta Pl, A ubicacion H, A tipo habitante, H en_planta Pl, D climatiza H, D da frio.
+D encender_por humedad <- S detecta humedad, S tipo sensor_humedad, S en_planta Pl, D tipo deshumidificador, D en_planta Pl.
+
+# Ventana abierta con el clima encendido: no se apaga, se avisa a quien está.
+P notificar_por ventana_abierta <- V estado abierta, V tipo ventana, V esta_en H, D climatiza H, D accion encender, P ubicacion H, P tipo habitante.
+
+# ---------- Ola de calor ----------
+# El aire se enciende donde haya alguien, lo pida o no; y a quien está en
+# un dormitorio se le propone bajar al sótano, que está fresco.
+D encender_por calor_extremo <- chalet modo ola_de_calor, A ubicacion H, A tipo habitante, D climatiza H, D da frio.
+P sugerencia E <- chalet modo ola_de_calor, P ubicacion H, H tipo dormitorio, P tipo habitante, E fresco si.
+
+# ---------- Vacaciones ----------
+# Con la casa vacía, todo lo que gasta mucho se apaga.
+D apagar_por casa_vacia <- chalet modo vacaciones, D gasto alto.

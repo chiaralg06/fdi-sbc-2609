@@ -1,0 +1,17 @@
+{"consulta": "aire_pablo encender_por M", "soluciones": [{"M": "calor"}, {"M": "calor_extremo"}]}
+{"consulta": "calor nivel N", "soluciones": []}
+{"consulta": "calor_extremo nivel N", "soluciones": [{"N": "innegociable"}]}
+{"consulta": "aire_pablo accion A", "soluciones": [{"A": "encender"}]}
+{"consulta": "aire_salon accion A", "soluciones": []}
+{"consulta": "aire_pablo disputa M", "soluciones": [{"M": "calor_extremo"}, {"M": "pablo"}]}
+{"consulta": "aire_pablo se_queda_con M, M nombre N", "soluciones": [{"M": "calor_extremo", "N": "\"Ola de calor: hay que refrescar donde haya gente\""}]}
+{"consulta": "aire_pablo hace A", "soluciones": [{"A": "encender"}]}
+{"consulta": "pablo notificar_por M", "soluciones": [{"M": "ventana_abierta"}]}
+{"consulta": "pablo sugerencia E, E nombre N", "soluciones": [{"E": "gimnasio", "N": "\"Gimnasio\""}, {"E": "sala_cine", "N": "\"Sala de cine y juegos\""}]}
+{"consulta": "elena sugerencia E", "soluciones": []}
+{"consulta": "trampilla_thor abrir_por M, M nombre N", "soluciones": [{"M": "perro_con_calor", "N": "\"Thor está fuera con mucho calor\""}]}
+{"consulta": "sergio notificar_por M", "soluciones": [{"M": "aviso_perro"}]}
+{"consulta": "tele_pablo disputa M", "soluciones": [{"M": "elena"}, {"M": "pablo"}]}
+{"consulta": "tele_pablo manda P", "soluciones": [{"P": "elena"}]}
+{"consulta": "tele_pablo hace A", "soluciones": [{"A": "apagar"}]}
+{"consulta": "D contradiccion si", "soluciones": []}

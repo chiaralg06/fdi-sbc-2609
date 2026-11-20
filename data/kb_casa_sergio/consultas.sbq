@@ -1,0 +1,54 @@
+# Consultas sin escenario: estructura, clases, familia, autoridad y modos.
+# uv run -m sbc data/kb_casa_sergio data/kb_casa_sergio/consultas.sbq
+
+# Sin razonar: solo lo que está escrito
+E en_planta sotano, E nombre N?
+P rol progenitor, P nombre N?
+sergio R X?
+pablo tipo habitante?
+
+razona si!
+
+# Clases
+pablo tipo C?
+thor tipo C?
+X tipo habitante, X nombre N?
+D tipo acceso_calle?
+D tipo clima, D da calor?
+D climatiza despacho?
+
+# Ubicación
+termostato_p1 en_planta P?
+D tipo pantalla, D en_planta planta_1?
+
+# Familia
+X hijo_de luis?
+thor cuidado_por P?
+
+# Quién manda dónde
+E regimen privado, E dormitorio_de P?
+E regimen tutela, E dormitorio_de P?
+R1 por_delante_de R2?
+
+# Quién puede usar qué
+pablo puede_usar tele_sergio?
+pablo puede_usar tele_pablo?
+sergio puede_usar tele_pablo?
+elena puede_usar tele_pablo?
+elena puede_usar tele_sergio?
+D tipo pantalla, sergio puede_usar D?
+
+# Modos: qué impone cada uno y dónde rigen las normas
+M impone ahorro?
+M respeta normas?
+M prefiere confort?
+
+# Sin modo, ningún objetivo ni norma tiene nivel: solo las personas
+chalet modo M?
+pablo nivel N?
+menor_sin_adulto nivel N?
+norma_pantallas nivel N?
+N autor luis, N nombre T?
+
+# Sin ninguna situación, la casa no hace nada
+D accion A?

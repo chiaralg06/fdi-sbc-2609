@@ -1,0 +1,49 @@
+# Escenario 1: tarde de verano, día de diario. Elena teletrabaja en el
+# despacho, Pablo está en la piscina, Thor en el jardín y Sergio en su cuarto.
+# uv run -m sbc data/kb_casa_sergio data/kb_casa_sergio/escenarios/1_tarde_verano.sbq
+
+razona si!
+
+chalet modo normal, chalet momento tarde, chalet dia laborable, chalet estacion verano.
+elena ubicacion despacho, pablo ubicacion piscina.
+thor ubicacion jardin, sergio ubicacion dormitorio_sergio.
+
+# Pablo está solo en la piscina y quiere abrir la cubierta: la seguridad es
+# innegociable, y se avisa a sus padres
+camara_piscina detecta menor_solo.
+pablo pide_abrir cubierta.
+cubierta disputa M?
+cubierta se_queda_con M, M nivel N?
+cubierta hace A?
+P notificar_por aviso_menor_piscina, P nombre N?
+
+# Pablo pone el cortacésped, pero Thor está en el jardín
+pablo pide_encender robot_cesped.
+robot_cesped se_queda_con M, M nombre N?
+robot_cesped hace A?
+
+# En verano la piscina se puede climatizar: la norma de Luis es solo para
+# el invierno
+pablo pide_encender bomba_piscina.
+bomba_piscina disputa M?
+bomba_piscina accion A?
+
+# Calor en las dos plantas: el aire se enciende solo donde hay alguien
+termostato_pb detecta calor, termostato_p1 detecta calor.
+aire_despacho encender_por M, M nombre N?
+aire_salon accion A?
+aire_sergio accion A?
+aire_pablo accion A?
+
+# Sergio tiene la ventana abierta: no se le apaga el aire, se le avisa
+ventana_sergio estado abierta.
+sergio notificar_por M, M nombre N?
+
+# Pablo intenta apagarle el aire a su hermano: en ese cuarto solo manda Sergio
+pablo pide_apagar aire_sergio.
+pablo puede_usar aire_sergio?
+aire_sergio disputa M?
+aire_sergio accion A?
+
+# Ningún resultado contradictorio
+D contradiccion si?

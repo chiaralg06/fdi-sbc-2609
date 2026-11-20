@@ -1,0 +1,84 @@
+# Taxonomía: espacios, seres vivos, vehículos y dispositivos.
+# Las reglas trabajan con estas clases, nunca con aparatos concretos.
+
+# ---------- Espacios ----------
+espacio_interior subclase_de espacio.
+espacio_exterior subclase_de espacio.
+
+dormitorio subclase_de espacio_interior.
+baño subclase_de espacio_interior.
+sala_estar subclase_de espacio_interior.
+zona_cocina subclase_de espacio_interior.
+zona_trabajo subclase_de espacio_interior.
+zona_paso subclase_de espacio_interior.
+zona_garaje subclase_de espacio_interior.
+sala_ocio subclase_de espacio_interior.
+sala_deporte subclase_de espacio_interior.
+cuarto_tecnico subclase_de espacio_interior.
+
+zona_verde subclase_de espacio_exterior.
+zona_piscina subclase_de espacio_exterior.
+zona_porche subclase_de espacio_exterior.
+
+# ---------- Seres vivos ----------
+persona subclase_de ser_vivo.
+habitante subclase_de persona.
+adulto subclase_de habitante.
+menor subclase_de habitante.
+animal subclase_de ser_vivo.
+perro subclase_de animal.
+
+# Papel de cada uno en la familia (decide quién manda)
+rol_hijo subclase_de rol.
+
+# ---------- Vehículos ----------
+coche_electrico subclase_de vehiculo.
+coche_gasolina subclase_de vehiculo.
+
+# ---------- Objetos ----------
+ventana subclase_de objeto.
+dispositivo subclase_de objeto.
+
+# Sensores: solo informan
+sensor subclase_de dispositivo.
+termostato subclase_de sensor.
+sensor_humedad subclase_de sensor.
+sensor_lluvia subclase_de sensor.
+camara subclase_de sensor.
+
+# Controlables: la casa puede actuar sobre ellos
+controlable subclase_de dispositivo.
+
+luz subclase_de controlable.
+luz_interior subclase_de luz.
+luz_exterior subclase_de luz.
+
+clima subclase_de controlable.
+suelo_radiante subclase_de clima.
+aire_acondicionado subclase_de clima.
+deshumidificador subclase_de clima.
+
+equipo_piscina subclase_de controlable.
+depuradora subclase_de equipo_piscina.
+climatizacion_piscina subclase_de equipo_piscina.
+cubierta_piscina subclase_de equipo_piscina.
+
+equipo_jardin subclase_de controlable.
+riego subclase_de equipo_jardin.
+cortacesped subclase_de equipo_jardin.
+
+# Accesos: los que dan a la calle y la trampilla del perro (del jardín a
+# la casa)
+acceso subclase_de controlable.
+acceso_calle subclase_de acceso.
+puerta_garaje subclase_de acceso_calle.
+puerta_entrada subclase_de acceso_calle.
+puerta_perro subclase_de acceso.
+
+cargador_coche subclase_de controlable.
+
+pantalla subclase_de controlable.
+television subclase_de pantalla.
+consola subclase_de pantalla.
+proyector subclase_de pantalla.
+altavoz subclase_de controlable.

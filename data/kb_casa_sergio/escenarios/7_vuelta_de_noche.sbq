@@ -1,0 +1,43 @@
+# Escenario 7: madrugada de un sábado de invierno. Los padres y Pablo
+# duermen; Sergio vuelve de fiesta a las tres.
+# uv run -m sbc data/kb_casa_sergio data/kb_casa_sergio/escenarios/7_vuelta_de_noche.sbq
+
+razona si!
+
+chalet modo normal, chalet momento madrugada, chalet dia festivo, chalet estacion invierno.
+luis ubicacion dormitorio_padres, elena ubicacion dormitorio_padres.
+pablo ubicacion dormitorio_pablo, thor ubicacion jardin.
+
+# Sergio abre con el móvil: puede, pero sus padres se enteran
+sergio pide_abrir puerta_principal.
+puerta_principal disputa M?
+puerta_principal accion A?
+P notificar_por llegada_tarde, P nombre N?
+
+# Pablo lo oye y quiere salir por el garaje, que además se quedó abierto
+porton_garaje estado abierta.
+pablo pide_abrir porton_garaje.
+porton_garaje disputa M?
+porton_garaje hace A?
+P notificar_por intento_salida?
+
+# El coche de Luis se carga con la tarifa valle
+coche_luis enchufado_a cargador, coche_luis bateria baja.
+cargador encender_por M, M nombre N?
+cargador accion A?
+
+# Frío arriba: calefacción en los cuartos donde hay alguien
+termostato_p1 detecta frio.
+aire_padres accion A?
+aire_pablo accion A?
+aire_sergio accion A?
+
+# Sergio sale al jardín a saludar a Thor y pone música
+sergio ubicacion jardin.
+luces_jardin encender_por M, M nombre N?
+sergio pide_encender altavoces_porche.
+altavoces_porche se_queda_con M, M nivel N?
+altavoces_porche hace A?
+
+# Ningún resultado contradictorio
+D contradiccion si?

@@ -1,0 +1,47 @@
+# Motivos: objetivos automáticos, normas de los padres y avisos.
+# Cada uno con su nombre en castellano para explicar las decisiones.
+
+# ---------- Objetivos automáticos (cada uno de un dominio) ----------
+menor_sin_adulto dominio seguridad, menor_sin_adulto nombre "Un menor está en la piscina sin un adulto".
+peligro_cuchillas dominio seguridad, peligro_cuchillas nombre "Hay alguien en el jardín y el cortacésped es peligroso".
+cierre_nocturno dominio seguridad, cierre_nocturno nombre "De noche la casa se cierra".
+
+perro_solo dominio bienestar_perro, perro_solo nombre "Thor está solo junto a la piscina".
+perro_puede_escaparse dominio bienestar_perro, perro_puede_escaparse nombre "Thor está junto a una puerta de la calle".
+perro_con_calor dominio bienestar_perro, perro_con_calor nombre "Thor está fuera con mucho calor".
+
+calor_extremo dominio salud, calor_extremo nombre "Ola de calor: hay que refrescar donde haya gente".
+
+descanso_vecinos dominio vecinos, descanso_vecinos nombre "Es de madrugada: no se pone música fuera".
+
+casa_vacia dominio ahorro, casa_vacia nombre "La casa está vacía por vacaciones".
+tarifa_punta dominio ahorro, tarifa_punta nombre "La luz está en tarifa punta".
+carga_valle dominio ahorro, carga_valle nombre "Se carga el coche con la luz más barata".
+llueve dominio ahorro, llueve nombre "Está lloviendo: no hace falta regar".
+
+frio dominio confort, frio nombre "Hace frío donde hay alguien".
+calor dominio confort, calor nombre "Hace calor donde hay alguien".
+humedad dominio confort, humedad nombre "Hay humedad en el sótano".
+oscuro_con_gente dominio confort, oscuro_con_gente nombre "Es de noche y hay gente fuera".
+llegada_coche dominio confort, llegada_coche nombre "Llega un coche de la familia".
+no_mojar dominio confort, no_mojar nombre "Hay gente en el jardín: no se riega".
+
+riego_programado dominio mantenimiento, riego_programado nombre "Riego programado".
+corte_programado dominio mantenimiento, corte_programado nombre "Corte del césped programado".
+filtrado_diario dominio mantenimiento, filtrado_diario nombre "Filtrado diario de la piscina".
+
+# ---------- Normas de los padres ----------
+# No tienen dominio: valen lo que vale su autor (11_reglas_decision.sbc).
+# Quien pone una norma puede saltársela.
+norma_pantallas autor elena, norma_pantallas nombre "Entre semana, Pablo no usa pantallas por la noche".
+norma_piscina autor luis, norma_piscina nombre "En invierno la piscina no se climatiza".
+norma_salidas autor luis, norma_salidas nombre "Pablo no sale de casa de noche".
+
+# ---------- Avisos ----------
+aviso_menor_piscina es_un aviso, aviso_menor_piscina nombre "Pablo está solo en la piscina".
+aviso_perro es_un aviso, aviso_perro nombre "Thor necesita que alguien vaya".
+llegada_tarde es_un aviso, llegada_tarde nombre "Un hijo llega de noche a casa".
+intento_salida es_un aviso, intento_salida nombre "Pablo ha intentado salir de noche".
+peticion_modo es_un aviso, peticion_modo nombre "Un hijo pide cambiar el modo de la casa".
+desacuerdo_padres es_un aviso, desacuerdo_padres nombre "Luis y Elena piden cosas contrarias".
+ventana_abierta es_un aviso, ventana_abierta nombre "Hay una ventana abierta con el clima encendido".

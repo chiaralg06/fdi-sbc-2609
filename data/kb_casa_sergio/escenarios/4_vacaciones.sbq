@@ -1,0 +1,47 @@
+# Escenario 4: madrugada de verano, la familia está de vacaciones. Solo
+# queda Thor en el jardín (un vecino viene a darle de comer).
+# uv run -m sbc data/kb_casa_sergio data/kb_casa_sergio/escenarios/4_vacaciones.sbq
+
+razona si!
+
+chalet momento madrugada, chalet dia festivo, chalet estacion verano.
+
+# Luis activa el modo vacaciones desde el móvil
+luis activa_modo vacaciones.
+chalet modo M, M nombre N?
+thor ubicacion jardin.
+
+# Todo lo que gasta mucho se apaga
+D apagar_por casa_vacia?
+
+# Pablo, desde la playa, enciende el aire de su cuarto para encontrarlo
+# fresco al volver: de vacaciones el ahorro es innegociable
+pablo pide_encender aire_pablo.
+aire_pablo disputa M?
+aire_pablo se_queda_con M, M nivel N?
+aire_pablo hace A?
+
+# La piscina se sigue depurando (es de madrugada, luz barata)
+depuradora_piscina encender_por M, M nivel N?
+
+# El riego programado empieza, pero se pone a llover
+riego_jardin accion A?
+sensor_lluvia_jardin detecta lluvia.
+riego_jardin disputa M?
+riego_jardin hace A?
+
+# Thor se acerca solo a la piscina: se cierra la cubierta y se avisa a Sergio
+camara_piscina detecta perro_solo.
+cubierta accion A?
+sergio notificar_por M, M nombre N?
+
+# Las normas del día a día no rigen de vacaciones
+norma_salidas nivel N?
+
+# Sergio pide el modo fiesta: no puede cambiarlo, se avisa a sus padres
+sergio activa_modo fiesta.
+chalet modo M?
+P notificar_por peticion_modo, P nombre N?
+
+# Ningún resultado contradictorio
+D contradiccion si?

@@ -1,0 +1,64 @@
+# Dispositivos: qué son y dónde están.
+#
+# "D climatiza H" dice a qué estancias llega cada aparato de clima, y
+# "D da calor" / "D da frio" qué sabe hacer: el suelo radiante solo
+# calienta, los aires de abajo solo enfrían y los de arriba (bomba de calor)
+# hacen las dos cosas. "D gasto alto" marca lo que más consume.
+
+# ---------- Clima de la planta baja ----------
+suelo_radiante_pb es_un suelo_radiante, suelo_radiante_pb esta_en cuarto_maquinas, suelo_radiante_pb nombre "Suelo radiante de la planta baja".
+suelo_radiante_pb climatiza salon, suelo_radiante_pb climatiza cocina, suelo_radiante_pb climatiza despacho, suelo_radiante_pb climatiza recibidor.
+suelo_radiante_pb da calor, suelo_radiante_pb gasto alto.
+
+aire_salon es_un aire_acondicionado, aire_salon esta_en salon, aire_salon climatiza salon, aire_salon da frio, aire_salon gasto alto, aire_salon nombre "Aire del salón".
+aire_despacho es_un aire_acondicionado, aire_despacho esta_en despacho, aire_despacho climatiza despacho, aire_despacho da frio, aire_despacho gasto alto, aire_despacho nombre "Aire del despacho".
+termostato_pb es_un termostato, termostato_pb esta_en salon, termostato_pb nombre "Termostato de la planta baja".
+
+# ---------- Clima de la primera planta: bomba de calor en cada cuarto ----------
+aire_padres es_un aire_acondicionado, aire_padres esta_en dormitorio_padres, aire_padres climatiza dormitorio_padres, aire_padres nombre "Aire del dormitorio de los padres".
+aire_sergio es_un aire_acondicionado, aire_sergio esta_en dormitorio_sergio, aire_sergio climatiza dormitorio_sergio, aire_sergio nombre "Aire del cuarto de Sergio".
+aire_pablo es_un aire_acondicionado, aire_pablo esta_en dormitorio_pablo, aire_pablo climatiza dormitorio_pablo, aire_pablo nombre "Aire del cuarto de Pablo".
+aire_padres da calor, aire_padres da frio, aire_padres gasto alto.
+aire_sergio da calor, aire_sergio da frio, aire_sergio gasto alto.
+aire_pablo da calor, aire_pablo da frio, aire_pablo gasto alto.
+termostato_p1 es_un termostato, termostato_p1 esta_en pasillo_1, termostato_p1 nombre "Termostato de la primera planta".
+
+# ---------- Sótano ----------
+# Sin aire: es fresco por sí mismo. Pero cogería humedad.
+deshumidificador_sotano es_un deshumidificador, deshumidificador_sotano esta_en gimnasio, deshumidificador_sotano nombre "Deshumidificador del sótano".
+sensor_humedad_sotano es_un sensor_humedad, sensor_humedad_sotano esta_en gimnasio.
+proyector_cine es_un proyector, proyector_cine esta_en sala_cine, proyector_cine nombre "Proyector".
+consola_cine es_un consola, consola_cine esta_en sala_cine, consola_cine nombre "Consola".
+
+# ---------- Pantallas de la casa ----------
+tele_salon es_un television, tele_salon esta_en salon, tele_salon nombre "Tele del salón".
+tele_sergio es_un television, tele_sergio esta_en dormitorio_sergio, tele_sergio nombre "Tele de Sergio".
+tele_pablo es_un television, tele_pablo esta_en dormitorio_pablo, tele_pablo nombre "Tele de Pablo".
+
+# ---------- Ventanas con sensor ----------
+ventana_despacho es_un ventana, ventana_despacho esta_en despacho.
+ventana_sergio es_un ventana, ventana_sergio esta_en dormitorio_sergio.
+ventana_pablo es_un ventana, ventana_pablo esta_en dormitorio_pablo.
+
+# ---------- Piscina ----------
+depuradora_piscina es_un depuradora, depuradora_piscina esta_en piscina, depuradora_piscina nombre "Depuradora".
+bomba_piscina es_un climatizacion_piscina, bomba_piscina esta_en piscina, bomba_piscina gasto alto, bomba_piscina nombre "Bomba de calor de la piscina".
+cubierta es_un cubierta_piscina, cubierta esta_en piscina, cubierta nombre "Cubierta de la piscina".
+luces_piscina es_un luz_exterior, luces_piscina esta_en piscina, luces_piscina nombre "Luces de la piscina".
+# La cámara reconoce si en la piscina hay un menor o el perro sin ningún
+# adulto ("detecta menor_solo", "detecta perro_solo").
+camara_piscina es_un camara, camara_piscina esta_en piscina, camara_piscina nombre "Cámara de la piscina".
+
+# ---------- Jardín y porche ----------
+riego_jardin es_un riego, riego_jardin esta_en jardin, riego_jardin nombre "Riego del jardín".
+robot_cesped es_un cortacesped, robot_cesped esta_en jardin, robot_cesped nombre "Robot cortacésped".
+luces_jardin es_un luz_exterior, luces_jardin esta_en jardin, luces_jardin nombre "Luces del jardín".
+sensor_lluvia_jardin es_un sensor_lluvia, sensor_lluvia_jardin esta_en jardin.
+trampilla_thor es_un puerta_perro, trampilla_thor esta_en jardin, trampilla_thor nombre "Trampilla de Thor".
+altavoces_porche es_un altavoz, altavoces_porche esta_en porche, altavoces_porche nombre "Altavoces del porche".
+
+# ---------- Garaje y entrada ----------
+porton_garaje es_un puerta_garaje, porton_garaje esta_en garaje, porton_garaje nombre "Portón del garaje".
+luz_garaje es_un luz_interior, luz_garaje esta_en garaje, luz_garaje nombre "Luz del garaje".
+cargador es_un cargador_coche, cargador esta_en garaje, cargador gasto alto, cargador nombre "Cargador del coche".
+puerta_principal es_un puerta_entrada, puerta_principal esta_en recibidor, puerta_principal nombre "Puerta principal".

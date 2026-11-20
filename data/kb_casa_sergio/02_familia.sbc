@@ -1,0 +1,44 @@
+# La familia, el perro y los coches.
+#
+# Cada persona es adulto o menor (importa, por ejemplo, para la piscina) y
+# tiene un rol en la familia (importa para saber quién manda). Sergio es
+# hijo, pero mayor de edad.
+
+luis es_un adulto, luis rol progenitor, luis nombre "Luis".
+elena es_un adulto, elena rol progenitor, elena nombre "Elena".
+sergio es_un adulto, sergio rol hijo_mayor, sergio nombre "Sergio".
+pablo es_un menor, pablo rol hijo_menor, pablo nombre "Pablo".
+
+progenitor es_un rol, progenitor nombre "Padre o madre".
+hijo_mayor es_un rol_hijo, hijo_mayor nombre "Hijo mayor".
+hijo_menor es_un rol_hijo, hijo_menor nombre "Hijo pequeño".
+
+# ---------- Familia ----------
+# Escritas en los dos sentidos: una regla simétrica se llamaría a sí misma
+# en bucle con razona si!
+luis pareja_de elena, elena pareja_de luis.
+luis padre_de sergio, luis padre_de pablo.
+elena madre_de sergio, elena madre_de pablo.
+sergio hermano_de pablo, pablo hermano_de sergio.
+
+# ---------- A qué se dedica cada uno ----------
+luis trabaja_en oficina, luis conduce coche_luis.
+elena trabaja_en despacho, elena conduce coche_elena.
+sergio estudia_en universidad, sergio entrena_en gimnasio.
+pablo estudia_en colegio, pablo juega_en sala_cine.
+oficina es_un lugar_externo, universidad es_un lugar_externo, colegio es_un lugar_externo.
+
+# ---------- Rutina de un día de diario ----------
+luis sale_de_casa mañana, luis vuelve anochecer.
+elena teletrabaja si.
+sergio sale_de_casa mañana, sergio vuelve mediodia.
+pablo sale_de_casa mañana, pablo vuelve tarde.
+
+# ---------- Thor ----------
+thor es_un perro, thor nombre "Thor", thor duerme_en jardin.
+# Sergio es quien se encarga de él
+thor cuidado_por sergio.
+
+# ---------- Coches ----------
+coche_luis es_un coche_electrico, coche_luis pertenece_a luis, coche_luis nombre "Coche eléctrico de Luis".
+coche_elena es_un coche_gasolina, coche_elena pertenece_a elena, coche_elena nombre "Coche de Elena".
