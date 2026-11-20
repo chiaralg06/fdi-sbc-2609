@@ -1,0 +1,49 @@
+# Situaciones, permisos y resolución de conflictos.
+#
+# Los escenarios describen el momento con hechos como "nico estado dormido",
+# "juan ubicacion hab_514", "sensor_mov_5 detecta movimiento" o
+# "juan pide_encender aire_514". Estas reglas los convierten en situaciones y
+# permisos, y resuelven qué pasa cuando dos motivos chocan.
+
+# ---------- Situaciones de una habitación ----------
+H situacion alguien_durmiendo <- P estado dormido, P ubicacion H, H tipo habitacion.
+
+# ---------- Quién puede controlar qué desde la app ----------
+# Lo personal, solo su dueño: Nico no puede encender la luz de Juan.
+P puede_controlar D <- D pertenece_a P, D tipo controlable.
+# Lo compartido de una habitación, quien vive en ella.
+P puede_controlar D <- P vive_en H, D uso compartido, D en_habitacion H.
+# Las teles y altavoces de las salas de ocio, cualquier residente.
+P puede_controlar D <- P tipo residente, D tipo aparato_sonido, D esta_en E, E tipo zona_ocio.
+
+# ---------- Órdenes desde la app ----------
+# Solo cuentan si quien la da puede controlar el dispositivo. Son motivos de
+# categoría "peticion": se cumplen salvo que choquen con algo más importante.
+D encender_por peticion_app <- P pide_encender D, P puede_controlar D.
+D apagar_por peticion_app <- P pide_apagar D, P puede_controlar D.
+D subir_por peticion_app <- P pide_subir D, P puede_controlar D.
+D bajar_por peticion_app <- P pide_bajar D, P puede_controlar D.
+
+# ---------- Acciones y conflictos ----------
+# Qué acción se pide sobre cada cosa, sin el motivo.
+D accion A <- V verbo A, D V M.
+
+# Hay conflicto si dos motivos piden acciones opuestas sobre lo mismo. Se
+# apuntan todos los motivos enfrentados.
+D conflicto M <- V1 opuesto V2, D V1 M, D V2 M2.
+
+# En cada pareja enfrentada gana el motivo de categoría más importante, y se
+# apunta cuál pierde: así se puede explicar el resultado.
+D gana M1, D pierde M2 <- V1 opuesto V2, D V1 M1, D V2 M2, M1 categoria C1, M2 categoria C2, C1 prevalece_sobre C2.
+
+# El resultado es la acción del motivo que gana.
+D resultado A <- V1 opuesto V2, D V1 M1, D V2 M2, M1 categoria C1, M2 categoria C2, C1 prevalece_sobre C2, V1 verbo A.
+
+# Limitación: cada pareja se resuelve por separado. Si sobre lo mismo hay un
+# motivo alto y uno bajo pidiendo una acción, y uno intermedio pidiendo la
+# contraria, saldrían dos resultados opuestos (el alto gana al intermedio y
+# el intermedio al bajo). Quedarse con el más fuerte exigiría negación, que
+# el motor no tiene. Las reglas están escritas para evitarlo (por ejemplo,
+# el aire solo se enciende por calor fuera del corte nocturno), y esta regla
+# lo detecta si llega a pasar.
+D resultado_dudoso si <- V1 opuesto V2, V1 verbo A1, V2 verbo A2, D resultado A1, D resultado A2.

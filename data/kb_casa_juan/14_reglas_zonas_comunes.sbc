@@ -1,0 +1,39 @@
+# Qué pasa en las zonas comunes: pasillos, salas, exámenes, silencio
+# nocturno y lavandería.
+
+# ---------- Pasillos ----------
+# Luz con sensor de movimiento. De madrugada se queda tenue para no
+# molestar a las habitaciones.
+L encender_por paso_pasillo <- S detecta movimiento, S tipo sensor_movimiento, S esta_en E, E tipo zona_paso, L tipo luz_pasillo, L esta_en E.
+L intensidad tenue <- colegio silencio si, L encender_por paso_pasillo.
+
+# ---------- Salas con sensor de presencia ----------
+# Gimnasio, sala de estudio, pistas, salas de ocio: con gente se encienden
+# luces y aire; sin nadie, se apaga todo lo controlable.
+L encender_por uso_espacio <- S detecta movimiento, S tipo sensor_movimiento, S esta_en E, E tipo zona_actividad, L tipo luz, L esta_en E.
+C encender_por uso_espacio <- S detecta movimiento, S tipo sensor_movimiento, S esta_en E, E tipo zona_actividad, C tipo aire_acondicionado, C esta_en E.
+D apagar_por espacio_vacio <- S detecta vacio, S tipo sensor_movimiento, S esta_en E, D tipo controlable, D esta_en E.
+
+# Un espacio cerrado apaga sus luces aunque haya alguien (las pistas de
+# madrugada).
+L apagar_por fuera_de_horario <- E cerrado si, L tipo luz, L esta_en E.
+
+# ---------- Época de exámenes ----------
+# La sala de estudio se queda iluminada aunque el sensor no vea a nadie (hay
+# gente que estudia muy quieta), la música de las salas de ocio se apaga y
+# las teles siguen, pero con el volumen bajo.
+L encender_por examenes <- colegio epoca examenes, E tipo zona_estudio, L tipo luz, L esta_en E.
+D apagar_por examenes <- colegio epoca examenes, E tipo zona_ocio, D tipo altavoz, D esta_en E.
+D volumen bajo <- colegio epoca examenes, E tipo zona_ocio, D tipo television, D esta_en E.
+
+# ---------- Silencio nocturno ----------
+# A partir de las 00:00, nada que haga ruido en las salas de ocio.
+D apagar_por silencio_nocturno <- colegio silencio si, E tipo zona_ocio, D tipo aparato_sonido, D esta_en E.
+
+# ---------- Lavandería ----------
+# Se paga con el móvil y arranca sola; al terminar avisa a quien pagó.
+D encender_por pago_app <- P paga D, P tipo residente, D tipo electrodomestico_pago.
+P notificar_por colada_lista <- D detecta fin_ciclo, D tipo electrodomestico_pago, P paga D.
+
+# ---------- Entrada ----------
+D abrir_por entrada_app <- P abre_con_app D, P tipo residente, D tipo acceso_app.

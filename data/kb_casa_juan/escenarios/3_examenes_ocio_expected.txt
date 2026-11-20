@@ -1,0 +1,17 @@
+colegio franja F? -> SI
+colegio silencio si? -> NO
+altavoz_juegos apagar_por M? -> SI
+alvaro puede_controlar altavoz_juegos? -> SI
+altavoz_juegos conflicto M? -> SI
+altavoz_juegos gana M, M nombre N? -> SI
+altavoz_juegos resultado A? -> SI
+tv_1 accion A? -> SI
+tv_1 conflicto M? -> NO
+tv_1 volumen V? -> SI
+tv_2 volumen V? -> SI
+luz_sala_juegos encender_por M? -> SI
+luz_sala_estudio conflicto M? -> SI
+luz_sala_estudio resultado A? -> SI
+D apagar_por espacio_vacio, D esta_en gimnasio? -> SI
+luz_gimnasio conflicto M? -> NO
+D resultado_dudoso si? -> NO

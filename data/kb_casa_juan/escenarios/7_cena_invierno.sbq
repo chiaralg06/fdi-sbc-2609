@@ -1,0 +1,42 @@
+# Escenario 7: 21:00 de invierno, hora de cenar. El padre de Nico llega por
+# sorpresa y ya no puede subir; Juan y Nico bajan a cenar.
+# uv run -m sbc data/kb_casa_juan data/kb_casa_juan/escenarios/7_cena_invierno.sbq
+
+razona si!
+
+colegio hora h2100, colegio estacion invierno.
+nico ubicacion hab_514.
+carlos visita_a nico, carlos ubicacion recepcion.
+sensor_temp_514 detecta frio.
+
+colegio franja F, F nombre N?
+
+# El comedor está abierto: se propone el comedor y no la cafetería
+juan quiere comer, nico quiere comer.
+comedor abierto si?
+juan sugerencia E?
+juan notificar_por comedor_cerrado?
+
+# Carlos es familiar, pero a la hora de la cena ya no puede subir
+carlos familiar_de nico?
+carlos puede_subir V?
+carlos puede_ir_a E?
+
+# Avisos: Nico y Andrés (recepción, turno de tarde)
+nico notificar_por M?
+R notificar_por visita_llegada, R nombre N?
+
+# Antes de bajar, Nico baja la persiana desde la app
+nico pide_bajar persiana_514.
+persiana_514 bajar_por M?
+persiana_514 conflicto M?
+
+# La calefacción se enciende sola por el frío, aunque no haya nadie dentro
+radiador_514 encender_por M?
+
+# Juan ya está cenando en el comedor
+juan ubicacion comedor.
+P ubicacion comedor, P nombre N?
+
+# Ningún resultado contradictorio
+D resultado_dudoso si?

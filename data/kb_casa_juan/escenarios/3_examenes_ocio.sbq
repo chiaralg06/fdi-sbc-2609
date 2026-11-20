@@ -1,0 +1,47 @@
+# Escenario 3: época de exámenes, 17:00. En la entreplanta, Álvaro quiere
+# música en la sala de juegos y Marcos pone la tele. La sala de estudio se
+# queda un rato sin movimiento.
+# uv run -m sbc data/kb_casa_juan data/kb_casa_juan/escenarios/3_examenes_ocio.sbq
+
+razona si!
+
+colegio hora h1700, colegio epoca examenes.
+alvaro ubicacion sala_juegos, marcos ubicacion sala_tv.
+
+colegio franja F?
+colegio silencio si?
+
+# La música de la sala de juegos se apaga en exámenes...
+altavoz_juegos apagar_por M?
+
+# ...aunque Álvaro la pida desde la app
+alvaro puede_controlar altavoz_juegos?
+alvaro pide_encender altavoz_juegos.
+altavoz_juegos conflicto M?
+altavoz_juegos gana M, M nombre N?
+altavoz_juegos resultado A?
+
+# La tele sí se puede ver, con el volumen bajo
+marcos pide_encender tv_1.
+tv_1 accion A?
+tv_1 conflicto M?
+tv_1 volumen V?
+tv_2 volumen V?
+
+# Hay gente en la sala de juegos: luz encendida
+sensor_mov_juegos detecta movimiento.
+luz_sala_juegos encender_por M?
+
+# El sensor de la sala de estudio no ve a nadie, pero en exámenes la luz
+# se queda encendida
+sensor_mov_estudio detecta vacio.
+luz_sala_estudio conflicto M?
+luz_sala_estudio resultado A?
+
+# El gimnasio vacío sí se apaga: no hay nada que lo impida
+sensor_mov_gimnasio detecta vacio.
+D apagar_por espacio_vacio, D esta_en gimnasio?
+luz_gimnasio conflicto M?
+
+# Ningún resultado contradictorio
+D resultado_dudoso si?

@@ -1,0 +1,46 @@
+# Quién vive y trabaja en el colegio, y sus familias.
+#
+# Dónde está cada uno y qué hace EN ESTE MOMENTO ("ubicacion", "estado") no se
+# escribe aquí: lo dice cada escenario, porque cambia a lo largo del día.
+
+# ---------- Habitación 514: Juan y su primo Nico ----------
+juan es_un colegial, juan nombre "Juan", juan vive_en hab_514.
+nico es_un colegial, nico nombre "Nico", nico vive_en hab_514.
+
+# Relaciones simétricas escritas en los dos sentidos: una regla
+# "X primo_de Y <- Y primo_de X" se llamaría a sí misma en bucle con razona si!
+juan primo_de nico, nico primo_de juan.
+
+# Rutina de cada uno. El despertador puede cambiar un día concreto (por
+# ejemplo, el día de un examen): el escenario añade otro "despertador".
+juan se_acuesta h0100, juan despertador h0900.
+nico se_acuesta h0100, nico despertador h0900.
+
+# Juan estudia en la habitación; Nico, en su universidad.
+juan estudia_en hab_514.
+nico estudia_en universidad.
+juan entrena_en gimnasio.
+
+# ---------- Otros colegiales ----------
+alvaro es_un colegial, alvaro nombre "Álvaro", alvaro vive_en hab_515.
+marcos es_un colegial, marcos nombre "Marcos", marcos vive_en hab_515.
+lucia es_un colegial, lucia nombre "Lucía", lucia vive_en hab_301.
+irene es_un colegial, irene nombre "Irene", irene vive_en hab_704.
+
+# ---------- Personal del colegio ----------
+# Cada trabajador tiene un turno; 03_horario.sbc dice qué franjas cubre cada
+# turno, así que "quién está ahora en recepción" se deduce de la hora.
+rosa es_un personal_recepcion, rosa nombre "Rosa", rosa turno turno_mañana.
+andres es_un personal_recepcion, andres nombre "Andrés", andres turno turno_tarde.
+javier es_un personal_recepcion, javier nombre "Javier", javier turno turno_noche.
+carmen es_un personal_cocina, carmen nombre "Carmen", carmen turno turno_mañana.
+pilar es_un personal_limpieza, pilar nombre "Pilar", pilar turno turno_mañana.
+manolo es_un conserje, manolo nombre "Manolo", manolo turno turno_tarde.
+
+# ---------- Familias y amigos (posibles visitas) ----------
+# Si alguien es familiar o no se deduce del parentesco (10_reglas_generales),
+# y de eso depende si puede subir a la habitación (15_reglas_servicios).
+ana madre_de juan, ana nombre "Ana".
+carlos padre_de nico, carlos nombre "Carlos".
+pedro amigo_de nico, pedro nombre "Pedro".
+sara amigo_de juan, sara nombre "Sara".

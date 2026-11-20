@@ -1,0 +1,72 @@
+# Consultas sobre el colegio mayor, sin ninguna situación ni hora concreta.
+# uv run -m sbc data/kb_casa_juan data/kb_casa_juan/consultas.sbq
+
+# ========== Sin razonar: solo lo escrito ==========
+
+# ¿Qué hay en la planta baja?
+E en_planta planta_baja, E nombre N?
+
+# ¿Quién vive en la 514?
+P vive_en hab_514, P nombre N?
+
+# ¿Qué sabemos de Juan? (variable en el predicado)
+juan R X?
+
+# ¿Qué abre las 24 horas?
+E horario continuo?
+
+# ¿Cuándo abre el comedor?
+comedor abre_en F, F nombre N?
+
+# Lo deducido todavía no existe
+juan tipo persona?
+X en_habitacion hab_514?
+
+# ========== Razonando ==========
+razona si!
+
+# Tipos heredados
+juan tipo C?
+hab_514 tipo C?
+X tipo zona_actividad, X nombre N?
+X tipo persona, X tipo personal, X nombre N?
+D tipo luz, D en_habitacion hab_514?
+
+# Dónde está cada cosa: el calientatoallas está en el baño, que es parte
+# de la habitación
+toallero_514 en_habitacion H?
+toallero_514 en_planta P?
+D tipo controlable, D en_planta planta_5?
+
+# Quién vive en la planta 5
+P vive_en H, H en_planta planta_5, P nombre N?
+
+# Familia: quién podría subir de visita a cada uno
+X familiar_de juan?
+X familiar_de nico?
+
+# Quién controla qué: lo personal, solo su dueño
+juan puede_controlar D?
+nico puede_controlar luz_juan?
+alvaro puede_controlar persiana_514?
+alvaro puede_controlar tv_1?
+
+# Orden de prioridades. Sin hora no se sabe si es de día o de noche, así que
+# el descanso no tiene sitio: solo sale el orden fijo (se ve en el escenario 8)
+descanso prevalece_sobre C?
+C prevalece_sobre norma_colegio?
+confort prevalece_sobre rutina?
+
+# Sin hora no se sabe qué franja es: solo se sabe que está abierto lo que
+# abre las 24 horas
+colegio franja F?
+comedor abierto si?
+E abierto si?
+
+# Sin ninguna situación, el colegio no hace nada
+D accion A?
+
+razona no!
+
+# Sin razonar, otra vez nada deducido
+juan tipo persona?

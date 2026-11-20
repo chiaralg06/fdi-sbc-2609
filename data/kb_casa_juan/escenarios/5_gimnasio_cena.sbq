@@ -1,0 +1,51 @@
+# Escenario 5: 23:00. Juan sale del gimnasio con hambre, después de haber
+# puesto una lavadora. Nico ya duerme.
+# uv run -m sbc data/kb_casa_juan data/kb_casa_juan/escenarios/5_gimnasio_cena.sbq
+
+razona si!
+
+colegio hora h2300.
+juan ubicacion gimnasio.
+nico ubicacion hab_514, nico estado dormido.
+
+colegio franja F?
+
+# Gimnasio: abierto 24 horas, con luz y aire mientras hay alguien
+gimnasio abierto si?
+sensor_mov_gimnasio detecta movimiento.
+luz_gimnasio encender_por M?
+aire_gimnasio encender_por M?
+# El corte nocturno es solo para las habitaciones (y aún no es de madrugada)
+aire_gimnasio apagar_por M?
+
+# Quiere cenar, pero la cena acabó a las 22:30
+juan quiere comer.
+comedor abierto si?
+comedor cerrado si?
+juan notificar_por M, M nombre N?
+juan sugerencia E?
+
+# La lavadora: pagada con el móvil, arranca sola y avisa al terminar
+juan paga lavadora_1.
+lavadora_1 encender_por M, M nombre N?
+lavadora_2 accion A?
+lavadora_1 detecta fin_ciclo.
+juan notificar_por colada_lista?
+
+# Al subir, la luz del pasillo se enciende normal (aún no es de madrugada)
+sensor_mov_5 detecta movimiento.
+luz_pasillo_5 encender_por M?
+luz_pasillo_5 intensidad I?
+
+# Entra con la app por la puerta
+juan abre_con_app puerta_entrada.
+puerta_entrada abrir_por M?
+
+# Quién está de turno en recepción
+R de_turno si, R tipo personal_recepcion, R nombre N?
+
+# En su habitación, Nico duerme: luz del techo apagada
+luz_techo_514 apagar_por M?
+
+# Ningún resultado contradictorio
+D resultado_dudoso si?

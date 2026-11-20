@@ -1,0 +1,24 @@
+colegio franja F? -> SI
+colegio silencio si? -> SI
+juan despierta si? -> SI
+nico despierta si? -> NO
+luz_juan accion A? -> SI
+luz_juan conflicto M? -> NO
+persiana_514 conflicto M? -> SI
+persiana_514 gana M? -> SI
+persiana_514 pierde M? -> SI
+persiana_514 resultado A? -> SI
+luz_techo_514 apagar_por M? -> SI
+luz_nico apagar_por M? -> SI
+toallero_514 encender_por M? -> SI
+radiador_514 encender_por M, M nombre N? -> SI
+persiana_514 conflicto M? -> SI
+persiana_514 resultado A? -> SI
+hab_514 no_molestar_por M? -> SI
+luz_pasillo_5 encender_por M? -> SI
+luz_pasillo_5 intensidad I? -> SI
+comedor cerrado si? -> SI
+juan notificar_por M, M nombre N? -> SI
+juan sugerencia E, E nombre N? -> SI
+persiana_515 accion A? -> NO
+D resultado_dudoso si? -> NO

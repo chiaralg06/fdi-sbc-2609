@@ -1,0 +1,60 @@
+# Escenario 1: día de examen en invierno. Juan pone el despertador a las
+# 07:00 y Nico sigue durmiendo en la misma habitación.
+# uv run -m sbc data/kb_casa_juan data/kb_casa_juan/escenarios/1_examen_madrugon.sbq
+
+razona si!
+
+colegio hora h0700, colegio estacion invierno.
+juan despertador h0700.
+juan ubicacion hab_514, nico ubicacion hab_514.
+nico estado dormido.
+sensor_temp_514 detecta frio.
+
+# Qué deduce de la hora
+colegio franja F?
+colegio silencio si?
+juan despierta si?
+nico despierta si?
+
+# Lo personal de Juan sí se enciende
+luz_juan accion A?
+luz_juan conflicto M?
+
+# La persiana: el despertador de Juan quiere subirla, pero Nico duerme
+persiana_514 conflicto M?
+persiana_514 gana M?
+persiana_514 pierde M?
+persiana_514 resultado A?
+
+# La luz del techo y la de Nico, apagadas; el calientatoallas, encendido
+luz_techo_514 apagar_por M?
+luz_nico apagar_por M?
+toallero_514 encender_por M?
+
+# Calefacción automática por el frío
+radiador_514 encender_por M, M nombre N?
+
+# Juan pide subir la persiana desde la app: tampoco, Nico sigue durmiendo
+juan pide_subir persiana_514.
+persiana_514 conflicto M?
+persiana_514 resultado A?
+
+# Nadie entra a limpiar
+hab_514 no_molestar_por M?
+
+# Sale al pasillo: la luz se enciende, pero tenue (es de madrugada)
+sensor_mov_5 detecta movimiento.
+luz_pasillo_5 encender_por M?
+luz_pasillo_5 intensidad I?
+
+# Quiere desayunar antes del examen, pero el comedor abre a las 07:30
+juan quiere comer.
+comedor cerrado si?
+juan notificar_por M, M nombre N?
+juan sugerencia E, E nombre N?
+
+# La habitación de al lado no se ve afectada
+persiana_515 accion A?
+
+# Ningún resultado contradictorio
+D resultado_dudoso si?

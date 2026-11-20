@@ -1,0 +1,47 @@
+# Escenario 2: 00:30, Juan sigue estudiando en la habitación y Nico ya duerme.
+# Abajo, Lucía está en la sala de estudio.
+# uv run -m sbc data/kb_casa_juan data/kb_casa_juan/escenarios/2_estudio_nocturno.sbq
+
+razona si!
+
+colegio hora h0030.
+juan ubicacion hab_514, juan estado estudiando.
+nico ubicacion hab_514, nico estado dormido.
+
+# Juan quiere su luz y la del techo; Nico duerme
+luz_juan accion A?
+luz_techo_514 conflicto M?
+luz_techo_514 gana M?
+luz_techo_514 resultado A?
+luz_nico accion A?
+persiana_514 bajar_por M?
+
+# Nadie entra en la habitación: duerme uno y estudia el otro
+hab_514 no_molestar_por M?
+
+# La app avisa a Juan y le propone bajar a la sala de estudio (24 horas)
+juan notificar_por M, M nombre N?
+juan sugerencia E, E nombre N?
+sala_estudio abierto si?
+
+# Juan insiste y enciende la luz del techo desde la app: sigue apagada
+juan pide_encender luz_techo_514.
+luz_techo_514 conflicto M?
+luz_techo_514 pierde M?
+luz_techo_514 resultado A?
+
+# Nico no puede encender la luz de Juan (es personal)
+nico puede_controlar luz_juan?
+nico pide_encender luz_juan.
+luz_juan encender_por M?
+
+# En la sala de estudio hay gente: se enciende la luz
+lucia ubicacion sala_estudio, lucia estado estudiando.
+sensor_mov_estudio detecta movimiento.
+luz_sala_estudio encender_por M?
+
+# Lucía estudia fuera de su habitación: no hay aviso para ella
+lucia notificar_por M?
+
+# Ningún resultado contradictorio
+D resultado_dudoso si?

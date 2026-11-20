@@ -1,0 +1,32 @@
+# Servicios del colegio: comedor y cafetería, visitas, recepción y limpieza.
+
+# ---------- Comer ----------
+# Si el comedor (incluido en la pensión) está abierto, se propone el comedor.
+# Si está cerrado, se avisa y se propone otro sitio de comida que esté
+# abierto (la cafetería, 24 horas). Como cada franja es o de apertura o de
+# cierre del comedor, nunca salen las dos propuestas a la vez.
+P sugerencia E <- P quiere comer, E comida_incluida si, E abierto si.
+P sugerencia E <- P quiere comer, C comida_incluida si, C cerrado si, E tipo servicio_comida, E abierto si.
+P notificar_por comedor_cerrado <- P quiere comer, C comida_incluida si, C cerrado si.
+
+# ---------- Visitas ----------
+# No hace falta registrarse. Durante el día los familiares pueden subir a la
+# habitación; los amigos, y cualquiera fuera de ese horario, se quedan en las
+# zonas de la planta baja que admiten visitas.
+V puede_subir si <- V visita_a P, V familiar_de P, colegio visitas_a_habitacion si.
+V puede_subir no <- V visita_a P, colegio visitas_a_habitacion no.
+V puede_subir no <- V visita_a P, V amigo_de P.
+
+V puede_ir_a H <- V puede_subir si, V visita_a P, P vive_en H.
+V puede_ir_a E <- V visita_a P, E admite_visitas si.
+
+# Cuando una visita llega a recepción, se avisa a quien visita y a quien
+# esté de turno en recepción.
+P notificar_por visita_llegada <- V visita_a P, V ubicacion recepcion.
+R notificar_por visita_llegada <- V visita_a P, V ubicacion recepcion, R tipo personal_recepcion, R de_turno si.
+
+# ---------- Limpieza ----------
+# Por la mañana, con el personal de limpieza de turno, toca limpiar las
+# habitaciones. Si dentro alguien duerme o estudia ("no_molestar"), gana eso
+# y la limpieza espera.
+H limpiar_por limpieza_programada <- colegio franja media_mañana, R tipo personal_limpieza, R de_turno si, H tipo habitacion.

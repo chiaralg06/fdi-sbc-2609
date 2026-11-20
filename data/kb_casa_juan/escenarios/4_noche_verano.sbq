@@ -1,0 +1,51 @@
+# Escenario 4: noche de verano, 01:00. Juan y Nico se acuestan con calor; en
+# la 515 hace calor pero nadie pide nada. Abajo, unos colegiales quieren ver
+# un partido y otros siguen en las pistas.
+# uv run -m sbc data/kb_casa_juan data/kb_casa_juan/escenarios/4_noche_verano.sbq
+
+razona si!
+
+colegio hora h0100, colegio estacion verano.
+juan ubicacion hab_514, nico ubicacion hab_514.
+alvaro ubicacion hab_515.
+sensor_temp_514 detecta calor, sensor_temp_515 detecta calor.
+
+colegio corte_aire V?
+
+# Hora de acostarse: persiana abajo y luz del techo apagada
+juan se_va_a_dormir si?
+persiana_514 bajar_por M?
+luz_techo_514 apagar_por M?
+
+# De madrugada el aire de las habitaciones se corta, y el calor no lo vuelve
+# a encender
+aire_515 encender_por M?
+aire_515 apagar_por M, M nombre N?
+aire_515 conflicto M?
+
+# Pero Juan lo pide desde la app, y el colegio lo permite
+juan pide_encender aire_514.
+aire_514 conflicto M?
+aire_514 gana M?
+aire_514 resultado A?
+
+# Marcos intenta encender la tele de la sala: silencio nocturno
+marcos ubicacion sala_tv.
+marcos pide_encender tv_1.
+tv_1 conflicto M?
+tv_1 gana M, M nombre N?
+tv_1 resultado A?
+
+# En las pistas hay gente, pero cierran de madrugada: los focos se apagan
+sensor_mov_pistas detecta movimiento.
+pistas cerrado si?
+focos_pistas conflicto M?
+focos_pistas resultado A?
+
+# El gimnasio sigue abierto (24 horas): ahí sí se enciende la luz
+sensor_mov_gimnasio detecta movimiento.
+luz_gimnasio accion A?
+aire_gimnasio accion A?
+
+# Ningún resultado contradictorio
+D resultado_dudoso si?

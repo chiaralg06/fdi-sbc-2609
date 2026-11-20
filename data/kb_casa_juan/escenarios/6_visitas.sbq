@@ -1,0 +1,49 @@
+# Escenario 6: 12:00 de un día cualquiera. La madre de Juan viene a verle y un
+# amigo de Nico pasa a buscarle. Juan está estudiando en la habitación y es
+# la hora de la limpieza.
+# uv run -m sbc data/kb_casa_juan data/kb_casa_juan/escenarios/6_visitas.sbq
+
+razona si!
+
+colegio hora h1200.
+juan ubicacion hab_514, juan estado estudiando.
+alvaro ubicacion hab_515, alvaro estado dormido.
+ana visita_a juan, ana ubicacion recepcion.
+pedro visita_a nico, pedro ubicacion recepcion.
+
+colegio visitas_a_habitacion V?
+
+# Ana es familiar de Juan: puede subir a la 514
+ana familiar_de juan?
+ana puede_subir V?
+ana puede_ir_a E?
+
+# Pedro es amigo de Nico: espera abajo
+pedro familiar_de nico?
+pedro puede_subir V?
+pedro puede_ir_a E?
+
+# Avisos: a quien recibe la visita y a recepción (Rosa, turno de mañana)
+juan notificar_por M?
+nico notificar_por M?
+R notificar_por visita_llegada, R tipo personal_recepcion, R nombre N?
+
+# Limpieza: toca a media mañana
+pilar de_turno si?
+H limpiar_por limpieza_programada?
+
+# En la 514 Juan estudia y en la 515 Álvaro duerme: no se limpian ahora
+hab_514 conflicto M?
+hab_514 resultado A?
+hab_515 gana M?
+hab_515 resultado A?
+# La 301 está vacía: se limpia sin conflicto
+hab_301 accion A?
+hab_301 conflicto M?
+
+# El comedor está cerrado hasta la comida
+nico quiere comer.
+nico sugerencia E?
+
+# Ningún resultado contradictorio
+D resultado_dudoso si?

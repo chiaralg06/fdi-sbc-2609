@@ -1,0 +1,89 @@
+# Taxonomía: qué clases de cosas hay en el colegio.
+#
+# Cada cosa dice solo su clase más concreta con "es_un"; las reglas de
+# 10_reglas_generales.sbc deducen el resto con "tipo" (la 514 es una
+# habitación doble, una habitación, un espacio privado y un espacio).
+# Una cosa puede ser de varias clases (las pistas son instalación deportiva y
+# exterior). La jerarquía no tiene ciclos, así que las reglas recursivas
+# terminan con razona si!.
+
+# ---------- Edificio ----------
+planta_servicios subclase_de planta.
+planta_ocio subclase_de planta.
+planta_habitaciones subclase_de planta.
+
+# ---------- Espacios ----------
+espacio_comun subclase_de espacio.
+espacio_privado subclase_de espacio.
+exterior subclase_de espacio.
+
+habitacion subclase_de espacio_privado.
+habitacion_doble subclase_de habitacion.
+habitacion_individual subclase_de habitacion.
+baño_privado subclase_de espacio_privado.
+
+zona_paso subclase_de espacio_comun.
+
+zona_servicio subclase_de espacio_comun.
+servicio_comida subclase_de zona_servicio.
+servicio_lavanderia subclase_de zona_servicio.
+punto_atencion subclase_de zona_servicio.
+
+# Zonas donde se hace algo (se usan con sensor de presencia)
+zona_actividad subclase_de espacio_comun.
+zona_estudio subclase_de zona_actividad.
+zona_ocio subclase_de zona_actividad.
+instalacion_deportiva subclase_de zona_actividad.
+
+# ---------- Personas ----------
+residente subclase_de persona.
+colegial subclase_de residente.
+
+personal subclase_de persona.
+personal_recepcion subclase_de personal.
+personal_cocina subclase_de personal.
+personal_limpieza subclase_de personal.
+conserje subclase_de personal.
+
+# ---------- Objetos ----------
+mobiliario subclase_de objeto.
+equipamiento_ocio subclase_de objeto.
+equipamiento_deporte subclase_de objeto.
+dispositivo subclase_de objeto.
+
+# ---------- Domótica ----------
+# Dos familias: los sensores, que informan, y lo controlable, sobre lo que se
+# actúa (de forma automática o desde la app del móvil).
+dispositivo_inteligente subclase_de dispositivo.
+sensor subclase_de dispositivo_inteligente.
+controlable subclase_de dispositivo_inteligente.
+
+sensor_movimiento subclase_de sensor.
+sensor_temperatura subclase_de sensor.
+
+luz subclase_de controlable.
+luz_techo subclase_de luz.
+luz_personal subclase_de luz.
+luz_pasillo subclase_de luz.
+luz_sala subclase_de luz.
+foco subclase_de luz.
+
+persiana_motorizada subclase_de controlable.
+
+climatizacion subclase_de controlable.
+aire_acondicionado subclase_de climatizacion.
+radiador subclase_de climatizacion.
+toallero_electrico subclase_de climatizacion.
+
+# Lo que hace ruido: es lo que limita el silencio nocturno
+aparato_sonido subclase_de controlable.
+television subclase_de aparato_sonido.
+altavoz subclase_de aparato_sonido.
+
+# Lavadoras y secadoras: se pagan con el móvil y arrancan solas
+electrodomestico_pago subclase_de controlable.
+lavadora subclase_de electrodomestico_pago.
+secadora subclase_de electrodomestico_pago.
+
+# Puerta de entrada que se abre con la app
+acceso_app subclase_de controlable.

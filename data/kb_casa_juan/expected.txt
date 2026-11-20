@@ -1,0 +1,30 @@
+E en_planta planta_baja, E nombre N? -> SI
+P vive_en hab_514, P nombre N? -> SI
+juan R X? -> SI
+E horario continuo? -> SI
+comedor abre_en F, F nombre N? -> SI
+juan tipo persona? -> NO
+X en_habitacion hab_514? -> NO
+juan tipo C? -> SI
+hab_514 tipo C? -> SI
+X tipo zona_actividad, X nombre N? -> SI
+X tipo persona, X tipo personal, X nombre N? -> SI
+D tipo luz, D en_habitacion hab_514? -> SI
+toallero_514 en_habitacion H? -> SI
+toallero_514 en_planta P? -> SI
+D tipo controlable, D en_planta planta_5? -> SI
+P vive_en H, H en_planta planta_5, P nombre N? -> SI
+X familiar_de juan? -> SI
+X familiar_de nico? -> SI
+juan puede_controlar D? -> SI
+nico puede_controlar luz_juan? -> NO
+alvaro puede_controlar persiana_514? -> NO
+alvaro puede_controlar tv_1? -> SI
+descanso prevalece_sobre C? -> NO
+C prevalece_sobre norma_colegio? -> SI
+confort prevalece_sobre rutina? -> NO
+colegio franja F? -> NO
+comedor abierto si? -> NO
+E abierto si? -> SI
+D accion A? -> NO
+juan tipo persona? -> NO

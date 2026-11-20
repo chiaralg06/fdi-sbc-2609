@@ -1,0 +1,24 @@
+{"consulta": "colegio franja F", "soluciones": [{"F": "madrugada"}]}
+{"consulta": "colegio silencio si", "soluciones": [{}]}
+{"consulta": "juan despierta si", "soluciones": [{}]}
+{"consulta": "nico despierta si", "soluciones": []}
+{"consulta": "luz_juan accion A", "soluciones": [{"A": "encender"}]}
+{"consulta": "luz_juan conflicto M", "soluciones": []}
+{"consulta": "persiana_514 conflicto M", "soluciones": [{"M": "alguien_durmiendo"}, {"M": "despertar"}]}
+{"consulta": "persiana_514 gana M", "soluciones": [{"M": "alguien_durmiendo"}]}
+{"consulta": "persiana_514 pierde M", "soluciones": [{"M": "despertar"}]}
+{"consulta": "persiana_514 resultado A", "soluciones": [{"A": "bajar"}]}
+{"consulta": "luz_techo_514 apagar_por M", "soluciones": [{"M": "alguien_durmiendo"}]}
+{"consulta": "luz_nico apagar_por M", "soluciones": [{"M": "alguien_durmiendo"}]}
+{"consulta": "toallero_514 encender_por M", "soluciones": [{"M": "despertar"}]}
+{"consulta": "radiador_514 encender_por M, M nombre N", "soluciones": [{"M": "frio", "N": "\"Hace frío en la habitación\""}]}
+{"consulta": "persiana_514 conflicto M", "soluciones": [{"M": "alguien_durmiendo"}, {"M": "despertar"}, {"M": "peticion_app"}]}
+{"consulta": "persiana_514 resultado A", "soluciones": [{"A": "bajar"}]}
+{"consulta": "hab_514 no_molestar_por M", "soluciones": [{"M": "alguien_durmiendo"}]}
+{"consulta": "luz_pasillo_5 encender_por M", "soluciones": [{"M": "paso_pasillo"}]}
+{"consulta": "luz_pasillo_5 intensidad I", "soluciones": [{"I": "tenue"}]}
+{"consulta": "comedor cerrado si", "soluciones": [{}]}
+{"consulta": "juan notificar_por M, M nombre N", "soluciones": [{"M": "comedor_cerrado", "N": "\"El comedor está cerrado a esta hora\""}]}
+{"consulta": "juan sugerencia E, E nombre N", "soluciones": [{"E": "cafeteria", "N": "\"Cafetería\""}]}
+{"consulta": "persiana_515 accion A", "soluciones": []}
+{"consulta": "D resultado_dudoso si", "soluciones": []}

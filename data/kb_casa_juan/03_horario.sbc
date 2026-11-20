@@ -1,0 +1,88 @@
+# Horario del colegio.
+#
+# El motor no sabe comparar horas, así que el día se divide en franjas y cada
+# media hora dice en qué franja cae. El escenario solo dice la hora
+# ("colegio hora h2300") y las reglas deducen la franja y todo lo que depende
+# de ella: qué está abierto, si hay silencio, si se corta el aire, si las
+# visitas pueden subir y quién está de turno.
+#
+# Tampoco hay negación: "el comedor está cerrado" no se puede deducir de "no
+# está abierto". Por eso cada franja dice explícitamente "si" o "no" para cada
+# cosa, y el comedor dice en qué franjas abre y en cuáles cierra.
+
+# ---------- Franjas ----------
+madrugada es_un franja, madrugada nombre "De 00:00 a 07:30".
+desayuno es_un franja, desayuno nombre "Desayuno, de 07:30 a 10:30".
+media_mañana es_un franja, media_mañana nombre "De 10:30 a 13:30".
+comida es_un franja, comida nombre "Comida, de 13:30 a 15:30".
+tarde es_un franja, tarde nombre "De 15:30 a 20:30".
+cena es_un franja, cena nombre "Cena, de 20:30 a 22:30".
+noche es_un franja, noche nombre "De 22:30 a 00:00".
+
+# ---------- Cada media hora, en su franja ----------
+h0000 franja madrugada, h0030 franja madrugada, h0100 franja madrugada, h0130 franja madrugada.
+h0200 franja madrugada, h0230 franja madrugada, h0300 franja madrugada, h0330 franja madrugada.
+h0400 franja madrugada, h0430 franja madrugada, h0500 franja madrugada, h0530 franja madrugada.
+h0600 franja madrugada, h0630 franja madrugada, h0700 franja madrugada.
+h0730 franja desayuno, h0800 franja desayuno, h0830 franja desayuno.
+h0900 franja desayuno, h0930 franja desayuno, h1000 franja desayuno.
+h1030 franja media_mañana, h1100 franja media_mañana, h1130 franja media_mañana.
+h1200 franja media_mañana, h1230 franja media_mañana, h1300 franja media_mañana.
+h1330 franja comida, h1400 franja comida, h1430 franja comida, h1500 franja comida.
+h1530 franja tarde, h1600 franja tarde, h1630 franja tarde, h1700 franja tarde, h1730 franja tarde.
+h1800 franja tarde, h1830 franja tarde, h1900 franja tarde, h1930 franja tarde, h2000 franja tarde.
+h2030 franja cena, h2100 franja cena, h2130 franja cena, h2200 franja cena.
+h2230 franja noche, h2300 franja noche, h2330 franja noche.
+
+# ---------- Silencio nocturno ----------
+# A partir de las 00:00 se intenta no hacer ruido.
+madrugada silencio si.
+desayuno silencio no, media_mañana silencio no, comida silencio no.
+tarde silencio no, cena silencio no, noche silencio no.
+
+# ---------- Horario diurno y nocturno ----------
+# De 22:30 a 07:30 es horario nocturno: la gente duerme y el descanso cambia
+# de sitio en el orden de prioridades (05_motivos.sbc).
+noche periodo horario_nocturno, madrugada periodo horario_nocturno.
+desayuno periodo horario_diurno, media_mañana periodo horario_diurno, comida periodo horario_diurno.
+tarde periodo horario_diurno, cena periodo horario_diurno.
+horario_nocturno nombre "Horario nocturno, de 22:30 a 07:30".
+horario_diurno nombre "Horario diurno, de 07:30 a 22:30".
+
+# ---------- Corte del aire acondicionado ----------
+# El aire de las habitaciones se apaga solo de madrugada (se puede volver a
+# encender desde el móvil).
+madrugada corte_aire si.
+desayuno corte_aire no, media_mañana corte_aire no, comida corte_aire no.
+tarde corte_aire no, cena corte_aire no, noche corte_aire no.
+
+# ---------- Visitas ----------
+# Durante el día los familiares pueden subir a la habitación.
+desayuno horario_visitas si, media_mañana horario_visitas si.
+comida horario_visitas si, tarde horario_visitas si.
+cena horario_visitas no, noche horario_visitas no, madrugada horario_visitas no.
+
+# ---------- Turnos del personal ----------
+desayuno en_turno turno_mañana, media_mañana en_turno turno_mañana, comida en_turno turno_mañana.
+tarde en_turno turno_tarde, cena en_turno turno_tarde.
+noche en_turno turno_noche, madrugada en_turno turno_noche.
+
+# ---------- Horario de cada espacio ----------
+# Comedor: desayuno, comida y cena.
+comedor abre_en desayuno, comedor abre_en comida, comedor abre_en cena.
+comedor cierra_en madrugada, comedor cierra_en media_mañana.
+comedor cierra_en tarde, comedor cierra_en noche.
+
+# Las pistas cierran de madrugada: tienen focos y dan a las habitaciones.
+pistas abre_en desayuno, pistas abre_en media_mañana, pistas abre_en comida.
+pistas abre_en tarde, pistas abre_en cena, pistas abre_en noche.
+pistas cierra_en madrugada.
+
+# Abiertos las 24 horas
+recepcion horario continuo.
+cafeteria horario continuo.
+gimnasio horario continuo.
+sala_estudio horario continuo.
+lavanderia horario continuo.
+sala_juegos horario continuo.
+sala_tv horario continuo.

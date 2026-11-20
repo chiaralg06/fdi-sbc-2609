@@ -1,0 +1,72 @@
+# Dispositivos y objetos, y dónde está cada uno.
+#
+# Aquí solo se dice QUÉ hay, DÓNDE está y DE QUIÉN es. Qué hace cada
+# dispositivo en cada situación lo deducen las reglas (13_ y 14_), así que
+# añadir un dispositivo nuevo solo pide escribir una línea aquí.
+#
+# En las habitaciones dobles se distingue lo personal de lo compartido:
+#   - "D pertenece_a P": solo P lo controla (la luz de su cama).
+#   - "D uso compartido": lo controlan los dos, y tiene que respetar al que
+#     duerme (la luz del techo, la persiana).
+
+# ---------- Habitación 514 (Juan y Nico) ----------
+luz_techo_514 es_un luz_techo, luz_techo_514 esta_en hab_514, luz_techo_514 uso compartido, luz_techo_514 nombre "Luz del techo de la 514".
+luz_juan es_un luz_personal, luz_juan esta_en hab_514, luz_juan pertenece_a juan, luz_juan nombre "Luz de Juan".
+luz_nico es_un luz_personal, luz_nico esta_en hab_514, luz_nico pertenece_a nico, luz_nico nombre "Luz de Nico".
+persiana_514 es_un persiana_motorizada, persiana_514 esta_en hab_514, persiana_514 uso compartido, persiana_514 nombre "Persiana de la 514".
+radiador_514 es_un radiador, radiador_514 esta_en hab_514, radiador_514 uso compartido, radiador_514 nombre "Calefacción de la 514".
+aire_514 es_un aire_acondicionado, aire_514 esta_en hab_514, aire_514 uso compartido, aire_514 nombre "Aire acondicionado de la 514".
+toallero_514 es_un toallero_electrico, toallero_514 esta_en baño_514, toallero_514 uso compartido, toallero_514 nombre "Calientatoallas de la 514".
+sensor_temp_514 es_un sensor_temperatura, sensor_temp_514 esta_en hab_514, sensor_temp_514 nombre "Termostato de la 514".
+
+escritorio_juan es_un mobiliario, escritorio_juan esta_en hab_514, escritorio_juan pertenece_a juan.
+escritorio_nico es_un mobiliario, escritorio_nico esta_en hab_514, escritorio_nico pertenece_a nico.
+cama_juan es_un mobiliario, cama_juan esta_en hab_514, cama_juan pertenece_a juan.
+cama_nico es_un mobiliario, cama_nico esta_en hab_514, cama_nico pertenece_a nico.
+
+# ---------- Habitación 515 (Álvaro y Marcos) ----------
+# Mismos tipos de dispositivo que la 514: las reglas valen para las dos sin
+# escribir nada más.
+luz_techo_515 es_un luz_techo, luz_techo_515 esta_en hab_515, luz_techo_515 uso compartido, luz_techo_515 nombre "Luz del techo de la 515".
+persiana_515 es_un persiana_motorizada, persiana_515 esta_en hab_515, persiana_515 uso compartido, persiana_515 nombre "Persiana de la 515".
+aire_515 es_un aire_acondicionado, aire_515 esta_en hab_515, aire_515 uso compartido, aire_515 nombre "Aire acondicionado de la 515".
+sensor_temp_515 es_un sensor_temperatura, sensor_temp_515 esta_en hab_515, sensor_temp_515 nombre "Termostato de la 515".
+
+# ---------- Pasillos: luz con sensor de movimiento ----------
+luz_pasillo_5 es_un luz_pasillo, luz_pasillo_5 esta_en pasillo_5, luz_pasillo_5 nombre "Luz del pasillo de la planta 5".
+sensor_mov_5 es_un sensor_movimiento, sensor_mov_5 esta_en pasillo_5, sensor_mov_5 nombre "Sensor del pasillo de la planta 5".
+luz_pasillo_3 es_un luz_pasillo, luz_pasillo_3 esta_en pasillo_3, luz_pasillo_3 nombre "Luz del pasillo de la planta 3".
+sensor_mov_3 es_un sensor_movimiento, sensor_mov_3 esta_en pasillo_3, sensor_mov_3 nombre "Sensor del pasillo de la planta 3".
+
+# ---------- Entrada ----------
+puerta_entrada es_un acceso_app, puerta_entrada esta_en recepcion, puerta_entrada nombre "Puerta de entrada".
+
+# ---------- Gimnasio ----------
+luz_gimnasio es_un luz_sala, luz_gimnasio esta_en gimnasio, luz_gimnasio nombre "Luz del gimnasio".
+aire_gimnasio es_un aire_acondicionado, aire_gimnasio esta_en gimnasio, aire_gimnasio nombre "Aire acondicionado del gimnasio".
+sensor_mov_gimnasio es_un sensor_movimiento, sensor_mov_gimnasio esta_en gimnasio, sensor_mov_gimnasio nombre "Sensor del gimnasio".
+cinta_correr es_un equipamiento_deporte, cinta_correr esta_en gimnasio.
+banco_pesas es_un equipamiento_deporte, banco_pesas esta_en gimnasio.
+
+# ---------- Pistas ----------
+focos_pistas es_un foco, focos_pistas esta_en pistas, focos_pistas nombre "Focos de las pistas".
+sensor_mov_pistas es_un sensor_movimiento, sensor_mov_pistas esta_en pistas, sensor_mov_pistas nombre "Sensor de las pistas".
+
+# ---------- Sala de estudio ----------
+luz_sala_estudio es_un luz_sala, luz_sala_estudio esta_en sala_estudio, luz_sala_estudio nombre "Luz de la sala de estudio".
+sensor_mov_estudio es_un sensor_movimiento, sensor_mov_estudio esta_en sala_estudio, sensor_mov_estudio nombre "Sensor de la sala de estudio".
+
+# ---------- Entreplanta: juegos y televisión ----------
+luz_sala_juegos es_un luz_sala, luz_sala_juegos esta_en sala_juegos, luz_sala_juegos nombre "Luz de la sala de juegos".
+altavoz_juegos es_un altavoz, altavoz_juegos esta_en sala_juegos, altavoz_juegos nombre "Altavoz de la sala de juegos".
+sensor_mov_juegos es_un sensor_movimiento, sensor_mov_juegos esta_en sala_juegos, sensor_mov_juegos nombre "Sensor de la sala de juegos".
+futbolin es_un equipamiento_ocio, futbolin esta_en sala_juegos.
+mesa_ping_pong es_un equipamiento_ocio, mesa_ping_pong esta_en sala_juegos.
+
+tv_1 es_un television, tv_1 esta_en sala_tv, tv_1 nombre "Televisión 1".
+tv_2 es_un television, tv_2 esta_en sala_tv, tv_2 nombre "Televisión 2".
+
+# ---------- Lavandería: se paga con el móvil y arranca sola ----------
+lavadora_1 es_un lavadora, lavadora_1 esta_en lavanderia, lavadora_1 nombre "Lavadora 1".
+lavadora_2 es_un lavadora, lavadora_2 esta_en lavanderia, lavadora_2 nombre "Lavadora 2".
+secadora_1 es_un secadora, secadora_1 esta_en lavanderia, secadora_1 nombre "Secadora 1".

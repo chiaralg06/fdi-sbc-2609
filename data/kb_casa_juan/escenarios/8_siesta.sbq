@@ -1,0 +1,43 @@
+# Escenario 8: 16:00. Nico duerme la siesta y Juan estudia en la habitación.
+# Es la misma situación que el escenario 2 (00:30), pero de día: el descanso
+# ya no va por delante del estudio ni de lo que se pide desde la app.
+# uv run -m sbc data/kb_casa_juan data/kb_casa_juan/escenarios/8_siesta.sbq
+
+razona si!
+
+colegio hora h1600.
+juan ubicacion hab_514, juan estado estudiando.
+nico ubicacion hab_514, nico estado dormido.
+
+colegio periodo P, P nombre N?
+
+# El orden de prioridades de día: el descanso baja por debajo de la app
+C prevalece_sobre descanso?
+descanso prevalece_sobre C?
+colegio periodo P, P escalon E, E nombre N?
+
+# La luz del techo: el estudio gana a la siesta (a las 00:30 era al revés)
+luz_techo_514 conflicto M?
+luz_techo_514 gana M, M nombre N?
+luz_techo_514 resultado A?
+
+# Como la luz se enciende, no hace falta avisarle ni mandarle a la sala de
+# estudio
+juan notificar_por M?
+juan sugerencia E?
+
+# Juan sube la persiana desde la app: la petición gana a la siesta
+persiana_514 bajar_por M?
+juan pide_subir persiana_514.
+persiana_514 conflicto M?
+persiana_514 gana M?
+persiana_514 resultado A?
+
+# Lo personal sigue siendo personal: la luz de Nico se queda apagada
+luz_nico accion A?
+
+# Aun de día, en la 514 no entra nadie a molestar
+hab_514 no_molestar_por M?
+
+# Ningún resultado contradictorio
+D resultado_dudoso si?

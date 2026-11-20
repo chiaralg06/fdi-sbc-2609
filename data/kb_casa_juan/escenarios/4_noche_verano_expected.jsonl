@@ -1,0 +1,19 @@
+{"consulta": "colegio corte_aire V", "soluciones": [{"V": "si"}]}
+{"consulta": "juan se_va_a_dormir si", "soluciones": [{}]}
+{"consulta": "persiana_514 bajar_por M", "soluciones": [{"M": "acostarse"}]}
+{"consulta": "luz_techo_514 apagar_por M", "soluciones": [{"M": "acostarse"}]}
+{"consulta": "aire_515 encender_por M", "soluciones": []}
+{"consulta": "aire_515 apagar_por M, M nombre N", "soluciones": [{"M": "corte_nocturno", "N": "\"El aire de las habitaciones se apaga de madrugada\""}]}
+{"consulta": "aire_515 conflicto M", "soluciones": []}
+{"consulta": "aire_514 conflicto M", "soluciones": [{"M": "corte_nocturno"}, {"M": "peticion_app"}]}
+{"consulta": "aire_514 gana M", "soluciones": [{"M": "peticion_app"}]}
+{"consulta": "aire_514 resultado A", "soluciones": [{"A": "encender"}]}
+{"consulta": "tv_1 conflicto M", "soluciones": [{"M": "peticion_app"}, {"M": "silencio_nocturno"}]}
+{"consulta": "tv_1 gana M, M nombre N", "soluciones": [{"M": "silencio_nocturno", "N": "\"Silencio nocturno a partir de las 00:00\""}]}
+{"consulta": "tv_1 resultado A", "soluciones": [{"A": "apagar"}]}
+{"consulta": "pistas cerrado si", "soluciones": [{}]}
+{"consulta": "focos_pistas conflicto M", "soluciones": [{"M": "fuera_de_horario"}, {"M": "uso_espacio"}]}
+{"consulta": "focos_pistas resultado A", "soluciones": [{"A": "apagar"}]}
+{"consulta": "luz_gimnasio accion A", "soluciones": [{"A": "encender"}]}
+{"consulta": "aire_gimnasio accion A", "soluciones": [{"A": "encender"}]}
+{"consulta": "D resultado_dudoso si", "soluciones": []}

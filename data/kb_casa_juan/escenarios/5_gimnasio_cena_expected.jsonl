@@ -1,0 +1,18 @@
+{"consulta": "colegio franja F", "soluciones": [{"F": "noche"}]}
+{"consulta": "gimnasio abierto si", "soluciones": [{}]}
+{"consulta": "luz_gimnasio encender_por M", "soluciones": [{"M": "uso_espacio"}]}
+{"consulta": "aire_gimnasio encender_por M", "soluciones": [{"M": "uso_espacio"}]}
+{"consulta": "aire_gimnasio apagar_por M", "soluciones": []}
+{"consulta": "comedor abierto si", "soluciones": []}
+{"consulta": "comedor cerrado si", "soluciones": [{}]}
+{"consulta": "juan notificar_por M, M nombre N", "soluciones": [{"M": "comedor_cerrado", "N": "\"El comedor está cerrado a esta hora\""}]}
+{"consulta": "juan sugerencia E", "soluciones": [{"E": "cafeteria"}]}
+{"consulta": "lavadora_1 encender_por M, M nombre N", "soluciones": [{"M": "pago_app", "N": "\"Pagado desde el móvil\""}]}
+{"consulta": "lavadora_2 accion A", "soluciones": []}
+{"consulta": "juan notificar_por colada_lista", "soluciones": [{}]}
+{"consulta": "luz_pasillo_5 encender_por M", "soluciones": [{"M": "paso_pasillo"}]}
+{"consulta": "luz_pasillo_5 intensidad I", "soluciones": []}
+{"consulta": "puerta_entrada abrir_por M", "soluciones": [{"M": "entrada_app"}]}
+{"consulta": "R de_turno si, R tipo personal_recepcion, R nombre N", "soluciones": [{"R": "javier", "N": "\"Javier\""}]}
+{"consulta": "luz_techo_514 apagar_por M", "soluciones": [{"M": "alguien_durmiendo"}]}
+{"consulta": "D resultado_dudoso si", "soluciones": []}

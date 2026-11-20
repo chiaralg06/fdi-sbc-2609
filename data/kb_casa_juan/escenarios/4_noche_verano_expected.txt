@@ -1,0 +1,19 @@
+colegio corte_aire V? -> SI
+juan se_va_a_dormir si? -> SI
+persiana_514 bajar_por M? -> SI
+luz_techo_514 apagar_por M? -> SI
+aire_515 encender_por M? -> NO
+aire_515 apagar_por M, M nombre N? -> SI
+aire_515 conflicto M? -> NO
+aire_514 conflicto M? -> SI
+aire_514 gana M? -> SI
+aire_514 resultado A? -> SI
+tv_1 conflicto M? -> SI
+tv_1 gana M, M nombre N? -> SI
+tv_1 resultado A? -> SI
+pistas cerrado si? -> SI
+focos_pistas conflicto M? -> SI
+focos_pistas resultado A? -> SI
+luz_gimnasio accion A? -> SI
+aire_gimnasio accion A? -> SI
+D resultado_dudoso si? -> NO

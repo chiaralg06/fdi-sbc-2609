@@ -1,0 +1,53 @@
+# Qué pasa dentro de una habitación: descanso, despertar, estudio y clima.
+#
+# La idea principal: en una habitación doble lo compartido (luz del techo,
+# persiana) respeta al que duerme, y lo personal (la luz de cada cama) es de
+# cada uno. Así Juan puede estudiar o levantarse sin despertar a Nico.
+# Todas las reglas usan clases de dispositivo, nunca dispositivos concretos.
+
+# ---------- Descanso ----------
+# Si alguien duerme en la habitación: luz del techo apagada, persiana abajo y
+# nadie entra a limpiar.
+L apagar_por alguien_durmiendo <- H situacion alguien_durmiendo, L tipo luz, L uso compartido, L en_habitacion H.
+D bajar_por alguien_durmiendo <- H situacion alguien_durmiendo, D tipo persiana_motorizada, D en_habitacion H.
+H no_molestar_por alguien_durmiendo <- H situacion alguien_durmiendo.
+# Y la luz personal del que duerme, también apagada.
+L apagar_por alguien_durmiendo <- P estado dormido, L pertenece_a P, L tipo luz.
+
+# ---------- Despertar ----------
+# Suena el despertador: se enciende su luz personal, sube la persiana y se
+# enciende el calientatoallas para la ducha.
+L encender_por despertar <- P despierta si, L pertenece_a P, L tipo luz.
+D subir_por despertar <- P despierta si, P ubicacion H, D tipo persiana_motorizada, D en_habitacion H.
+T encender_por despertar <- P despierta si, P ubicacion H, T tipo toallero_electrico, T en_habitacion H.
+
+# ---------- Acostarse ----------
+D bajar_por acostarse <- P se_va_a_dormir si, P ubicacion H, D tipo persiana_motorizada, D en_habitacion H.
+L apagar_por acostarse <- P se_va_a_dormir si, P ubicacion H, L tipo luz_techo, L en_habitacion H.
+
+# ---------- Estudio en la habitación ----------
+# Quien estudia quiere su luz y la del techo, y que no entren a limpiar.
+L encender_por estudio_en_curso <- P estado estudiando, L pertenece_a P, L tipo luz.
+L encender_por estudio_en_curso <- P estado estudiando, P ubicacion H, H tipo habitacion, L tipo luz_techo, L en_habitacion H.
+H no_molestar_por estudio_en_curso <- P estado estudiando, P ubicacion H, H tipo habitacion.
+
+# Si de noche estudia mientras su compañero duerme, la luz del techo se
+# queda apagada (manda el descanso): la app le avisa y le propone una sala de
+# estudio abierta. De día no hace falta, porque el estudio va por delante de
+# la siesta. (El que estudia no puede ser el que duerme, así que no hace falta
+# decir "otra persona".)
+P notificar_por alguien_durmiendo <- colegio periodo horario_nocturno, P estado estudiando, P ubicacion H, H situacion alguien_durmiendo.
+P sugerencia E <- colegio periodo horario_nocturno, P estado estudiando, P ubicacion H, H situacion alguien_durmiendo, E tipo zona_estudio, E abierto si.
+
+# ---------- Clima ----------
+# La calefacción es automática: en invierno, si el termostato detecta frío.
+D encender_por frio <- colegio estacion invierno, S detecta frio, S tipo sensor_temperatura, S en_habitacion H, D tipo radiador, D en_habitacion H.
+
+# El aire se enciende solo si hace calor y hay alguien, pero no durante el
+# corte nocturno: de madrugada solo se enciende si alguien lo pide desde la
+# app. Por eso esta regla exige "corte_aire no" (sin negación, el "no" está
+# escrito en las franjas).
+D encender_por calor <- colegio estacion verano, colegio corte_aire no, S detecta calor, S tipo sensor_temperatura, S en_habitacion H, P ubicacion H, D tipo aire_acondicionado, D en_habitacion H.
+
+# Corte nocturno del aire de las habitaciones.
+D apagar_por corte_nocturno <- colegio corte_aire si, D tipo aire_acondicionado, D en_habitacion H.

@@ -1,0 +1,18 @@
+luz_juan accion A? -> SI
+luz_techo_514 conflicto M? -> SI
+luz_techo_514 gana M? -> SI
+luz_techo_514 resultado A? -> SI
+luz_nico accion A? -> SI
+persiana_514 bajar_por M? -> SI
+hab_514 no_molestar_por M? -> SI
+juan notificar_por M, M nombre N? -> SI
+juan sugerencia E, E nombre N? -> SI
+sala_estudio abierto si? -> SI
+luz_techo_514 conflicto M? -> SI
+luz_techo_514 pierde M? -> SI
+luz_techo_514 resultado A? -> SI
+nico puede_controlar luz_juan? -> NO
+luz_juan encender_por M? -> SI
+luz_sala_estudio encender_por M? -> SI
+lucia notificar_por M? -> NO
+D resultado_dudoso si? -> NO

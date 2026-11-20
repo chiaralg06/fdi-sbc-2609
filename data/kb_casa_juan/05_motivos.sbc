@@ -1,0 +1,100 @@
+# Acciones, motivos y prioridades.
+#
+# Cada acción que deduce la base se guarda como "D <verbo>_por M": el
+# dispositivo, espacio o persona D hace esa acción por el motivo M
+# ("luz_techo_514 apagar_por alguien_durmiendo"). Así cada conclusión lleva
+# pegada su explicación, y el nombre del motivo la cuenta en castellano.
+#
+# Cada motivo pertenece a una categoría, y las categorías tienen un orden.
+# Cuando dos motivos piden acciones opuestas sobre lo mismo, gana el de la
+# categoría más importante (12_reglas_situaciones.sbc). Ese orden no es fijo:
+# el descanso cambia de sitio según sea de día o de noche.
+
+# ---------- Acciones ----------
+encender_por verbo encender.
+apagar_por verbo apagar.
+subir_por verbo subir.
+bajar_por verbo bajar.
+abrir_por verbo abrir.
+limpiar_por verbo limpiar.
+no_molestar_por verbo no_molestar.
+notificar_por verbo notificar.
+
+# Acciones incompatibles sobre lo mismo (en los dos sentidos)
+encender_por opuesto apagar_por, apagar_por opuesto encender_por.
+subir_por opuesto bajar_por, bajar_por opuesto subir_por.
+limpiar_por opuesto no_molestar_por, no_molestar_por opuesto limpiar_por.
+
+# ---------- Prioridades fijas ----------
+# De más a menos importante. Solo se escribe cada escalón con el siguiente;
+# la regla "prevalece_sobre" deduce el resto. El descanso no aparece aquí:
+# su sitio depende de la hora (más abajo).
+#
+# - Lo que pide un colegial desde la app se cumple salvo que moleste al
+#   estudio (o, de noche, al descanso).
+# - Las normas del colegio que solo buscan ahorrar (el corte del aire de
+#   madrugada) ceden ante una petición: el propio colegio deja encender el
+#   aire desde el móvil.
+seguridad por_encima_de estudio.
+estudio por_encima_de peticion.
+peticion por_encima_de norma_colegio.
+norma_colegio por_encima_de rutina.
+rutina por_encima_de confort.
+confort por_encima_de ahorro.
+ahorro por_encima_de aviso.
+
+# ---------- Prioridades según la hora: el descanso ----------
+# Cada escalón que solo vale en un horario es un hecho con nombre: dice qué
+# categoría queda arriba, cuál abajo y por qué. La regla de
+# 10_reglas_generales.sbc lo convierte en "por_encima_de" cuando el colegio
+# está en ese horario.
+#
+#   noche: seguridad > descanso > estudio > peticion > norma_colegio > ...
+#   día:   seguridad > estudio > peticion > descanso > norma_colegio > ...
+#
+# De noche, el que duerme manda: el que estudia tiene su luz personal y la
+# sala de estudio, abierta las 24 horas. De día la habitación es también
+# para estudiar: una siesta no deja a oscuras al compañero, ni le impide
+# subir la persiana desde la app. Aun así, de día el descanso sigue por
+# encima de las normas y las rutinas (la limpieza espera).
+horario_nocturno escalon noche_seguridad_descanso, horario_nocturno escalon noche_descanso_estudio.
+noche_seguridad_descanso arriba seguridad, noche_seguridad_descanso abajo descanso.
+noche_seguridad_descanso nombre "La seguridad va siempre primero".
+noche_descanso_estudio arriba descanso, noche_descanso_estudio abajo estudio.
+noche_descanso_estudio nombre "De noche, dormir va antes que estudiar".
+
+horario_diurno escalon dia_peticion_descanso, horario_diurno escalon dia_descanso_norma.
+dia_peticion_descanso arriba peticion, dia_peticion_descanso abajo descanso.
+dia_peticion_descanso nombre "De día, lo que se pide desde la app va antes que la siesta".
+dia_descanso_norma arriba descanso, dia_descanso_norma abajo norma_colegio.
+dia_descanso_norma nombre "Aun de día, no se molesta al que duerme por una norma o una rutina".
+
+# ---------- Motivos ----------
+paso_pasillo categoria seguridad, paso_pasillo nombre "Alguien camina por el pasillo".
+
+alguien_durmiendo categoria descanso, alguien_durmiendo nombre "Alguien duerme en la habitación".
+silencio_nocturno categoria descanso, silencio_nocturno nombre "Silencio nocturno a partir de las 00:00".
+
+estudio_en_curso categoria estudio, estudio_en_curso nombre "Alguien está estudiando".
+examenes categoria estudio, examenes nombre "Época de exámenes".
+
+peticion_app categoria peticion, peticion_app nombre "Lo pide un colegial desde la app".
+pago_app categoria peticion, pago_app nombre "Pagado desde el móvil".
+entrada_app categoria peticion, entrada_app nombre "Un colegial abre con la app".
+
+corte_nocturno categoria norma_colegio, corte_nocturno nombre "El aire de las habitaciones se apaga de madrugada".
+fuera_de_horario categoria norma_colegio, fuera_de_horario nombre "El espacio está cerrado a esta hora".
+
+despertar categoria rutina, despertar nombre "Ha sonado el despertador".
+acostarse categoria rutina, acostarse nombre "Es la hora de acostarse".
+limpieza_programada categoria rutina, limpieza_programada nombre "Toca limpiar las habitaciones".
+
+frio categoria confort, frio nombre "Hace frío en la habitación".
+calor categoria confort, calor nombre "Hace calor en la habitación".
+uso_espacio categoria confort, uso_espacio nombre "Hay alguien usando la sala".
+
+espacio_vacio categoria ahorro, espacio_vacio nombre "No hay nadie en la sala".
+
+comedor_cerrado categoria aviso, comedor_cerrado nombre "El comedor está cerrado a esta hora".
+colada_lista categoria aviso, colada_lista nombre "La colada ha terminado".
+visita_llegada categoria aviso, visita_llegada nombre "Ha llegado una visita".

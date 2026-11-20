@@ -1,0 +1,20 @@
+colegio visitas_a_habitacion V? -> SI
+ana familiar_de juan? -> SI
+ana puede_subir V? -> SI
+ana puede_ir_a E? -> SI
+pedro familiar_de nico? -> NO
+pedro puede_subir V? -> SI
+pedro puede_ir_a E? -> SI
+juan notificar_por M? -> SI
+nico notificar_por M? -> SI
+R notificar_por visita_llegada, R tipo personal_recepcion, R nombre N? -> SI
+pilar de_turno si? -> SI
+H limpiar_por limpieza_programada? -> SI
+hab_514 conflicto M? -> SI
+hab_514 resultado A? -> SI
+hab_515 gana M? -> SI
+hab_515 resultado A? -> SI
+hab_301 accion A? -> SI
+hab_301 conflicto M? -> NO
+nico sugerencia E? -> SI
+D resultado_dudoso si? -> NO

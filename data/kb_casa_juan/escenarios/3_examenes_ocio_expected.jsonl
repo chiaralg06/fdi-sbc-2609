@@ -1,0 +1,17 @@
+{"consulta": "colegio franja F", "soluciones": [{"F": "tarde"}]}
+{"consulta": "colegio silencio si", "soluciones": []}
+{"consulta": "altavoz_juegos apagar_por M", "soluciones": [{"M": "examenes"}]}
+{"consulta": "alvaro puede_controlar altavoz_juegos", "soluciones": [{}]}
+{"consulta": "altavoz_juegos conflicto M", "soluciones": [{"M": "examenes"}, {"M": "peticion_app"}]}
+{"consulta": "altavoz_juegos gana M, M nombre N", "soluciones": [{"M": "examenes", "N": "\"Época de exámenes\""}]}
+{"consulta": "altavoz_juegos resultado A", "soluciones": [{"A": "apagar"}]}
+{"consulta": "tv_1 accion A", "soluciones": [{"A": "encender"}]}
+{"consulta": "tv_1 conflicto M", "soluciones": []}
+{"consulta": "tv_1 volumen V", "soluciones": [{"V": "bajo"}]}
+{"consulta": "tv_2 volumen V", "soluciones": [{"V": "bajo"}]}
+{"consulta": "luz_sala_juegos encender_por M", "soluciones": [{"M": "uso_espacio"}]}
+{"consulta": "luz_sala_estudio conflicto M", "soluciones": [{"M": "espacio_vacio"}, {"M": "examenes"}]}
+{"consulta": "luz_sala_estudio resultado A", "soluciones": [{"A": "encender"}]}
+{"consulta": "D apagar_por espacio_vacio, D esta_en gimnasio", "soluciones": [{"D": "aire_gimnasio"}, {"D": "luz_gimnasio"}]}
+{"consulta": "luz_gimnasio conflicto M", "soluciones": []}
+{"consulta": "D resultado_dudoso si", "soluciones": []}

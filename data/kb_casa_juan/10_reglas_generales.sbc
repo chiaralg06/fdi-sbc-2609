@@ -1,0 +1,39 @@
+# Reglas generales: clases, dónde está cada cosa, parentesco y prioridades.
+# Funcionan con razona si! (hacia atrás) y con descubre! (hacia delante).
+
+# ---------- Clases ----------
+# C hereda_de D: C es una subclase de D, directa o indirecta.
+C hereda_de D <- C subclase_de D.
+C hereda_de E <- C subclase_de D, D hereda_de E.
+
+# X tipo C: X es de la clase C o de alguna subclase suya. La recursión baja
+# desde C por sus subclases, así que preguntar "qué cosas son luces" solo
+# recorre lo que cuelga de "luz", no todos los objetos del colegio.
+X tipo C <- X es_un C.
+X tipo C <- D subclase_de C, X tipo D.
+
+# ---------- Dónde está cada cosa ----------
+# Planta de cada cosa: la de la estancia donde está. Los baños no dicen su
+# planta: es la de la habitación de la que son parte.
+X en_planta P <- X esta_en E, E en_planta P.
+B en_planta P <- B parte_de H, H en_planta P.
+
+# Lo que está en una habitación, incluido su baño.
+D en_habitacion H <- D esta_en H, H tipo habitacion.
+D en_habitacion H <- D esta_en B, B parte_de H, H tipo habitacion.
+
+# ---------- Parentesco ----------
+# Ser familiar decide si una visita puede subir a la habitación.
+X familiar_de Y <- X madre_de Y.
+X familiar_de Y <- X padre_de Y.
+X familiar_de Y <- X primo_de Y.
+
+# ---------- Prioridades ----------
+# Los escalones que dependen de la hora valen solo en su horario
+# (05_motivos.sbc). Se empieza por el horario del colegio para no recorrer
+# todos los escalones.
+C1 por_encima_de C2 <- colegio periodo P, P escalon E, E arriba C1, E abajo C2.
+
+# Orden completo a partir de los escalones "por_encima_de".
+C1 prevalece_sobre C2 <- C1 por_encima_de C2.
+C1 prevalece_sobre C3 <- C1 por_encima_de C2, C2 prevalece_sobre C3.

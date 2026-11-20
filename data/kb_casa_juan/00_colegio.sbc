@@ -1,0 +1,69 @@
+# Base de conocimiento de Juan: su colegio mayor.
+# El edificio, sus plantas y los espacios de cada planta.
+#
+# Términos SIN tildes (fuera de comillas el parser solo admite letras ASCII,
+# dígitos, "_", ":" y "ñ"). Los nombres con tildes van entre comillas con
+# el predicado "nombre".
+#
+# Cada espacio dice de qué clase es y en qué planta está. Las reglas trabajan
+# con las clases (zona_ocio, zona_estudio, habitacion...), nunca con espacios
+# concretos: añadir una sala o una habitación nueva solo pide escribirla aquí.
+
+colegio es_un colegio_mayor, colegio nombre "Colegio mayor".
+
+# ---------- Plantas ----------
+# Planta baja con todos los servicios, una entreplanta de ocio y siete
+# plantas de habitaciones.
+planta_baja es_un planta_servicios, planta_baja parte_de colegio, planta_baja nombre "Planta baja".
+entreplanta es_un planta_ocio, entreplanta parte_de colegio, entreplanta nombre "Entreplanta".
+planta_1 es_un planta_habitaciones, planta_1 parte_de colegio, planta_1 nombre "Planta 1".
+planta_2 es_un planta_habitaciones, planta_2 parte_de colegio, planta_2 nombre "Planta 2".
+planta_3 es_un planta_habitaciones, planta_3 parte_de colegio, planta_3 nombre "Planta 3".
+planta_4 es_un planta_habitaciones, planta_4 parte_de colegio, planta_4 nombre "Planta 4".
+planta_5 es_un planta_habitaciones, planta_5 parte_de colegio, planta_5 nombre "Planta 5".
+planta_6 es_un planta_habitaciones, planta_6 parte_de colegio, planta_6 nombre "Planta 6".
+planta_7 es_un planta_habitaciones, planta_7 parte_de colegio, planta_7 nombre "Planta 7".
+
+# ---------- Planta baja: servicios ----------
+recepcion es_un punto_atencion, recepcion en_planta planta_baja, recepcion nombre "Recepción".
+comedor es_un servicio_comida, comedor en_planta planta_baja, comedor nombre "Comedor".
+cafeteria es_un servicio_comida, cafeteria en_planta planta_baja, cafeteria nombre "Cafetería".
+gimnasio es_un instalacion_deportiva, gimnasio en_planta planta_baja, gimnasio nombre "Gimnasio".
+pistas es_un instalacion_deportiva, pistas es_un exterior, pistas en_planta planta_baja, pistas nombre "Pistas deportivas".
+lavanderia es_un servicio_lavanderia, lavanderia en_planta planta_baja, lavanderia nombre "Lavandería".
+sala_estudio es_un zona_estudio, sala_estudio en_planta planta_baja, sala_estudio nombre "Sala de estudio".
+
+# El comedor entra en la pensión del colegio; la cafetería se paga aparte.
+comedor comida_incluida si.
+
+# Dónde pueden esperar las visitas que no suben a las habitaciones.
+recepcion admite_visitas si.
+cafeteria admite_visitas si.
+pistas admite_visitas si.
+
+# ---------- Entreplanta: ocio ----------
+sala_juegos es_un zona_ocio, sala_juegos en_planta entreplanta, sala_juegos nombre "Sala de juegos".
+sala_tv es_un zona_ocio, sala_tv en_planta entreplanta, sala_tv nombre "Sala de televisión".
+
+# ---------- Plantas de habitaciones ----------
+# Solo se escriben las habitaciones que usa la base. Cada una tiene su baño,
+# que es "parte_de" la habitación.
+pasillo_3 es_un zona_paso, pasillo_3 en_planta planta_3, pasillo_3 nombre "Pasillo de la planta 3".
+pasillo_5 es_un zona_paso, pasillo_5 en_planta planta_5, pasillo_5 nombre "Pasillo de la planta 5".
+pasillo_7 es_un zona_paso, pasillo_7 en_planta planta_7, pasillo_7 nombre "Pasillo de la planta 7".
+
+# La de Juan y Nico
+hab_514 es_un habitacion_doble, hab_514 en_planta planta_5, hab_514 nombre "Habitación 514".
+baño_514 es_un baño_privado, baño_514 parte_de hab_514, baño_514 nombre "Baño de la 514".
+
+hab_515 es_un habitacion_doble, hab_515 en_planta planta_5, hab_515 nombre "Habitación 515".
+baño_515 es_un baño_privado, baño_515 parte_de hab_515, baño_515 nombre "Baño de la 515".
+
+hab_301 es_un habitacion_individual, hab_301 en_planta planta_3, hab_301 nombre "Habitación 301".
+baño_301 es_un baño_privado, baño_301 parte_de hab_301, baño_301 nombre "Baño de la 301".
+
+hab_704 es_un habitacion_individual, hab_704 en_planta planta_7, hab_704 nombre "Habitación 704".
+baño_704 es_un baño_privado, baño_704 parte_de hab_704, baño_704 nombre "Baño de la 704".
+
+# ---------- Fuera del colegio ----------
+universidad es_un lugar_externo, universidad nombre "Universidad".

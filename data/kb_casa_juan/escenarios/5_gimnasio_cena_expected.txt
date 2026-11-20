@@ -1,0 +1,18 @@
+colegio franja F? -> SI
+gimnasio abierto si? -> SI
+luz_gimnasio encender_por M? -> SI
+aire_gimnasio encender_por M? -> SI
+aire_gimnasio apagar_por M? -> NO
+comedor abierto si? -> NO
+comedor cerrado si? -> SI
+juan notificar_por M, M nombre N? -> SI
+juan sugerencia E? -> SI
+lavadora_1 encender_por M, M nombre N? -> SI
+lavadora_2 accion A? -> NO
+juan notificar_por colada_lista? -> SI
+luz_pasillo_5 encender_por M? -> SI
+luz_pasillo_5 intensidad I? -> NO
+puerta_entrada abrir_por M? -> SI
+R de_turno si, R tipo personal_recepcion, R nombre N? -> SI
+luz_techo_514 apagar_por M? -> SI
+D resultado_dudoso si? -> NO

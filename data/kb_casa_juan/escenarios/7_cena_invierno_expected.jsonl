@@ -1,0 +1,14 @@
+{"consulta": "colegio franja F, F nombre N", "soluciones": [{"F": "cena", "N": "\"Cena, de 20:30 a 22:30\""}]}
+{"consulta": "comedor abierto si", "soluciones": [{}]}
+{"consulta": "juan sugerencia E", "soluciones": [{"E": "comedor"}]}
+{"consulta": "juan notificar_por comedor_cerrado", "soluciones": []}
+{"consulta": "carlos familiar_de nico", "soluciones": [{}]}
+{"consulta": "carlos puede_subir V", "soluciones": [{"V": "no"}]}
+{"consulta": "carlos puede_ir_a E", "soluciones": [{"E": "cafeteria"}, {"E": "pistas"}, {"E": "recepcion"}]}
+{"consulta": "nico notificar_por M", "soluciones": [{"M": "visita_llegada"}]}
+{"consulta": "R notificar_por visita_llegada, R nombre N", "soluciones": [{"R": "andres", "N": "\"Andrés\""}, {"R": "nico", "N": "\"Nico\""}]}
+{"consulta": "persiana_514 bajar_por M", "soluciones": [{"M": "peticion_app"}]}
+{"consulta": "persiana_514 conflicto M", "soluciones": []}
+{"consulta": "radiador_514 encender_por M", "soluciones": [{"M": "frio"}]}
+{"consulta": "P ubicacion comedor, P nombre N", "soluciones": [{"P": "juan", "N": "\"Juan\""}]}
+{"consulta": "D resultado_dudoso si", "soluciones": []}

@@ -1,0 +1,18 @@
+{"consulta": "luz_juan accion A", "soluciones": [{"A": "encender"}]}
+{"consulta": "luz_techo_514 conflicto M", "soluciones": [{"M": "alguien_durmiendo"}, {"M": "estudio_en_curso"}]}
+{"consulta": "luz_techo_514 gana M", "soluciones": [{"M": "alguien_durmiendo"}]}
+{"consulta": "luz_techo_514 resultado A", "soluciones": [{"A": "apagar"}]}
+{"consulta": "luz_nico accion A", "soluciones": [{"A": "apagar"}]}
+{"consulta": "persiana_514 bajar_por M", "soluciones": [{"M": "alguien_durmiendo"}]}
+{"consulta": "hab_514 no_molestar_por M", "soluciones": [{"M": "alguien_durmiendo"}, {"M": "estudio_en_curso"}]}
+{"consulta": "juan notificar_por M, M nombre N", "soluciones": [{"M": "alguien_durmiendo", "N": "\"Alguien duerme en la habitación\""}]}
+{"consulta": "juan sugerencia E, E nombre N", "soluciones": [{"E": "sala_estudio", "N": "\"Sala de estudio\""}]}
+{"consulta": "sala_estudio abierto si", "soluciones": [{}]}
+{"consulta": "luz_techo_514 conflicto M", "soluciones": [{"M": "alguien_durmiendo"}, {"M": "estudio_en_curso"}, {"M": "peticion_app"}]}
+{"consulta": "luz_techo_514 pierde M", "soluciones": [{"M": "estudio_en_curso"}, {"M": "peticion_app"}]}
+{"consulta": "luz_techo_514 resultado A", "soluciones": [{"A": "apagar"}]}
+{"consulta": "nico puede_controlar luz_juan", "soluciones": []}
+{"consulta": "luz_juan encender_por M", "soluciones": [{"M": "estudio_en_curso"}]}
+{"consulta": "luz_sala_estudio encender_por M", "soluciones": [{"M": "uso_espacio"}]}
+{"consulta": "lucia notificar_por M", "soluciones": []}
+{"consulta": "D resultado_dudoso si", "soluciones": []}

@@ -1,0 +1,16 @@
+colegio periodo P, P nombre N? -> SI
+C prevalece_sobre descanso? -> SI
+descanso prevalece_sobre C? -> SI
+colegio periodo P, P escalon E, E nombre N? -> SI
+luz_techo_514 conflicto M? -> SI
+luz_techo_514 gana M, M nombre N? -> SI
+luz_techo_514 resultado A? -> SI
+juan notificar_por M? -> NO
+juan sugerencia E? -> NO
+persiana_514 bajar_por M? -> SI
+persiana_514 conflicto M? -> SI
+persiana_514 gana M? -> SI
+persiana_514 resultado A? -> SI
+luz_nico accion A? -> SI
+hab_514 no_molestar_por M? -> SI
+D resultado_dudoso si? -> NO

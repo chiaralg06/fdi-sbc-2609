@@ -1,0 +1,20 @@
+{"consulta": "colegio visitas_a_habitacion V", "soluciones": [{"V": "si"}]}
+{"consulta": "ana familiar_de juan", "soluciones": [{}]}
+{"consulta": "ana puede_subir V", "soluciones": [{"V": "si"}]}
+{"consulta": "ana puede_ir_a E", "soluciones": [{"E": "cafeteria"}, {"E": "hab_514"}, {"E": "pistas"}, {"E": "recepcion"}]}
+{"consulta": "pedro familiar_de nico", "soluciones": []}
+{"consulta": "pedro puede_subir V", "soluciones": [{"V": "no"}]}
+{"consulta": "pedro puede_ir_a E", "soluciones": [{"E": "cafeteria"}, {"E": "pistas"}, {"E": "recepcion"}]}
+{"consulta": "juan notificar_por M", "soluciones": [{"M": "visita_llegada"}]}
+{"consulta": "nico notificar_por M", "soluciones": [{"M": "visita_llegada"}]}
+{"consulta": "R notificar_por visita_llegada, R tipo personal_recepcion, R nombre N", "soluciones": [{"R": "rosa", "N": "\"Rosa\""}]}
+{"consulta": "pilar de_turno si", "soluciones": [{}]}
+{"consulta": "H limpiar_por limpieza_programada", "soluciones": [{"H": "hab_301"}, {"H": "hab_514"}, {"H": "hab_515"}, {"H": "hab_704"}]}
+{"consulta": "hab_514 conflicto M", "soluciones": [{"M": "estudio_en_curso"}, {"M": "limpieza_programada"}]}
+{"consulta": "hab_514 resultado A", "soluciones": [{"A": "no_molestar"}]}
+{"consulta": "hab_515 gana M", "soluciones": [{"M": "alguien_durmiendo"}]}
+{"consulta": "hab_515 resultado A", "soluciones": [{"A": "no_molestar"}]}
+{"consulta": "hab_301 accion A", "soluciones": [{"A": "limpiar"}]}
+{"consulta": "hab_301 conflicto M", "soluciones": []}
+{"consulta": "nico sugerencia E", "soluciones": [{"E": "cafeteria"}]}
+{"consulta": "D resultado_dudoso si", "soluciones": []}

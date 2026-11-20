@@ -1,0 +1,14 @@
+colegio franja F, F nombre N? -> SI
+comedor abierto si? -> SI
+juan sugerencia E? -> SI
+juan notificar_por comedor_cerrado? -> NO
+carlos familiar_de nico? -> SI
+carlos puede_subir V? -> SI
+carlos puede_ir_a E? -> SI
+nico notificar_por M? -> SI
+R notificar_por visita_llegada, R nombre N? -> SI
+persiana_514 bajar_por M? -> SI
+persiana_514 conflicto M? -> NO
+radiador_514 encender_por M? -> SI
+P ubicacion comedor, P nombre N? -> SI
+D resultado_dudoso si? -> NO

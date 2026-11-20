@@ -1,0 +1,30 @@
+{"consulta": "E en_planta planta_baja, E nombre N", "soluciones": [{"E": "cafeteria", "N": "\"Cafetería\""}, {"E": "comedor", "N": "\"Comedor\""}, {"E": "gimnasio", "N": "\"Gimnasio\""}, {"E": "lavanderia", "N": "\"Lavandería\""}, {"E": "pistas", "N": "\"Pistas deportivas\""}, {"E": "recepcion", "N": "\"Recepción\""}, {"E": "sala_estudio", "N": "\"Sala de estudio\""}]}
+{"consulta": "P vive_en hab_514, P nombre N", "soluciones": [{"P": "juan", "N": "\"Juan\""}, {"P": "nico", "N": "\"Nico\""}]}
+{"consulta": "juan R X", "soluciones": [{"R": "despertador", "X": "h0900"}, {"R": "entrena_en", "X": "gimnasio"}, {"R": "es_un", "X": "colegial"}, {"R": "estudia_en", "X": "hab_514"}, {"R": "nombre", "X": "\"Juan\""}, {"R": "primo_de", "X": "nico"}, {"R": "se_acuesta", "X": "h0100"}, {"R": "vive_en", "X": "hab_514"}]}
+{"consulta": "E horario continuo", "soluciones": [{"E": "cafeteria"}, {"E": "gimnasio"}, {"E": "lavanderia"}, {"E": "recepcion"}, {"E": "sala_estudio"}, {"E": "sala_juegos"}, {"E": "sala_tv"}]}
+{"consulta": "comedor abre_en F, F nombre N", "soluciones": [{"F": "cena", "N": "\"Cena, de 20:30 a 22:30\""}, {"F": "comida", "N": "\"Comida, de 13:30 a 15:30\""}, {"F": "desayuno", "N": "\"Desayuno, de 07:30 a 10:30\""}]}
+{"consulta": "juan tipo persona", "soluciones": []}
+{"consulta": "X en_habitacion hab_514", "soluciones": []}
+{"consulta": "juan tipo C", "soluciones": [{"C": "colegial"}, {"C": "persona"}, {"C": "residente"}]}
+{"consulta": "hab_514 tipo C", "soluciones": [{"C": "espacio"}, {"C": "espacio_privado"}, {"C": "habitacion"}, {"C": "habitacion_doble"}]}
+{"consulta": "X tipo zona_actividad, X nombre N", "soluciones": [{"X": "gimnasio", "N": "\"Gimnasio\""}, {"X": "pistas", "N": "\"Pistas deportivas\""}, {"X": "sala_estudio", "N": "\"Sala de estudio\""}, {"X": "sala_juegos", "N": "\"Sala de juegos\""}, {"X": "sala_tv", "N": "\"Sala de televisión\""}]}
+{"consulta": "X tipo persona, X tipo personal, X nombre N", "soluciones": [{"X": "andres", "N": "\"Andrés\""}, {"X": "carmen", "N": "\"Carmen\""}, {"X": "javier", "N": "\"Javier\""}, {"X": "manolo", "N": "\"Manolo\""}, {"X": "pilar", "N": "\"Pilar\""}, {"X": "rosa", "N": "\"Rosa\""}]}
+{"consulta": "D tipo luz, D en_habitacion hab_514", "soluciones": [{"D": "luz_juan"}, {"D": "luz_nico"}, {"D": "luz_techo_514"}]}
+{"consulta": "toallero_514 en_habitacion H", "soluciones": [{"H": "hab_514"}]}
+{"consulta": "toallero_514 en_planta P", "soluciones": [{"P": "planta_5"}]}
+{"consulta": "D tipo controlable, D en_planta planta_5", "soluciones": [{"D": "aire_514"}, {"D": "aire_515"}, {"D": "luz_juan"}, {"D": "luz_nico"}, {"D": "luz_pasillo_5"}, {"D": "luz_techo_514"}, {"D": "luz_techo_515"}, {"D": "persiana_514"}, {"D": "persiana_515"}, {"D": "radiador_514"}, {"D": "toallero_514"}]}
+{"consulta": "P vive_en H, H en_planta planta_5, P nombre N", "soluciones": [{"P": "alvaro", "H": "hab_515", "N": "\"Álvaro\""}, {"P": "juan", "H": "hab_514", "N": "\"Juan\""}, {"P": "marcos", "H": "hab_515", "N": "\"Marcos\""}, {"P": "nico", "H": "hab_514", "N": "\"Nico\""}]}
+{"consulta": "X familiar_de juan", "soluciones": [{"X": "ana"}, {"X": "nico"}]}
+{"consulta": "X familiar_de nico", "soluciones": [{"X": "carlos"}, {"X": "juan"}]}
+{"consulta": "juan puede_controlar D", "soluciones": [{"D": "aire_514"}, {"D": "altavoz_juegos"}, {"D": "luz_juan"}, {"D": "luz_techo_514"}, {"D": "persiana_514"}, {"D": "radiador_514"}, {"D": "toallero_514"}, {"D": "tv_1"}, {"D": "tv_2"}]}
+{"consulta": "nico puede_controlar luz_juan", "soluciones": []}
+{"consulta": "alvaro puede_controlar persiana_514", "soluciones": []}
+{"consulta": "alvaro puede_controlar tv_1", "soluciones": [{}]}
+{"consulta": "descanso prevalece_sobre C", "soluciones": []}
+{"consulta": "C prevalece_sobre norma_colegio", "soluciones": [{"C": "estudio"}, {"C": "peticion"}, {"C": "seguridad"}]}
+{"consulta": "confort prevalece_sobre rutina", "soluciones": []}
+{"consulta": "colegio franja F", "soluciones": []}
+{"consulta": "comedor abierto si", "soluciones": []}
+{"consulta": "E abierto si", "soluciones": [{"E": "cafeteria"}, {"E": "gimnasio"}, {"E": "lavanderia"}, {"E": "recepcion"}, {"E": "sala_estudio"}, {"E": "sala_juegos"}, {"E": "sala_tv"}]}
+{"consulta": "D accion A", "soluciones": []}
+{"consulta": "juan tipo persona", "soluciones": []}
