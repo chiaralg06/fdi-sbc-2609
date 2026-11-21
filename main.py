@@ -155,11 +155,25 @@ class KB:
         """Genera cada sustitución de variables que satisface TODAS las tripletas
         de `preguntas` a la vez (una por cada solución distinta). Con
         `razona si!` usa también las reglas (encadenamiento hacia atrás)."""
+        for sustitucion_final, _ in self.resolver_con_prueba(preguntas, sustitucion):
+            yield sustitucion_final
+
+    def resolver_con_prueba(self, preguntas, sustitucion=None):
+        """Igual que `resolver`, pero cada solución va acompañada de su prueba:
+        la lista de pasos (nivel, objetivo, regla) en el orden en que se fueron
+        demostrando. `regla` es None si el objetivo se demostró con un hecho;
+        `nivel` es la profundidad (0 = lo preguntado, 1 = lo que pide la regla
+        usada para ello, ...)."""
         if sustitucion is None:
             sustitucion = {}
+        yield from self._demuestra(preguntas, sustitucion, (0,) * len(preguntas), ())
 
+    def _demuestra(self, preguntas, sustitucion, niveles, prueba):
+        """Cuerpo recursivo de resolver. `niveles` lleva la profundidad de cada
+        pregunta pendiente (en paralelo a `preguntas`) y `prueba` los pasos ya
+        dados en esta rama (una tupla: cada rama del backtracking tiene la suya)."""
         if not preguntas:  # caso base de la recursión
-            yield sustitucion
+            yield sustitucion, prueba
             return
 
         sujeto, predicado, objeto = preguntas[0]
@@ -189,7 +203,11 @@ class KB:
                 if nueva_sustitucion is None:
                     continue
 
-                yield from self.resolver(resto, nueva_sustitucion)
+                # hecho: la pregunta queda demostrada, se sigue con el resto
+                paso = (niveles[0], preguntas[0], None)
+                yield from self._demuestra(
+                    resto, nueva_sustitucion, niveles[1:], prueba + (paso,)
+                )
 
         # 2) Con las reglas (razona si!): si un consecuente encaja con la
         # pregunta, se cambia la pregunta por el antecedente de la regla.
@@ -202,7 +220,14 @@ class KB:
                         preguntas[0], hecho, sustitucion
                     )
                     if nueva_sustitucion is not None:
-                        yield from self.resolver(antecedente + resto, nueva_sustitucion)
+                        # regla: el antecedente baja un nivel respecto a la pregunta
+                        paso = (niveles[0], preguntas[0], regla)
+                        yield from self._demuestra(
+                            antecedente + resto,
+                            nueva_sustitucion,
+                            (niveles[0] + 1,) * len(antecedente) + niveles[1:],
+                            prueba + (paso,),
+                        )
 
     def descubrir(self):
         """Aplica las reglas hasta que no salen hechos nuevos, y devuelve
@@ -258,18 +283,65 @@ def imprime_soluciones(hechos, soluciones):
         )
 
 
+def imprime_pruebas(hechos, pruebas):
+    """explica si!: por stderr, la cadena de razonamiento de cada respuesta
+    distinta (la primera prueba que se encontró para ella). Cada línea es un
+    objetivo ya instanciado, con sangría según su nivel, y la razón de que se
+    cumpla: un hecho o la regla usada."""
+    terminos = dict.fromkeys(t for hecho in hechos for t in hecho)
+    variables = [t for t in terminos if es_variable(t) and not t.startswith("_")]
+
+    vistas = set()
+    for sustitucion, prueba in pruebas:
+        respuesta = tuple(valor_de(v, sustitucion) for v in variables)
+        if respuesta in vistas:
+            continue
+        vistas.add(respuesta)
+
+        valores = ", ".join(
+            f"{v} = {sin_comillas(x)}" for v, x in zip(variables, respuesta)
+        )
+        print(f"explica: {a_texto(hechos)}? -> {valores or 'SI'}", file=sys.stderr)
+        for nivel, objetivo, regla in prueba:
+            concreto = " ".join(valor_de(t, sustitucion) for t in objetivo)
+            if regla is None:
+                motivo = "hecho"
+            else:
+                consecuente, antecedente = regla
+                motivo = f"regla {a_texto(consecuente)} <- {a_texto(antecedente)}"
+            print(f"{'    ' * (nivel + 1)}{concreto}   [{motivo}]", file=sys.stderr)
+
+    if not vistas:
+        print(
+            f"explica: {a_texto(hechos)}? -> NO (no se puede demostrar)",
+            file=sys.stderr,
+        )
+
+
 def responde(kb, hechos, jsonl, detalle=False):
     # de cada solución, solo el valor final de las variables de la consulta
     # (las de las reglas, como X#3, son internas)
     terminos = dict.fromkeys(t for hecho in hechos for t in hecho)
     variables = [t for t in terminos if es_variable(t)]
-    soluciones = [{v: valor_de(v, s) for v in variables} for s in kb.resolver(hechos)]
+
+    # explica si! solo tiene sentido razonando: es la cadena de reglas usada
+    pruebas = None
+    if kb.razonar and kb.explicar:
+        pruebas = list(kb.resolver_con_prueba(hechos))
+        sustituciones = [s for s, _ in pruebas]
+    else:
+        sustituciones = kb.resolver(hechos)
+
+    soluciones = [{v: valor_de(v, s) for v in variables} for s in sustituciones]
     if jsonl:
         imprimir_jsonl(hechos, soluciones)
     else:
         print(f"{a_texto(hechos)}? -> {'SI' if soluciones else 'NO'}")
         if detalle:
             imprime_soluciones(hechos, soluciones)
+
+    if pruebas is not None:
+        imprime_pruebas(hechos, pruebas)
 
 
 def procesa(kb, tipo, hechos, jsonl=False, detalle=False):
