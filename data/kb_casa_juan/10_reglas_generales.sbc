@@ -29,10 +29,10 @@ X familiar_de Y <- X padre_de Y.
 X familiar_de Y <- X primo_de Y.
 
 # ---------- Prioridades ----------
-# Los escalones que dependen de la hora valen solo en su horario
-# (05_motivos.sbc). Se empieza por el horario del colegio para no recorrer
-# todos los escalones.
-C1 por_encima_de C2 <- colegio periodo P, P escalon E, E arriba C1, E abajo C2.
+# Los escalones del descanso valen de noche o de día según la hora
+# (05_motivos.sbc).
+C1 por_encima_de C2 <- colegio periodo horario_nocturno, C1 por_encima_de_noche C2.
+C1 por_encima_de C2 <- colegio periodo horario_diurno, C1 por_encima_de_dia C2.
 
 # Orden completo a partir de los escalones "por_encima_de".
 C1 prevalece_sobre C2 <- C1 por_encima_de C2.

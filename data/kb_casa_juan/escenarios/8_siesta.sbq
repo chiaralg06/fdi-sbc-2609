@@ -14,7 +14,6 @@ colegio periodo P, P nombre N?
 # El orden de prioridades de día: el descanso baja por debajo de la app
 C prevalece_sobre descanso?
 descanso prevalece_sobre C?
-colegio periodo P, P escalon E, E nombre N?
 
 # La luz del techo: el estudio gana a la siesta (a las 00:30 era al revés)
 luz_techo_514 conflicto M?

@@ -44,10 +44,7 @@ confort por_encima_de ahorro.
 ahorro por_encima_de aviso.
 
 # ---------- Prioridades según la hora: el descanso ----------
-# Cada escalón que solo vale en un horario es un hecho con nombre: dice qué
-# categoría queda arriba, cuál abajo y por qué. La regla de
-# 10_reglas_generales.sbc lo convierte en "por_encima_de" cuando el colegio
-# está en ese horario.
+# El sitio del descanso cambia de día a noche:
 #
 #   noche: seguridad > descanso > estudio > peticion > norma_colegio > ...
 #   día:   seguridad > estudio > peticion > descanso > norma_colegio > ...
@@ -57,17 +54,11 @@ ahorro por_encima_de aviso.
 # para estudiar: una siesta no deja a oscuras al compañero, ni le impide
 # subir la persiana desde la app. Aun así, de día el descanso sigue por
 # encima de las normas y las rutinas (la limpieza espera).
-horario_nocturno escalon noche_seguridad_descanso, horario_nocturno escalon noche_descanso_estudio.
-noche_seguridad_descanso arriba seguridad, noche_seguridad_descanso abajo descanso.
-noche_seguridad_descanso nombre "La seguridad va siempre primero".
-noche_descanso_estudio arriba descanso, noche_descanso_estudio abajo estudio.
-noche_descanso_estudio nombre "De noche, dormir va antes que estudiar".
+seguridad por_encima_de_noche descanso.
+descanso por_encima_de_noche estudio.
 
-horario_diurno escalon dia_peticion_descanso, horario_diurno escalon dia_descanso_norma.
-dia_peticion_descanso arriba peticion, dia_peticion_descanso abajo descanso.
-dia_peticion_descanso nombre "De día, lo que se pide desde la app va antes que la siesta".
-dia_descanso_norma arriba descanso, dia_descanso_norma abajo norma_colegio.
-dia_descanso_norma nombre "Aun de día, no se molesta al que duerme por una norma o una rutina".
+peticion por_encima_de_dia descanso.
+descanso por_encima_de_dia norma_colegio.
 
 # ---------- Motivos ----------
 paso_pasillo categoria seguridad, paso_pasillo nombre "Alguien camina por el pasillo".

@@ -82,19 +82,19 @@ noche (22:30-07:30): seguridad > descanso > estudio > peticion > norma_colegio >
 día   (07:30-22:30): seguridad > estudio > peticion > descanso > norma_colegio > rutina > confort > ahorro > aviso
 ```
 
-La parte fija se escribe con `por_encima_de`. Los escalones que solo valen
-en un horario son hechos con nombre (`noche_descanso_estudio arriba
-descanso`, `abajo estudio`, `nombre "De noche, dormir va antes que
-estudiar"`), y una regla los activa según la hora del escenario:
+La parte fija se escribe con `por_encima_de`. Los escalones que cambian se
+escriben con `por_encima_de_noche` y `por_encima_de_dia`, y dos reglas usan
+unos u otros según la hora del escenario:
 
 ```
-C1 por_encima_de C2 <- colegio periodo P, P escalon E, E arriba C1, E abajo C2.
+descanso por_encima_de_noche estudio.
+peticion por_encima_de_dia descanso.
+
+C1 por_encima_de C2 <- colegio periodo horario_nocturno, C1 por_encima_de_noche C2.
+C1 por_encima_de C2 <- colegio periodo horario_diurno, C1 por_encima_de_dia C2.
 ```
 
-Así se puede preguntar por qué manda una cosa u otra en cada momento
-(`colegio periodo P, P escalon E, E nombre N?`), y añadir otro contexto
-(por ejemplo, fines de semana) solo pide escribir sus escalones. Sin hora, el
-descanso no tiene sitio en el orden. Algunas decisiones:
+Sin hora, el descanso no tiene sitio en el orden. Algunas decisiones:
 
 - De noche el descanso va por delante del estudio: el que estudia tiene su
   luz personal y la sala de estudio, abierta las 24 horas, y la app se la

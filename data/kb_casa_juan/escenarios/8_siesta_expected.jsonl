@@ -1,7 +1,6 @@
 {"consulta": "colegio periodo P, P nombre N", "soluciones": [{"P": "horario_diurno", "N": "\"Horario diurno, de 07:30 a 22:30\""}]}
 {"consulta": "C prevalece_sobre descanso", "soluciones": [{"C": "estudio"}, {"C": "peticion"}, {"C": "seguridad"}]}
 {"consulta": "descanso prevalece_sobre C", "soluciones": [{"C": "ahorro"}, {"C": "aviso"}, {"C": "confort"}, {"C": "norma_colegio"}, {"C": "rutina"}]}
-{"consulta": "colegio periodo P, P escalon E, E nombre N", "soluciones": [{"P": "horario_diurno", "E": "dia_descanso_norma", "N": "\"Aun de día, no se molesta al que duerme por una norma o una rutina\""}, {"P": "horario_diurno", "E": "dia_peticion_descanso", "N": "\"De día, lo que se pide desde la app va antes que la siesta\""}]}
 {"consulta": "luz_techo_514 conflicto M", "soluciones": [{"M": "alguien_durmiendo"}, {"M": "estudio_en_curso"}]}
 {"consulta": "luz_techo_514 gana M, M nombre N", "soluciones": [{"M": "estudio_en_curso", "N": "\"Alguien está estudiando\""}]}
 {"consulta": "luz_techo_514 resultado A", "soluciones": [{"A": "encender"}]}
