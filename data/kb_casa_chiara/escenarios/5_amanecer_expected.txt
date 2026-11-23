@@ -11,3 +11,4 @@ P notificar_por comedero_vacio? -> SI
 arenero_miko decision A? -> SI
 arenero_miko detener_por M, M nombre N? -> SI
 P notificar_por M, M nombre N? -> SI
+D decision_dudosa si? -> NO

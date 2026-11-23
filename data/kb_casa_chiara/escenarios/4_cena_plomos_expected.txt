@@ -10,3 +10,4 @@ D apagar_por sobrecarga, D nombre N? -> SI
 alexa avisar_por sobrecarga? -> SI
 vitroceramica apagar_por M? -> NO
 horno apagar_por M? -> NO
+D decision_dudosa si? -> NO

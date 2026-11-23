@@ -39,3 +39,6 @@ alexa avisar_por sobrecarga?
 # La vitro y el horno nunca se cortan: no hay dos aparatos más importantes
 vitroceramica apagar_por M?
 horno apagar_por M?
+
+# Ningún dispositivo con decisiones contradictorias
+D decision_dudosa si?

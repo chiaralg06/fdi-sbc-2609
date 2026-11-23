@@ -51,3 +51,6 @@ arenero_miko detener_por M, M nombre N?
 
 arenero_miko detecta lleno.
 P notificar_por M, M nombre N?
+
+# Ningún dispositivo con decisiones contradictorias
+D decision_dudosa si?

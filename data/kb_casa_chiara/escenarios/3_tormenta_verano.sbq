@@ -39,3 +39,6 @@ D apagar_por sobrecarga?
 
 # Todo lo que hace la casa ahora
 D accion A?
+
+# Ningún dispositivo con decisiones contradictorias
+D decision_dudosa si?

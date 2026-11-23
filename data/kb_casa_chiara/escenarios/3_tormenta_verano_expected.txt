@@ -10,3 +10,4 @@ casa situacion sobrecarga? -> NO
 casa situacion sobrecarga? -> SI
 D apagar_por sobrecarga? -> SI
 D accion A? -> SI
+D decision_dudosa si? -> NO
