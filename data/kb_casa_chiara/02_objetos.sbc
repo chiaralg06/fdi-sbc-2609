@@ -1,11 +1,8 @@
-# Muebles, aparatos y objetos, y dónde está cada uno.
-#
-# "esta_en" es la ubicación directa: una estancia o un mueble. La regla
-# "en_estancia" de 10_reglas_casa.sbc deduce en qué estancia acaba cada cosa
-# (el portátil está en el escritorio, que está en mi habitación).
-# Los dispositivos domóticos están en 04_domotica.sbc.
+# Muebles, aparatos y objetos. esta_en es donde está directamente (una
+# estancia o un mueble); la estancia final la saca en_estancia.
+# Lo de domótica está en 04_domotica.
 
-# ---------- Muebles Salón----------
+# Salón
 sofa es_un mueble, sofa esta_en salon, sofa nombre "Sofá".
 sillon_redondo es_un mueble, sillon_redondo esta_en salon, sillon_redondo nombre "Sillón Redondo".
 sillon_cuadrado es_un mueble, sillon_cuadrado esta_en salon, sillon_cuadrado nombre "Sillón Cuadrado".
@@ -14,18 +11,18 @@ mesa_comedor es_un mueble, mesa_comedor esta_en salon.
 estanteria_1 es_un mueble, estanteria_1 esta_en salon, estanteria_1 nombre "Estantería Grande".
 estanteria_2 es_un mueble, estanteria_2 esta_en salon, estanteria_2 nombre "Estantería Pequeña".
 
-# ---------- Muebles Recibidor----------
+# Recibidor
 zapatero_1 es_un mueble, zapatero_1 esta_en recibidor.
 zapatero_2 es_un mueble, zapatero_2 esta_en recibidor.
 
-# ---------- Muebles Dormitorio 1----------
+# Dormitorio de mis padres
 cama_1 es_un mueble, cama_1 esta_en dormitorio_1.
 armario_1 es_un mueble, armario_1 esta_en dormitorio_1.
 mesillas_1 es_un mueble, mesillas_1 esta_en dormitorio_1.
 comoda_1 es_un mueble, comoda_1 esta_en dormitorio_1.
 espejo_dormitorio_1 es_un mueble, espejo_dormitorio_1 esta_en dormitorio_1.
 
-# ---------- Muebles Dormitorio 2----------
+# Mi habitación
 cama_2 es_un mueble, cama_2 esta_en dormitorio_2.
 armario_2 es_un mueble, armario_2 esta_en dormitorio_2.
 mesillas_2 es_un mueble, mesillas_2 esta_en dormitorio_2.
@@ -37,21 +34,21 @@ tocador es_un mueble, tocador esta_en dormitorio_2.
 biblioteca es_un mueble, biblioteca esta_en dormitorio_2.
 baul es_un mueble, baul esta_en dormitorio_2, baul nombre "Baúl".
 
-# ---------- Muebles Dormitorio 3----------
+# Habitación de invitados
 cama_3 es_un mueble, cama_3 esta_en dormitorio_3.
 armario_3 es_un mueble, armario_3 esta_en dormitorio_3.
 mesillas_3 es_un mueble, mesillas_3 esta_en dormitorio_3.
 escritorio_3 es_un mueble, escritorio_3 esta_en dormitorio_3.
 
-# ---------- Muebles Terraza 1----------
+# Terraza grande
 sofas_terraza es_un mueble, sofas_terraza esta_en terraza_1.
 mesa_terraza es_un mueble, mesa_terraza esta_en terraza_1.
 tendedero es_un mueble, tendedero esta_en terraza_1.
 
-# ---------- Muebles Terraza 2----------
+# Terraza de la cocina
 armarios_ropa es_un mueble, armarios_ropa esta_en terraza_2.
 
-# ---------- Electrodomésticos ----------
+# Electrodomésticos
 nevera es_un electrodomestico, nevera esta_en cocina, nevera nombre "Nevera".
 kettle es_un electrodomestico, kettle esta_en cocina, kettle nombre "Hervidor".
 vitroceramica es_un electrodomestico, vitroceramica esta_en cocina, vitroceramica nombre "Vitrocerámica".
@@ -63,19 +60,17 @@ lavadora es_un electrodomestico, lavadora esta_en cocina.
 calentador es_un electrodomestico, calentador esta_en terraza_1.
 contador_gas es_un electrodomestico, contador_gas esta_en terraza_2.
 
-# ---------- Electrónica ----------
-# La tele es una smart TV: además de aparato electrónico, se puede controlar
-# (ver 01_clases.sbc), así que la Alexa la controla.
+# Electrónica (la tele es smart_tv para que la Alexa la pueda controlar)
 television es_un smart_tv, television esta_en salon, television nombre "Televisión".
 router es_un aparato_electronico, router esta_en salon.
 movistar es_un aparato_electronico, movistar esta_en salon.
 portatil es_un aparato_electronico, portatil esta_en escritorio_1, portatil nombre "Portátil".
 
-# ---------- Cosas pequeñas (dentro o encima de muebles) ----------
+# Cosas que están dentro o encima de algún mueble
 llaves esta_en zapatero_1, llaves nombre "Llaves de casa".
 mando_tele esta_en mesa_salon, mando_tele nombre "Mando de la tele".
 cascos esta_en mesillas_2, cascos nombre "Cascos".
 
-# ---------- De quién es cada cosa ----------
+# De quién es cada cosa
 portatil pertenece_a yo.
 escritorio_1 pertenece_a yo.

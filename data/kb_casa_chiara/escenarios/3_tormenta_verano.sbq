@@ -1,7 +1,6 @@
 # Escenario 3: tarde de verano. Hace calor, estoy en el salón y hay ropa
 # tendida. Luego llega una tormenta, alguien se ducha en el baño grande y se
 # ponen la lavadora y el lavavajillas.
-# uv run -m sbc data/kb_casa_chiara data/kb_casa_chiara/escenarios/3_tormenta_verano.sbq
 
 razona si!
 
@@ -15,7 +14,7 @@ sensor_temp_exterior detecta calor.
 D accion A?
 D encender_por calor, D nombre N?
 
-# ---------- Llega la tormenta ----------
+# Llega la tormenta
 sensor_lluvia detecta lluvia.
 
 casa situacion S?
@@ -24,12 +23,12 @@ toldo decision A?
 D cerrar_por lluvia?
 alexa avisar_por M, M nombre N?
 
-# ---------- Alguien se ducha ----------
+# Alguien se ducha
 sensor_humedad_baño detecta humedad_alta.
 
 D encender_por humedad?
 
-# ---------- Lavadora y lavavajillas ----------
+# Lavadora y lavavajillas
 # Con el aire encendido por el calor, son tres aparatos de alto consumo
 lavadora estado encendido.
 casa situacion sobrecarga?
@@ -40,5 +39,5 @@ D apagar_por sobrecarga?
 # Todo lo que hace la casa ahora
 D accion A?
 
-# Ningún dispositivo con decisiones contradictorias
+# ninguna decisión contradictoria
 D decision_dudosa si?

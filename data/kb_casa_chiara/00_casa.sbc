@@ -1,14 +1,6 @@
-# Base de conocimiento: nuestra casa
-# Estancias y cómo se comunican entre ellas.
-#
-# Términos SIN tildes: fuera de comillas la gramática solo admite letras
-# ASCII, dígitos, "_", ":" y "ñ". Un "salón" sin comillas haría que se
-# descartara el fichero entero. Los nombres con tildes van entre comillas
-# con el predicado "nombre".
-#
-# Cada estancia dice de qué tipo es (dormitorio, zona_comun, cuarto_humedo,
-# exterior). Las reglas trabajan con esos tipos y no con estancias concretas,
-# así que añadir una habitación nueva solo pide escribir sus hechos aquí.
+# Estancias de la casa y puertas entre ellas.
+# Ojo: sin tildes fuera de comillas, si no el parser descarta el fichero
+# entero. Los nombres con tilde van en "nombre".
 
 casa es_un vivienda, casa nombre "Nuestra casa".
 
@@ -24,8 +16,8 @@ dormitorio_1 es_un dormitorio, dormitorio_1 parte_de casa, dormitorio_1 nombre "
 dormitorio_2 es_un dormitorio, dormitorio_2 parte_de casa, dormitorio_2 nombre "Mi habitación".
 dormitorio_3 es_un dormitorio, dormitorio_3 parte_de casa, dormitorio_3 nombre "Habitación de invitados".
 
-# Cada puerta o paso se escribe una sola vez, con "acceso_a". La regla de
-# 10_reglas_casa.sbc deduce "conecta_con" en los dos sentidos.
+# Cada puerta se pone una vez; conecta_con (en los dos sentidos) sale de
+# la regla de 10_reglas_casa.
 recibidor acceso_a pasillo.
 recibidor acceso_a salon.
 recibidor acceso_a cocina.

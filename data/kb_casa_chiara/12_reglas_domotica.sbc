@@ -1,39 +1,30 @@
-# Reglas generales de la domótica: control, contexto, situaciones y
-# conflictos.
-#
-# El estado del momento lo dan los escenarios con hechos como
-# "casa estacion invierno", "miko ubicacion salon", "padre estado dormido",
-# "yo ordena modo_pelicula" o "sensor_lluvia detecta lluvia". Estas reglas los
-# convierten en situaciones, y los ficheros 13_ a 15_ deciden qué hacer en
-# cada una.
+# Reglas generales de la domótica. El estado del momento lo pone cada
+# escenario (casa estacion invierno, padre estado dormido, sensor_lluvia
+# detecta lluvia...) y aquí se convierte en situaciones. Lo que se hace en
+# cada una está en 13, 14 y 15.
 
-# ---------- Qué controla cada asistente ----------
-# Todo lo controlable que esté en su misma estancia. Un enchufe inteligente
-# nuevo en el salón queda controlado sin tocar nada más.
+# Cada asistente controla lo de su estancia. Si pongo otro enchufe en el
+# salón, la Alexa ya lo controla sin tocar nada.
 A controla D <- A tipo asistente_voz, A en_estancia E, D tipo controlable, D en_estancia E.
-# Y lo que está enchufado a algo que controla (el deco de Movistar).
+# y lo que está enchufado a algo que controla (el deco)
 A controla X <- X enchufada_a S, A controla S.
 
-# Una persona habla con el asistente que tiene en la estancia donde está.
-# Si está en una estancia sin asistente, sus órdenes no llegan a nadie.
-# (Miko no da órdenes, aunque esté en el salón con la Alexa.)
+# Cada persona habla con el asistente de donde está. En la cocina no hay,
+# así que desde allí las órdenes no llegan. P tipo persona es para que Miko
+# no cuente.
 P habla_con A <- P ubicacion E, A tipo asistente_voz, A en_estancia E, P tipo persona.
 
-# ---------- Modo de la casa ----------
-# El escenario puede decir el modo directamente ("casa modo noche"), o
-# deducirse de una orden a la Alexa.
+# El modo puede venir del escenario o de una orden a la Alexa
 casa modo noche <- P ordena buenas_noches.
 casa modo fuera <- P ordena me_voy.
 
-# La casa está vacía tanto si hemos salido un rato como si estamos de
-# vacaciones. Las reglas de ahorro, cierre, vigilancia o Miko usan "ausente",
-# así que valen para los dos modos; lo propio de las vacaciones está aparte.
+# Ausente vale para fuera y para vacaciones, así no repito las reglas de
+# ahorro, cierre y Miko para cada modo.
 casa ausente si <- casa modo fuera.
 casa ausente si <- casa modo vacaciones.
 
-# ---------- Situaciones ----------
-# Los sensores informan con "S detecta ...". Que el dato venga de un sensor
-# del tipo adecuado evita que, por ejemplo, el termómetro "detecte" humo.
+# Situaciones a partir de los sensores. Compruebo el tipo de sensor para que
+# por ejemplo el termómetro no pueda "detectar" humo.
 casa situacion lluvia <- S detecta lluvia, S tipo sensor_lluvia.
 casa situacion calor <- S detecta calor, S tipo sensor_temperatura.
 E situacion humo <- S detecta humo, S tipo sensor_humo, S en_estancia E.
@@ -41,66 +32,46 @@ E situacion fuga_gas <- S detecta gas, S tipo sensor_gas, S en_estancia E.
 E situacion humedad_alta <- S detecta humedad_alta, S tipo sensor_humedad, S en_estancia E.
 E situacion fuga_agua <- S detecta agua, S tipo sensor_inundacion, S en_estancia E.
 
-# Lo que significa un dato depende del contexto. Abrir la puerta es normal,
-# salvo que no haya nadie en casa. Y aun así depende de cómo se abra: la
-# cerradura dice si se ha abierto con un código (y de quién) o sin código.
-# Con código es una visita (la cuidadora de Miko); sin código, una intrusión.
+# Abrir la puerta solo es raro si no hay nadie. Y depende de cómo: con
+# código es una visita (la cuidadora de Miko), sin código es una intrusión.
 casa situacion intrusion <- casa ausente si, S detecta apertura, S tipo sensor_apertura, C detecta sin_codigo, C tipo cerradura_inteligente.
 casa situacion visita <- casa ausente si, C identifica P, C tipo cerradura_inteligente, P tiene_acceso si.
 
-# Moverse por el pasillo solo importa de noche.
+# el movimiento en el pasillo solo importa de noche
 E situacion paso_nocturno <- casa modo noche, S detecta movimiento, S tipo sensor_movimiento, S en_estancia E.
 
-# Una mascota se queda sola si la familia ha salido y ella está en casa.
 casa situacion mascota_sola <- casa ausente si, M tipo mascota, M ubicacion E, E parte_de casa.
 
-# ---------- De dónde sale cada motivo ----------
-# "M origen X": qué sensor, persona o aparato ha dado lugar al motivo M.
-# Junto con "D <verbo>_por M" explica una acción de punta a punta:
-#   luz_salon encender_por humo, humo origen sensor_humo_cocina.
-# Sensores: según la tabla "indica" de 05_motivos.sbc.
+# M origen X: el sensor, persona o aparato que ha provocado el motivo M.
+# Con esto se puede explicar una acción entera, por ejemplo:
+#   luz_salon encender_por humo, humo origen sensor_humo_cocina
 M origen S <- L indica M, S detecta L.
-# Órdenes: quién las ha dado.
 O origen P <- P ordena O.
-# Visitas: quién ha entrado.
 visita origen P <- casa situacion visita, C identifica P.
-# Tender dentro: el aparato de ropa que ha terminado (además de la lluvia).
 tender_dentro origen D <- casa situacion lluvia, D detecta fin_ciclo, D lava ropa.
-# Plomos: qué aparatos están activos.
 sobrecarga origen X <- casa situacion sobrecarga, X activo si.
-# Descanso: quién está dormido.
 descanso origen X <- casa modo noche, X estado dormido.
-# Mascotas: qué mascota está en casa.
 mascota_sola origen M <- casa situacion mascota_sola, M tipo mascota, M ubicacion E, E parte_de casa.
 mascota_en_casa origen M <- M tipo mascota, M ubicacion E, E parte_de casa.
 
-# ---------- Acciones y conflictos ----------
-# Qué acción hace cada dispositivo, sin el motivo.
+# Acciones y conflictos
 D accion A <- V verbo A, D V M.
 
-# Un dispositivo está en conflicto si dos motivos piden acciones opuestas.
-# Se apuntan los motivos enfrentados.
+# conflicto: dos motivos piden acciones opuestas sobre lo mismo
 D conflicto M1 <- V1 opuesto V2, D V1 M1, D V2 M2.
 
-# En un conflicto se impone el motivo de categoría más prioritaria
-# (se_impone), y gana la acción que pedía ese motivo (gana_con, con el
-# predicado de la acción). La decisión final es esa acción.
+# gana el motivo de categoría más alta, y su acción es la decisión
 D se_impone M1 <- V1 opuesto V2, D V1 M1, D V2 M2, M1 categoria C1, M2 categoria C2, C1 prevalece_sobre C2.
 D gana_con V1 <- V1 opuesto V2, D V1 M1, D V2 M2, M1 categoria C1, M2 categoria C2, C1 prevalece_sobre C2.
 D decision A <- D gana_con V, V verbo A.
 
-# Limitación: si en un mismo dispositivo chocan tres motivos de tres
-# categorías distintas (por ejemplo, con Miko solo en casa la calefacción se
-# enciende por Miko, se apaga por ahorro y se apaga por humo), cada pareja se
-# resuelve por separado y pueden salir dos decisiones opuestas: Miko gana al
-# ahorro y el humo gana a Miko. Quedarse solo con la más fuerte exigiría
-# decir "no hay ningún motivo más importante", y el motor no tiene negación.
-# Esta regla al menos lo detecta; en ese caso vale la decisión cuyo motivo
-# (D se_impone M) es de categoría más alta.
+# Problema: si chocan tres motivos de tres categorías (Miko solo en casa y
+# humo: la calefacción se enciende por Miko y se apaga por ahorro y por humo)
+# cada pareja se resuelve por separado y salen dos decisiones. Para quedarme
+# solo con la más fuerte haría falta negación. Esta regla al menos lo
+# detecta; en ese caso vale la de categoría más alta.
 D decision_dudosa si <- D gana_con V1, V1 opuesto V2, D gana_con V2.
 
-# Orden de prioridad completo a partir de los escalones "por_encima_de".
-# Vale para las categorías de motivos (05_motivos.sbc) y para la importancia
-# de los electrodomésticos (06_energia.sbc).
+# orden completo a partir de por_encima_de (categorías y electrodomésticos)
 C1 prevalece_sobre C2 <- C1 por_encima_de C2.
 C1 prevalece_sobre C3 <- C1 por_encima_de C2, C2 prevalece_sobre C3.

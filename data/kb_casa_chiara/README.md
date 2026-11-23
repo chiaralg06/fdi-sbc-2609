@@ -1,10 +1,10 @@
-# Base de conocimiento: la domótica de mi casa
+# Base de conocimiento: la domótica de nuestra casa
 
 Chiara · 23 de noviembre de 2026
 
 ## Enfoque
 
-La base representa mi casa real (11 estancias, mis padres, yo y mi gato Miko) y la domótica que decide cómo debe comportarse en cada momento. Hay una Alexa en el salón y un Echo en dos dormitorios, luces, persianas, clima, cerradura, cámara, sensores, electrodomésticos con wifi y los aparatos de Miko.
+La base representa nuestra casa real (11 estancias, mis padres, yo y mi gato Miko) y la domótica que decide cómo debe comportarse en cada momento. Hay una Alexa en el salón y un Echo en dos dormitorios, luces, persianas, clima, cerradura, cámara, sensores, electrodomésticos con wifi y los aparatos de Miko.
 
 La base no guarda el estado de la casa. Cada escenario lo cuenta con hechos como `casa modo noche`, `padre estado dormido` o `sensor_lluvia detecta lluvia`, y las reglas razonan en cuatro pasos:
 

@@ -1,6 +1,5 @@
 # Escenario 1: un sábado de invierno la familia sale y Miko se queda en casa.
 # Después, alguien abre la puerta de entrada.
-# uv run -m sbc data/kb_casa_chiara data/kb_casa_chiara/escenarios/1_fuera_invierno.sbq
 
 razona si!
 
@@ -30,7 +29,7 @@ aspiradora decision A?
 # ¿Qué de todo esto puede hacer la Alexa del salón?
 D accion A, alexa controla D?
 
-# ---------- Información nueva: se abre la puerta sin código ----------
+# Información nueva: se abre la puerta sin código
 sensor_puerta detecta apertura.
 cerradura detecta sin_codigo.
 
@@ -45,8 +44,8 @@ luz_salon conflicto M?
 D se_impone intrusion?
 luz_salon decision A?
 
-# ¿Por qué? De la acción al motivo y del motivo a los sensores
+# por qué: el motivo y los sensores que lo han provocado
 luz_salon se_impone M, M nombre NM, M origen S, S nombre NS?
 
-# Ningún dispositivo con decisiones contradictorias
+# ninguna decisión contradictoria
 D decision_dudosa si?

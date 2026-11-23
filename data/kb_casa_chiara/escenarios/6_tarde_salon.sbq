@@ -1,6 +1,5 @@
 # Escenario 6: tarde de invierno en el salón con Miko. Órdenes a la Alexa
 # hasta irme a dormir.
-# uv run -m sbc data/kb_casa_chiara data/kb_casa_chiara/escenarios/6_tarde_salon.sbq
 
 razona si!
 
@@ -8,14 +7,14 @@ casa estacion invierno.
 yo ubicacion salon.
 miko ubicacion salon.
 
-# ---------- "Alexa, modo película" ----------
+# "Alexa, modo película"
 yo ordena modo_pelicula.
 
 V verbo A, D V modo_pelicula?
 # El deco de Movistar se enciende a través de su enchufe
 movistar enchufada_a S, S encender_por M?
 
-# ---------- "Alexa, aspira" ----------
+# "Alexa, aspira"
 # Miko está en casa y el robot le asusta: no se enciende
 yo ordena aspirar.
 
@@ -23,7 +22,7 @@ aspiradora conflicto M?
 aspiradora se_impone M, M nombre N?
 aspiradora decision A?
 
-# ---------- Mi madre pide dar de comer a Miko desde la cocina ----------
+# Mi madre pide dar de comer a Miko desde la cocina
 # En la cocina no hay asistente: la orden no llega
 madre ubicacion cocina.
 madre ordena dar_de_comer.
@@ -31,12 +30,12 @@ madre ordena dar_de_comer.
 madre habla_con A?
 comedero_miko dispensar_por M?
 
-# ---------- Lo pido yo desde el salón ----------
+# Lo pido yo desde el salón
 yo ordena dar_de_comer.
 
 comedero_miko dispensar_por M?
 
-# ---------- "Alexa, buenas noches" ----------
+# "Alexa, buenas noches"
 # La casa pasa a modo noche, y el descanso gana a la película
 yo ordena buenas_noches.
 

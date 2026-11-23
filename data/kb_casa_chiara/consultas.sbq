@@ -1,7 +1,6 @@
 # Consultas sobre la casa, sin ninguna situación especial
-# uv run -m sbc data/kb_casa_chiara data/kb_casa_chiara/consultas.sbq
 
-# ========== Sin razonar: solo lo escrito ==========
+# Sin razonar: solo lo escrito
 
 # ¿Qué hay directamente en el salón?
 X esta_en salon?
@@ -25,11 +24,11 @@ P tarea T, P nombre N?
 nevera esta_en salon?
 yo hijo_de madre?
 
-# Lo deducido todavía no existe
+# esto sin razonar todavía no sale
 X conecta_con salon?
 alexa controla D?
 
-# ========== Razonando ==========
+# Razonando
 razona si!
 
 # Conexiones en los dos sentidos, escritas una sola vez
@@ -81,5 +80,5 @@ D accion A?
 
 razona no!
 
-# Sin razonar, otra vez nada deducido
+# y sin razonar vuelve a no salir
 X conecta_con salon?

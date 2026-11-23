@@ -1,7 +1,6 @@
 # Escenario 7: tarde de invierno con toda la familia en casa. El detector de
 # la terraza grande, junto al calentador, detecta gas. Después empieza a
 # llover y yo pido una película.
-# uv run -m sbc data/kb_casa_chiara data/kb_casa_chiara/escenarios/7_fuga_gas.sbq
 
 razona si!
 
@@ -11,7 +10,7 @@ madre ubicacion cocina.
 padre ubicacion dormitorio_1.
 miko ubicacion salon.
 
-# ---------- Fuga de gas ----------
+# Fuga de gas
 sensor_gas_terraza detecta gas.
 
 E situacion fuga_gas, E nombre N?
@@ -28,7 +27,7 @@ D bloquear_por fuga_gas?
 A avisar_por fuga_gas?
 P notificar_por fuga_gas?
 
-# ---------- Empieza a llover ----------
+# Empieza a llover
 # El ventanal de la fuga sigue abierto; el de la cocina se cierra
 sensor_lluvia detecta lluvia.
 
@@ -36,7 +35,7 @@ ventanal_terraza conflicto M?
 ventanal_terraza decision A?
 ventana_cocina accion A?
 
-# ---------- "Alexa, modo película" ----------
+# "Alexa, modo película"
 # La persiana baja, pero la tele y la luz no se tocan
 yo ordena modo_pelicula.
 

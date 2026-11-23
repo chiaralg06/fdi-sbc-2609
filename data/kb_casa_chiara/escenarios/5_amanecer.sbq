@@ -1,6 +1,5 @@
 # Escenario 5: amanece. La casa sigue en modo noche, mi padre duerme y mi
 # madre y yo nos despertamos. Miko pide el desayuno.
-# uv run -m sbc data/kb_casa_chiara data/kb_casa_chiara/escenarios/5_amanecer.sbq
 
 razona si!
 
@@ -16,7 +15,7 @@ D bajar_por descanso?
 # ¿Con qué asistente habla cada uno?
 P habla_con A?
 
-# ---------- "Alexa, buenos días" desde mi habitación ----------
+# "Alexa, buenos días" desde mi habitación
 yo ordena buenos_dias.
 
 persiana_dormitorio_2 accion A?
@@ -24,7 +23,7 @@ persiana_dormitorio_2 conflicto M?
 # La orden solo llega al Echo de mi habitación
 persiana_salon subir_por M?
 
-# ---------- "Alexa, buenos días" desde el dormitorio de mis padres ----------
+# "Alexa, buenos días" desde el dormitorio de mis padres
 # Mi padre sigue dormido: la persiana no sube
 madre ordena buenos_dias.
 
@@ -32,7 +31,7 @@ persiana_dormitorio_1 conflicto M?
 persiana_dormitorio_1 se_impone M, M nombre N?
 persiana_dormitorio_1 decision A?
 
-# ---------- Desayuno de Miko ----------
+# Desayuno de Miko
 casa hora desayuno.
 
 comedero_miko dispensar_por M, M nombre N?
@@ -40,7 +39,7 @@ comedero_miko dispensar_por M, M nombre N?
 comedero_miko detecta vacio.
 P notificar_por comedero_vacio?
 
-# ---------- El arenero ----------
+# El arenero
 # Miko lo ha usado, pero sigue siendo modo noche: no se limpia
 arenero_miko detecta uso.
 arenero_miko decision A?
@@ -52,5 +51,5 @@ arenero_miko detener_por M, M nombre N?
 arenero_miko detecta lleno.
 P notificar_por M, M nombre N?
 
-# Ningún dispositivo con decisiones contradictorias
+# ninguna decisión contradictoria
 D decision_dudosa si?

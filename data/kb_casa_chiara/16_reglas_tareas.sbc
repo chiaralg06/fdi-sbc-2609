@@ -1,20 +1,14 @@
-# Tareas de la familia: cuando un aparato necesita a alguien, se avisa a quien
-# tiene esa tarea.
-#
-# Junta tres cosas que están en ficheros distintos: lo que detecta el aparato
-# (04_domotica.sbc y el escenario), qué lecturas piden una persona
-# (05_motivos.sbc) y quién hace cada tarea (03_personas.sbc). Si mañana la
-# lavadora la pone otra persona, basta con cambiar su "tarea".
+# Tareas: cuando un aparato termina, se llena o se vacía, se avisa a quien
+# tiene esa tarea. Si cambia quién pone la lavadora, solo hay que cambiar su
+# tarea en 03_personas.
 
-# El aparato ha terminado, está lleno o está vacío: aviso al responsable.
 P notificar_por M <- D detecta L, L requiere_persona si, L indica M, D tarea_asociada T, P tarea T.
 
-# De qué aparato le llega el aviso a cada uno.
+# de qué aparato le llega el aviso a cada uno
 P aviso_de D <- D detecta L, L requiere_persona si, D tarea_asociada T, P tarea T.
 
-# Y esa tarea le queda pendiente.
+# y qué le queda por hacer
 P tarea_pendiente T <- D detecta L, L requiere_persona si, D tarea_asociada T, P tarea T.
 
-# Si termina algo que lava ropa y está lloviendo, se avisa de que es mejor
-# tender dentro.
+# si termina la lavadora y llueve, mejor tender dentro
 P notificar_por tender_dentro <- D detecta fin_ciclo, D lava ropa, casa situacion lluvia, D tarea_asociada T, P tarea T.

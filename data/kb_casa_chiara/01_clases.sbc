@@ -1,31 +1,23 @@
-# Taxonomía: qué tipos de cosas hay en la casa.
-#
-# Cada cosa dice solo su tipo más concreto con "es_un". Las reglas de
-# 10_reglas_casa.sbc deducen el resto con "tipo": un dormitorio es una
-# estancia, Miko es un gato, una mascota y un habitante.
-# Una clase puede tener varias superclases (la smart TV es un aparato
-# electrónico y también algo controlable). La jerarquía no tiene ciclos, así
-# que las reglas recursivas terminan con razona si!.
+# Jerarquía de clases. Cada cosa solo dice su clase más concreta con es_un
+# y "tipo" saca el resto. No hay ciclos, así que con razona si! termina.
 
-# ---------- Estancias ----------
+# Estancias
 dormitorio subclase_de estancia.
 zona_comun subclase_de estancia.
 cuarto_humedo subclase_de estancia.
 exterior subclase_de estancia.
 
-# ---------- Objetos ----------
+# Objetos
 mueble subclase_de objeto.
 electrodomestico subclase_de objeto.
 aparato_electronico subclase_de objeto.
 
-# ---------- Quién vive en la casa ----------
+# Habitantes
 persona subclase_de habitante.
 mascota subclase_de habitante.
 gato subclase_de mascota.
 
-# ---------- Domótica ----------
-# Tres familias de dispositivos: el asistente de voz que da órdenes, los
-# sensores que informan y lo controlable, sobre lo que se actúa.
+# Domótica: asistentes de voz, sensores y cosas que se pueden controlar
 dispositivo_inteligente subclase_de objeto.
 asistente_voz subclase_de dispositivo_inteligente.
 sensor subclase_de dispositivo_inteligente.
@@ -46,12 +38,11 @@ valvula_gas subclase_de valvula.
 valvula_agua subclase_de valvula.
 riego_automatico subclase_de controlable.
 
-# Electrodomésticos con wifi: siguen siendo electrodomésticos, pero la casa
-# los puede encender y apagar.
+# Los que tienen wifi siguen siendo electrodomésticos, pero se pueden apagar
 electrodomestico_inteligente subclase_de electrodomestico.
 electrodomestico_inteligente subclase_de controlable.
 
-# Dispositivos de Miko
+# Cosas de Miko
 dispositivo_mascota subclase_de controlable.
 comedero_automatico subclase_de dispositivo_mascota.
 arenero_automatico subclase_de dispositivo_mascota.
@@ -68,13 +59,11 @@ sensor_lluvia subclase_de sensor.
 sensor_temperatura subclase_de sensor.
 sensor_gas subclase_de sensor.
 sensor_inundacion subclase_de sensor.
-# El cubo de basura inteligente solo informa de si está lleno.
+# el cubo solo avisa de si está lleno, por eso lo pongo como sensor
 cubo_inteligente subclase_de sensor.
 
-# ---------- Riesgo de chispa ----------
-# Con una fuga de gas no se debe tocar nada que pueda hacer chispa al
-# encenderse o apagarse. Es una propiedad de la clase: cualquier dispositivo
-# nuevo de estas clases queda incluido sin escribir nada más.
+# Lo que puede hacer chispa y no se toca si hay fuga de gas. Va por clase,
+# así un dispositivo nuevo de estas clases entra solo.
 luz_inteligente riesgo_chispa si.
 enchufe_inteligente riesgo_chispa si.
 extractor riesgo_chispa si.

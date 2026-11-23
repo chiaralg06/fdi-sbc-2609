@@ -1,12 +1,9 @@
-# Qué hace cada dispositivo en cada situación, agrupado por categoría de
-# motivo (de más a menos prioritaria). Todas usan tipos de dispositivo, nunca
-# dispositivos concretos. Las órdenes a la Alexa están en
-# 14_reglas_ordenes.sbc y los plomos en 15_reglas_energia.sbc.
+# Qué hace cada tipo de dispositivo en cada situación, ordenado por
+# categoría (de más a menos importante). Las órdenes a la Alexa están en 14
+# y los plomos en 15.
 
-# ---------- Riesgo de explosión ----------
-# Fuga de gas: se corta el gas, se abren las ventanas de donde está la fuga,
-# se abre la puerta para salir, no se toca nada que pueda hacer chispa, la
-# Alexa avisa y a cada persona le llega una notificación al móvil.
+# Fuga de gas: cortar el gas, abrir la ventana de donde está la fuga y la
+# puerta para salir, no tocar nada que haga chispa y avisar a todos.
 V cerrar_por fuga_gas <- E situacion fuga_gas, V tipo valvula_gas.
 W abrir_por fuga_gas <- E situacion fuga_gas, W tipo ventana_motorizada, W en_estancia E.
 C abrir_por fuga_gas <- E situacion fuga_gas, C tipo cerradura_inteligente.
@@ -14,9 +11,8 @@ D bloquear_por fuga_gas <- E situacion fuga_gas, K riesgo_chispa si, D tipo K.
 A avisar_por fuga_gas <- E situacion fuga_gas, A tipo asistente_voz.
 P notificar_por fuga_gas <- E situacion fuga_gas, P tipo persona.
 
-# ---------- Emergencia ----------
-# Humo: luces encendidas y persianas arriba para salir, la puerta abierta, el
-# clima apagado para no mover el humo, y la Alexa avisa.
+# Humo: luces encendidas, persianas arriba y puerta abierta para salir, y el
+# clima apagado para no mover el humo.
 L encender_por humo <- E situacion humo, L tipo luz_inteligente.
 P subir_por humo <- E situacion humo, P tipo persiana_motorizada.
 C abrir_por humo <- E situacion humo, C tipo cerradura_inteligente.
@@ -24,61 +20,55 @@ C apagar_por humo <- E situacion humo, C tipo aparato_clima.
 A avisar_por humo <- E situacion humo, A tipo asistente_voz.
 P notificar_por humo <- E situacion humo, P tipo persona.
 
-# ---------- Seguridad ----------
-# Intrusión: se encienden todas las luces para disuadir, la cámara graba, la
-# Alexa avisa y a la familia le llega una notificación.
+# Intrusión: todas las luces, la cámara graba y se avisa a la familia.
 L encender_por intrusion <- casa situacion intrusion, L tipo luz_inteligente.
 C grabar_por intrusion <- casa situacion intrusion, C tipo camara.
 A avisar_por intrusion <- casa situacion intrusion, A tipo asistente_voz.
 P notificar_por intrusion <- casa situacion intrusion, P vive_en casa.
 
-# De vacaciones, al anochecer se encienden las luces de las zonas comunes
-# para que parezca que hay alguien.
+# de vacaciones, al anochecer se encienden las luces de las zonas comunes
+# para que parezca que hay alguien
 L encender_por simular_presencia <- casa modo vacaciones, casa franja anochecer, L tipo luz_inteligente, L en_estancia E, E tipo zona_comun.
 
-# Sin nadie en casa la cámara vigila. De noche o sin nadie en casa, puerta
-# cerrada con llave; sin nadie, también las ventanas.
+# sin nadie en casa la cámara graba y se cierra todo; de noche, solo la puerta
 C grabar_por vigilancia <- casa ausente si, C tipo camara.
 C cerrar_por cierre_seguridad <- casa ausente si, C tipo cerradura_inteligente.
 C cerrar_por cierre_seguridad <- casa modo noche, C tipo cerradura_inteligente.
 W cerrar_por cierre_seguridad <- casa ausente si, W tipo ventana_motorizada.
 
-# De noche, si alguien pasa, se enciende la luz de esa estancia.
+# de noche, si alguien pasa, se enciende la luz de esa estancia
 L encender_por paso_nocturno <- E situacion paso_nocturno, L tipo luz_inteligente, L en_estancia E.
 
-# ---------- Bienestar de la mascota ----------
-# Si se queda sola: en invierno se mantiene la calefacción; en verano, el aire
-# de la estancia donde esté.
+# Miko: si se queda solo, en invierno se deja la calefacción y en verano el
+# aire de donde esté (si hay).
 C encender_por mascota_sola <- casa situacion mascota_sola, casa estacion invierno, C tipo calefaccion_central.
 C encender_por mascota_sola <- casa situacion mascota_sola, casa estacion verano, M tipo mascota, M ubicacion E, C tipo aire_acondicionado, C en_estancia E.
 
-# El robot aspirador no funciona si hay una mascota en casa.
+# el robot le da miedo, así que no se usa si está en casa
 R apagar_por mascota_en_casa <- M tipo mascota, M ubicacion E, E parte_de casa, R tipo robot_aspirador.
 
-# Comedero: a la hora de comer sirve la ración, si la mascota está en casa.
-# (Si se vacía, avisa a quien tiene esa tarea: 16_reglas_tareas.sbc.)
+# el comedero sirve la ración a su hora si Miko está en casa (el aviso de
+# comedero vacío está en 16)
 C dispensar_por hora_comida <- casa hora H, H es_un hora_comida, C tipo comedero_automatico, C sirve_a M, M ubicacion E, E parte_de casa.
 
-# Arenero: nunca se limpia con la mascota dentro.
+# el arenero no se limpia con Miko dentro
 R detener_por mascota_dentro <- R detecta mascota_dentro, R tipo arenero_automatico.
 
-# ---------- Protección de la casa ----------
-# Agua en el suelo: se cierra la llave general, se para todo lo que usa agua,
-# la Alexa avisa y le llega una notificación a cada persona.
+# Agua en el suelo: cerrar la llave general, parar lo que usa agua y avisar.
 V cerrar_por fuga_agua <- E situacion fuga_agua, V tipo valvula_agua.
 X apagar_por fuga_agua <- E situacion fuga_agua, X usa agua, X tipo controlable.
 A avisar_por fuga_agua <- E situacion fuga_agua, A tipo asistente_voz.
 P notificar_por fuga_agua <- E situacion fuga_agua, P tipo persona.
 
-# Si llueve no se riega.
+# Lluvia: no se riega, se recoge el toldo, se cierran las ventanas y si hay
+# ropa tendida fuera se avisa.
 R apagar_por lluvia <- casa situacion lluvia, R tipo riego_automatico.
 T recoger_por lluvia <- casa situacion lluvia, T tipo toldo_motorizado.
 W cerrar_por lluvia <- casa situacion lluvia, W tipo ventana_motorizada.
 A avisar_por ropa_tendida <- casa situacion lluvia, X tiene ropa, X en_estancia E, E tipo exterior, A tipo asistente_voz.
 
-# ---------- Descanso ----------
-# Persianas abajo donde hay alguien dormido, luces de zonas comunes, tele y
-# lo enchufado apagados, la Alexa en silencio y el arenero sin hacer ruido hasta mañana.
+# Noche: persianas abajo donde alguien duerme, luces de zonas comunes, tele y
+# enchufes apagados, la Alexa en silencio y el arenero espera a mañana.
 P bajar_por descanso <- casa modo noche, X estado dormido, X duerme_en E, P tipo persiana_motorizada, P en_estancia E.
 L apagar_por descanso <- casa modo noche, L tipo luz_inteligente, L en_estancia E, E tipo zona_comun.
 T apagar_por descanso <- casa modo noche, T tipo smart_tv.
@@ -86,21 +76,22 @@ S apagar_por descanso <- casa modo noche, X enchufada_a S, S tipo enchufe_inteli
 A silenciar_por descanso <- casa modo noche, A tipo asistente_voz.
 R detener_por descanso <- casa modo noche, R tipo arenero_automatico.
 
-# ---------- Confort ----------
+# Confort
 T desplegar_por calor <- casa situacion calor, T tipo toldo_motorizado.
 R encender_por calor <- casa situacion calor, R tipo riego_automatico.
 C encender_por calor <- casa situacion calor, C tipo aire_acondicionado, C en_estancia E, P ubicacion E, P tipo persona.
 X encender_por humedad <- E situacion humedad_alta, X tipo extractor, X en_estancia E.
 R encender_por casa_vacia <- casa ausente si, R tipo robot_aspirador.
-# Si entra alguien con código sin nadie en casa, se le enciende la luz de la
-# entrada y a la familia le llega un aviso.
+
+# si entra alguien con código sin nadie en casa, se le enciende la luz de la
+# entrada y se avisa a la familia
 L encender_por visita <- casa situacion visita, L tipo luz_inteligente, L en_estancia E, C tipo cerradura_inteligente, C en_estancia E.
 P notificar_por visita <- casa situacion visita, P vive_en casa.
 
-# Después de cada uso, el arenero se limpia solo.
+# el arenero se limpia solo después de cada uso
 R limpiar_por uso_arenero <- R detecta uso, R tipo arenero_automatico.
 
-# ---------- Ahorro ----------
+# Ahorro cuando no hay nadie
 L apagar_por ahorro_energia <- casa ausente si, L tipo luz_inteligente.
 C apagar_por ahorro_energia <- casa ausente si, C tipo aparato_clima.
 T apagar_por ahorro_energia <- casa ausente si, T tipo smart_tv.

@@ -1,7 +1,5 @@
-# Quién vive en la casa: la familia y Miko.
-#
-# Dónde está cada uno EN ESTE MOMENTO ("ubicacion") no se escribe aquí: lo
-# afirma cada escenario, porque cambia a lo largo del día.
+# La familia y Miko. Dónde está cada uno en cada momento (ubicacion) lo
+# pone cada escenario, aquí no.
 
 yo es_un persona, yo nombre "Yo", yo vive_en casa.
 madre es_un persona, madre nombre "Mamá", madre vive_en casa.
@@ -9,27 +7,21 @@ padre es_un persona, padre nombre "Papá", padre vive_en casa.
 
 miko es_un gato, miko nombre "Miko", miko pertenece_a yo.
 
-# ---------- Familia ----------
-# Solo se escriben padre_de y madre_de. "progenitor_de" e "hijo_de" se deducen
-# en 11_reglas_familia.sbc.
+# Familia (progenitor_de e hijo_de salen de 11_reglas_familia)
 madre madre_de yo.
 padre padre_de yo.
 
-# conyuge_de se escribe en los dos sentidos a propósito: una regla simétrica
-# (X conyuge_de Y <- Y conyuge_de X) se llama a sí misma en bucle con
-# razona si!.
+# Lo pongo en los dos sentidos porque una regla simétrica entra en bucle
+# con razona si!
 madre conyuge_de padre, padre conyuge_de madre.
 
-# ---------- Dónde duerme cada uno ----------
+# Dónde duerme cada uno
 madre duerme_en dormitorio_1.
 padre duerme_en dormitorio_1.
 yo duerme_en dormitorio_2.
 miko duerme_en sofa.
 
-# ---------- Tareas de casa ----------
-# Qué aparato tiene que ver con cada tarea está en 04_domotica.sbc
-# ("tarea_asociada"): cuando ese aparato necesita a alguien, se avisa a
-# quien tiene la tarea (16_reglas_tareas.sbc).
+# Tareas. Qué aparato va con cada tarea está en 04_domotica (tarea_asociada)
 yo tarea sacar_basura.
 yo tarea poner_lavavajillas.
 yo tarea dar_de_comer_al_gato.

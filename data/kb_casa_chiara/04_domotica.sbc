@@ -1,11 +1,7 @@
-# Dispositivos domóticos y dónde están.
-#
-# Aquí solo se dice QUÉ hay y DÓNDE. Qué controla la Alexa y qué hace cada
-# dispositivo en cada situación lo deducen las reglas (12_ y 13_), así que
-# añadir un dispositivo nuevo solo pide escribir una línea aquí.
+# Dispositivos domóticos y dónde están. Aquí solo pongo qué hay; lo que
+# controla cada asistente y lo que hace cada cosa sale de las reglas.
 
-# ---------- Salón: la Alexa y lo que tiene alrededor ----------
-# La tele y el deco de Movistar están en 02_objetos.sbc.
+# Salón (la tele y el deco de Movistar están en 02_objetos)
 alexa es_un asistente_voz, alexa esta_en salon, alexa nombre "Alexa".
 luz_salon es_un luz_inteligente, luz_salon esta_en salon, luz_salon nombre "Luz del salón".
 persiana_salon es_un persiana_motorizada, persiana_salon esta_en salon, persiana_salon nombre "Persiana del salón".
@@ -13,16 +9,14 @@ aire_salon es_un aire_acondicionado, aire_salon esta_en salon, aire_salon nombre
 enchufe_salon es_un enchufe_inteligente, enchufe_salon esta_en salon, enchufe_salon nombre "Enchufe inteligente del salón".
 aspiradora es_un robot_aspirador, aspiradora esta_en salon, aspiradora nombre "Robot aspirador".
 
-# El deco de Movistar no es inteligente, pero está enchufado a un enchufe que sí.
+# el deco no es inteligente, pero va al enchufe inteligente
 movistar enchufada_a enchufe_salon.
 
-# ---------- Más asistentes de voz ----------
-# Cada Echo controla lo de su habitación, igual que la Alexa del salón: no
-# hace falta decir qué controla cada uno (12_reglas_domotica.sbc).
+# Echos de los dormitorios. Cada uno controla lo de su habitación
 echo_padres es_un asistente_voz, echo_padres esta_en dormitorio_1, echo_padres nombre "Echo del dormitorio de mis padres".
 echo_mi_habitacion es_un asistente_voz, echo_mi_habitacion esta_en dormitorio_2, echo_mi_habitacion nombre "Echo de mi habitación".
 
-# ---------- Resto de la casa ----------
+# Resto de la casa
 luz_recibidor es_un luz_inteligente, luz_recibidor esta_en recibidor, luz_recibidor nombre "Luz del recibidor".
 luz_pasillo es_un luz_inteligente, luz_pasillo esta_en pasillo, luz_pasillo nombre "Luz del pasillo".
 luz_cocina es_un luz_inteligente, luz_cocina esta_en cocina, luz_cocina nombre "Luz de la cocina".
@@ -33,55 +27,50 @@ persiana_dormitorio_1 es_un persiana_motorizada, persiana_dormitorio_1 esta_en d
 persiana_dormitorio_2 es_un persiana_motorizada, persiana_dormitorio_2 esta_en dormitorio_2, persiana_dormitorio_2 nombre "Persiana de mi habitación".
 persiana_dormitorio_3 es_un persiana_motorizada, persiana_dormitorio_3 esta_en dormitorio_3, persiana_dormitorio_3 nombre "Persiana de la habitación de invitados".
 
-# El termostato de la calefacción central está en el pasillo.
+# el termostato de la calefacción está en el pasillo
 calefaccion es_un calefaccion_central, calefaccion esta_en pasillo, calefaccion nombre "Calefacción".
 extractor_baño es_un extractor, extractor_baño esta_en baño_2, extractor_baño nombre "Extractor del baño grande".
 toldo es_un toldo_motorizado, toldo esta_en terraza_1, toldo nombre "Toldo de la terraza".
 
-# ---------- Seguridad ----------
+# Seguridad
 cerradura es_un cerradura_inteligente, cerradura esta_en recibidor, cerradura nombre "Cerradura de la puerta de entrada".
 camara_recibidor es_un camara, camara_recibidor esta_en recibidor, camara_recibidor nombre "Cámara del recibidor".
 ventana_cocina es_un ventana_motorizada, ventana_cocina esta_en cocina, ventana_cocina nombre "Ventana de la cocina".
 ventanal_terraza es_un ventana_motorizada, ventanal_terraza esta_en terraza_1, ventanal_terraza nombre "Ventanal de la terraza grande".
-# Electroválvula junto al contador: corta el gas de toda la casa.
+# la electroválvula está junto al contador y corta el gas de toda la casa
 electrovalvula es_un valvula_gas, electrovalvula esta_en terraza_2, electrovalvula nombre "Electroválvula del gas".
 
-# ---------- Electrodomésticos con wifi ----------
-# Siguen en 02_objetos.sbc como electrodomésticos; aquí se añade que además
-# son inteligentes (una cosa puede ser de varias clases).
+# Lavadora y lavavajillas tienen wifi (en 02_objetos ya son electrodomésticos)
 lavadora es_un electrodomestico_inteligente, lavadora nombre "Lavadora".
 lavavajillas es_un electrodomestico_inteligente, lavavajillas nombre "Lavavajillas".
 
-# Qué gasta agua (se para si hay una fuga) y qué lava ropa (hay que tenderla).
+# lo que gasta agua se para si hay una fuga
 lavadora usa agua, lavavajillas usa agua, riego_terraza usa agua.
 lavadora lava ropa.
 
-# ---------- Aparatos y tareas de la familia ----------
-# Cuando uno de estos aparatos necesita a alguien (ha terminado, está lleno,
-# está vacío), se avisa a quien tiene esa tarea en 03_personas.sbc.
+# Con qué tarea va cada aparato, para avisar a quien la tenga
 lavadora tarea_asociada poner_lavadora.
 lavavajillas tarea_asociada poner_lavavajillas.
 comedero_miko tarea_asociada dar_de_comer_al_gato.
 arenero_miko tarea_asociada vaciar_arenero.
 cubo_basura tarea_asociada sacar_basura.
 
-# ---------- Agua ----------
-# Llave general del agua con motor, en la cocina.
+# Agua (la llave general tiene motor)
 llave_agua es_un valvula_agua, llave_agua esta_en cocina, llave_agua nombre "Llave general del agua".
 riego_terraza es_un riego_automatico, riego_terraza esta_en terraza_1, riego_terraza nombre "Riego de las plantas de la terraza".
 
-# ---------- Basura ----------
+# Basura
 cubo_basura es_un cubo_inteligente, cubo_basura esta_en cocina, cubo_basura nombre "Cubo de basura".
 
-# ---------- Miko ----------
+# Miko
 comedero_miko es_un comedero_automatico, comedero_miko esta_en salon, comedero_miko sirve_a miko, comedero_miko nombre "Comedero automático de Miko".
 arenero_miko es_un arenero_automatico, arenero_miko esta_en baño_1, arenero_miko sirve_a miko, arenero_miko nombre "Arenero automático de Miko".
 
-# Horas de comida de Miko. El escenario dice qué hora es con "casa hora ...".
+# horas de comer de Miko; la hora la pone el escenario con casa hora ...
 desayuno es_un hora_comida.
 cena es_un hora_comida.
 
-# ---------- Sensores ----------
+# Sensores
 sensor_puerta es_un sensor_apertura, sensor_puerta esta_en recibidor, sensor_puerta nombre "Sensor de la puerta de entrada".
 sensor_mov_pasillo es_un sensor_movimiento, sensor_mov_pasillo esta_en pasillo, sensor_mov_pasillo nombre "Sensor de movimiento del pasillo".
 sensor_humo_cocina es_un sensor_humo, sensor_humo_cocina esta_en cocina, sensor_humo_cocina nombre "Detector de humo de la cocina".

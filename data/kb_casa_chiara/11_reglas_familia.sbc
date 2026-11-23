@@ -1,4 +1,4 @@
-# Reglas de la familia.
+# Familia
 
 X progenitor_de Y <- X padre_de Y.
 X progenitor_de Y <- X madre_de Y.

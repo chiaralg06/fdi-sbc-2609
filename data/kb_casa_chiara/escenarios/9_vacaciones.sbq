@@ -1,7 +1,6 @@
 # Escenario 9: nos vamos de vacaciones en verano y Miko se queda en casa. Una
 # cuidadora viene a verle con su código. Al anochecer la casa simula que hay
 # alguien. Esa noche alguien abre la puerta sin código y luego llueve.
-# uv run -m sbc data/kb_casa_chiara data/kb_casa_chiara/escenarios/9_vacaciones.sbq
 
 razona si!
 
@@ -13,21 +12,20 @@ cuidadora es_un persona, cuidadora nombre "Lucía, la cuidadora de Miko", cuidad
 casa ausente si?
 casa situacion S?
 
-# Miko en verano: el aire de mi habitación no hay, así que no se enciende
-# ninguno; la calefacción tampoco (es verano)
+# Miko está en mi habitación y ahí no hay aire, así que no se enciende nada
 D encender_por mascota_sola?
 
 # Ahorro, cierre y vigilancia, como al salir
 D cerrar_por cierre_seguridad?
 camara_recibidor grabar_por M?
 
-# ---------- Hace calor: se riega la terraza ----------
+# Hace calor: se riega la terraza
 sensor_temp_exterior detecta calor.
 
 riego_terraza encender_por M?
 toldo desplegar_por M?
 
-# ---------- Llega la cuidadora con su código ----------
+# Llega la cuidadora con su código
 sensor_puerta detecta apertura.
 cerradura identifica cuidadora.
 
@@ -38,7 +36,7 @@ luz_recibidor conflicto M?
 luz_recibidor decision A?
 P notificar_por visita?
 
-# ---------- Anochece: la casa simula que hay alguien ----------
+# Anochece: la casa simula que hay alguien
 casa franja anochecer.
 
 D encender_por simular_presencia?
@@ -47,7 +45,7 @@ luz_salon decision A?
 # Las luces de los dormitorios no forman parte de la simulación
 luz_dormitorio_1 encender_por simular_presencia?
 
-# ---------- Alguien abre la puerta sin código ----------
+# Alguien abre la puerta sin código
 cerradura detecta sin_codigo.
 
 casa situacion intrusion?
@@ -55,7 +53,7 @@ intrusion origen S, S nombre N?
 P notificar_por intrusion?
 camara_recibidor grabar_por M?
 
-# ---------- Empieza a llover ----------
+# Empieza a llover
 sensor_lluvia detecta lluvia.
 
 riego_terraza conflicto M?

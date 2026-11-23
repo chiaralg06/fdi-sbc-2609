@@ -1,7 +1,6 @@
 # Escenario 2: noche entre semana, todos duermen.
 # Miko usa el arenero, alguien se levanta, luego llega una invitada y por
 # último salta el detector de humo de la cocina.
-# uv run -m sbc data/kb_casa_chiara data/kb_casa_chiara/escenarios/2_noche.sbq
 
 razona si!
 
@@ -18,18 +17,18 @@ cerradura cerrar_por M?
 # La habitación de invitados está vacía: su persiana no se toca
 persiana_dormitorio_3 bajar_por M?
 
-# El robot no sale porque Miko está en casa (no hay conflicto: nadie pide encenderlo)
+# el robot no sale porque Miko está en casa (y nadie pide encenderlo)
 aspiradora accion A?
 aspiradora conflicto M?
 
-# ---------- Miko usa el arenero ----------
-# Limpiarlo ahora haría ruido: espera a mañana
+# Miko usa el arenero
+# de noche no se limpia porque hace ruido
 arenero_miko detecta uso.
 
 arenero_miko conflicto M?
 arenero_miko decision A?
 
-# ---------- Alguien se levanta ----------
+# Alguien se levanta
 sensor_mov_pasillo detecta movimiento.
 
 pasillo situacion paso_nocturno?
@@ -38,13 +37,13 @@ luz_pasillo decision A?
 # La luz del salón no se enciende: el sensor está en el pasillo
 luz_salon encender_por M?
 
-# ---------- Llega una invitada ----------
+# Llega una invitada
 invitada es_un persona, invitada nombre "Invitada", invitada duerme_en dormitorio_3.
 invitada estado dormido.
 
 persiana_dormitorio_3 bajar_por M?
 
-# ---------- Salta el detector de humo de la cocina ----------
+# Salta el detector de humo de la cocina
 sensor_humo_cocina detecta humo.
 
 E situacion humo, E nombre N?
@@ -54,8 +53,8 @@ D decision A, D nombre N?
 alexa avisar_por M, M nombre N?
 P notificar_por humo?
 
-# La explicación completa de por qué se abre la puerta de madrugada
+# por qué se abre la puerta de madrugada
 cerradura decision A, cerradura se_impone M, M nombre NM, M origen S, S nombre NS?
-# Y qué motivo ha perdido, y por quién
+# y qué motivo ha perdido
 cerradura conflicto M, M origen X?
 D decision_dudosa si?

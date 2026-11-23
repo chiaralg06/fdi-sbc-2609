@@ -1,17 +1,11 @@
 # Acciones, motivos y prioridades.
 #
-# Cada acción que deduce la base se guarda como "D <verbo>_por M": el
-# dispositivo (o persona) D hace esa acción por el motivo M. Así cada
-# conclusión lleva su explicación pegada: "luz_pasillo encender_por
-# paso_nocturno".
-#
-# Cada motivo pertenece a una categoría, y las categorías tienen un orden de
-# prioridad. Cuando dos motivos piden acciones opuestas sobre el mismo
-# dispositivo, gana el de la categoría más prioritaria (12_reglas_domotica.sbc).
-# Por eso dos motivos que puedan chocar nunca deben ser de la misma categoría:
-# el conflicto quedaría sin resolver.
+# Las acciones se guardan como "D <verbo>_por M", así cada una lleva su
+# motivo (luz_pasillo encender_por paso_nocturno). Si dos motivos piden cosas
+# opuestas gana el de categoría más alta, por eso dos motivos que puedan
+# chocar no pueden ser de la misma categoría.
 
-# ---------- Acciones ----------
+# Acciones
 encender_por verbo encender.
 apagar_por verbo apagar.
 subir_por verbo subir.
@@ -29,10 +23,8 @@ dispensar_por verbo dispensar.
 limpiar_por verbo limpiar.
 detener_por verbo detener.
 
-# "bloquear" es no tocar el dispositivo (ni encenderlo ni apagarlo), por
-# eso choca con las dos.
-#
-# Acciones incompatibles sobre un mismo dispositivo (en los dos sentidos).
+# Acciones opuestas. bloquear es no tocarlo, así que choca con encender y
+# con apagar
 encender_por opuesto apagar_por, apagar_por opuesto encender_por.
 subir_por opuesto bajar_por, bajar_por opuesto subir_por.
 desplegar_por opuesto recoger_por, recoger_por opuesto desplegar_por.
@@ -42,9 +34,8 @@ limpiar_por opuesto detener_por, detener_por opuesto limpiar_por.
 bloquear_por opuesto encender_por, encender_por opuesto bloquear_por.
 bloquear_por opuesto apagar_por, apagar_por opuesto bloquear_por.
 
-# ---------- Prioridades ----------
-# De más a menos importante. Solo se escribe cada escalón con el siguiente;
-# la regla "prevalece_sobre" deduce el resto.
+# Categorías de más a menos importante. Solo pongo cada una con la
+# siguiente, el resto lo saca prevalece_sobre
 riesgo_explosion por_encima_de emergencia.
 emergencia por_encima_de seguridad.
 seguridad por_encima_de bienestar_mascota.
@@ -54,7 +45,7 @@ descanso por_encima_de peticion.
 peticion por_encima_de confort.
 confort por_encima_de ahorro.
 
-# ---------- Motivos ----------
+# Motivos
 fuga_gas categoria riesgo_explosion, fuga_gas nombre "Hay una fuga de gas".
 
 humo categoria emergencia, humo nombre "Hay humo en casa".
@@ -79,8 +70,8 @@ tender_dentro categoria proteccion_casa, tender_dentro nombre "Ha terminado la l
 
 descanso categoria descanso, descanso nombre "Es de noche y hay gente durmiendo".
 
-# Órdenes a la Alexa (14_reglas_ordenes.sbc). Ceden ante el descanso, la
-# casa, Miko y la seguridad, pero se imponen al confort y al ahorro.
+# órdenes a la Alexa: pierden frente al descanso y todo lo de arriba,
+# ganan al confort y al ahorro
 modo_pelicula categoria peticion, modo_pelicula nombre "Orden: modo película".
 buenos_dias categoria peticion, buenos_dias nombre "Orden: buenos días".
 buenas_noches categoria peticion, buenas_noches nombre "Orden: buenas noches".
@@ -97,11 +88,8 @@ visita categoria confort, visita nombre "Ha entrado alguien con código".
 
 ahorro_energia categoria ahorro, ahorro_energia nombre "No hay nadie en casa: ahorro de energía".
 
-# ---------- De dónde sale cada motivo ----------
-# Qué lectura de un sensor da lugar a cada motivo. Con esto la regla "origen"
-# (12_reglas_domotica.sbc) explica cada acción hasta el sensor que la
-# provocó: la luz se enciende por humo, y el humo lo ha visto el detector de
-# la cocina.
+# Qué lectura de sensor da cada motivo. Lo usa la regla origen para
+# explicar una acción hasta el sensor que la provocó
 humo indica humo.
 gas indica fuga_gas.
 agua indica fuga_agua.
@@ -119,7 +107,7 @@ vacio indica comedero_vacio.
 lleno indica deposito_lleno.
 fin_ciclo indica ciclo_terminado.
 
-# Lecturas que piden que una persona haga algo (16_reglas_tareas.sbc).
+# lecturas que necesitan que alguien haga algo (16_reglas_tareas)
 vacio requiere_persona si.
 lleno requiere_persona si.
 fin_ciclo requiere_persona si.
