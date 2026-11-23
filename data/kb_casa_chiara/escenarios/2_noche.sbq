@@ -53,4 +53,9 @@ D se_impone M?
 D decision A, D nombre N?
 alexa avisar_por M, M nombre N?
 P notificar_por humo?
+
+# La explicación completa de por qué se abre la puerta de madrugada
+cerradura decision A, cerradura se_impone M, M nombre NM, M origen S, S nombre NS?
+# Y qué motivo ha perdido, y por quién
+cerradura conflicto M, M origen X?
 D decision_dudosa si?

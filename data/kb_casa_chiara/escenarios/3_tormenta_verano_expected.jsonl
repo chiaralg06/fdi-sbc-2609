@@ -1,5 +1,5 @@
-{"consulta": "D accion A", "soluciones": [{"D": "aire_salon", "A": "encender"}, {"D": "aspiradora", "A": "apagar"}, {"D": "toldo", "A": "desplegar"}]}
-{"consulta": "D encender_por calor, D nombre N", "soluciones": [{"D": "aire_salon", "N": "\"Aire acondicionado del salón\""}]}
+{"consulta": "D accion A", "soluciones": [{"D": "aire_salon", "A": "encender"}, {"D": "aspiradora", "A": "apagar"}, {"D": "riego_terraza", "A": "encender"}, {"D": "toldo", "A": "desplegar"}]}
+{"consulta": "D encender_por calor, D nombre N", "soluciones": [{"D": "aire_salon", "N": "\"Aire acondicionado del salón\""}, {"D": "riego_terraza", "N": "\"Riego de las plantas de la terraza\""}]}
 {"consulta": "casa situacion S", "soluciones": [{"S": "calor"}, {"S": "lluvia"}]}
 {"consulta": "toldo conflicto M", "soluciones": [{"M": "calor"}, {"M": "lluvia"}]}
 {"consulta": "toldo decision A", "soluciones": [{"A": "recoger"}]}
@@ -9,4 +9,4 @@
 {"consulta": "casa situacion sobrecarga", "soluciones": []}
 {"consulta": "casa situacion sobrecarga", "soluciones": [{}]}
 {"consulta": "D apagar_por sobrecarga", "soluciones": [{"D": "lavavajillas"}]}
-{"consulta": "D accion A", "soluciones": [{"D": "aire_salon", "A": "encender"}, {"D": "alexa", "A": "avisar"}, {"D": "aspiradora", "A": "apagar"}, {"D": "echo_mi_habitacion", "A": "avisar"}, {"D": "echo_padres", "A": "avisar"}, {"D": "extractor_baño", "A": "encender"}, {"D": "lavavajillas", "A": "apagar"}, {"D": "toldo", "A": "desplegar"}, {"D": "toldo", "A": "recoger"}, {"D": "ventana_cocina", "A": "cerrar"}, {"D": "ventanal_terraza", "A": "cerrar"}]}
+{"consulta": "D accion A", "soluciones": [{"D": "aire_salon", "A": "encender"}, {"D": "alexa", "A": "avisar"}, {"D": "aspiradora", "A": "apagar"}, {"D": "echo_mi_habitacion", "A": "avisar"}, {"D": "echo_padres", "A": "avisar"}, {"D": "extractor_baño", "A": "encender"}, {"D": "lavavajillas", "A": "apagar"}, {"D": "riego_terraza", "A": "apagar"}, {"D": "riego_terraza", "A": "encender"}, {"D": "toldo", "A": "desplegar"}, {"D": "toldo", "A": "recoger"}, {"D": "ventana_cocina", "A": "cerrar"}, {"D": "ventanal_terraza", "A": "cerrar"}]}

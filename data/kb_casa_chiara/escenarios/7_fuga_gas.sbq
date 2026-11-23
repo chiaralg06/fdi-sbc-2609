@@ -15,6 +15,7 @@ miko ubicacion salon.
 sensor_gas_terraza detecta gas.
 
 E situacion fuga_gas, E nombre N?
+fuga_gas origen S, S nombre N?
 
 # Cortar el gas, ventilar donde está la fuga y dejar la salida abierta
 D cerrar_por fuga_gas?
@@ -42,6 +43,8 @@ yo ordena modo_pelicula.
 persiana_salon bajar_por M?
 television conflicto M?
 television decision A?
+# Quién pidió la película y qué lo ha impedido
+television conflicto M, M origen X?
 luz_salon decision A?
 
 D decision_dudosa si?

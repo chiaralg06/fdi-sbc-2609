@@ -39,6 +39,8 @@ baño_2 conecta_con X, X conecta_con Y?
 
 # En qué estancia está cada cosa, aunque esté en un mueble
 X en_estancia dormitorio_2?
+portatil en_estancia E?
+llaves en_estancia E, E nombre N?
 X tipo mueble, X en_estancia E, E tipo exterior?
 
 # Tipos heredados

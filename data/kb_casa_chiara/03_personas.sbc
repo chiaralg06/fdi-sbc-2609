@@ -3,9 +3,9 @@
 # Dónde está cada uno EN ESTE MOMENTO ("ubicacion") no se escribe aquí: lo
 # afirma cada escenario, porque cambia a lo largo del día.
 
-yo es_un persona, yo nombre "Yo".
-madre es_un persona, madre nombre "Mamá".
-padre es_un persona, padre nombre "Papá".
+yo es_un persona, yo nombre "Yo", yo vive_en casa.
+madre es_un persona, madre nombre "Mamá", madre vive_en casa.
+padre es_un persona, padre nombre "Papá", padre vive_en casa.
 
 miko es_un gato, miko nombre "Miko", miko pertenece_a yo.
 
@@ -27,8 +27,12 @@ yo duerme_en dormitorio_2.
 miko duerme_en sofa.
 
 # ---------- Tareas de casa ----------
+# Qué aparato tiene que ver con cada tarea está en 04_domotica.sbc
+# ("tarea_asociada"): cuando ese aparato necesita a alguien, se avisa a
+# quien tiene la tarea (16_reglas_tareas.sbc).
 yo tarea sacar_basura.
 yo tarea poner_lavavajillas.
 yo tarea dar_de_comer_al_gato.
 madre tarea hacer_compra.
 padre tarea poner_lavadora.
+padre tarea vaciar_arenero.

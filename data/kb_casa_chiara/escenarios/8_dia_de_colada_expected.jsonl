@@ -1,0 +1,16 @@
+{"consulta": "P notificar_por M, M nombre N", "soluciones": [{"P": "padre", "M": "ciclo_terminado", "N": "\"Ha terminado el programa\""}]}
+{"consulta": "P tarea_pendiente T", "soluciones": [{"P": "padre", "T": "poner_lavadora"}]}
+{"consulta": "yo tarea_pendiente T", "soluciones": [{"T": "dar_de_comer_al_gato"}, {"T": "poner_lavavajillas"}, {"T": "sacar_basura"}]}
+{"consulta": "yo aviso_de D, D nombre N", "soluciones": [{"D": "comedero_miko", "N": "\"Comedero automático de Miko\""}, {"D": "cubo_basura", "N": "\"Cubo de basura\""}, {"D": "lavavajillas", "N": "\"Lavavajillas\""}]}
+{"consulta": "padre tarea_pendiente T", "soluciones": [{"T": "poner_lavadora"}, {"T": "vaciar_arenero"}]}
+{"consulta": "padre notificar_por tender_dentro", "soluciones": [{}]}
+{"consulta": "tender_dentro origen X, X nombre N", "soluciones": [{"X": "lavadora", "N": "\"Lavadora\""}, {"X": "sensor_lluvia", "N": "\"Sensor de lluvia\""}]}
+{"consulta": "madre notificar_por tender_dentro", "soluciones": []}
+{"consulta": "E situacion fuga_agua, E nombre N", "soluciones": [{"E": "cocina", "N": "\"Cocina\""}]}
+{"consulta": "D cerrar_por fuga_agua, D nombre N", "soluciones": [{"D": "llave_agua", "N": "\"Llave general del agua\""}]}
+{"consulta": "D apagar_por fuga_agua, D nombre N", "soluciones": [{"D": "lavadora", "N": "\"Lavadora\""}, {"D": "lavavajillas", "N": "\"Lavavajillas\""}, {"D": "riego_terraza", "N": "\"Riego de las plantas de la terraza\""}]}
+{"consulta": "A avisar_por fuga_agua", "soluciones": [{"A": "alexa"}, {"A": "echo_mi_habitacion"}, {"A": "echo_padres"}]}
+{"consulta": "P notificar_por fuga_agua", "soluciones": [{"P": "madre"}, {"P": "padre"}, {"P": "yo"}]}
+{"consulta": "fuga_agua origen S, S nombre N", "soluciones": [{"S": "sensor_agua_cocina", "N": "\"Sensor de agua bajo la lavadora\""}]}
+{"consulta": "riego_terraza apagar_por M", "soluciones": [{"M": "fuga_agua"}, {"M": "lluvia"}]}
+{"consulta": "D decision_dudosa si", "soluciones": []}

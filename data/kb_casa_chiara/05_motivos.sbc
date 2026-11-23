@@ -63,17 +63,19 @@ intrusion categoria seguridad, intrusion nombre "Se ha abierto la puerta sin nad
 paso_nocturno categoria seguridad, paso_nocturno nombre "Alguien camina de noche y no debe tropezar".
 cierre_seguridad categoria seguridad, cierre_seguridad nombre "La casa se cierra porque es de noche o no hay nadie".
 vigilancia categoria seguridad, vigilancia nombre "No hay nadie en casa: se vigila la entrada".
+simular_presencia categoria seguridad, simular_presencia nombre "Estamos de vacaciones: la casa simula que hay alguien".
 
 mascota_sola categoria bienestar_mascota, mascota_sola nombre "Una mascota se ha quedado sola en casa".
 mascota_en_casa categoria bienestar_mascota, mascota_en_casa nombre "Hay una mascota en casa y el robot la asusta".
 mascota_dentro categoria bienestar_mascota, mascota_dentro nombre "La mascota está dentro del arenero".
 hora_comida categoria bienestar_mascota, hora_comida nombre "Es la hora de comer de la mascota".
 comedero_vacio categoria bienestar_mascota, comedero_vacio nombre "El comedero se ha quedado sin comida".
-arenero_lleno categoria bienestar_mascota, arenero_lleno nombre "El depósito del arenero está lleno".
 
 lluvia categoria proteccion_casa, lluvia nombre "Está lloviendo".
 ropa_tendida categoria proteccion_casa, ropa_tendida nombre "Llueve y hay ropa tendida fuera".
 sobrecarga categoria proteccion_casa, sobrecarga nombre "Hay demasiados aparatos encendidos y pueden saltar los plomos".
+fuga_agua categoria proteccion_casa, fuga_agua nombre "Hay agua en el suelo".
+tender_dentro categoria proteccion_casa, tender_dentro nombre "Ha terminado la lavadora y llueve: mejor tender dentro".
 
 descanso categoria descanso, descanso nombre "Es de noche y hay gente durmiendo".
 
@@ -89,5 +91,35 @@ calor categoria confort, calor nombre "Hace calor fuera".
 humedad categoria confort, humedad nombre "Hay mucha humedad".
 casa_vacia categoria confort, casa_vacia nombre "No hay nadie: buen momento para limpiar".
 uso_arenero categoria confort, uso_arenero nombre "La mascota ha usado el arenero".
+ciclo_terminado categoria confort, ciclo_terminado nombre "Ha terminado el programa".
+deposito_lleno categoria confort, deposito_lleno nombre "Está lleno y hay que vaciarlo".
+visita categoria confort, visita nombre "Ha entrado alguien con código".
 
 ahorro_energia categoria ahorro, ahorro_energia nombre "No hay nadie en casa: ahorro de energía".
+
+# ---------- De dónde sale cada motivo ----------
+# Qué lectura de un sensor da lugar a cada motivo. Con esto la regla "origen"
+# (12_reglas_domotica.sbc) explica cada acción hasta el sensor que la
+# provocó: la luz se enciende por humo, y el humo lo ha visto el detector de
+# la cocina.
+humo indica humo.
+gas indica fuga_gas.
+agua indica fuga_agua.
+lluvia indica lluvia.
+lluvia indica ropa_tendida.
+lluvia indica tender_dentro.
+calor indica calor.
+humedad_alta indica humedad.
+apertura indica intrusion.
+sin_codigo indica intrusion.
+movimiento indica paso_nocturno.
+mascota_dentro indica mascota_dentro.
+uso indica uso_arenero.
+vacio indica comedero_vacio.
+lleno indica deposito_lleno.
+fin_ciclo indica ciclo_terminado.
+
+# Lecturas que piden que una persona haga algo (16_reglas_tareas.sbc).
+vacio requiere_persona si.
+lleno requiere_persona si.
+fin_ciclo requiere_persona si.

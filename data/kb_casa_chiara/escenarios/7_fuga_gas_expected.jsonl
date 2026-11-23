@@ -1,4 +1,5 @@
 {"consulta": "E situacion fuga_gas, E nombre N", "soluciones": [{"E": "terraza_1", "N": "\"Terraza grande\""}]}
+{"consulta": "fuga_gas origen S, S nombre N", "soluciones": [{"S": "sensor_gas_terraza", "N": "\"Detector de gas junto al calentador\""}]}
 {"consulta": "D cerrar_por fuga_gas", "soluciones": [{"D": "electrovalvula"}]}
 {"consulta": "D abrir_por fuga_gas", "soluciones": [{"D": "cerradura"}, {"D": "ventanal_terraza"}]}
 {"consulta": "D bloquear_por fuga_gas", "soluciones": [{"D": "aire_salon"}, {"D": "aspiradora"}, {"D": "calefaccion"}, {"D": "enchufe_salon"}, {"D": "extractor_baño"}, {"D": "lavadora"}, {"D": "lavavajillas"}, {"D": "luz_cocina"}, {"D": "luz_dormitorio_1"}, {"D": "luz_dormitorio_2"}, {"D": "luz_pasillo"}, {"D": "luz_recibidor"}, {"D": "luz_salon"}, {"D": "television"}]}
@@ -10,5 +11,6 @@
 {"consulta": "persiana_salon bajar_por M", "soluciones": [{"M": "modo_pelicula"}]}
 {"consulta": "television conflicto M", "soluciones": [{"M": "fuga_gas"}, {"M": "modo_pelicula"}]}
 {"consulta": "television decision A", "soluciones": [{"A": "bloquear"}]}
+{"consulta": "television conflicto M, M origen X", "soluciones": [{"M": "fuga_gas", "X": "sensor_gas_terraza"}, {"M": "modo_pelicula", "X": "yo"}]}
 {"consulta": "luz_salon decision A", "soluciones": [{"A": "bloquear"}]}
 {"consulta": "D decision_dudosa si", "soluciones": []}

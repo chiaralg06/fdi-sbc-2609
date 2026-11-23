@@ -12,6 +12,8 @@ X conecta_con salon? -> SI
 X conecta_con pasillo, X tipo dormitorio? -> SI
 baño_2 conecta_con X, X conecta_con Y? -> SI
 X en_estancia dormitorio_2? -> SI
+portatil en_estancia E? -> SI
+llaves en_estancia E, E nombre N? -> SI
 X tipo mueble, X en_estancia E, E tipo exterior? -> SI
 miko tipo C? -> SI
 television tipo C? -> SI

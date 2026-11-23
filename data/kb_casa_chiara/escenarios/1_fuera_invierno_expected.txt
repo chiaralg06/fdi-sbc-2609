@@ -18,4 +18,5 @@ D encender_por intrusion? -> SI
 luz_salon conflicto M? -> SI
 D se_impone intrusion? -> SI
 luz_salon decision A? -> SI
+luz_salon se_impone M, M nombre NM, M origen S, S nombre NS? -> SI
 D decision_dudosa si? -> NO

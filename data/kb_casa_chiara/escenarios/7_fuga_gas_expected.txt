@@ -1,4 +1,5 @@
 E situacion fuga_gas, E nombre N? -> SI
+fuga_gas origen S, S nombre N? -> SI
 D cerrar_por fuga_gas? -> SI
 D abrir_por fuga_gas? -> SI
 D bloquear_por fuga_gas? -> SI
@@ -10,5 +11,6 @@ ventana_cocina accion A? -> SI
 persiana_salon bajar_por M? -> SI
 television conflicto M? -> SI
 television decision A? -> SI
+television conflicto M, M origen X? -> SI
 luz_salon decision A? -> SI
 D decision_dudosa si? -> NO

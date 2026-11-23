@@ -10,4 +10,4 @@
 {"consulta": "P notificar_por comedero_vacio", "soluciones": [{"P": "yo"}]}
 {"consulta": "arenero_miko decision A", "soluciones": [{"A": "detener"}]}
 {"consulta": "arenero_miko detener_por M, M nombre N", "soluciones": [{"M": "descanso", "N": "\"Es de noche y hay gente durmiendo\""}, {"M": "mascota_dentro", "N": "\"La mascota está dentro del arenero\""}]}
-{"consulta": "P notificar_por M, M nombre N", "soluciones": [{"P": "yo", "M": "arenero_lleno", "N": "\"El depósito del arenero está lleno\""}, {"P": "yo", "M": "comedero_vacio", "N": "\"El comedero se ha quedado sin comida\""}]}
+{"consulta": "P notificar_por M, M nombre N", "soluciones": [{"P": "padre", "M": "deposito_lleno", "N": "\"Está lleno y hay que vaciarlo\""}, {"P": "yo", "M": "comedero_vacio", "N": "\"El comedero se ha quedado sin comida\""}]}

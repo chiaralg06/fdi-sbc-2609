@@ -18,4 +18,6 @@ D se_impone M? -> SI
 D decision A, D nombre N? -> SI
 alexa avisar_por M, M nombre N? -> SI
 P notificar_por humo? -> SI
+cerradura decision A, cerradura se_impone M, M nombre NM, M origen S, S nombre NS? -> SI
+cerradura conflicto M, M origen X? -> SI
 D decision_dudosa si? -> NO

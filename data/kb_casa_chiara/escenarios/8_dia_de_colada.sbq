@@ -1,0 +1,57 @@
+# Escenario 8: sábado de invierno en casa. Terminan la lavadora y el
+# lavavajillas, se llenan el cubo y el arenero y se vacía el comedero: cada
+# aviso le llega a quien tiene esa tarea. Empieza a llover y, al final, hay
+# agua en el suelo de la cocina.
+# uv run -m sbc data/kb_casa_chiara data/kb_casa_chiara/escenarios/8_dia_de_colada.sbq
+
+razona si!
+
+casa estacion invierno.
+yo ubicacion dormitorio_2.
+madre ubicacion salon.
+padre ubicacion salon.
+miko ubicacion salon.
+lavadora estado encendido, lavavajillas estado encendido.
+
+# ---------- Termina la lavadora ----------
+lavadora detecta fin_ciclo.
+
+P notificar_por M, M nombre N?
+P tarea_pendiente T?
+
+# ---------- Termina el lavavajillas, el cubo está lleno y el comedero vacío ----------
+lavavajillas detecta fin_ciclo.
+cubo_basura detecta lleno.
+comedero_miko detecta vacio.
+
+yo tarea_pendiente T?
+yo aviso_de D, D nombre N?
+
+# ---------- El arenero está lleno: esa tarea es de mi padre ----------
+arenero_miko detecta lleno.
+
+padre tarea_pendiente T?
+
+# ---------- Empieza a llover ----------
+# La ropa de la lavadora, mejor dentro
+sensor_lluvia detecta lluvia.
+
+padre notificar_por tender_dentro?
+tender_dentro origen X, X nombre N?
+# Mi madre no tiene que tender, no le llega
+madre notificar_por tender_dentro?
+
+# ---------- Agua en el suelo de la cocina ----------
+sensor_agua_cocina detecta agua.
+
+E situacion fuga_agua, E nombre N?
+D cerrar_por fuga_agua, D nombre N?
+D apagar_por fuga_agua, D nombre N?
+A avisar_por fuga_agua?
+P notificar_por fuga_agua?
+fuga_agua origen S, S nombre N?
+
+# El riego de la terraza se para por dos motivos que piden lo mismo
+riego_terraza apagar_por M?
+
+D decision_dudosa si?

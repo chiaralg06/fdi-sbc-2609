@@ -41,7 +41,10 @@ smart_tv subclase_de controlable, smart_tv subclase_de aparato_electronico.
 camara subclase_de controlable.
 cerradura_inteligente subclase_de controlable.
 ventana_motorizada subclase_de controlable.
-valvula_gas subclase_de controlable.
+valvula subclase_de controlable.
+valvula_gas subclase_de valvula.
+valvula_agua subclase_de valvula.
+riego_automatico subclase_de controlable.
 
 # Electrodomésticos con wifi: siguen siendo electrodomésticos, pero la casa
 # los puede encender y apagar.
@@ -64,6 +67,9 @@ sensor_humedad subclase_de sensor.
 sensor_lluvia subclase_de sensor.
 sensor_temperatura subclase_de sensor.
 sensor_gas subclase_de sensor.
+sensor_inundacion subclase_de sensor.
+# El cubo de basura inteligente solo informa de si está lleno.
+cubo_inteligente subclase_de sensor.
 
 # ---------- Riesgo de chispa ----------
 # Con una fuga de gas no se debe tocar nada que pueda hacer chispa al

@@ -1,0 +1,25 @@
+{"consulta": "casa ausente si", "soluciones": [{}]}
+{"consulta": "casa situacion S", "soluciones": [{"S": "mascota_sola"}]}
+{"consulta": "D encender_por mascota_sola", "soluciones": []}
+{"consulta": "D cerrar_por cierre_seguridad", "soluciones": [{"D": "cerradura"}, {"D": "ventana_cocina"}, {"D": "ventanal_terraza"}]}
+{"consulta": "camara_recibidor grabar_por M", "soluciones": [{"M": "vigilancia"}]}
+{"consulta": "riego_terraza encender_por M", "soluciones": [{"M": "calor"}]}
+{"consulta": "toldo desplegar_por M", "soluciones": [{"M": "calor"}]}
+{"consulta": "casa situacion visita", "soluciones": [{}]}
+{"consulta": "casa situacion intrusion", "soluciones": []}
+{"consulta": "visita origen P, P nombre N", "soluciones": [{"P": "cuidadora", "N": "\"Lucía, la cuidadora de Miko\""}]}
+{"consulta": "luz_recibidor conflicto M", "soluciones": [{"M": "ahorro_energia"}, {"M": "visita"}]}
+{"consulta": "luz_recibidor decision A", "soluciones": [{"A": "encender"}]}
+{"consulta": "P notificar_por visita", "soluciones": [{"P": "madre"}, {"P": "padre"}, {"P": "yo"}]}
+{"consulta": "D encender_por simular_presencia", "soluciones": [{"D": "luz_cocina"}, {"D": "luz_pasillo"}, {"D": "luz_recibidor"}, {"D": "luz_salon"}]}
+{"consulta": "luz_salon conflicto M", "soluciones": [{"M": "ahorro_energia"}, {"M": "simular_presencia"}]}
+{"consulta": "luz_salon decision A", "soluciones": [{"A": "encender"}]}
+{"consulta": "luz_dormitorio_1 encender_por simular_presencia", "soluciones": []}
+{"consulta": "casa situacion intrusion", "soluciones": [{}]}
+{"consulta": "intrusion origen S, S nombre N", "soluciones": [{"S": "cerradura", "N": "\"Cerradura de la puerta de entrada\""}, {"S": "sensor_puerta", "N": "\"Sensor de la puerta de entrada\""}]}
+{"consulta": "P notificar_por intrusion", "soluciones": [{"P": "madre"}, {"P": "padre"}, {"P": "yo"}]}
+{"consulta": "camara_recibidor grabar_por M", "soluciones": [{"M": "intrusion"}, {"M": "vigilancia"}]}
+{"consulta": "riego_terraza conflicto M", "soluciones": [{"M": "calor"}, {"M": "lluvia"}]}
+{"consulta": "riego_terraza decision A", "soluciones": [{"A": "apagar"}]}
+{"consulta": "toldo decision A", "soluciones": [{"A": "recoger"}]}
+{"consulta": "D decision_dudosa si", "soluciones": []}

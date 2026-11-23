@@ -2,7 +2,7 @@
 #
 # "esta_en" es la ubicación directa: una estancia o un mueble. La regla
 # "en_estancia" de 10_reglas_casa.sbc deduce en qué estancia acaba cada cosa
-# (algo que esté encima de un mueble acaba en la estancia del mueble).
+# (el portátil está en el escritorio, que está en mi habitación).
 # Los dispositivos domóticos están en 04_domotica.sbc.
 
 # ---------- Muebles Salón----------
@@ -35,7 +35,7 @@ espejo_dormitorio_2 es_un mueble, espejo_dormitorio_2 esta_en dormitorio_2.
 estanterias_dormitorio es_un mueble, estanterias_dormitorio esta_en dormitorio_2.
 tocador es_un mueble, tocador esta_en dormitorio_2.
 biblioteca es_un mueble, biblioteca esta_en dormitorio_2.
-bahul es_un mueble, bahul esta_en dormitorio_2.
+baul es_un mueble, baul esta_en dormitorio_2, baul nombre "Baúl".
 
 # ---------- Muebles Dormitorio 3----------
 cama_3 es_un mueble, cama_3 esta_en dormitorio_3.
@@ -52,12 +52,12 @@ tendedero es_un mueble, tendedero esta_en terraza_1.
 armarios_ropa es_un mueble, armarios_ropa esta_en terraza_2.
 
 # ---------- Electrodomésticos ----------
-nevera es_un electrodomestico, nevera esta_en cocina.
-kettle es_un electrodomestico, kettle esta_en cocina.
-vitroceramica es_un electrodomestico, vitroceramica esta_en cocina.
-horno es_un electrodomestico, horno esta_en cocina.
-airfryer es_un electrodomestico, airfryer esta_en cocina.
-microondas es_un electrodomestico, microondas esta_en cocina.
+nevera es_un electrodomestico, nevera esta_en cocina, nevera nombre "Nevera".
+kettle es_un electrodomestico, kettle esta_en cocina, kettle nombre "Hervidor".
+vitroceramica es_un electrodomestico, vitroceramica esta_en cocina, vitroceramica nombre "Vitrocerámica".
+horno es_un electrodomestico, horno esta_en cocina, horno nombre "Horno".
+airfryer es_un electrodomestico, airfryer esta_en cocina, airfryer nombre "Airfryer".
+microondas es_un electrodomestico, microondas esta_en cocina, microondas nombre "Microondas".
 lavavajillas es_un electrodomestico, lavavajillas esta_en cocina.
 lavadora es_un electrodomestico, lavadora esta_en cocina.
 calentador es_un electrodomestico, calentador esta_en terraza_1.
@@ -69,3 +69,13 @@ contador_gas es_un electrodomestico, contador_gas esta_en terraza_2.
 television es_un smart_tv, television esta_en salon, television nombre "Televisión".
 router es_un aparato_electronico, router esta_en salon.
 movistar es_un aparato_electronico, movistar esta_en salon.
+portatil es_un aparato_electronico, portatil esta_en escritorio_1, portatil nombre "Portátil".
+
+# ---------- Cosas pequeñas (dentro o encima de muebles) ----------
+llaves esta_en zapatero_1, llaves nombre "Llaves de casa".
+mando_tele esta_en mesa_salon, mando_tele nombre "Mando de la tele".
+cascos esta_en mesillas_2, cascos nombre "Cascos".
+
+# ---------- De quién es cada cosa ----------
+portatil pertenece_a yo.
+escritorio_1 pertenece_a yo.

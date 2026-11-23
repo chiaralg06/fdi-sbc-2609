@@ -1,0 +1,16 @@
+P notificar_por M, M nombre N? -> SI
+P tarea_pendiente T? -> SI
+yo tarea_pendiente T? -> SI
+yo aviso_de D, D nombre N? -> SI
+padre tarea_pendiente T? -> SI
+padre notificar_por tender_dentro? -> SI
+tender_dentro origen X, X nombre N? -> SI
+madre notificar_por tender_dentro? -> NO
+E situacion fuga_agua, E nombre N? -> SI
+D cerrar_por fuga_agua, D nombre N? -> SI
+D apagar_por fuga_agua, D nombre N? -> SI
+A avisar_por fuga_agua? -> SI
+P notificar_por fuga_agua? -> SI
+fuga_agua origen S, S nombre N? -> SI
+riego_terraza apagar_por M? -> SI
+D decision_dudosa si? -> NO

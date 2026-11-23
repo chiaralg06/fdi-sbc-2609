@@ -1,0 +1,25 @@
+casa ausente si? -> SI
+casa situacion S? -> SI
+D encender_por mascota_sola? -> NO
+D cerrar_por cierre_seguridad? -> SI
+camara_recibidor grabar_por M? -> SI
+riego_terraza encender_por M? -> SI
+toldo desplegar_por M? -> SI
+casa situacion visita? -> SI
+casa situacion intrusion? -> NO
+visita origen P, P nombre N? -> SI
+luz_recibidor conflicto M? -> SI
+luz_recibidor decision A? -> SI
+P notificar_por visita? -> SI
+D encender_por simular_presencia? -> SI
+luz_salon conflicto M? -> SI
+luz_salon decision A? -> SI
+luz_dormitorio_1 encender_por simular_presencia? -> NO
+casa situacion intrusion? -> SI
+intrusion origen S, S nombre N? -> SI
+P notificar_por intrusion? -> SI
+camara_recibidor grabar_por M? -> SI
+riego_terraza conflicto M? -> SI
+riego_terraza decision A? -> SI
+toldo decision A? -> SI
+D decision_dudosa si? -> NO

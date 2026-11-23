@@ -18,4 +18,5 @@
 {"consulta": "luz_salon conflicto M", "soluciones": [{"M": "ahorro_energia"}, {"M": "intrusion"}]}
 {"consulta": "D se_impone intrusion", "soluciones": [{"D": "luz_cocina"}, {"D": "luz_dormitorio_1"}, {"D": "luz_dormitorio_2"}, {"D": "luz_pasillo"}, {"D": "luz_recibidor"}, {"D": "luz_salon"}]}
 {"consulta": "luz_salon decision A", "soluciones": [{"A": "encender"}]}
+{"consulta": "luz_salon se_impone M, M nombre NM, M origen S, S nombre NS", "soluciones": [{"M": "intrusion", "NM": "\"Se ha abierto la puerta sin nadie en casa\"", "S": "cerradura", "NS": "\"Cerradura de la puerta de entrada\""}, {"M": "intrusion", "NM": "\"Se ha abierto la puerta sin nadie en casa\"", "S": "sensor_puerta", "NS": "\"Sensor de la puerta de entrada\""}]}
 {"consulta": "D decision_dudosa si", "soluciones": []}

@@ -30,8 +30,9 @@ aspiradora decision A?
 # ¿Qué de todo esto puede hacer la Alexa del salón?
 D accion A, alexa controla D?
 
-# ---------- Información nueva: se abre la puerta ----------
+# ---------- Información nueva: se abre la puerta sin código ----------
 sensor_puerta detecta apertura.
+cerradura detecta sin_codigo.
 
 casa situacion intrusion?
 alexa avisar_por M, M nombre N?
@@ -43,6 +44,9 @@ D encender_por intrusion?
 luz_salon conflicto M?
 D se_impone intrusion?
 luz_salon decision A?
+
+# ¿Por qué? De la acción al motivo y del motivo a los sensores
+luz_salon se_impone M, M nombre NM, M origen S, S nombre NS?
 
 # Ningún dispositivo con decisiones contradictorias
 D decision_dudosa si?

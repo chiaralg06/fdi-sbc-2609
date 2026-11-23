@@ -19,14 +19,17 @@ A controla X <- X enchufada_a S, A controla S.
 # (Miko no da órdenes, aunque esté en el salón con la Alexa.)
 P habla_con A <- P ubicacion E, A tipo asistente_voz, A en_estancia E, P tipo persona.
 
-# Quien cuida de una mascota es su dueño: le llegan los avisos de Miko.
-P cuida_de M <- M pertenece_a P, M tipo mascota.
-
 # ---------- Modo de la casa ----------
 # El escenario puede decir el modo directamente ("casa modo noche"), o
 # deducirse de una orden a la Alexa.
 casa modo noche <- P ordena buenas_noches.
 casa modo fuera <- P ordena me_voy.
+
+# La casa está vacía tanto si hemos salido un rato como si estamos de
+# vacaciones. Las reglas de ahorro, cierre, vigilancia o Miko usan "ausente",
+# así que valen para los dos modos; lo propio de las vacaciones está aparte.
+casa ausente si <- casa modo fuera.
+casa ausente si <- casa modo vacaciones.
 
 # ---------- Situaciones ----------
 # Los sensores informan con "S detecta ...". Que el dato venga de un sensor
@@ -36,15 +39,40 @@ casa situacion calor <- S detecta calor, S tipo sensor_temperatura.
 E situacion humo <- S detecta humo, S tipo sensor_humo, S en_estancia E.
 E situacion fuga_gas <- S detecta gas, S tipo sensor_gas, S en_estancia E.
 E situacion humedad_alta <- S detecta humedad_alta, S tipo sensor_humedad, S en_estancia E.
+E situacion fuga_agua <- S detecta agua, S tipo sensor_inundacion, S en_estancia E.
 
-# Lo que significa un dato depende del contexto: abrir la puerta es normal,
-# salvo que no haya nadie en casa. Moverse por el pasillo solo importa de
-# noche.
-casa situacion intrusion <- casa modo fuera, S detecta apertura, S tipo sensor_apertura.
+# Lo que significa un dato depende del contexto. Abrir la puerta es normal,
+# salvo que no haya nadie en casa. Y aun así depende de cómo se abra: la
+# cerradura dice si se ha abierto con un código (y de quién) o sin código.
+# Con código es una visita (la cuidadora de Miko); sin código, una intrusión.
+casa situacion intrusion <- casa ausente si, S detecta apertura, S tipo sensor_apertura, C detecta sin_codigo, C tipo cerradura_inteligente.
+casa situacion visita <- casa ausente si, C identifica P, C tipo cerradura_inteligente, P tiene_acceso si.
+
+# Moverse por el pasillo solo importa de noche.
 E situacion paso_nocturno <- casa modo noche, S detecta movimiento, S tipo sensor_movimiento, S en_estancia E.
 
 # Una mascota se queda sola si la familia ha salido y ella está en casa.
-casa situacion mascota_sola <- casa modo fuera, M tipo mascota, M ubicacion E, E parte_de casa.
+casa situacion mascota_sola <- casa ausente si, M tipo mascota, M ubicacion E, E parte_de casa.
+
+# ---------- De dónde sale cada motivo ----------
+# "M origen X": qué sensor, persona o aparato ha dado lugar al motivo M.
+# Junto con "D <verbo>_por M" explica una acción de punta a punta:
+#   luz_salon encender_por humo, humo origen sensor_humo_cocina.
+# Sensores: según la tabla "indica" de 05_motivos.sbc.
+M origen S <- L indica M, S detecta L.
+# Órdenes: quién las ha dado.
+O origen P <- P ordena O.
+# Visitas: quién ha entrado.
+visita origen P <- casa situacion visita, C identifica P.
+# Tender dentro: el aparato de ropa que ha terminado (además de la lluvia).
+tender_dentro origen D <- casa situacion lluvia, D detecta fin_ciclo, D lava ropa.
+# Plomos: qué aparatos están activos.
+sobrecarga origen X <- casa situacion sobrecarga, X activo si.
+# Descanso: quién está dormido.
+descanso origen X <- casa modo noche, X estado dormido.
+# Mascotas: qué mascota está en casa.
+mascota_sola origen M <- casa situacion mascota_sola, M tipo mascota, M ubicacion E, E parte_de casa.
+mascota_en_casa origen M <- M tipo mascota, M ubicacion E, E parte_de casa.
 
 # ---------- Acciones y conflictos ----------
 # Qué acción hace cada dispositivo, sin el motivo.

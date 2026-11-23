@@ -52,6 +52,27 @@ electrovalvula es_un valvula_gas, electrovalvula esta_en terraza_2, electrovalvu
 lavadora es_un electrodomestico_inteligente, lavadora nombre "Lavadora".
 lavavajillas es_un electrodomestico_inteligente, lavavajillas nombre "Lavavajillas".
 
+# Qué gasta agua (se para si hay una fuga) y qué lava ropa (hay que tenderla).
+lavadora usa agua, lavavajillas usa agua, riego_terraza usa agua.
+lavadora lava ropa.
+
+# ---------- Aparatos y tareas de la familia ----------
+# Cuando uno de estos aparatos necesita a alguien (ha terminado, está lleno,
+# está vacío), se avisa a quien tiene esa tarea en 03_personas.sbc.
+lavadora tarea_asociada poner_lavadora.
+lavavajillas tarea_asociada poner_lavavajillas.
+comedero_miko tarea_asociada dar_de_comer_al_gato.
+arenero_miko tarea_asociada vaciar_arenero.
+cubo_basura tarea_asociada sacar_basura.
+
+# ---------- Agua ----------
+# Llave general del agua con motor, en la cocina.
+llave_agua es_un valvula_agua, llave_agua esta_en cocina, llave_agua nombre "Llave general del agua".
+riego_terraza es_un riego_automatico, riego_terraza esta_en terraza_1, riego_terraza nombre "Riego de las plantas de la terraza".
+
+# ---------- Basura ----------
+cubo_basura es_un cubo_inteligente, cubo_basura esta_en cocina, cubo_basura nombre "Cubo de basura".
+
 # ---------- Miko ----------
 comedero_miko es_un comedero_automatico, comedero_miko esta_en salon, comedero_miko sirve_a miko, comedero_miko nombre "Comedero automático de Miko".
 arenero_miko es_un arenero_automatico, arenero_miko esta_en baño_1, arenero_miko sirve_a miko, arenero_miko nombre "Arenero automático de Miko".
@@ -67,4 +88,6 @@ sensor_humo_cocina es_un sensor_humo, sensor_humo_cocina esta_en cocina, sensor_
 sensor_humedad_baño es_un sensor_humedad, sensor_humedad_baño esta_en baño_2, sensor_humedad_baño nombre "Sensor de humedad del baño".
 sensor_lluvia es_un sensor_lluvia, sensor_lluvia esta_en terraza_1, sensor_lluvia nombre "Sensor de lluvia".
 sensor_gas_terraza es_un sensor_gas, sensor_gas_terraza esta_en terraza_1, sensor_gas_terraza nombre "Detector de gas junto al calentador".
+sensor_agua_cocina es_un sensor_inundacion, sensor_agua_cocina esta_en cocina, sensor_agua_cocina nombre "Sensor de agua bajo la lavadora".
+sensor_agua_baño es_un sensor_inundacion, sensor_agua_baño esta_en baño_2, sensor_agua_baño nombre "Sensor de agua del baño grande".
 sensor_temp_exterior es_un sensor_temperatura, sensor_temp_exterior esta_en terraza_1, sensor_temp_exterior nombre "Termómetro exterior".
