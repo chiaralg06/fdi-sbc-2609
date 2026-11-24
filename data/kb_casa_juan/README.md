@@ -120,6 +120,18 @@ detectaría: todos los escenarios lo comprueban y sale vacío.
 simétrica se llamaría a sí misma en bucle con `razona si!`. Todas las reglas
 recursivas (clases, prioridades, plantas) bajan por estructuras sin ciclos.
 
+## Extensiones del motor que usa
+
+- **Encadenamiento hacia atrás (`razona si!`):** es como se ejecutan los
+  escenarios. Las conclusiones (franja, situación, conflicto, resultado) se
+  deducen solo cuando se preguntan.
+- **Encadenamiento hacia delante (`descubre!`):** los escenarios dan las mismas
+  respuestas si se cambia `razona si!` por `descubre!` después de cada hecho.
+- **Explicación (`explica si!`):** los escenarios 2 y 8 la activan en la
+  decisión de la luz del techo. Por stderr sale la cadena completa: de la hora
+  a la franja, de la franja al horario nocturno o diurno, de ahí al orden de
+  prioridades y al motivo que gana.
+
 ## Escenarios de prueba
 
 Como el motor no permite retirar hechos, cada escenario es un momento fijo

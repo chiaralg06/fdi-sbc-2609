@@ -12,7 +12,11 @@ nico ubicacion hab_514, nico estado dormido.
 luz_juan accion A?
 luz_techo_514 conflicto M?
 luz_techo_514 gana M?
+# explica si! muestra por stderr la cadena de reglas: de la hora a la franja,
+# de la franja al horario nocturno, y de ahí a que el descanso gana al estudio
+explica si!
 luz_techo_514 resultado A?
+explica no!
 luz_nico accion A?
 persiana_514 bajar_por M?
 

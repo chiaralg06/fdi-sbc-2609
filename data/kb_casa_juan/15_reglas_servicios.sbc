@@ -20,13 +20,13 @@ V puede_subir no <- V visita_a P, V amigo_de P.
 V puede_ir_a H <- V puede_subir si, V visita_a P, P vive_en H.
 V puede_ir_a E <- V visita_a P, E admite_visitas si.
 
-# Cuando una visita llega a recepción, se avisa a quien visita y a quien
-# esté de turno en recepción.
-P notificar_por visita_llegada <- V visita_a P, V ubicacion recepcion.
-R notificar_por visita_llegada <- V visita_a P, V ubicacion recepcion, R tipo personal_recepcion, R de_turno si.
+# Cuando una visita llega a un punto de atención (la recepción), se avisa a
+# quien visita y a quien esté de turno en recepción.
+P notificar_por visita_llegada <- V visita_a P, V ubicacion E, E tipo punto_atencion.
+R notificar_por visita_llegada <- V visita_a P, V ubicacion E, E tipo punto_atencion, R tipo personal_recepcion, R de_turno si.
 
 # ---------- Limpieza ----------
-# Por la mañana, con el personal de limpieza de turno, toca limpiar las
-# habitaciones. Si dentro alguien duerme o estudia ("no_molestar"), gana eso
+# En la franja de limpieza (03_horario.sbc), con el personal de limpieza de
+# turno, toca limpiar las habitaciones. Si dentro alguien duerme o estudia ("no_molestar"), gana eso
 # y la limpieza espera.
-H limpiar_por limpieza_programada <- colegio franja media_mañana, R tipo personal_limpieza, R de_turno si, H tipo habitacion.
+H limpiar_por limpieza_programada <- colegio franja F, F hora_limpieza si, R tipo personal_limpieza, R de_turno si, H tipo habitacion.

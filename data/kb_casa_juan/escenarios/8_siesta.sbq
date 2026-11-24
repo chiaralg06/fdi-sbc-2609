@@ -18,7 +18,10 @@ descanso prevalece_sobre C?
 # La luz del techo: el estudio gana a la siesta (a las 00:30 era al revés)
 luz_techo_514 conflicto M?
 luz_techo_514 gana M, M nombre N?
+# explica si! muestra por stderr por qué de día gana el estudio
+explica si!
 luz_techo_514 resultado A?
+explica no!
 
 # Como la luz se enciende, no hace falta avisarle ni mandarle a la sala de
 # estudio

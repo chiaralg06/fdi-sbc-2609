@@ -62,6 +62,9 @@ desayuno horario_visitas si, media_mañana horario_visitas si.
 comida horario_visitas si, tarde horario_visitas si.
 cena horario_visitas no, noche horario_visitas no, madrugada horario_visitas no.
 
+# ---------- Limpieza de las habitaciones ----------
+media_mañana hora_limpieza si.
+
 # ---------- Turnos del personal ----------
 desayuno en_turno turno_mañana, media_mañana en_turno turno_mañana, comida en_turno turno_mañana.
 tarde en_turno turno_tarde, cena en_turno turno_tarde.
