@@ -1,7 +1,7 @@
-puerta_principal disputa M? -> NO
+puerta_principal conflicto M? -> NO
 puerta_principal accion A? -> SI
 P notificar_por llegada_tarde, P nombre N? -> SI
-porton_garaje disputa M? -> SI
+porton_garaje conflicto M? -> SI
 porton_garaje hace A? -> SI
 P notificar_por intento_salida? -> SI
 cargador encender_por M, M nombre N? -> SI
@@ -10,6 +10,6 @@ aire_padres accion A? -> SI
 aire_pablo accion A? -> SI
 aire_sergio accion A? -> NO
 luces_jardin encender_por M, M nombre N? -> SI
-altavoces_porche se_queda_con M, M nivel N? -> SI
+altavoces_porche gana M, M categoria C? -> SI
 altavoces_porche hace A? -> SI
 D contradiccion si? -> NO

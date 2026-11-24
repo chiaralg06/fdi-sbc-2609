@@ -1,18 +1,15 @@
-{"consulta": "porton_garaje disputa M", "soluciones": [{"M": "llegada_coche"}, {"M": "perro_puede_escaparse"}]}
-{"consulta": "porton_garaje se_queda_con M, M nombre N", "soluciones": [{"M": "perro_puede_escaparse", "N": "\"Thor está junto a una puerta de la calle\""}]}
+{"consulta": "porton_garaje conflicto M", "soluciones": [{"M": "llegada_coche"}, {"M": "perro_puede_escaparse"}]}
+{"consulta": "porton_garaje gana M, M nombre N", "soluciones": [{"M": "perro_puede_escaparse", "N": "\"Thor está junto a una puerta de la calle\""}]}
 {"consulta": "porton_garaje hace A", "soluciones": [{"A": "cerrar"}]}
 {"consulta": "luz_garaje accion A", "soluciones": [{"A": "encender"}]}
-{"consulta": "porton_garaje descarta M", "soluciones": [{"M": "llegada_coche"}, {"M": "luis"}]}
+{"consulta": "porton_garaje pierde M", "soluciones": [{"M": "llegada_coche"}, {"M": "luis"}]}
 {"consulta": "porton_garaje hace A", "soluciones": [{"A": "cerrar"}]}
 {"consulta": "P notificar_por aviso_perro, P nombre N", "soluciones": [{"P": "luis", "N": "\"Luis\""}, {"P": "sergio", "N": "\"Sergio\""}]}
 {"consulta": "chalet momento F, F tarifa T", "soluciones": [{"F": "anochecer", "T": "punta"}]}
 {"consulta": "cargador accion A", "soluciones": []}
-{"consulta": "cargador disputa M", "soluciones": [{"M": "luis"}, {"M": "tarifa_punta"}]}
-{"consulta": "cargador se_queda_con M, M nivel N", "soluciones": [{"M": "luis", "N": "voluntad"}]}
+{"consulta": "cargador conflicto M", "soluciones": [{"M": "luis"}, {"M": "tarifa_punta"}]}
+{"consulta": "cargador gana M, M categoria C", "soluciones": [{"M": "luis", "C": "padres"}]}
 {"consulta": "cargador hace A", "soluciones": [{"A": "encender"}]}
-{"consulta": "bomba_piscina disputa M", "soluciones": [{"M": "luis"}, {"M": "norma_piscina"}]}
-{"consulta": "bomba_piscina manda P", "soluciones": [{"P": "luis"}]}
-{"consulta": "bomba_piscina hace A", "soluciones": [{"A": "encender"}]}
 {"consulta": "suelo_radiante_pb encender_por M, M nombre N", "soluciones": [{"M": "frio", "N": "\"Hace frío donde hay alguien\""}]}
 {"consulta": "aire_despacho accion A", "soluciones": []}
 {"consulta": "deshumidificador_sotano accion A", "soluciones": [{"A": "encender"}]}

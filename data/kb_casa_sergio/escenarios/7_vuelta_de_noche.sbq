@@ -10,14 +10,14 @@ pablo ubicacion dormitorio_pablo, thor ubicacion jardin.
 
 # Sergio abre con el móvil: puede, pero sus padres se enteran
 sergio pide_abrir puerta_principal.
-puerta_principal disputa M?
+puerta_principal conflicto M?
 puerta_principal accion A?
 P notificar_por llegada_tarde, P nombre N?
 
 # Pablo lo oye y quiere salir por el garaje, que además se quedó abierto
 porton_garaje estado abierta.
 pablo pide_abrir porton_garaje.
-porton_garaje disputa M?
+porton_garaje conflicto M?
 porton_garaje hace A?
 P notificar_por intento_salida?
 
@@ -36,7 +36,7 @@ aire_sergio accion A?
 sergio ubicacion jardin.
 luces_jardin encender_por M, M nombre N?
 sergio pide_encender altavoces_porche.
-altavoces_porche se_queda_con M, M nivel N?
+altavoces_porche gana M, M categoria C?
 altavoces_porche hace A?
 
 # Ningún resultado contradictorio

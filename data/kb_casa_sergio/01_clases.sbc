@@ -28,9 +28,6 @@ menor subclase_de habitante.
 animal subclase_de ser_vivo.
 perro subclase_de animal.
 
-# Papel de cada uno en la familia (decide quién manda)
-rol_hijo subclase_de rol.
-
 # ---------- Vehículos ----------
 coche_electrico subclase_de vehiculo.
 coche_gasolina subclase_de vehiculo.

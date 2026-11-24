@@ -1,17 +1,14 @@
 # La familia, el perro y los coches.
 #
 # Cada persona es adulto o menor (importa, por ejemplo, para la piscina) y
-# tiene un rol en la familia (importa para saber quién manda). Sergio es
-# hijo, pero mayor de edad.
+# tiene una categoría: padres, hijo_mayor o hijo_menor. La categoría dice
+# qué puede hacer y cuánto pesa lo que pide (05_modos_y_autoridad.sbc).
+# Sergio es hijo, pero mayor de edad.
 
-luis es_un adulto, luis rol progenitor, luis nombre "Luis".
-elena es_un adulto, elena rol progenitor, elena nombre "Elena".
-sergio es_un adulto, sergio rol hijo_mayor, sergio nombre "Sergio".
-pablo es_un menor, pablo rol hijo_menor, pablo nombre "Pablo".
-
-progenitor es_un rol, progenitor nombre "Padre o madre".
-hijo_mayor es_un rol_hijo, hijo_mayor nombre "Hijo mayor".
-hijo_menor es_un rol_hijo, hijo_menor nombre "Hijo pequeño".
+luis es_un adulto, luis categoria padres, luis nombre "Luis".
+elena es_un adulto, elena categoria padres, elena nombre "Elena".
+sergio es_un adulto, sergio categoria hijo_mayor, sergio nombre "Sergio".
+pablo es_un menor, pablo categoria hijo_menor, pablo nombre "Pablo".
 
 # ---------- Familia ----------
 # Escritas en los dos sentidos: una regla simétrica se llamaría a sí misma

@@ -9,11 +9,11 @@ luis ubicacion salon, elena ubicacion salon.
 sergio ubicacion dormitorio_sergio, pablo ubicacion dormitorio_sergio.
 thor ubicacion jardin.
 
-# La norma de Elena apaga las pantallas donde esté Pablo... pero es el
-# cuarto de Sergio, y ahí manda él, también frente a las normas de sus padres
+# La norma de Elena apaga las pantallas donde esté Pablo, aunque sea el
+# cuarto de Sergio: lo que quieren los padres va por delante de Sergio
 sergio pide_encender tele_sergio.
-tele_sergio disputa M?
-tele_sergio manda P?
+tele_sergio conflicto M?
+tele_sergio gana M, M nombre N?
 tele_sergio hace A?
 
 # Pablo no puede encender nada en el cuarto de su hermano
@@ -22,26 +22,26 @@ tele_sergio encender_por M?
 
 # La tele del salón: Pablo no está, no hay norma que aplicar
 luis pide_encender tele_salon.
-tele_salon disputa M?
+tele_salon conflicto M?
 tele_salon accion A?
 
-# Pablo quiere salir a la calle: norma de Luis. En el recibidor (zona común)
-# mandan los padres
+# Pablo quiere salir a la calle: la norma de Luis va por delante de él
 pablo pide_abrir puerta_principal.
-puerta_principal disputa M?
-puerta_principal manda P?
+puerta_principal conflicto M?
+puerta_principal gana M, M nombre N?
 puerta_principal hace A?
 P notificar_por intento_salida, P nombre N?
 
 # La piscina: Pablo quiere climatizarla en invierno y la norma de Luis gana.
-# Elena se pone de parte de Pablo: los padres no están de acuerdo, se les
-# avisa a los dos, y mientras tanto sigue apagada
+# Elena se pone de parte de Pablo: la norma de Luis y Elena son de la misma
+# categoría (padres), así que empatan y se avisa a los dos. Mientras tanto,
+# sigue apagada (la norma sigue ganando a Pablo)
 pablo pide_encender bomba_piscina.
-bomba_piscina manda P?
+bomba_piscina gana M, M nombre N?
 bomba_piscina hace A?
 elena pide_encender bomba_piscina.
-bomba_piscina desacuerdo si?
-P notificar_por desacuerdo_padres, P nombre N?
+bomba_piscina empate si?
+P notificar_por empate_padres, P nombre N?
 bomba_piscina hace A?
 
 # Frío: calefacción solo donde hay alguien

@@ -1,9 +1,10 @@
-# Consultas sin escenario: estructura, clases, familia, autoridad y modos.
+# Consultas sin escenario: estructura, clases, familia, permisos y prioridades.
 # uv run -m sbc data/kb_casa_sergio data/kb_casa_sergio/consultas.sbq
 
 # Sin razonar: solo lo que está escrito
 E en_planta sotano, E nombre N?
-P rol progenitor, P nombre N?
+# Lo que cuenta como «lo quieren los padres»: ellos y sus normas
+P categoria padres, P nombre N?
 sergio R X?
 pablo tipo habitante?
 
@@ -25,10 +26,9 @@ D tipo pantalla, D en_planta planta_1?
 X hijo_de luis?
 thor cuidado_por P?
 
-# Quién manda dónde
-E regimen privado, E dormitorio_de P?
-E regimen tutela, E dormitorio_de P?
-R1 por_delante_de R2?
+# Zonas comunes y dormitorios
+E uso comun, E en_planta planta_1?
+E dormitorio_de P?
 
 # Quién puede usar qué
 pablo puede_usar tele_sergio?
@@ -38,17 +38,19 @@ elena puede_usar tele_pablo?
 elena puede_usar tele_sergio?
 D tipo pantalla, sergio puede_usar D?
 
-# Modos: qué impone cada uno y dónde rigen las normas
-M impone ahorro?
-M respeta normas?
-M prefiere confort?
+# Orden de importancia
+C mas_importante_que padres?
+padres mas_importante_que C?
+seguridad mas_importante_que mantenimiento?
+confort mas_importante_que ahorro?
 
-# Sin modo, ningún objetivo ni norma tiene nivel: solo las personas
-chalet modo M?
-pablo nivel N?
-menor_sin_adulto nivel N?
-norma_pantallas nivel N?
+# Categoría de cada motivo (las personas también tienen la suya)
+pablo categoria C?
+menor_sin_adulto categoria C, C nombre N?
 N autor luis, N nombre T?
+
+# Sin modo no se sabe si es un día normal: las normas no rigen
+chalet modo M?
 
 # Sin ninguna situación, la casa no hace nada
 D accion A?

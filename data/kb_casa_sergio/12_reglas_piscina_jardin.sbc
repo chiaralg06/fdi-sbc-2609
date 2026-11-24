@@ -4,7 +4,7 @@
 # La cámara distingue si hay un menor o el perro sin ningún adulto. La
 # cubierta se cierra (aunque se pida abrirla) y se avisa.
 D cerrar_por menor_sin_adulto <- S detecta menor_solo, S tipo camara, S esta_en E, D tipo cubierta_piscina, D esta_en E.
-P notificar_por aviso_menor_piscina <- S detecta menor_solo, S tipo camara, P rol progenitor.
+P notificar_por aviso_menor_piscina <- S detecta menor_solo, S tipo camara, P categoria padres, P tipo habitante.
 
 D cerrar_por perro_solo <- S detecta perro_solo, S tipo camara, S esta_en E, D tipo cubierta_piscina, D esta_en E.
 P notificar_por aviso_perro <- S detecta perro_solo, S tipo camara, A tipo perro, A cuidado_por P.
@@ -13,8 +13,8 @@ P notificar_por aviso_perro <- S detecta perro_solo, S tipo camara, A tipo perro
 D encender_por filtrado_diario <- chalet estacion verano, chalet momento F, F hora_filtrado si, D tipo depuradora.
 
 # Norma de Luis: en invierno no se climatiza la piscina, la encienda quien
-# la encienda (salvo él mismo).
-D apagar_por norma_piscina <- chalet estacion invierno, D tipo climatizacion_piscina, D encender_por M.
+# la encienda.
+D apagar_por norma_piscina <- chalet modo normal, chalet estacion invierno, D tipo climatizacion_piscina, D encender_por M.
 
 # ---------- Riego ----------
 D encender_por riego_programado <- chalet estacion verano, chalet momento F, F hora_riego si, D tipo riego.

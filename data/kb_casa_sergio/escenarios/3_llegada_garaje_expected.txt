@@ -1,18 +1,15 @@
-porton_garaje disputa M? -> SI
-porton_garaje se_queda_con M, M nombre N? -> SI
+porton_garaje conflicto M? -> SI
+porton_garaje gana M, M nombre N? -> SI
 porton_garaje hace A? -> SI
 luz_garaje accion A? -> SI
-porton_garaje descarta M? -> SI
+porton_garaje pierde M? -> SI
 porton_garaje hace A? -> SI
 P notificar_por aviso_perro, P nombre N? -> SI
 chalet momento F, F tarifa T? -> SI
 cargador accion A? -> NO
-cargador disputa M? -> SI
-cargador se_queda_con M, M nivel N? -> SI
+cargador conflicto M? -> SI
+cargador gana M, M categoria C? -> SI
 cargador hace A? -> SI
-bomba_piscina disputa M? -> SI
-bomba_piscina manda P? -> SI
-bomba_piscina hace A? -> SI
 suelo_radiante_pb encender_por M, M nombre N? -> SI
 aire_despacho accion A? -> NO
 deshumidificador_sotano accion A? -> SI

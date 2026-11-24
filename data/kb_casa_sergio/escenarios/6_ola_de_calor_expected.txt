@@ -1,17 +1,15 @@
-aire_pablo encender_por M? -> SI
-calor nivel N? -> NO
-calor_extremo nivel N? -> SI
+aire_pablo encender_por M, M categoria C? -> SI
 aire_pablo accion A? -> SI
 aire_salon accion A? -> NO
-aire_pablo disputa M? -> SI
-aire_pablo se_queda_con M, M nombre N? -> SI
+aire_pablo conflicto M? -> SI
+aire_pablo gana M, M nombre N? -> SI
 aire_pablo hace A? -> SI
 pablo notificar_por M? -> SI
 pablo sugerencia E, E nombre N? -> SI
 elena sugerencia E? -> NO
 trampilla_thor abrir_por M, M nombre N? -> SI
 sergio notificar_por M? -> SI
-tele_pablo disputa M? -> SI
-tele_pablo manda P? -> SI
+tele_pablo conflicto M? -> SI
+tele_pablo gana M, M nombre N? -> SI
 tele_pablo hace A? -> SI
 D contradiccion si? -> NO

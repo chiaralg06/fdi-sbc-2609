@@ -18,11 +18,11 @@ P notificar_por aviso_perro <- D cerrar_por perro_puede_escaparse, C llegando si
 D cerrar_por cierre_nocturno <- chalet momento F, F cierre_accesos si, D tipo acceso, D estado abierta.
 
 # Norma de Luis: Pablo no sale de noche. Si lo intenta, se avisa a los padres.
-D cerrar_por norma_salidas <- chalet momento F, F cierre_accesos si, P pide_abrir D, P rol hijo_menor, D tipo acceso_calle.
-A notificar_por intento_salida <- chalet momento F, F cierre_accesos si, P pide_abrir D, P rol hijo_menor, D tipo acceso_calle, A rol progenitor.
+D cerrar_por norma_salidas <- chalet modo normal, chalet momento F, F cierre_accesos si, P pide_abrir D, P categoria hijo_menor, D tipo acceso_calle.
+A notificar_por intento_salida <- chalet momento F, F cierre_accesos si, P pide_abrir D, P categoria hijo_menor, D tipo acceso_calle, A categoria padres, A tipo habitante.
 
 # Sergio puede entrar y salir, pero los padres se enteran.
-A notificar_por llegada_tarde <- chalet momento F, F cierre_accesos si, P pide_abrir D, P rol hijo_mayor, D tipo acceso_calle, A rol progenitor.
+A notificar_por llegada_tarde <- chalet momento F, F cierre_accesos si, P pide_abrir D, P categoria hijo_mayor, D tipo acceso_calle, A categoria padres, A tipo habitante.
 
 # ---------- Cargador del coche eléctrico ----------
 # Carga solo con la luz más barata; en punta se para, salvo que alguien lo

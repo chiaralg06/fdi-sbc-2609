@@ -22,20 +22,20 @@ luces_jardin accion A?
 luces_piscina accion A?
 
 # El riego programado no moja a la gente
-riego_jardin disputa M?
-riego_jardin se_queda_con M, M nivel N?
+riego_jardin conflicto M?
+riego_jardin gana M, M categoria C?
 riego_jardin hace A?
 
 # Música fuera: de madrugada no, ni en una fiesta
 sergio pide_encender altavoces_porche.
-altavoces_porche disputa M?
-altavoces_porche se_queda_con M, M nombre N?
+altavoces_porche conflicto M?
+altavoces_porche gana M, M nombre N?
 altavoces_porche hace A?
 
 # Pablo juega a la consola: en una fiesta no rigen las normas del día a día
 pablo pide_encender consola_cine.
 consola_cine accion A?
-norma_pantallas nivel N?
+consola_cine conflicto M?
 
 # El cortacésped no funciona de madrugada, y si alguien lo enciende, no
 # arranca con gente en el jardín

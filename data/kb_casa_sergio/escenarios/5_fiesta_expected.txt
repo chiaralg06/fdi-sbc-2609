@@ -3,14 +3,14 @@ P notificar_por peticion_modo, P nombre N? -> SI
 chalet modo M, M nombre N? -> SI
 luces_jardin accion A? -> SI
 luces_piscina accion A? -> NO
-riego_jardin disputa M? -> SI
-riego_jardin se_queda_con M, M nivel N? -> SI
+riego_jardin conflicto M? -> SI
+riego_jardin gana M, M categoria C? -> SI
 riego_jardin hace A? -> SI
-altavoces_porche disputa M? -> SI
-altavoces_porche se_queda_con M, M nombre N? -> SI
+altavoces_porche conflicto M? -> SI
+altavoces_porche gana M, M nombre N? -> SI
 altavoces_porche hace A? -> SI
 consola_cine accion A? -> SI
-norma_pantallas nivel N? -> NO
+consola_cine conflicto M? -> NO
 robot_cesped hace A? -> SI
 depuradora_piscina accion A? -> SI
 D contradiccion si? -> NO

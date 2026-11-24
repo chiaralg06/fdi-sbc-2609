@@ -8,24 +8,24 @@ chalet modo normal, chalet momento tarde, chalet dia laborable, chalet estacion 
 elena ubicacion despacho, pablo ubicacion piscina.
 thor ubicacion jardin, sergio ubicacion dormitorio_sergio.
 
-# Pablo está solo en la piscina y quiere abrir la cubierta: la seguridad es
-# innegociable, y se avisa a sus padres
+# Pablo está solo en la piscina y quiere abrir la cubierta: la seguridad va
+# por delante de lo que pida Pablo, y se avisa a sus padres
 camara_piscina detecta menor_solo.
 pablo pide_abrir cubierta.
-cubierta disputa M?
-cubierta se_queda_con M, M nivel N?
+cubierta conflicto M?
+cubierta gana M, M categoria C?
 cubierta hace A?
 P notificar_por aviso_menor_piscina, P nombre N?
 
 # Pablo pone el cortacésped, pero Thor está en el jardín
 pablo pide_encender robot_cesped.
-robot_cesped se_queda_con M, M nombre N?
+robot_cesped gana M, M nombre N?
 robot_cesped hace A?
 
 # En verano la piscina se puede climatizar: la norma de Luis es solo para
 # el invierno
 pablo pide_encender bomba_piscina.
-bomba_piscina disputa M?
+bomba_piscina conflicto M?
 bomba_piscina accion A?
 
 # Calor en las dos plantas: el aire se enciende solo donde hay alguien
@@ -39,10 +39,10 @@ aire_pablo accion A?
 ventana_sergio estado abierta.
 sergio notificar_por M, M nombre N?
 
-# Pablo intenta apagarle el aire a su hermano: en ese cuarto solo manda Sergio
+# Pablo intenta apagarle el aire a su hermano: no puede tocar nada de su cuarto
 pablo pide_apagar aire_sergio.
 pablo puede_usar aire_sergio?
-aire_sergio disputa M?
+aire_sergio conflicto M?
 aire_sergio accion A?
 
 # Ningún resultado contradictorio

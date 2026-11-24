@@ -1,7 +1,7 @@
-{"consulta": "puerta_principal disputa M", "soluciones": []}
+{"consulta": "puerta_principal conflicto M", "soluciones": []}
 {"consulta": "puerta_principal accion A", "soluciones": [{"A": "abrir"}]}
 {"consulta": "P notificar_por llegada_tarde, P nombre N", "soluciones": [{"P": "elena", "N": "\"Elena\""}, {"P": "luis", "N": "\"Luis\""}]}
-{"consulta": "porton_garaje disputa M", "soluciones": [{"M": "cierre_nocturno"}, {"M": "norma_salidas"}, {"M": "pablo"}]}
+{"consulta": "porton_garaje conflicto M", "soluciones": [{"M": "cierre_nocturno"}, {"M": "norma_salidas"}, {"M": "pablo"}]}
 {"consulta": "porton_garaje hace A", "soluciones": [{"A": "cerrar"}]}
 {"consulta": "P notificar_por intento_salida", "soluciones": [{"P": "elena"}, {"P": "luis"}]}
 {"consulta": "cargador encender_por M, M nombre N", "soluciones": [{"M": "carga_valle", "N": "\"Se carga el coche con la luz más barata\""}]}
@@ -10,6 +10,6 @@
 {"consulta": "aire_pablo accion A", "soluciones": [{"A": "encender"}]}
 {"consulta": "aire_sergio accion A", "soluciones": []}
 {"consulta": "luces_jardin encender_por M, M nombre N", "soluciones": [{"M": "oscuro_con_gente", "N": "\"Es de noche y hay gente fuera\""}]}
-{"consulta": "altavoces_porche se_queda_con M, M nivel N", "soluciones": [{"M": "descanso_vecinos", "N": "innegociable"}]}
+{"consulta": "altavoces_porche gana M, M categoria C", "soluciones": [{"M": "descanso_vecinos", "C": "vecinos"}]}
 {"consulta": "altavoces_porche hace A", "soluciones": [{"A": "apagar"}]}
 {"consulta": "D contradiccion si", "soluciones": []}

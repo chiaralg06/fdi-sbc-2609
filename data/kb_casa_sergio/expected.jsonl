@@ -1,6 +1,6 @@
 {"consulta": "E en_planta sotano, E nombre N", "soluciones": [{"E": "cuarto_maquinas", "N": "\"Cuarto de máquinas\""}, {"E": "gimnasio", "N": "\"Gimnasio\""}, {"E": "sala_cine", "N": "\"Sala de cine y juegos\""}]}
-{"consulta": "P rol progenitor, P nombre N", "soluciones": [{"P": "elena", "N": "\"Elena\""}, {"P": "luis", "N": "\"Luis\""}]}
-{"consulta": "sergio R X", "soluciones": [{"R": "entrena_en", "X": "gimnasio"}, {"R": "es_un", "X": "adulto"}, {"R": "estudia_en", "X": "universidad"}, {"R": "hermano_de", "X": "pablo"}, {"R": "nombre", "X": "\"Sergio\""}, {"R": "rol", "X": "hijo_mayor"}, {"R": "sale_de_casa", "X": "mañana"}, {"R": "vuelve", "X": "mediodia"}]}
+{"consulta": "P categoria padres, P nombre N", "soluciones": [{"P": "casa_vacia", "N": "\"La casa está vacía por vacaciones\""}, {"P": "elena", "N": "\"Elena\""}, {"P": "luis", "N": "\"Luis\""}, {"P": "norma_pantallas", "N": "\"Norma de Elena: entre semana, Pablo no usa pantallas por la noche\""}, {"P": "norma_piscina", "N": "\"Norma de Luis: en invierno la piscina no se climatiza\""}, {"P": "norma_salidas", "N": "\"Norma de Luis: Pablo no sale de casa de noche\""}]}
+{"consulta": "sergio R X", "soluciones": [{"R": "categoria", "X": "hijo_mayor"}, {"R": "entrena_en", "X": "gimnasio"}, {"R": "es_un", "X": "adulto"}, {"R": "estudia_en", "X": "universidad"}, {"R": "hermano_de", "X": "pablo"}, {"R": "nombre", "X": "\"Sergio\""}, {"R": "sale_de_casa", "X": "mañana"}, {"R": "vuelve", "X": "mediodia"}]}
 {"consulta": "pablo tipo habitante", "soluciones": []}
 {"consulta": "pablo tipo C", "soluciones": [{"C": "habitante"}, {"C": "menor"}, {"C": "persona"}, {"C": "ser_vivo"}]}
 {"consulta": "thor tipo C", "soluciones": [{"C": "animal"}, {"C": "perro"}, {"C": "ser_vivo"}]}
@@ -12,21 +12,20 @@
 {"consulta": "D tipo pantalla, D en_planta planta_1", "soluciones": [{"D": "tele_pablo"}, {"D": "tele_sergio"}]}
 {"consulta": "X hijo_de luis", "soluciones": [{"X": "pablo"}, {"X": "sergio"}]}
 {"consulta": "thor cuidado_por P", "soluciones": [{"P": "sergio"}]}
-{"consulta": "E regimen privado, E dormitorio_de P", "soluciones": [{"E": "dormitorio_sergio", "P": "sergio"}]}
-{"consulta": "E regimen tutela, E dormitorio_de P", "soluciones": [{"E": "dormitorio_pablo", "P": "pablo"}]}
-{"consulta": "R1 por_delante_de R2", "soluciones": [{"R1": "hijo_mayor", "R2": "hijo_menor"}, {"R1": "progenitor", "R2": "hijo_mayor"}, {"R1": "progenitor", "R2": "hijo_menor"}]}
+{"consulta": "E uso comun, E en_planta planta_1", "soluciones": [{"E": "baño_hijos"}, {"E": "pasillo_1"}]}
+{"consulta": "E dormitorio_de P", "soluciones": [{"E": "dormitorio_pablo", "P": "pablo"}, {"E": "dormitorio_padres", "P": "elena"}, {"E": "dormitorio_padres", "P": "luis"}, {"E": "dormitorio_sergio", "P": "sergio"}]}
 {"consulta": "pablo puede_usar tele_sergio", "soluciones": []}
 {"consulta": "pablo puede_usar tele_pablo", "soluciones": [{}]}
 {"consulta": "sergio puede_usar tele_pablo", "soluciones": []}
 {"consulta": "elena puede_usar tele_pablo", "soluciones": [{}]}
 {"consulta": "elena puede_usar tele_sergio", "soluciones": []}
 {"consulta": "D tipo pantalla, sergio puede_usar D", "soluciones": [{"D": "consola_cine"}, {"D": "proyector_cine"}, {"D": "tele_salon"}, {"D": "tele_sergio"}]}
-{"consulta": "M impone ahorro", "soluciones": [{"M": "vacaciones"}]}
-{"consulta": "M respeta normas", "soluciones": [{"M": "normal"}, {"M": "ola_de_calor"}]}
-{"consulta": "M prefiere confort", "soluciones": [{"M": "fiesta"}, {"M": "normal"}]}
+{"consulta": "C mas_importante_que padres", "soluciones": [{"C": "perro"}, {"C": "salud"}, {"C": "seguridad"}, {"C": "vecinos"}]}
+{"consulta": "padres mas_importante_que C", "soluciones": [{"C": "ahorro"}, {"C": "confort"}, {"C": "hijo_mayor"}, {"C": "hijo_menor"}, {"C": "mantenimiento"}]}
+{"consulta": "seguridad mas_importante_que mantenimiento", "soluciones": [{}]}
+{"consulta": "confort mas_importante_que ahorro", "soluciones": []}
+{"consulta": "pablo categoria C", "soluciones": [{"C": "hijo_menor"}]}
+{"consulta": "menor_sin_adulto categoria C, C nombre N", "soluciones": [{"C": "seguridad", "N": "\"Seguridad\""}]}
+{"consulta": "N autor luis, N nombre T", "soluciones": [{"N": "norma_piscina", "T": "\"Norma de Luis: en invierno la piscina no se climatiza\""}, {"N": "norma_salidas", "T": "\"Norma de Luis: Pablo no sale de casa de noche\""}]}
 {"consulta": "chalet modo M", "soluciones": []}
-{"consulta": "pablo nivel N", "soluciones": [{"N": "voluntad"}]}
-{"consulta": "menor_sin_adulto nivel N", "soluciones": []}
-{"consulta": "norma_pantallas nivel N", "soluciones": []}
-{"consulta": "N autor luis, N nombre T", "soluciones": [{"N": "norma_piscina", "T": "\"En invierno la piscina no se climatiza\""}, {"N": "norma_salidas", "T": "\"Pablo no sale de casa de noche\""}]}
 {"consulta": "D accion A", "soluciones": []}

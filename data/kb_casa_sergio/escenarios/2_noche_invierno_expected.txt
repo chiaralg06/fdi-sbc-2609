@@ -1,17 +1,17 @@
-tele_sergio disputa M? -> SI
-tele_sergio manda P? -> SI
+tele_sergio conflicto M? -> SI
+tele_sergio gana M, M nombre N? -> SI
 tele_sergio hace A? -> SI
 tele_sergio encender_por M? -> SI
-tele_salon disputa M? -> NO
+tele_salon conflicto M? -> NO
 tele_salon accion A? -> SI
-puerta_principal disputa M? -> SI
-puerta_principal manda P? -> SI
+puerta_principal conflicto M? -> SI
+puerta_principal gana M, M nombre N? -> SI
 puerta_principal hace A? -> SI
 P notificar_por intento_salida, P nombre N? -> SI
-bomba_piscina manda P? -> SI
+bomba_piscina gana M, M nombre N? -> SI
 bomba_piscina hace A? -> SI
-bomba_piscina desacuerdo si? -> SI
-P notificar_por desacuerdo_padres, P nombre N? -> SI
+bomba_piscina empate si? -> SI
+P notificar_por empate_padres, P nombre N? -> SI
 bomba_piscina hace A? -> SI
 suelo_radiante_pb encender_por M? -> SI
 aire_sergio accion A? -> SI

@@ -7,11 +7,9 @@ Arriba están los dormitorios. Fuera hay jardín, piscina y porche. Viven Luis
 y Elena (los padres), Sergio (20 años), su hermano pequeño Pablo (12) y
 Thor, el perro. Luis tiene un coche eléctrico y Elena uno de gasolina.
 
-Lo que hace distinta a esta casa es que **no hay un orden fijo de
-prioridades**. Lo que pesa cada cosa depende del **modo** en que está la casa
-(un día normal, vacaciones, una fiesta, una ola de calor), y cuando chocan
-dos personas decide la **autoridad**: quién manda en el sitio donde está el
-aparato.
+La domótica se centra en el garaje y los coches, el jardín y la piscina, y
+el clima por plantas. Los conflictos giran en torno a Thor, al ocio frente
+al ahorro y a los padres frente a los hijos.
 
 ## Cómo se usa
 
@@ -27,15 +25,15 @@ Los escenarios activan `razona si!`. También funcionan con `descubre!`
 
 | Fichero | Contenido |
 |---|---|
-| `00_chalet.sbc` | Plantas, espacios, de quién es cada dormitorio y el régimen de autoridad de cada sitio |
+| `00_chalet.sbc` | Plantas, espacios, de quién es cada dormitorio y qué zonas son comunes |
 | `01_clases.sbc` | Taxonomía: espacios, seres vivos, vehículos y dispositivos |
-| `02_familia.sbc` | La familia con su rol, Thor (y quién lo cuida), los coches, rutinas |
+| `02_familia.sbc` | La familia con su categoría, Thor (y quién lo cuida), los coches, rutinas |
 | `03_momentos.sbc` | Momentos del día: luz, tarifa, cierre nocturno, pantallas, silencio, riego... |
 | `04_domotica.sbc` | Dispositivos: qué son, dónde están, qué estancias climatizan, cuáles gastan mucho |
-| `05_modos_y_autoridad.sbc` | Acciones, niveles, los cuatro modos y el orden entre roles |
-| `06_motivos.sbc` | Objetivos automáticos (con su dominio), normas de los padres (con su autor), avisos |
+| `05_modos_y_autoridad.sbc` | Acciones, orden de importancia de las categorías y modos de la casa |
+| `06_motivos.sbc` | Motivos con su categoría: lo que pasa en la casa, normas de los padres, avisos |
 | `10_reglas_generales.sbc` | Herencia de clases, ubicación, familia |
-| `11_reglas_decision.sbc` | Peticiones y permisos, modo, nivel de cada motivo, autoridad, resultado |
+| `11_reglas_decision.sbc` | Permisos de la app, peticiones, modo y conflictos |
 | `12_reglas_piscina_jardin.sbc` | Cubierta, depuradora, climatización, riego, cortacésped, luces, Thor con calor |
 | `13_reglas_garaje_accesos.sbc` | Llegada del coche, Thor junto a la puerta, cierre nocturno, salidas, cargador |
 | `14_reglas_clima.sbc` | Clima por plantas, humedad del sótano, ola de calor, vacaciones |
@@ -43,66 +41,53 @@ Los escenarios activan `razona si!`. También funcionan con `descubre!`
 
 ## Decisiones de diseño
 
-**Tres tipos de motivo.** Cada acción se guarda como `D <verbo>_por M`
-(`cubierta cerrar_por menor_sin_adulto`), y el motivo puede ser:
+**Cada acción lleva su motivo.** Las acciones se guardan como
+`D <verbo>_por M`: el aparato D hace esa acción por el motivo M. El motivo
+puede ser algo que pasa en la casa (`cubierta cerrar_por menor_sin_adulto`),
+una norma de los padres (`tele_pablo apagar_por norma_pantallas`) o una
+persona que lo pide desde la app (`bomba_piscina encender_por pablo`).
 
-- una **persona** que lo pide desde la app (`bomba_piscina encender_por pablo`);
-- una **norma** que ha puesto uno de los padres (`norma_pantallas autor elena`);
-- un **objetivo automático** de la casa, que pertenece a un dominio
-  (seguridad, bienestar de Thor, salud, vecinos, ahorro, confort,
-  mantenimiento).
-
-**Los modos deciden qué es negociable.** En cada modo, cada dominio es
-innegociable (pasa por encima de lo que pida cualquiera), preferente o
-secundario (ceden ante la familia), o directamente no cuenta. Las personas y
-las normas quedan en medio:
+**Todo motivo tiene una categoría, también las personas.** Las categorías
+tienen un orden de importancia:
 
 ```
-innegociable > voluntad (personas y normas) > preferente > secundario
+seguridad > perro > salud > vecinos > padres > hijo_mayor > hijo_menor > ahorro > confort > mantenimiento
 ```
 
-| Modo | Innegociable | Preferente | Secundario | Normas |
-|---|---|---|---|---|
-| normal | seguridad, Thor, vecinos | ahorro, confort | mantenimiento | rigen |
-| vacaciones | seguridad, Thor, vecinos, **ahorro** | mantenimiento | — | no |
-| fiesta | seguridad, Thor, vecinos | confort | mantenimiento | no |
-| ola de calor | seguridad, Thor, vecinos, **salud** | — | ahorro, mantenimiento | rigen |
+Primero, que nadie se haga daño (ni las personas ni Thor) y la salud;
+después, no molestar a los vecinos; después, lo que quiere la familia (los
+padres por delante de los hijos, y el mayor por delante del pequeño); y por
+último lo que la casa hace sola para ahorrar, estar a gusto o mantenerse.
+Las normas de los padres son de categoría `padres`: cuentan como algo que
+piden ellos.
 
-Así, el mismo aire acondicionado se enciende si Pablo lo pide en un día
-normal, no se enciende aunque lo pida de vacaciones (el ahorro es
-innegociable) y no se apaga aunque lo pida en una ola de calor (la salud es
-innegociable). El modo solo lo pueden cambiar los padres; si lo pide un hijo,
-se les avisa.
+**Conflictos.** Si dos motivos piden cosas contrarias sobre el mismo aparato
+(`conflicto`), gana el de la categoría más importante (`gana`, `pierde`) y se
+hace lo que pide (`hace`). Si son de la misma categoría, como Luis y Elena,
+no gana ninguno (`empate`) y se avisa a los padres.
 
-**La autoridad depende del sitio.** Cuando chocan dos voluntades, decide el
-régimen del sitio donde está el aparato:
+**Permisos de la app.** Cada uno puede manejar lo de las zonas comunes y lo
+de su cuarto; los padres, también lo del cuarto de Pablo, que es menor. Así
+Pablo no puede apagar el aire de su hermano.
 
-- **Zona común** (salón, garaje, jardín, piscina, sótano...): padres > hijo
-  mayor > hijo pequeño.
-- **Cuarto de un mayor de edad** (Sergio): manda él, también frente a las
-  normas de sus padres. Nadie más puede tocar nada de ahí desde la app.
-- **Cuarto de un menor** (Pablo): mandan los padres.
+**Modos de la casa.** El modo (normal, vacaciones, fiesta, ola de calor)
+dice qué reglas se aplican. Solo los padres lo pueden cambiar; si lo pide un
+hijo, se les avisa.
 
-Una norma vale lo que vale su autor: la norma de Luis gana a Pablo en el
-recibidor, pero pierde frente a Sergio en el cuarto de Sergio. Quien pone una
-norma puede saltársela. Si Luis y Elena piden cosas contrarias, no gana
-ninguno: hay `desacuerdo` y se avisa a los dos.
-
-**Explicabilidad.** Cada decisión se puede preguntar: qué motivos chocan
-(`D disputa M`), cuál gana y cuál no (`D se_queda_con M`, `D descarta M`),
-con qué peso (`M nivel N`, y cada nivel tiene un `nombre`) y, si fue por
-autoridad, quién mandaba (`D manda P`). Todos los motivos, modos, niveles y
-regímenes tienen su `nombre` en castellano.
-
-**Permisos de la app.** Cada uno solo puede pedir cosas de las zonas comunes
-y de su cuarto (los padres, también del de Pablo). Así Pablo no puede apagar
-el aire de su hermano.
+- **normal:** el día a día. Rigen las normas de los padres y el clima se
+  enciende solo donde hay alguien.
+- **vacaciones:** todo lo que gasta mucho se apaga (`casa_vacia`, de
+  categoría `padres`: lo decidieron ellos al irse), aunque Pablo lo encienda
+  desde la playa.
+- **fiesta:** no rigen las normas del día a día.
+- **ola de calor:** el aire se enciende por salud donde haya alguien, y no
+  se puede apagar.
 
 **El tiempo, por momentos.** El escenario dice el momento del día
 (`chalet momento noche`), si es laborable o festivo y la estación. Cada
-momento dice explícitamente qué implica: si es de noche, la tarifa de la luz,
-si se cierran los accesos, si Pablo puede usar pantallas, si hay que guardar
-silencio por los vecinos...
+momento dice qué implica: si es de noche, la tarifa de la luz, si se cierran
+los accesos, si Pablo puede usar pantallas, si hay que guardar silencio por
+los vecinos...
 
 **Sin negación.** El motor no deduce "no" de que algo no esté escrito. Por
 eso los momentos dicen `si` o `no` para cada cosa. La cámara de la piscina
@@ -119,10 +104,10 @@ es fresco, y en una ola de calor se propone bajar allí.
 **Limitación conocida.** Cada pareja de motivos se resuelve por separado. Si
 sobre un mismo aparato un motivo alto y uno bajo pidieran una cosa y uno
 intermedio la contraria, saldrían dos resultados opuestos. Resolverlo
-exigiría negación. Las reglas y los modos están pensados para que no ocurra
-(por ejemplo, en una ola de calor el clima lo lleva la salud y el confort no
-cuenta), y `D contradiccion si?` lo detectaría: todos los escenarios lo
-comprueban y sale vacío.
+exigiría negación. Las reglas están pensadas para que no ocurra (por
+ejemplo, el clima de confort solo funciona en un día normal), y
+`D contradiccion si?` lo detectaría: todos los escenarios lo comprueban y
+sale vacío.
 
 **Relaciones simétricas escritas en los dos sentidos** (`pareja_de`,
 `hermano_de`): una regla simétrica se llamaría a sí misma en bucle con
@@ -137,11 +122,11 @@ cómo cambia la respuesta. Cada uno tiene su `_expected.jsonl` y su
 
 | Escenario | Momento y modo | Qué se prueba |
 |---|---|---|
-| `consultas.sbq` | sin modo | Estructura, clases, familia, regímenes, permisos, qué impone cada modo; sin modo solo las personas tienen nivel |
+| `consultas.sbq` | sin modo | Estructura, clases, familia, zonas comunes, permisos, orden de importancia, categoría de cada motivo |
 | `1_tarde_verano` | tarde, normal | Pablo solo en la piscina (la cubierta no se abre y se avisa), cortacésped con Thor en el jardín, aire solo donde hay alguien, ventana abierta, Pablo no puede tocar el cuarto de Sergio |
-| `2_noche_invierno` | noche, normal | Norma de pantallas frente a Sergio en su cuarto (gana él), norma de salidas en el recibidor (gana Luis), desacuerdo de los padres por la piscina, calefacción por plantas, cierre nocturno |
-| `3_llegada_garaje` | anochecer, normal | Thor en el garaje: el portón no se abre ni aunque Luis insista; el cargador en tarifa punta (gana Luis frente al ahorro); Luis se salta su propia norma |
+| `2_noche_invierno` | noche, normal | La norma de pantallas apaga la tele de Sergio porque Pablo está con él, Pablo no puede salir, empate de los padres por la piscina, calefacción por plantas, cierre nocturno |
+| `3_llegada_garaje` | anochecer, normal | Thor en el garaje: el portón no se abre ni aunque Luis insista; el cargador en tarifa punta (Luis gana al ahorro) |
 | `4_vacaciones` | madrugada, vacaciones | Luis activa el modo; todo lo que gasta se apaga y Pablo no puede encender el aire desde la playa; la depuradora sigue; el riego para con lluvia; Sergio no puede cambiar el modo |
 | `5_fiesta` | madrugada, fiesta | Sergio pide la fiesta y Elena la activa; luces fuera, el riego no moja a nadie, sin música de madrugada, sin normas para Pablo |
-| `6_ola_de_calor` | tarde, ola de calor | El aire por salud aunque Pablo lo apague, propuesta de bajar al sótano, trampilla abierta para Thor, Elena manda en el cuarto de Pablo |
+| `6_ola_de_calor` | tarde, ola de calor | El aire por salud aunque Pablo lo apague, propuesta de bajar al sótano, trampilla abierta para Thor, Elena apaga la tele de Pablo |
 | `7_vuelta_de_noche` | madrugada, normal | Sergio entra de madrugada (puede, pero sus padres se enteran), Pablo no puede salir, carga del coche en valle, música fuera prohibida |

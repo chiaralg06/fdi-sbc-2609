@@ -9,17 +9,16 @@ elena ubicacion despacho, pablo ubicacion dormitorio_pablo.
 sergio ubicacion dormitorio_sergio, thor ubicacion jardin.
 termostato_pb detecta calor, termostato_p1 detecta calor.
 
-# El aire se enciende por salud donde hay alguien; el confort no cuenta
-aire_pablo encender_por M?
-calor nivel N?
-calor_extremo nivel N?
+# El aire se enciende por salud donde hay alguien (no por confort: el
+# clima automático de confort es solo para un día normal)
+aire_pablo encender_por M, M categoria C?
 aire_pablo accion A?
 aire_salon accion A?
 
-# Pablo quiere apagarlo: la salud es innegociable en una ola de calor
+# Pablo quiere apagarlo: la salud va por delante de lo que pida Pablo
 pablo pide_apagar aire_pablo.
-aire_pablo disputa M?
-aire_pablo se_queda_con M, M nombre N?
+aire_pablo conflicto M?
+aire_pablo gana M, M nombre N?
 aire_pablo hace A?
 
 # Tiene la ventana abierta: se le avisa. Y se les propone bajar al sótano
@@ -32,11 +31,11 @@ elena sugerencia E?
 trampilla_thor abrir_por M, M nombre N?
 sergio notificar_por M?
 
-# Pablo quiere ver la tele; Elena le dice que no (está en su cuarto: mandan
-# los padres)
+# Pablo quiere ver la tele; Elena le dice que no (es su cuarto, pero los
+# padres pueden manejar lo del cuarto de Pablo, y van por delante de él)
 pablo pide_encender tele_pablo, elena pide_apagar tele_pablo.
-tele_pablo disputa M?
-tele_pablo manda P?
+tele_pablo conflicto M?
+tele_pablo gana M, M nombre N?
 tele_pablo hace A?
 
 # Ningún resultado contradictorio

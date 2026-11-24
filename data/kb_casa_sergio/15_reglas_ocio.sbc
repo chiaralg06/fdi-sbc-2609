@@ -1,9 +1,9 @@
 # Ocio: pantallas y música.
 
 # Norma de Elena: entre semana, por la noche, Pablo no usa pantallas. Se
-# apaga cualquier pantalla de la estancia donde está él (aunque la haya
-# encendido su hermano).
-D apagar_por norma_pantallas <- chalet dia laborable, chalet momento F, F horario_pantallas no, D tipo pantalla, D esta_en E, P ubicacion E, P rol hijo_menor.
+# apaga cualquier pantalla de la estancia donde está él, aunque la haya
+# encendido su hermano o sea el cuarto de Sergio.
+D apagar_por norma_pantallas <- chalet modo normal, chalet dia laborable, chalet momento F, F horario_pantallas no, D tipo pantalla, D esta_en E, P ubicacion E, P categoria hijo_menor.
 
 # De madrugada no hay música fuera, ni siquiera en una fiesta.
 D apagar_por descanso_vecinos <- chalet momento F, F horario_silencio si, D tipo altavoz, D esta_en E, E tipo espacio_exterior.

@@ -10,14 +10,14 @@ thor ubicacion garaje.
 
 # El garaje reconoce el coche y quiere abrir, pero Thor se escaparía
 coche_luis llegando si.
-porton_garaje disputa M?
-porton_garaje se_queda_con M, M nombre N?
+porton_garaje conflicto M?
+porton_garaje gana M, M nombre N?
 porton_garaje hace A?
 luz_garaje accion A?
 
 # Luis insiste desde el móvil: Thor sigue pasando por delante
 luis pide_abrir porton_garaje.
-porton_garaje descarta M?
+porton_garaje pierde M?
 porton_garaje hace A?
 P notificar_por aviso_perro, P nombre N?
 
@@ -26,18 +26,12 @@ coche_luis enchufado_a cargador, coche_luis bateria baja.
 chalet momento F, F tarifa T?
 cargador accion A?
 
-# ...pero Luis necesita el coche mañana y lo pide: su voluntad pasa por
-# encima del ahorro
+# ...pero Luis necesita el coche mañana y lo pide: lo que quieren los
+# padres va por delante del ahorro
 luis pide_encender cargador.
-cargador disputa M?
-cargador se_queda_con M, M nivel N?
+cargador conflicto M?
+cargador gana M, M categoria C?
 cargador hace A?
-
-# Luis puso la norma de la piscina, así que él se la puede saltar
-luis pide_encender bomba_piscina.
-bomba_piscina disputa M?
-bomba_piscina manda P?
-bomba_piscina hace A?
 
 # Frío en la planta baja: Elena trabaja en el despacho. Abajo calienta el
 # suelo radiante; el aire del despacho solo enfría

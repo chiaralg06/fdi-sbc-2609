@@ -1,5 +1,4 @@
-# El chalet de la familia de Sergio: plantas, espacios y quién manda en cada
-# uno.
+# El chalet de la familia de Sergio: plantas y espacios.
 #
 # Tres plantas (sótano, planta baja y primera) y una parcela con jardín,
 # piscina y porche. El garaje está en la planta baja, con salida a la calle.
@@ -43,24 +42,12 @@ jardin es_un zona_verde, jardin parte_de parcela, jardin nombre "Jardín".
 piscina es_un zona_piscina, piscina parte_de parcela, piscina nombre "Piscina".
 porche es_un zona_porche, porche parte_de parcela, porche nombre "Porche".
 
-# ---------- Quién manda en cada sitio ----------
-# Cuando dos personas piden cosas contrarias sobre el mismo aparato, decide
-# el régimen del sitio donde está (11_reglas_decision.sbc):
-# - comun: mandan los padres, después el hijo mayor y después el pequeño.
-# - privado: el cuarto de un hijo mayor de edad; manda su dueño, y nadie
-#   más puede tocar nada de ahí desde la app.
-# - tutela: el cuarto de un menor; mandan los padres, y después su dueño
-#   (sus hermanos no pueden tocar nada de ahí).
-comun nombre "Zona común: mandan los padres, después el mayor".
-privado nombre "Cuarto de un mayor de edad: manda su dueño".
-tutela nombre "Cuarto de un menor: mandan los padres, después su dueño".
-
-dormitorio_sergio regimen privado.
-dormitorio_pablo regimen tutela.
-
-sala_cine regimen comun, gimnasio regimen comun, cuarto_maquinas regimen comun.
-recibidor regimen comun, salon regimen comun, cocina regimen comun.
-despacho regimen comun, aseo regimen comun, garaje regimen comun.
-pasillo_1 regimen comun, dormitorio_padres regimen comun.
-baño_padres regimen comun, baño_hijos regimen comun.
-jardin regimen comun, piscina regimen comun, porche regimen comun.
+# ---------- Zonas comunes ----------
+# Lo que está en una zona común lo puede manejar cualquiera desde la app. Lo
+# de un dormitorio, solo su dueño (y los padres, lo del cuarto de Pablo, que
+# es menor). Ver 11_reglas_decision.sbc.
+sala_cine uso comun, gimnasio uso comun, cuarto_maquinas uso comun.
+recibidor uso comun, salon uso comun, cocina uso comun.
+despacho uso comun, aseo uso comun, garaje uso comun.
+pasillo_1 uso comun, baño_hijos uso comun.
+jardin uso comun, piscina uso comun, porche uso comun.
