@@ -1,0 +1,18 @@
+{"consulta": "lavadora_g1 coste P", "soluciones": [{"P": "menos_2"}]}
+{"consulta": "lavadora_p1 coste P", "soluciones": [{"P": "menos_1"}]}
+{"consulta": "secadora_1 coste P", "soluciones": [{"P": "menos_2"}]}
+{"consulta": "u1 saldo_final R", "soluciones": [{"R": "n11"}]}
+{"consulta": "u2 saldo_final R", "soluciones": [{"R": "sin_saldo"}]}
+{"consulta": "u3 saldo_final R", "soluciones": [{"R": "n0"}]}
+{"consulta": "u4 saldo_final R", "soluciones": [{"R": "sin_saldo"}]}
+{"consulta": "u5 saldo_final R", "soluciones": [{"R": "n18"}]}
+{"consulta": "U es_un uso, U situacion S", "soluciones": [{"U": "u1", "S": "uso_correcto"}, {"U": "u2", "S": "saldo_insuficiente"}, {"U": "u3", "S": "uso_correcto"}, {"U": "u4", "S": "maquina_ocupada"}, {"U": "u4", "S": "saldo_insuficiente"}, {"U": "u5", "S": "maquina_ocupada"}, {"U": "u5", "S": "uso_correcto"}]}
+{"consulta": "U es_un uso, U accion A", "soluciones": [{"U": "u1", "A": "confirmar"}, {"U": "u2", "A": "denegar"}, {"U": "u3", "A": "confirmar"}, {"U": "u4", "A": "denegar"}, {"U": "u5", "A": "confirmar"}, {"U": "u5", "A": "denegar"}]}
+{"consulta": "U es_un uso, U conflicto M", "soluciones": [{"U": "u5", "M": "maquina_ocupada"}, {"U": "u5", "M": "uso_correcto"}]}
+{"consulta": "U es_un uso, U se_impone M", "soluciones": [{"U": "u5", "M": "maquina_ocupada"}]}
+{"consulta": "u5 decision A", "soluciones": [{"A": "denegar"}]}
+{"consulta": "U derivar_a M", "soluciones": [{"U": "u4", "M": "lavadora_p2"}, {"U": "u5", "M": "lavadora_g2"}]}
+{"consulta": "recepcion solicitar_por M, recepcion provocado_por U", "soluciones": [{"M": "saldo_insuficiente", "U": "u2"}, {"M": "saldo_insuficiente", "U": "u4"}]}
+{"consulta": "u5 se_impone M, M nombre N, u5 situacion M", "soluciones": [{"M": "maquina_ocupada", "N": "\"Otra alumna ya tiene esa máquina a esa hora\""}]}
+{"consulta": "D empate M", "soluciones": []}
+{"consulta": "D decision_dudosa si", "soluciones": []}

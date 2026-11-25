@@ -1,0 +1,14 @@
+l1 limite_aplicable T? -> SI
+l5 limite_aplicable T? -> SI
+l3 limite_aplicable T? -> SI
+l1 situacion S? -> SI
+l2 situacion S? -> SI
+l3 situacion S? -> SI
+l4 situacion S? -> NO
+l5 situacion S? -> SI
+S situacion vale_pendiente, S es_un salida? -> SI
+recepcion solicitar_por M, recepcion provocado_por E? -> SI
+D notificar_por M, D provocado_por E, E situacion M, D tipo directora? -> SI
+P notificar_por fuera_de_limite, P provocado_por E, E situacion fuera_de_limite, P familiar_de A? -> SI
+D empate M? -> NO
+D decision_dudosa si? -> NO

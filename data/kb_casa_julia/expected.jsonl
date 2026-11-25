@@ -1,0 +1,35 @@
+{"consulta": "X esta_en planta_calle", "soluciones": [{"X": "alarma_planta_calle"}, {"X": "biblioteca_a"}, {"X": "biblioteca_c"}, {"X": "cafeteria"}, {"X": "camara_ascensores"}, {"X": "camara_entrada"}, {"X": "capilla"}, {"X": "comedor"}, {"X": "estudio_1"}, {"X": "estudio_2"}, {"X": "estudio_3"}, {"X": "estudio_4"}, {"X": "estudio_grande"}, {"X": "gimnasio"}, {"X": "recepcion"}, {"X": "recibidor"}, {"X": "sala_musica"}]}
+{"consulta": "lucia duerme_en H", "soluciones": [{"H": "a105"}]}
+{"consulta": "a105 dentro_de pabellon_a", "soluciones": []}
+{"consulta": "lucia vive_en B", "soluciones": []}
+{"consulta": "a105 contiene X", "soluciones": []}
+{"consulta": "a105 dentro_de X", "soluciones": [{"X": "a_1"}, {"X": "colegio"}, {"X": "pabellon_a"}]}
+{"consulta": "lucia vive_en B", "soluciones": [{"B": "pabellon_a"}]}
+{"consulta": "a105 contiene X", "soluciones": [{"X": "armario"}, {"X": "bano_interior"}, {"X": "cama"}, {"X": "escritorio"}, {"X": "estanteria"}, {"X": "mesita_de_noche"}, {"X": "nevera_pequena"}]}
+{"consulta": "a420 contiene X", "soluciones": [{"X": "armario"}, {"X": "bano_interior"}, {"X": "cama"}, {"X": "escritorio"}, {"X": "estanteria"}, {"X": "mesita_de_noche"}, {"X": "nevera_pequena"}]}
+{"consulta": "lucia vecina_de B", "soluciones": [{"B": "paula"}]}
+{"consulta": "b216 sala_de_planta S", "soluciones": [{"S": "sala_b_2"}]}
+{"consulta": "X conecta_con recibidor", "soluciones": [{"X": "biblioteca_a"}, {"X": "biblioteca_c"}, {"X": "cafeteria"}, {"X": "calle"}, {"X": "capilla"}, {"X": "comedor"}, {"X": "estudio_1"}, {"X": "estudio_2"}, {"X": "estudio_3"}, {"X": "estudio_4"}, {"X": "estudio_grande"}, {"X": "gimnasio"}, {"X": "recepcion"}, {"X": "sala_musica"}]}
+{"consulta": "X conecta_con a_1", "soluciones": [{"X": "a_2"}, {"X": "planta_calle"}]}
+{"consulta": "cafeteria tipo C", "soluciones": [{"C": "estancia"}, {"C": "sala_cafeteria"}, {"C": "zona_comida"}, {"C": "zona_visitas"}]}
+{"consulta": "biblioteca_a tipo C", "soluciones": [{"C": "biblioteca"}, {"C": "estancia"}, {"C": "zona_estudio"}]}
+{"consulta": "estudio_grande tipo C", "soluciones": [{"C": "estancia"}, {"C": "sala_estudio"}, {"C": "sala_estudio_grande"}, {"C": "zona_estudio"}]}
+{"consulta": "a105 tipo zona_residencial", "soluciones": [{}]}
+{"consulta": "cafeteria tipo zona_residencial", "soluciones": []}
+{"consulta": "cafeteria contiene X", "soluciones": [{"X": "fregadero"}, {"X": "maquinas_expendedoras"}, {"X": "microondas"}, {"X": "nevera"}, {"X": "sofas"}]}
+{"consulta": "X esta_en lavanderia", "soluciones": [{"X": "lavadora_g1"}, {"X": "lavadora_g2"}, {"X": "lavadora_p1"}, {"X": "lavadora_p2"}, {"X": "secadora_1"}, {"X": "secadora_2"}]}
+{"consulta": "madre hereda_de C", "soluciones": [{"C": "familia_directa"}, {"C": "progenitor"}]}
+{"consulta": "hermano hereda_de C", "soluciones": [{"C": "familia_condicionada"}]}
+{"consulta": "amigo hereda_de C", "soluciones": [{"C": "no_familiar"}, {"C": "no_familiar_chico"}]}
+{"consulta": "primero con_limite si", "soluciones": [{}]}
+{"consulta": "segundo con_limite si", "soluciones": []}
+{"consulta": "vida prevalece_sobre C", "soluciones": [{"C": "ahorro"}, {"C": "cierre"}, {"C": "confort"}, {"C": "estudio"}, {"C": "norma"}, {"C": "recurso"}, {"C": "servicio"}]}
+{"consulta": "C prevalece_sobre ahorro", "soluciones": [{"C": "cierre"}, {"C": "confort"}, {"C": "estudio"}, {"C": "norma"}, {"C": "recurso"}, {"C": "servicio"}, {"C": "vida"}]}
+{"consulta": "X esta_en a105", "soluciones": [{"X": "a105_aire"}, {"X": "a105_calef"}]}
+{"consulta": "c420_aire tipo aparato_clima", "soluciones": [{}]}
+{"consulta": "C tipo alarma_incendio, C esta_en P, P esta_en pabellon_c", "soluciones": [{"C": "alarma_c_1", "P": "c_1"}, {"C": "alarma_c_2", "P": "c_2"}, {"C": "alarma_c_3", "P": "c_3"}, {"C": "alarma_c_4", "P": "c_4"}]}
+{"consulta": "n13 menos_2 R", "soluciones": [{"R": "n11"}]}
+{"consulta": "n1 menos_2 R", "soluciones": [{"R": "sin_saldo"}]}
+{"consulta": "k5 mayor_que k4", "soluciones": [{}]}
+{"consulta": "k4 mayor_que k5", "soluciones": []}
+{"consulta": "Z sirve_ahora S", "soluciones": []}

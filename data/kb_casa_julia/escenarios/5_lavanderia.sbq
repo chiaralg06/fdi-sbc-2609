@@ -1,0 +1,60 @@
+# Escenario 5: lavanderia (planta -1). Tarjeta de 20 circulos, maquinas de pago
+# por uso, saldo que se calcula con las tablas y cola por la misma maquina.
+#   uv run -m sbc data/kb_casa_julia data/kb_casa_julia/escenarios/5_lavanderia.sbq
+
+razona si!
+colegio periodo curso.
+
+# Saldos de las tarjetas
+tj_paula circulos n13.
+tj_carmen circulos n1.
+tj_elena circulos n0.
+tj_irene circulos n20.
+
+# Orden de llegada a recepcion: u1, u2, u3, u4, u5
+u1 siguiente u2.
+u2 siguiente u3.
+u3 siguiente u4.
+u4 siguiente u5.
+
+# u1: Paula pone la lavadora grande 1 (cuesta 2)
+u1 es_un uso, u1 alumna paula, u1 maquina lavadora_g1, u1 tarjeta tj_paula, u1 hora t1100.
+# u2: Carmen quiere la secadora 1 (cuesta 2) y solo le queda 1 circulo
+u2 es_un uso, u2 alumna carmen, u2 maquina secadora_1, u2 tarjeta tj_carmen, u2 hora t1100.
+# u3: Carmen se conforma con una lavadora pequena (cuesta 1)
+u3 es_un uso, u3 alumna carmen, u3 maquina lavadora_p1, u3 tarjeta tj_carmen, u3 hora t1130.
+# u4: Elena quiere la misma lavadora pequena a la misma hora y su tarjeta esta a cero
+u4 es_un uso, u4 alumna elena, u4 maquina lavadora_p1, u4 tarjeta tj_elena, u4 hora t1130.
+# u5: Irene quiere la lavadora grande 1 a la misma hora que Paula
+u5 es_un uso, u5 alumna irene, u5 maquina lavadora_g1, u5 tarjeta tj_irene, u5 hora t1100.
+
+# Estado de las otras maquinas segun recepcion
+lavadora_p2 estado libre.
+lavadora_g2 estado libre.
+
+# Cuanto cuesta cada maquina y cuantos circulos quedan
+lavadora_g1 coste P?
+lavadora_p1 coste P?
+secadora_1 coste P?
+u1 saldo_final R?
+u2 saldo_final R?
+u3 saldo_final R?
+u4 saldo_final R?
+u5 saldo_final R?
+
+# Situaciones y decision
+U es_un uso, U situacion S?
+U es_un uso, U accion A?
+U es_un uso, U conflicto M?
+U es_un uso, U se_impone M?
+u5 decision A?
+
+# Que se hace con quien no puede usar la maquina
+U derivar_a M?
+recepcion solicitar_por M, recepcion provocado_por U?
+
+# Por que: el motivo que gana y su nombre
+u5 se_impone M, M nombre N, u5 situacion M?
+
+D empate M?
+D decision_dudosa si?

@@ -1,0 +1,89 @@
+# El colegio mayor: pabellones, planta calle (comun a los tres pabellones),
+# planta -1 y todo lo que hay en ellas. Las 12 plantas de habitaciones y las
+# 240 habitaciones estan en 02_habitaciones.sbc (generado).
+#
+# Ojo: sin tildes fuera de comillas (el parser descarta el fichero entero).
+# Los textos con tilde van en "nombre".
+#
+# esta_en dice donde esta algo DIRECTAMENTE (una habitacion esta en su planta,
+# la planta en su pabellon...). Lo de "estar dentro de" lo saca una regla.
+
+colegio es_un colegio_mayor, colegio nombre "Colegio Mayor".
+calle es_un exterior, calle nombre "Calle".
+
+pabellon_a es_un pabellon, pabellon_a esta_en colegio, pabellon_a nombre "Pabellón A".
+pabellon_b es_un pabellon, pabellon_b esta_en colegio, pabellon_b nombre "Pabellón B".
+pabellon_c es_un pabellon, pabellon_c esta_en colegio, pabellon_c nombre "Pabellón C".
+
+planta_calle es_un planta_comun, planta_calle esta_en colegio, planta_calle nombre "Planta calle".
+sotano es_un planta_comun, sotano esta_en colegio, sotano nombre "Planta -1".
+alarma_planta_calle es_un alarma_incendio, alarma_planta_calle esta_en planta_calle.
+alarma_sotano es_un alarma_incendio, alarma_sotano esta_en sotano.
+
+# Un ascensor por pabellon
+ascensor_a es_un ascensor, ascensor_a esta_en pabellon_a, ascensor_a nombre "Ascensor del pabellón A".
+ascensor_b es_un ascensor, ascensor_b esta_en pabellon_b, ascensor_b nombre "Ascensor del pabellón B".
+ascensor_c es_un ascensor, ascensor_c esta_en pabellon_c, ascensor_c nombre "Ascensor del pabellón C".
+
+# Planta calle: entrada, recepcion y zonas comunes
+recibidor es_un entrada, recibidor esta_en planta_calle, recibidor nombre "Entrada del colegio".
+recepcion es_un sala_recepcion, recepcion esta_en planta_calle, recepcion nombre "Recepción".
+comedor es_un sala_comedor, comedor esta_en planta_calle, comedor nombre "Comedor".
+cafeteria es_un sala_cafeteria, cafeteria esta_en planta_calle, cafeteria nombre "Cafetería".
+capilla es_un sala_capilla, capilla esta_en planta_calle, capilla nombre "Capilla".
+gimnasio es_un sala_gimnasio, gimnasio esta_en planta_calle, gimnasio nombre "Gimnasio".
+sala_musica es_un sala_de_musica, sala_musica esta_en planta_calle, sala_musica nombre "Sala de música".
+biblioteca_a es_un biblioteca, biblioteca_a esta_en planta_calle, biblioteca_a nombre "Biblioteca del pabellón A".
+biblioteca_c es_un biblioteca, biblioteca_c esta_en planta_calle, biblioteca_c nombre "Biblioteca del pabellón C".
+
+# Salas de estudio: cuatro de 4 personas y una grande (5 mesas, unas 2 por mesa)
+estudio_1 es_un sala_estudio_pequena, estudio_1 esta_en planta_calle, estudio_1 capacidad k4, estudio_1 nombre "Sala de estudio 1".
+estudio_2 es_un sala_estudio_pequena, estudio_2 esta_en planta_calle, estudio_2 capacidad k4, estudio_2 nombre "Sala de estudio 2".
+estudio_3 es_un sala_estudio_pequena, estudio_3 esta_en planta_calle, estudio_3 capacidad k4, estudio_3 nombre "Sala de estudio 3".
+estudio_4 es_un sala_estudio_pequena, estudio_4 esta_en planta_calle, estudio_4 capacidad k4, estudio_4 nombre "Sala de estudio 4".
+estudio_grande es_un sala_estudio_grande, estudio_grande esta_en planta_calle, estudio_grande capacidad k10, estudio_grande nombre "Sala de estudio grande".
+
+# Planta -1: la lavanderia, comun a los tres pabellones
+lavanderia es_un sala_lavanderia, lavanderia esta_en sotano, lavanderia nombre "Lavandería".
+lavadora_p1 es_un lavadora_pequena, lavadora_p1 esta_en lavanderia, lavadora_p1 nombre "Lavadora pequeña 1".
+lavadora_p2 es_un lavadora_pequena, lavadora_p2 esta_en lavanderia, lavadora_p2 nombre "Lavadora pequeña 2".
+lavadora_g1 es_un lavadora_grande, lavadora_g1 esta_en lavanderia, lavadora_g1 nombre "Lavadora grande 1".
+lavadora_g2 es_un lavadora_grande, lavadora_g2 esta_en lavanderia, lavadora_g2 nombre "Lavadora grande 2".
+secadora_1 es_un secadora, secadora_1 esta_en lavanderia, secadora_1 nombre "Secadora 1".
+secadora_2 es_un secadora, secadora_2 esta_en lavanderia, secadora_2 nombre "Secadora 2".
+
+# Camaras: la entrada desde la calle, la del colegio y la zona de ascensores
+# (para ver quien sube). Dentro de los ascensores y en las plantas no hay.
+camara_calle es_un camara, camara_calle esta_en calle, camara_calle vigila calle.
+camara_entrada es_un camara, camara_entrada esta_en planta_calle, camara_entrada vigila recibidor.
+camara_ascensores es_un camara, camara_ascensores esta_en planta_calle.
+camara_ascensores vigila ascensor_a, camara_ascensores vigila ascensor_b, camara_ascensores vigila ascensor_c.
+
+# Puertas y pasos (cada uno una sola vez; la regla conecta_con los hace de ida y vuelta)
+calle acceso_a recibidor.
+recibidor acceso_a recepcion.
+recibidor acceso_a comedor.
+recibidor acceso_a cafeteria.
+recibidor acceso_a capilla.
+recibidor acceso_a gimnasio.
+recibidor acceso_a sala_musica.
+recibidor acceso_a biblioteca_a.
+recibidor acceso_a biblioteca_c.
+recibidor acceso_a estudio_1.
+recibidor acceso_a estudio_2.
+recibidor acceso_a estudio_3.
+recibidor acceso_a estudio_4.
+recibidor acceso_a estudio_grande.
+planta_calle acceso_a sotano.
+planta_calle acceso_a a_1.
+planta_calle acceso_a b_1.
+planta_calle acceso_a c_1.
+a_1 acceso_a a_2.
+a_2 acceso_a a_3.
+a_3 acceso_a a_4.
+b_1 acceso_a b_2.
+b_2 acceso_a b_3.
+b_3 acceso_a b_4.
+c_1 acceso_a c_2.
+c_2 acceso_a c_3.
+c_3 acceso_a c_4.

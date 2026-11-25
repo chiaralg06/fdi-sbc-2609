@@ -1,0 +1,20 @@
+# Horarios, periodos y que esta abierto en cada momento.
+#
+# El momento lo pone cada escenario con hechos del tipo
+#   ahora dia martes.  ahora hora t2030.  colegio periodo curso.
+# El motor no compara horas, asi que cada media hora es un simbolo (t2030 =
+# 20:30) y los horarios son listas de franjas (04_tiempo, generado).
+
+# El colegio esta cerrado en Navidad, Semana Santa y verano; en curso y en
+# junio esta abierto (junio con cobro por dia).
+colegio situacion cierre_colegio <- colegio periodo P, P hereda_de periodo_cerrado.
+colegio facturacion F <- colegio periodo P, P cobro F.
+
+# Servicios que abren a ciertas horas (comedor, gimnasio): hay que estar en un
+# dia del grupo del servicio y en una de sus franjas.
+S abierto si <- colegio periodo P, P hereda_de periodo_abierto, ahora dia D, D en_grupo G, S para_grupo G, ahora hora T, S abre_en T.
+# Servicios que abren siempre (recepcion, cafeteria, bibliotecas...).
+S abierto si <- colegio periodo P, P hereda_de periodo_abierto, S siempre_abierto si.
+
+# Que ofrece cada zona ahora mismo.
+Z sirve_ahora S <- Z ofrece S, S abierto si.

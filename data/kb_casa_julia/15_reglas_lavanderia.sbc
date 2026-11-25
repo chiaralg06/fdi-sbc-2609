@@ -1,0 +1,36 @@
+# Lavanderia (planta -1): tarjeta de 20 circulos, maquinas de pago por uso.
+#
+# Se va a recepcion, te dan las monedas de la maquina y te tachan circulos de
+# la tarjeta: lavadora pequena 1, lavadora grande 2, secadora 2.
+#
+# Un uso es un EVENTO:
+#   u1 es_un uso, u1 alumna paula, u1 maquina lavadora_g1, u1 tarjeta tj_paula, u1 hora t1100.
+#   tj_paula circulos n13.
+# n13 = trece circulos. El motor no sabe restar: las tablas (05) dicen que
+# n13 menos_2 n11. El coste de cada clase de maquina es el NOMBRE de la tabla
+# que hay que usar (menos_1, menos_2), asi que una maquina nueva con otro coste
+# solo necesita su fila en 01 y su tabla en 05.
+
+# El coste de una maquina sale de su clase.
+M coste P <- M es_un K, K coste P.
+
+# Cuantos circulos quedan: se busca en la tabla elegida por el coste.
+# (variable en el predicado: N P R es "N menos_2 R", "N menos_1 R"...)
+U saldo_final R <- U es_un uso, U tarjeta T, T circulos N, U maquina M, M coste P, N P R.
+
+U situacion saldo_insuficiente <- U saldo_final sin_saldo.
+U situacion uso_correcto <- U saldo_final R, R es_un saldo_valido.
+
+# Cola: dos usos de la misma maquina a la misma hora. Vale el que se apunto
+# antes en recepcion (u1 siguiente u2, igual que las filas del Excel: la regla
+# antes_que esta en 14 y sirve para las dos cosas).
+U2 situacion maquina_ocupada <- U2 es_un uso, U1 antes_que U2, U1 maquina M, U2 maquina M, U1 hora T, U2 hora T.
+
+U confirmar_por uso_correcto <- U situacion uso_correcto.
+U denegar_por saldo_insuficiente <- U situacion saldo_insuficiente.
+U denegar_por maquina_ocupada <- U situacion maquina_ocupada.
+
+# Si no hay saldo, recepcion le vende otra tarjeta; si la maquina esta ocupada,
+# se le propone otra libre de la misma clase.
+recepcion solicitar_por saldo_insuficiente, recepcion provocado_por U <- U situacion saldo_insuficiente.
+U derivar_a M2 <- U situacion maquina_ocupada, U maquina M1, M1 es_un K, M2 es_un K, M2 estado libre.

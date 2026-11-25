@@ -1,0 +1,30 @@
+{"consulta": "r1 situacion S", "soluciones": [{"S": "reserva_registrada"}]}
+{"consulta": "r2 situacion S", "soluciones": [{"S": "doble_reserva"}, {"S": "reserva_registrada"}]}
+{"consulta": "r3 situacion S", "soluciones": [{"S": "reserva_registrada"}, {"S": "sobreaforo"}]}
+{"consulta": "r4 situacion S", "soluciones": [{"S": "reserva_registrada"}]}
+{"consulta": "r5 situacion S", "soluciones": [{"S": "reserva_registrada"}, {"S": "sobreaforo"}]}
+{"consulta": "R confirmar_por M", "soluciones": [{"R": "r1", "M": "reserva_registrada"}, {"R": "r2", "M": "reserva_registrada"}, {"R": "r3", "M": "reserva_registrada"}, {"R": "r4", "M": "reserva_registrada"}, {"R": "r5", "M": "reserva_registrada"}]}
+{"consulta": "R denegar_por M", "soluciones": [{"R": "r2", "M": "doble_reserva"}, {"R": "r3", "M": "sobreaforo"}, {"R": "r5", "M": "sobreaforo"}]}
+{"consulta": "R conflicto M", "soluciones": [{"R": "r2", "M": "doble_reserva"}, {"R": "r2", "M": "reserva_registrada"}, {"R": "r3", "M": "reserva_registrada"}, {"R": "r3", "M": "sobreaforo"}, {"R": "r5", "M": "reserva_registrada"}, {"R": "r5", "M": "sobreaforo"}]}
+{"consulta": "R se_impone M", "soluciones": [{"R": "r2", "M": "doble_reserva"}, {"R": "r3", "M": "sobreaforo"}, {"R": "r5", "M": "sobreaforo"}]}
+{"consulta": "r2 decision A", "soluciones": [{"A": "denegar"}]}
+{"consulta": "r1 decision A", "soluciones": []}
+{"consulta": "c1 situacion S", "soluciones": [{"S": "comida_en_zona_estudio"}]}
+{"consulta": "c2 situacion S", "soluciones": []}
+{"consulta": "A notificar_por M, A provocado_por C", "soluciones": [{"A": "paula", "M": "comida_en_zona_estudio", "C": "c1"}]}
+{"consulta": "c1 derivar_a Z", "soluciones": [{"Z": "cafeteria"}, {"Z": "comedor"}]}
+{"consulta": "n1 situacion S", "soluciones": [{"S": "ruido_en_zona_estudio"}]}
+{"consulta": "recepcion notificar_por M, recepcion provocado_por N", "soluciones": [{"M": "ruido_en_zona_estudio", "N": "n1"}]}
+{"consulta": "m1 accion A", "soluciones": [{"A": "reproducir"}, {"A": "silenciar"}]}
+{"consulta": "m1 conflicto M", "soluciones": [{"M": "examen_vecina"}, {"M": "ocio"}]}
+{"consulta": "m1 se_impone M, M nombre N", "soluciones": [{"M": "examen_vecina", "N": "\"Una vecina de pared tiene examen mañana\""}]}
+{"consulta": "m1 decision A", "soluciones": [{"A": "silenciar"}]}
+{"consulta": "m1 examen_de A", "soluciones": [{"A": "lucia"}]}
+{"consulta": "m1 derivar_a Z", "soluciones": [{"Z": "sala_musica"}]}
+{"consulta": "m2 accion A", "soluciones": [{"A": "reproducir"}]}
+{"consulta": "m2 conflicto M", "soluciones": []}
+{"consulta": "m2 decision A", "soluciones": []}
+{"consulta": "m3 decision A", "soluciones": [{"A": "silenciar"}]}
+{"consulta": "m3 examen_de A", "soluciones": [{"A": "carmen"}]}
+{"consulta": "D empate M", "soluciones": []}
+{"consulta": "D decision_dudosa si", "soluciones": []}

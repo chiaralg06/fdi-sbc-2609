@@ -1,0 +1,113 @@
+# Jerarquia de clases. Cada cosa dice solo su clase mas concreta con es_un y
+# la regla "tipo" (10) deduce el resto. Tambien guardo aqui, a nivel de clase,
+# lo que es igual para todos sus miembros: asi 240 habitaciones no repiten
+# nada y si cambia (otro mueble) se cambia en un sitio.
+
+# ---- Estancias y zonas ----
+# (La clase de un sitio unico se llama sala_xxx, distinta del sitio: asi la regla
+# "contiene" no se llama a si misma sin fin.)
+habitacion subclase_de estancia.
+sala_de_planta subclase_de estancia.
+sala_lavanderia subclase_de estancia.
+sala_comedor subclase_de estancia.
+sala_cafeteria subclase_de estancia.
+sala_capilla subclase_de estancia.
+sala_gimnasio subclase_de estancia.
+sala_de_musica subclase_de estancia.
+biblioteca subclase_de estancia.
+sala_estudio subclase_de estancia.
+sala_estudio_pequena subclase_de sala_estudio.
+sala_estudio_grande subclase_de sala_estudio.
+entrada subclase_de estancia.
+sala_recepcion subclase_de estancia.
+
+# Donde una visita que no es de la familia NO puede entrar: lo residencial
+habitacion subclase_de zona_residencial.
+sala_de_planta subclase_de zona_residencial.
+planta_pabellon subclase_de zona_residencial.
+# Donde si pueden estar: entrada, cafeteria, capilla (y las salas de estudio, con reserva)
+entrada subclase_de zona_visitas.
+sala_cafeteria subclase_de zona_visitas.
+sala_capilla subclase_de zona_visitas.
+# Donde no se come, no se bebe y se espera silencio
+biblioteca subclase_de zona_estudio.
+sala_estudio subclase_de zona_estudio.
+# Donde si se puede comer
+sala_cafeteria subclase_de zona_comida.
+sala_comedor subclase_de zona_comida.
+
+# ---- Aparatos ----
+calefaccion subclase_de aparato_clima.
+aire_acondicionado subclase_de aparato_clima.
+lavadora_pequena subclase_de maquina_lavanderia.
+lavadora_grande subclase_de maquina_lavanderia.
+secadora subclase_de maquina_lavanderia.
+cubo_basura subclase_de elemento_de_sala.
+cubo_ropa subclase_de elemento_de_sala.
+rollo_papel subclase_de elemento_de_sala.
+musica subclase_de fuente_ruido.
+
+# ---- Personas ----
+alumna subclase_de persona.
+visitante subclase_de persona.
+personal subclase_de persona.
+recepcionista subclase_de personal.
+limpiadora subclase_de personal.
+cocinera subclase_de personal.
+monja subclase_de personal.
+monitora subclase_de personal.
+directora subclase_de direccion.
+subdirectora subclase_de direccion.
+direccion subclase_de personal.
+
+# ---- Parentescos de las visitas ----
+# familia_directa sube a la habitacion. El hermano solo si van los padres.
+# El resto de visitas, ni familia: solo las zonas de visitas.
+madre subclase_de progenitor.
+padre subclase_de progenitor.
+progenitor subclase_de familia_directa.
+hermana subclase_de familia_directa.
+hermano subclase_de familia_condicionada.
+amiga subclase_de no_familiar.
+amigo subclase_de no_familiar_chico.
+no_familiar_chico subclase_de no_familiar.
+
+# ---- Periodos del curso ----
+curso subclase_de periodo_abierto.
+junio subclase_de periodo_abierto.
+navidad subclase_de periodo_cerrado.
+semana_santa subclase_de periodo_cerrado.
+verano subclase_de periodo_cerrado.
+curso cobro por_mes.
+junio cobro por_dia.
+
+# ---- Lo que contiene cada clase (vale para todos sus miembros) ----
+habitacion contiene cama.
+habitacion contiene estanteria.
+habitacion contiene armario.
+habitacion contiene nevera_pequena.
+habitacion contiene mesita_de_noche.
+habitacion contiene escritorio.
+habitacion contiene bano_interior.
+sala_de_planta contiene lavadero.
+sala_de_planta contiene plancha.
+sala_de_planta contiene tendal.
+sala_cafeteria contiene sofas.
+sala_cafeteria contiene maquinas_expendedoras.
+sala_cafeteria contiene microondas.
+sala_cafeteria contiene fregadero.
+sala_cafeteria contiene nevera.
+
+# ---- Que activa cada peticion de clima en la habitacion ----
+calor activa calefaccion.
+frio activa aire_acondicionado.
+
+# ---- Cursos con hora limite (el resto de cursos no tiene limite) ----
+primero con_limite si.
+
+# ---- Lavanderia: cuanto cuesta cada clase de maquina (ver 05_tablas) ----
+lavadora_pequena coste menos_1.
+lavadora_grande coste menos_2.
+secadora coste menos_2.
+tarjeta_lavanderia precio euros_10.
+tarjeta_lavanderia circulos_iniciales n20.

@@ -1,0 +1,29 @@
+ascensor_a accion A? -> SI
+a105_calef accion A? -> SI
+b216_aire accion A? -> SI
+b216_aire conflicto M? -> SI
+b216_aire se_impone M? -> SI
+b216_aire decision A? -> SI
+A notificar_por ventana_abierta, A provocado_por H? -> SI
+P situacion incendio? -> SI
+ascensor_a accion A? -> SI
+ascensor_a conflicto M? -> SI
+ascensor_a se_impone M? -> SI
+ascensor_a decision A? -> SI
+ascensor_b accion A? -> SI
+ascensor_b decision A? -> NO
+a105_calef conflicto M? -> SI
+a105_calef decision A? -> SI
+a101_calef accion A? -> SI
+b216_aire decision A? -> SI
+recepcion notificar_por M? -> SI
+D notificar_por incendio, D tipo direccion? -> SI
+A notificar_por incendio, A es_un alumna? -> SI
+ascensor_a se_impone M, M nombre N, ascensor_a provocado_por X, X situacion M? -> SI
+a105_calef se_impone M, M nombre N, a105_calef provocado_por X, X situacion M? -> SI
+ascensor_a decision A? -> SI
+ascensor_b decision A? -> SI
+ascensor_c decision A? -> SI
+A notificar_por incendio, A es_un alumna? -> SI
+D empate M? -> NO
+D decision_dudosa si? -> NO

@@ -1,0 +1,41 @@
+# Clima de las habitaciones, ascensores, periodos de cierre e incendios.
+#
+# Cada habitacion tiene calefaccion y aire (02, generado). La alumna los pide
+# con un hecho:  a105 pedido calor.   (frio activa el aire, calor la calefaccion).
+# Las luces van con interruptor y no se automatizan.
+
+# ---- Situaciones ----
+H situacion pedido_alumna <- H pedido X.
+# Ventana abierta con el clima puesto: gasta energia.
+H situacion ventana_abierta <- H ventana abierta, H pedido X.
+# Servicio normal de los ascensores: cuando el colegio esta abierto.
+E situacion servicio_normal <- colegio periodo P, P hereda_de periodo_abierto, E es_un ascensor.
+# Una alarma que detecta fuego pone en incendio la planta donde esta.
+P situacion incendio <- A detecta fuego, A tipo alarma_incendio, A esta_en P.
+
+# ---- Clima ----
+# La peticion de la alumna enciende el aparato que le toca.
+C encender_por pedido_alumna, C provocado_por H <- H situacion pedido_alumna, H pedido X, X activa K, C es_un K, C esta_en H.
+# Con la ventana abierta se pide apagarlo (el colegio no controla la ventana)
+C apagar_por ventana_abierta, C provocado_por H <- H situacion ventana_abierta, C tipo aparato_clima, C esta_en H.
+A notificar_por ventana_abierta, A provocado_por H <- H situacion ventana_abierta, A duerme_en H.
+# Con el colegio cerrado no se calienta ni se enfria nada.
+C apagar_por cierre_colegio, C provocado_por colegio <- colegio situacion cierre_colegio, C tipo aparato_clima.
+# En un incendio se apaga todo el clima de la planta afectada.
+C apagar_por incendio, C provocado_por P <- P situacion incendio, C tipo aparato_clima, C dentro_de P.
+
+# ---- Ascensores ----
+E habilitar_por servicio_normal, E provocado_por colegio <- E situacion servicio_normal.
+E bloquear_por cierre_colegio, E provocado_por colegio <- colegio situacion cierre_colegio, E es_un ascensor.
+# Incendio en una planta de pabellon: se bloquea el ascensor de ese pabellon.
+E bloquear_por incendio, E provocado_por P <- P situacion incendio, P esta_en B, E es_un ascensor, E esta_en B.
+# Incendio en una planta comun (calle o -1): se bloquean todos.
+E bloquear_por incendio, E provocado_por P <- P situacion incendio, P es_un planta_comun, E es_un ascensor.
+
+# ---- Aviso a las personas ----
+# Supuesto de diseno: al sonar la alarma se avisa a recepcion, a la direccion y a
+# todas las alumnas que estan en el mismo pabellon (o en todo el colegio si es
+# una planta comun). Recepcion esta abierta las 24 horas.
+recepcion notificar_por incendio, recepcion provocado_por P <- P situacion incendio.
+D notificar_por incendio, D provocado_por P <- P situacion incendio, D tipo direccion.
+A notificar_por incendio, A provocado_por P <- P situacion incendio, P esta_en B, A es_un alumna, A ubicacion Z, Z dentro_de B.

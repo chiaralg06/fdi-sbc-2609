@@ -1,0 +1,20 @@
+colegio situacion S? -> SI
+ascensor_a accion A? -> SI
+ascensor_b accion A? -> SI
+ascensor_a decision A? -> NO
+a105_calef accion A? -> SI
+a105_calef conflicto M? -> SI
+a105_calef se_impone M? -> SI
+a105_calef decision A? -> SI
+a105_calef se_impone M, M nombre N, a105_calef provocado_por X, X situacion M? -> SI
+a101_calef accion A? -> SI
+c420_aire accion A? -> SI
+v1 situacion S? -> SI
+v1 conflicto M? -> SI
+v1 se_impone M, M nombre N, M origen X? -> SI
+v1 decision A? -> SI
+comedor sirve_ahora S? -> NO
+Z sirve_ahora S? -> NO
+colegio facturacion F? -> NO
+D empate M? -> NO
+D decision_dudosa si? -> NO

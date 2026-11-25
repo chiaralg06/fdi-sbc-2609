@@ -1,0 +1,39 @@
+# Que se hace cuando hay varias razones, y por que.
+#
+# Todo lo que debe pasar se guarda como  sujeto verbo_por motivo  (07). Aqui
+# se agrupa y se resuelve cuando dos motivos piden cosas opuestas.
+
+# accion: lo que se pide, sea cual sea el verbo (variable en el predicado: V es
+# "encender_por", "denegar_por"... y "D V M" es "D encender_por M"). Una regla
+# vale para todas las acciones, presentes y futuras.
+D accion A <- V verbo A, D V M.
+
+# conflicto: dos motivos piden acciones opuestas sobre el mismo sujeto.
+D conflicto M1 <- V1 opuesto V2, D V1 M1, D V2 M2.
+
+# Gana el motivo de categoria mas alta; su accion es la decision.
+D se_impone M1 <- V1 opuesto V2, D V1 M1, D V2 M2, M1 categoria C1, M2 categoria C2, C1 prevalece_sobre C2.
+D gana_con V1 <- V1 opuesto V2, D V1 M1, D V2 M2, M1 categoria C1, M2 categoria C2, C1 prevalece_sobre C2.
+D decision A <- D gana_con V, V verbo A.
+
+# Dos motivos en pugna de la MISMA categoria: nadie gana. Si sale algo es que
+# la base necesita separar mas las categorias.
+D empate M1 <- V1 opuesto V2, D V1 M1, D V2 M2, M1 categoria C, M2 categoria C.
+
+# Limite conocido: si chocan tres motivos de tres categorias, cada pareja se
+# resuelve por separado y pueden salir dos decisiones opuestas. Quedarse solo
+# con la mas fuerte exigiria negacion (no hay otra mas fuerte), que el motor no
+# tiene. Esta regla lo detecta; los escenarios comprueban que no ocurre.
+D decision_dudosa si <- D gana_con V1, V1 opuesto V2, D gana_con V2.
+
+# El orden completo de categorias sale de por_encima_de (07). Recursiva por la
+# derecha para que termine con razona si!.
+C1 prevalece_sobre C2 <- C1 por_encima_de C2.
+C1 prevalece_sobre C3 <- C1 por_encima_de C2, C2 prevalece_sobre C3.
+
+# Explicacion. Todos los motivos son situaciones de algo (una llegada, una visita,
+# una planta, una habitacion...). M origen X dice que cosas tienen ahora esa
+# situacion; X provocado_por Y (en cada regla de accion) dice que entidad concreta
+# provoco la medida sobre X. Para emparejar medida y causa:
+#   S V M, S provocado_por X, X situacion M, M nombre N?
+M origen X <- X situacion M.

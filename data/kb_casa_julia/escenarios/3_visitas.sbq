@@ -1,0 +1,54 @@
+# Escenario 3: visitas de la familia y las amigas/amigos de Lucia.
+#   uv run -m sbc data/kb_casa_julia data/kb_casa_julia/escenarios/3_visitas.sbq
+
+razona si!
+colegio periodo curso.
+
+# Su madre quiere subir a su habitacion a las 23:30
+v1 es_un visita, v1 visitante ana_madre, v1 zona a105, v1 hora t2330, v1 acompanado_por nadie.
+# Su hermano quiere subir a las 18:00 sin sus padres
+v2 es_un visita, v2 visitante javier_hermano, v2 zona a105, v2 hora t1800, v2 acompanado_por nadie.
+# El mismo hermano, pero ahora viene con su madre
+v3 es_un visita, v3 visitante javier_hermano, v3 zona a105, v3 hora t1800, v3 acompanado_por ana_madre.
+# Una amiga quiere subir a la habitacion a las 17:00
+v4 es_un visita, v4 visitante laura_amiga, v4 zona a105, v4 hora t1700, v4 acompanado_por nadie.
+# La misma amiga, a las 23:30 en la cafeteria
+v5 es_un visita, v5 visitante laura_amiga, v5 zona cafeteria, v5 hora t2330, v5 acompanado_por nadie.
+# Un amigo en la cafeteria a las 22:00
+v6 es_un visita, v6 visitante marcos_amigo, v6 zona cafeteria, v6 hora t2200, v6 acompanado_por nadie.
+# El mismo amigo en la cafeteria a las 23:00
+v7 es_un visita, v7 visitante marcos_amigo, v7 zona cafeteria, v7 hora t2300, v7 acompanado_por nadie.
+# El amigo en la sala de estudio 2 con reserva (a las 16:00)
+r1 es_un reserva, r1 sala estudio_2, r1 personas k2, r1 hora t1600.
+v8 es_un visita, v8 visitante marcos_amigo, v8 zona estudio_2, v8 hora t1600, v8 acompanado_por nadie, v8 con_reserva r1.
+# Y en la sala de estudio 3, sin reserva
+v9 es_un visita, v9 visitante marcos_amigo, v9 zona estudio_3, v9 hora t1600, v9 acompanado_por nadie, v9 con_reserva ninguna.
+
+# Situaciones y lo que se hace con cada visita
+v1 situacion S?
+v2 situacion S?
+v3 situacion S?
+v4 situacion S?
+v6 situacion S?
+v7 situacion S?
+v9 situacion S?
+
+V permitir_por M?
+V denegar_por M?
+
+# Conflictos: gana el motivo de categoria mas alta
+V conflicto M?
+V se_impone M?
+v7 decision A?
+v5 decision A?
+
+# Quien sube a las plantas queda grabado
+C grabar_por M, C provocado_por V?
+
+# Explicacion de la visita v7: que paso y por que
+v7 se_impone M, M nombre N?
+hora_chicos origen V?
+
+# Ninguna decision contradictoria
+D empate M?
+D decision_dudosa si?

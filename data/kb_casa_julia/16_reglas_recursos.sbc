@@ -1,0 +1,20 @@
+# Salas de planta: papel higienico, cubo de basura y cubo de ropa.
+#
+# Cada elemento puede estar en un estado que necesita atencion; el escenario lo
+# cuenta con un hecho como  papel_a_1 estado papel_agotado.  Las limpiadoras
+# pasan todos los dias y se ocupan de reponer o vaciar, asi que el aviso va a
+# la limpiadora responsable del pabellon donde esta el elemento.
+
+# Los estados que necesitan que alguien actue.
+papel_agotado es_un motivo_limpieza.
+cubo_lleno es_un motivo_limpieza.
+ropa_acumulada es_un motivo_limpieza.
+
+I situacion M <- I estado M, M es_un motivo_limpieza.
+
+# A quien le toca: la limpiadora que limpia el pabellon (o la planta) donde esta
+# el elemento. Se deduce subiendo por donde esta el elemento, sin nombrar a nadie.
+L notificar_por M, L provocado_por I <- M es_un motivo_limpieza, I situacion M, I dentro_de B, L limpia B, L es_un limpiadora.
+
+# Lo que le queda por hacer a cada limpiadora.
+L pendiente I <- L provocado_por I.

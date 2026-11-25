@@ -1,0 +1,32 @@
+# Llegadas, salidas y vales.
+#
+# Cada llegada o salida es un EVENTO que pone el escenario, por ejemplo:
+#   l1 es_un llegada, l1 alumna lucia, l1 dia martes, l1 hora t0030, l1 vale al_llegar.
+# vale: antes (firmado antes de irse), al_llegar (firmado al llegar) o ninguno.
+# "ninguno" es un hecho positivo porque el motor no tiene negacion.
+#
+# Las normas: a las de primero no se las deja llegar mas tarde de las 12 de
+# domingo a jueves; viernes y sabado, a la hora que fijen sus padres. Las
+# demas llegan a la hora que quieran. A todas, si van a llegar despues de las
+# 12 o a dormir fuera, les hace falta un vale.
+
+# La hora limite que le toca a esa llegada. Solo la tienen los cursos con limite
+# y depende del grupo del dia (noche_fija o noche_padres, ver 06).
+L limite_aplicable T <- L es_un llegada, L alumna A, A curso C, C con_limite si, L dia D, D en_grupo noche_fija, noche_fija limite T.
+L limite_aplicable T <- L es_un llegada, L alumna A, A curso C, C con_limite si, L dia D, D en_grupo noche_padres, A limite_finde T.
+
+# Situaciones. "T posterior_a U" viene de la tabla de 04_tiempo.
+L situacion llegada_tardia <- L es_un llegada, L hora T, T posterior_a t0000.
+L situacion fuera_de_limite <- L es_un llegada, L limite_aplicable Lim, L hora T, T posterior_a Lim.
+L situacion vale_pendiente <- L situacion llegada_tardia, L vale ninguno.
+L situacion vale_tardio <- L situacion llegada_tardia, L vale al_llegar.
+
+# Una salida que acabara tarde o con noche fuera necesita vale antes de irse.
+S situacion vale_pendiente <- S es_un salida, S llegada_prevista T, T posterior_a t0000, S vale ninguno.
+S situacion vale_pendiente <- S es_un salida, S pernocta si, S vale ninguno.
+
+# Que se hace (cada aviso lleva el evento que lo provoca en provocado_por)
+recepcion solicitar_por vale_pendiente, recepcion provocado_por E <- E situacion vale_pendiente.
+D notificar_por vale_tardio, D provocado_por L <- L situacion vale_tardio, D tipo direccion.
+D notificar_por fuera_de_limite, D provocado_por L <- L situacion fuera_de_limite, D tipo direccion.
+P notificar_por fuera_de_limite, P provocado_por L <- L situacion fuera_de_limite, L alumna A, P familiar_de A, P parentesco Pa, Pa hereda_de progenitor.

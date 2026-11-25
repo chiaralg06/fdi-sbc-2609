@@ -1,0 +1,38 @@
+# Escenario 9: un domingo de junio por la noche. Junio es periodo abierto con
+# cobro por dia. El domingo no hay cena, pero la cafeteria, el gimnasio y las
+# bibliotecas si estan abiertas. Y las alumnas de primero tienen hora limite.
+#   uv run -m sbc data/kb_casa_julia data/kb_casa_julia/escenarios/9_junio_domingo.sbq
+
+razona si!
+
+colegio periodo junio.
+colegio facturacion F?
+colegio situacion S?
+ahora dia domingo.
+ahora hora t2100.
+
+# Que esta abierto ahora
+Z sirve_ahora S?
+comedor ofrece S?
+
+# Comida: el domingo no hay cena (el sabado si, ver el escenario 10)
+comedor sirve_ahora cena?
+gimnasio sirve_ahora horario_gimnasio?
+recepcion sirve_ahora atencion_24h?
+
+# Los ascensores y las visitas siguen con normalidad
+ascensor_c decision A?
+ascensor_c accion A?
+
+# Llega Irene (primero) a las 23:30 de este domingo: su limite es las 00:00
+l1 es_un llegada, l1 alumna irene, l1 dia domingo, l1 hora t2330, l1 vale ninguno.
+l1 limite_aplicable T?
+l1 situacion S?
+
+# Una visita de un amigo en la cafeteria a las 21:00: sin problema
+v1 es_un visita, v1 visitante marcos_amigo, v1 zona cafeteria, v1 hora t2100, v1 acompanado_por nadie.
+v1 accion A?
+v1 conflicto M?
+
+D empate M?
+D decision_dudosa si?

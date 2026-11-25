@@ -1,0 +1,17 @@
+{"consulta": "l1 limite_aplicable T", "soluciones": [{"T": "t0000"}]}
+{"consulta": "l4 limite_aplicable T", "soluciones": [{"T": "t0000"}]}
+{"consulta": "l2 limite_aplicable T", "soluciones": []}
+{"consulta": "l1 situacion S", "soluciones": [{"S": "fuera_de_limite"}, {"S": "llegada_tardia"}, {"S": "vale_tardio"}]}
+{"consulta": "l2 situacion S", "soluciones": [{"S": "llegada_tardia"}]}
+{"consulta": "l3 situacion S", "soluciones": [{"S": "llegada_tardia"}, {"S": "vale_pendiente"}]}
+{"consulta": "l4 situacion S", "soluciones": []}
+{"consulta": "recepcion solicitar_por M, recepcion provocado_por E", "soluciones": [{"M": "vale_pendiente", "E": "l3"}]}
+{"consulta": "D notificar_por M, D provocado_por E, E situacion M, D tipo direccion", "soluciones": [{"D": "directora_1", "M": "fuera_de_limite", "E": "l1"}, {"D": "directora_1", "M": "vale_tardio", "E": "l1"}, {"D": "subdirectora_1", "M": "fuera_de_limite", "E": "l1"}, {"D": "subdirectora_1", "M": "vale_tardio", "E": "l1"}]}
+{"consulta": "P notificar_por M, P provocado_por E, E situacion M, P familiar_de lucia", "soluciones": [{"P": "ana_madre", "M": "fuera_de_limite", "E": "l1"}, {"P": "pedro_padre", "M": "fuera_de_limite", "E": "l1"}]}
+{"consulta": "l5 situacion S", "soluciones": [{"S": "fuera_de_limite"}, {"S": "llegada_tardia"}, {"S": "vale_pendiente"}]}
+{"consulta": "P notificar_por fuera_de_limite, P provocado_por l5", "soluciones": [{"P": "directora_1"}, {"P": "rosa_madre"}, {"P": "subdirectora_1"}]}
+{"consulta": "recepcion solicitar_por M, recepcion provocado_por E", "soluciones": [{"M": "vale_pendiente", "E": "l3"}, {"M": "vale_pendiente", "E": "l5"}]}
+{"consulta": "fuera_de_limite nombre N, fuera_de_limite origen E", "soluciones": [{"N": "\"Llega después de su hora límite\"", "E": "l1"}, {"N": "\"Llega después de su hora límite\"", "E": "l5"}]}
+{"consulta": "vale_tardio nombre N, vale_tardio origen E", "soluciones": [{"N": "\"El vale se ha firmado al llegar, no antes\"", "E": "l1"}]}
+{"consulta": "D empate M", "soluciones": []}
+{"consulta": "D decision_dudosa si", "soluciones": []}

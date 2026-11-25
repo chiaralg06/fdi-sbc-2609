@@ -1,0 +1,59 @@
+# Escenario 6: suena la alarma de incendio en la planta 1 del pabellon A, con
+# peticiones de clima ya puestas. Despues, una alarma en la planta calle.
+#   uv run -m sbc data/kb_casa_julia data/kb_casa_julia/escenarios/6_incendio.sbq
+
+razona si!
+colegio periodo curso.
+
+# Donde esta cada una
+lucia ubicacion a105.
+paula ubicacion a106.
+carmen ubicacion b216.
+elena ubicacion c301.
+
+# Lucia pidio calor. Carmen pidio frio con la ventana abierta.
+a105 pedido calor.
+b216 pedido frio.
+b216 ventana abierta.
+
+# Antes de la alarma: todo normal
+ascensor_a accion A?
+a105_calef accion A?
+b216_aire accion A?
+b216_aire conflicto M?
+b216_aire se_impone M?
+b216_aire decision A?
+A notificar_por ventana_abierta, A provocado_por H?
+
+# La alarma de la planta 1 del pabellon A detecta fuego
+alarma_a_1 detecta fuego.
+P situacion incendio?
+ascensor_a accion A?
+ascensor_a conflicto M?
+ascensor_a se_impone M?
+ascensor_a decision A?
+ascensor_b accion A?
+ascensor_b decision A?
+a105_calef conflicto M?
+a105_calef decision A?
+a101_calef accion A?
+b216_aire decision A?
+
+# A quien se avisa: recepcion, direccion y las alumnas del pabellon A
+recepcion notificar_por M?
+D notificar_por incendio, D tipo direccion?
+A notificar_por incendio, A es_un alumna?
+
+# Explicacion: por que se bloquea el ascensor y la calefaccion, y que lo provoca
+ascensor_a se_impone M, M nombre N, ascensor_a provocado_por X, X situacion M?
+a105_calef se_impone M, M nombre N, a105_calef provocado_por X, X situacion M?
+
+# Ahora la alarma de la planta calle
+alarma_planta_calle detecta fuego.
+ascensor_a decision A?
+ascensor_b decision A?
+ascensor_c decision A?
+A notificar_por incendio, A es_un alumna?
+
+D empate M?
+D decision_dudosa si?

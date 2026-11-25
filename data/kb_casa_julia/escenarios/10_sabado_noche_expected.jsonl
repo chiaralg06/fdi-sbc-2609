@@ -1,0 +1,13 @@
+{"consulta": "colegio facturacion F", "soluciones": [{"F": "por_mes"}]}
+{"consulta": "Z sirve_ahora S", "soluciones": [{"Z": "biblioteca_a", "S": "acceso_libre"}, {"Z": "biblioteca_c", "S": "acceso_libre"}, {"Z": "cafeteria", "S": "acceso_libre"}, {"Z": "capilla", "S": "acceso_libre"}, {"Z": "comedor", "S": "cena"}, {"Z": "gimnasio", "S": "horario_gimnasio"}, {"Z": "lavanderia", "S": "acceso_libre"}, {"Z": "recepcion", "S": "atencion_24h"}, {"Z": "sala_musica", "S": "acceso_libre"}]}
+{"consulta": "comedor sirve_ahora cena", "soluciones": [{}]}
+{"consulta": "comedor sirve_ahora desayuno_finde", "soluciones": []}
+{"consulta": "V es_un visita, V accion A", "soluciones": [{"V": "v1", "A": "permitir"}, {"V": "v2", "A": "denegar"}, {"V": "v2", "A": "permitir"}]}
+{"consulta": "V es_un visita, V conflicto M", "soluciones": [{"V": "v2", "M": "hora_chicos"}, {"V": "v2", "M": "zona_visitas"}]}
+{"consulta": "v2 se_impone M, M nombre N, v2 situacion M", "soluciones": [{"M": "hora_chicos", "N": "\"Los chicos que no son familia se van a las 23:00\""}]}
+{"consulta": "v2 decision A", "soluciones": [{"A": "denegar"}]}
+{"consulta": "l1 limite_aplicable T", "soluciones": [{"T": "t2330"}]}
+{"consulta": "l1 situacion S", "soluciones": []}
+{"consulta": "festivo en_grupo con_cena", "soluciones": []}
+{"consulta": "D empate M", "soluciones": []}
+{"consulta": "D decision_dudosa si", "soluciones": []}

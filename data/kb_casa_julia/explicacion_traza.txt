@@ -1,0 +1,49 @@
+warning: The `UV_NATIVE_TLS` environment variable is deprecated and will be removed in a future release. Use `UV_SYSTEM_CERTS` instead.
+2026-11-25 10:32:15.820 | INFO     | profesor:_cargar:79 - Cargando data/kb_casa_julia/00_edificio.sbc
+2026-11-25 10:32:15.837 | INFO     | profesor:_cargar:79 - Cargando data/kb_casa_julia/01_clases.sbc
+2026-11-25 10:32:15.843 | INFO     | profesor:_cargar:79 - Cargando data/kb_casa_julia/02_habitaciones.sbc
+2026-11-25 10:32:15.923 | INFO     | profesor:_cargar:79 - Cargando data/kb_casa_julia/03_personas.sbc
+2026-11-25 10:32:15.928 | INFO     | profesor:_cargar:79 - Cargando data/kb_casa_julia/04_tiempo.sbc
+2026-11-25 10:32:15.950 | INFO     | profesor:_cargar:79 - Cargando data/kb_casa_julia/05_tablas.sbc
+2026-11-25 10:32:15.957 | INFO     | profesor:_cargar:79 - Cargando data/kb_casa_julia/06_servicios.sbc
+2026-11-25 10:32:15.960 | INFO     | profesor:_cargar:79 - Cargando data/kb_casa_julia/07_motivos.sbc
+2026-11-25 10:32:15.966 | INFO     | profesor:_cargar:79 - Cargando data/kb_casa_julia/10_reglas_edificio.sbc
+2026-11-25 10:32:15.970 | INFO     | profesor:_cargar:79 - Cargando data/kb_casa_julia/11_reglas_tiempo.sbc
+2026-11-25 10:32:15.972 | INFO     | profesor:_cargar:79 - Cargando data/kb_casa_julia/12_reglas_entrada.sbc
+2026-11-25 10:32:15.976 | INFO     | profesor:_cargar:79 - Cargando data/kb_casa_julia/13_reglas_visitas.sbc
+2026-11-25 10:32:15.980 | INFO     | profesor:_cargar:79 - Cargando data/kb_casa_julia/14_reglas_estudio.sbc
+2026-11-25 10:32:15.985 | INFO     | profesor:_cargar:79 - Cargando data/kb_casa_julia/15_reglas_lavanderia.sbc
+2026-11-25 10:32:15.988 | INFO     | profesor:_cargar:79 - Cargando data/kb_casa_julia/16_reglas_recursos.sbc
+2026-11-25 10:32:15.989 | INFO     | profesor:_cargar:79 - Cargando data/kb_casa_julia/17_reglas_clima_incendio.sbc
+2026-11-25 10:32:15.993 | INFO     | profesor:_cargar:79 - Cargando data/kb_casa_julia/18_reglas_decision.sbc
+2026-11-25 10:32:15.996 | INFO     | profesor:_cargar:79 - Cargando data/kb_casa_julia/explicacion.sbq
+explica: v2 decision A? -> A = denegar
+    v2 decision denegar   [regla D decision A <- D gana_con V, V verbo A]
+        v2 gana_con denegar_por   [regla D gana_con V1 <- V1 opuesto V2, D V1 M1, D V2 M2, M1 categoria C1, M2 categoria C2, C1 prevalece_sobre C2]
+            denegar_por opuesto permitir_por   [hecho]
+            v2 denegar_por hora_chicos   [regla V denegar_por hora_chicos <- V situacion hora_chicos]
+                v2 situacion hora_chicos   [regla V situacion hora_chicos <- V es_un visita, V visitante X, X parentesco P, P hereda_de no_familiar_chico, V hora T, T en_franja noche_visitas]
+                    v2 es_un visita   [hecho]
+                    v2 visitante marcos_amigo   [hecho]
+                    marcos_amigo parentesco amigo   [hecho]
+                    amigo hereda_de no_familiar_chico   [regla C hereda_de D <- C subclase_de D]
+                        amigo subclase_de no_familiar_chico   [hecho]
+                    v2 hora t2300   [hecho]
+                    t2300 en_franja noche_visitas   [hecho]
+            v2 permitir_por zona_visitas   [regla V permitir_por zona_visitas <- V situacion zona_visitas]
+                v2 situacion zona_visitas   [regla V situacion zona_visitas <- V es_un visita, V zona Z, Z tipo zona_visitas]
+                    v2 es_un visita   [hecho]
+                    v2 zona cafeteria   [hecho]
+                    cafeteria tipo zona_visitas   [regla X tipo C <- D subclase_de C, X tipo D]
+                        sala_cafeteria subclase_de zona_visitas   [hecho]
+                        cafeteria tipo sala_cafeteria   [regla X tipo C <- X es_un C]
+                            cafeteria es_un sala_cafeteria   [hecho]
+            hora_chicos categoria norma   [hecho]
+            zona_visitas categoria servicio   [hecho]
+            norma prevalece_sobre servicio   [regla C1 prevalece_sobre C3 <- C1 por_encima_de C2, C2 prevalece_sobre C3]
+                norma por_encima_de recurso   [hecho]
+                recurso prevalece_sobre servicio   [regla C1 prevalece_sobre C3 <- C1 por_encima_de C2, C2 prevalece_sobre C3]
+                    recurso por_encima_de estudio   [hecho]
+                    estudio prevalece_sobre servicio   [regla C1 prevalece_sobre C2 <- C1 por_encima_de C2]
+                        estudio por_encima_de servicio   [hecho]
+        denegar_por verbo denegar   [hecho]

@@ -1,0 +1,14 @@
+{"consulta": "l1 limite_aplicable T", "soluciones": [{"T": "t0100"}]}
+{"consulta": "l5 limite_aplicable T", "soluciones": [{"T": "t0000"}]}
+{"consulta": "l3 limite_aplicable T", "soluciones": [{"T": "t2330"}]}
+{"consulta": "l1 situacion S", "soluciones": [{"S": "llegada_tardia"}]}
+{"consulta": "l2 situacion S", "soluciones": [{"S": "fuera_de_limite"}, {"S": "llegada_tardia"}, {"S": "vale_tardio"}]}
+{"consulta": "l3 situacion S", "soluciones": [{"S": "fuera_de_limite"}]}
+{"consulta": "l4 situacion S", "soluciones": []}
+{"consulta": "l5 situacion S", "soluciones": [{"S": "fuera_de_limite"}, {"S": "llegada_tardia"}, {"S": "vale_pendiente"}]}
+{"consulta": "S situacion vale_pendiente, S es_un salida", "soluciones": [{"S": "s1"}, {"S": "s4"}]}
+{"consulta": "recepcion solicitar_por M, recepcion provocado_por E", "soluciones": [{"M": "vale_pendiente", "E": "l5"}, {"M": "vale_pendiente", "E": "s1"}, {"M": "vale_pendiente", "E": "s4"}]}
+{"consulta": "D notificar_por M, D provocado_por E, E situacion M, D tipo directora", "soluciones": [{"D": "directora_1", "M": "fuera_de_limite", "E": "l2"}, {"D": "directora_1", "M": "fuera_de_limite", "E": "l3"}, {"D": "directora_1", "M": "fuera_de_limite", "E": "l5"}, {"D": "directora_1", "M": "vale_tardio", "E": "l2"}]}
+{"consulta": "P notificar_por fuera_de_limite, P provocado_por E, E situacion fuera_de_limite, P familiar_de A", "soluciones": [{"P": "ana_madre", "E": "l2", "A": "lucia"}, {"P": "ana_madre", "E": "l5", "A": "lucia"}, {"P": "pedro_padre", "E": "l2", "A": "lucia"}, {"P": "pedro_padre", "E": "l5", "A": "lucia"}, {"P": "rosa_madre", "E": "l3", "A": "irene"}]}
+{"consulta": "D empate M", "soluciones": []}
+{"consulta": "D decision_dudosa si", "soluciones": []}

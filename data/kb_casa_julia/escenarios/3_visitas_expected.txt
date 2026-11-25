@@ -1,0 +1,18 @@
+v1 situacion S? -> SI
+v2 situacion S? -> SI
+v3 situacion S? -> SI
+v4 situacion S? -> SI
+v6 situacion S? -> SI
+v7 situacion S? -> SI
+v9 situacion S? -> SI
+V permitir_por M? -> SI
+V denegar_por M? -> SI
+V conflicto M? -> SI
+V se_impone M? -> SI
+v7 decision A? -> SI
+v5 decision A? -> NO
+C grabar_por M, C provocado_por V? -> SI
+v7 se_impone M, M nombre N? -> SI
+hora_chicos origen V? -> SI
+D empate M? -> NO
+D decision_dudosa si? -> NO

@@ -1,0 +1,42 @@
+# Servicios del colegio y sus horarios, y los dias.
+# Los horarios por franjas de media hora estan en 04_tiempo (generado).
+#
+# dia de la semana -> grupos de dias a los que pertenece. Un dia puede estar
+# en varios grupos: el horario del comedor, la hora limite de las de primero
+# y la cena se agrupan de forma distinta.
+# "dia" de una llegada = el dia en que EMPIEZA esa noche (una llegada a las
+# 00:30 del miercoles pertenece al martes).
+
+lunes en_grupo lab, lunes en_grupo todos, lunes en_grupo con_cena, lunes en_grupo noche_fija.
+martes en_grupo lab, martes en_grupo todos, martes en_grupo con_cena, martes en_grupo noche_fija.
+miercoles en_grupo lab, miercoles en_grupo todos, miercoles en_grupo con_cena, miercoles en_grupo noche_fija.
+jueves en_grupo lab, jueves en_grupo todos, jueves en_grupo con_cena, jueves en_grupo noche_fija.
+viernes en_grupo lab, viernes en_grupo todos, viernes en_grupo con_cena, viernes en_grupo noche_padres.
+sabado en_grupo finde, sabado en_grupo todos, sabado en_grupo con_cena, sabado en_grupo noche_padres.
+domingo en_grupo finde, domingo en_grupo todos, domingo en_grupo noche_fija.
+# Un festivo se comporta como un domingo para el comedor (no hay cena). Se
+# usa en lugar del dia de la semana.
+festivo en_grupo finde, festivo en_grupo todos.
+
+# Hora limite de las alumnas de primero de domingo a jueves: las 12 de la noche.
+noche_fija limite t0000.
+
+# Que ofrece cada zona, y a que grupo de dias corresponde cada servicio
+comedor ofrece desayuno_lab, comedor ofrece desayuno_finde, comedor ofrece comida, comedor ofrece cena.
+desayuno_lab para_grupo lab.
+desayuno_finde para_grupo finde.
+comida para_grupo todos.
+cena para_grupo con_cena.
+gimnasio ofrece horario_gimnasio.
+horario_gimnasio para_grupo todos.
+
+# Lo que esta abierto siempre (cuando el colegio esta abierto)
+recepcion ofrece atencion_24h.
+cafeteria ofrece acceso_libre.
+sala_musica ofrece acceso_libre.
+capilla ofrece acceso_libre.
+biblioteca_a ofrece acceso_libre.
+biblioteca_c ofrece acceso_libre.
+lavanderia ofrece acceso_libre.
+atencion_24h siempre_abierto si.
+acceso_libre siempre_abierto si.
