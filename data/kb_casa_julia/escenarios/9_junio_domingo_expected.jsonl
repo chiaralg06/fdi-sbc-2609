@@ -1,0 +1,15 @@
+{"consulta": "colegio facturacion F", "soluciones": [{"F": "por_dia"}]}
+{"consulta": "colegio situacion S", "soluciones": []}
+{"consulta": "Z sirve_ahora S", "soluciones": [{"Z": "biblioteca_a", "S": "acceso_libre"}, {"Z": "biblioteca_c", "S": "acceso_libre"}, {"Z": "cafeteria", "S": "acceso_libre"}, {"Z": "capilla", "S": "acceso_libre"}, {"Z": "gimnasio", "S": "horario_gimnasio"}, {"Z": "lavanderia", "S": "acceso_libre"}, {"Z": "recepcion", "S": "atencion_24h"}, {"Z": "sala_musica", "S": "acceso_libre"}]}
+{"consulta": "comedor ofrece S", "soluciones": [{"S": "cena"}, {"S": "comida"}, {"S": "desayuno_finde"}, {"S": "desayuno_lab"}]}
+{"consulta": "comedor sirve_ahora cena", "soluciones": []}
+{"consulta": "gimnasio sirve_ahora horario_gimnasio", "soluciones": [{}]}
+{"consulta": "recepcion sirve_ahora atencion_24h", "soluciones": [{}]}
+{"consulta": "ascensor_c decision A", "soluciones": []}
+{"consulta": "ascensor_c accion A", "soluciones": [{"A": "habilitar"}]}
+{"consulta": "l1 limite_aplicable T", "soluciones": [{"T": "t0000"}]}
+{"consulta": "l1 situacion S", "soluciones": []}
+{"consulta": "v1 accion A", "soluciones": [{"A": "permitir"}]}
+{"consulta": "v1 conflicto M", "soluciones": []}
+{"consulta": "D empate M", "soluciones": []}
+{"consulta": "D decision_dudosa si", "soluciones": []}

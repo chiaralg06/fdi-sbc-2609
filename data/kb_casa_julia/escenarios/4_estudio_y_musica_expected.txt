@@ -1,0 +1,30 @@
+r1 situacion S? -> SI
+r2 situacion S? -> SI
+r3 situacion S? -> SI
+r4 situacion S? -> SI
+r5 situacion S? -> SI
+R confirmar_por M? -> SI
+R denegar_por M? -> SI
+R conflicto M? -> SI
+R se_impone M? -> SI
+r2 decision A? -> SI
+r1 decision A? -> NO
+c1 situacion S? -> SI
+c2 situacion S? -> NO
+A notificar_por M, A provocado_por C? -> SI
+c1 derivar_a Z? -> SI
+n1 situacion S? -> SI
+recepcion notificar_por M, recepcion provocado_por N? -> SI
+m1 accion A? -> SI
+m1 conflicto M? -> SI
+m1 se_impone M, M nombre N? -> SI
+m1 decision A? -> SI
+m1 examen_de A? -> SI
+m1 derivar_a Z? -> SI
+m2 accion A? -> SI
+m2 conflicto M? -> NO
+m2 decision A? -> NO
+m3 decision A? -> SI
+m3 examen_de A? -> SI
+D empate M? -> NO
+D decision_dudosa si? -> NO

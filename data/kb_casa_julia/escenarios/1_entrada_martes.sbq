@@ -1,0 +1,45 @@
+# Escenario 1: la noche de un martes. Llegan cuatro alumnas de distintos cursos
+# y con distinto vale. Despues llega una quinta sin vale.
+#   uv run -m sbc data/kb_casa_julia data/kb_casa_julia/escenarios/1_entrada_martes.sbq
+
+razona si!
+
+# Lucia (primero) llega a las 00:30 con el vale firmado al llegar.
+l1 es_un llegada, l1 alumna lucia, l1 dia martes, l1 hora t0030, l1 vale al_llegar.
+# Carmen (tercero) llega a la 1:30 con el vale firmado antes de irse.
+l2 es_un llegada, l2 alumna carmen, l2 dia martes, l2 hora t0130, l2 vale antes.
+# Elena (cuarto) llega a las 2:00 y no ha firmado nada.
+l3 es_un llegada, l3 alumna elena, l3 dia martes, l3 hora t0200, l3 vale ninguno.
+# Irene (primero) llega a las 23:30, antes de las 12, sin vale (no lo necesita).
+l4 es_un llegada, l4 alumna irene, l4 dia martes, l4 hora t2330, l4 vale ninguno.
+
+# Hora limite: solo la tienen las de primero (Lucia e Irene), 00:00 de domingo a jueves
+l1 limite_aplicable T?
+l4 limite_aplicable T?
+l2 limite_aplicable T?
+
+# Que significa cada llegada
+l1 situacion S?
+l2 situacion S?
+l3 situacion S?
+l4 situacion S?
+
+# A quien se avisa y por que
+recepcion solicitar_por M, recepcion provocado_por E?
+# (cada aviso se empareja con el evento que lo provoco usando "E situacion M")
+D notificar_por M, D provocado_por E, E situacion M, D tipo direccion?
+P notificar_por M, P provocado_por E, E situacion M, P familiar_de lucia?
+
+# Informacion nueva: Irene llega a las 00:30 sin vale
+l5 es_un llegada, l5 alumna irene, l5 dia martes, l5 hora t0030, l5 vale ninguno.
+l5 situacion S?
+P notificar_por fuera_de_limite, P provocado_por l5?
+recepcion solicitar_por M, recepcion provocado_por E?
+
+# Explicacion: de donde viene cada motivo
+fuera_de_limite nombre N, fuera_de_limite origen E?
+vale_tardio nombre N, vale_tardio origen E?
+
+# Ninguna decision contradictoria
+D empate M?
+D decision_dudosa si?

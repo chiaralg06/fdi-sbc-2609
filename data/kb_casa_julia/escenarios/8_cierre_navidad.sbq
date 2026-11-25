@@ -1,0 +1,46 @@
+# Escenario 8: vacaciones de Navidad. El colegio esta cerrado: no entra nadie,
+# no hay clima ni ascensores ni servicios, y no se cobra por dias. Aqui las
+# normas de siempre (la madre puede subir, la alumna pidio calor) chocan con el
+# cierre, y el cierre gana.
+#   uv run -m sbc data/kb_casa_julia data/kb_casa_julia/escenarios/8_cierre_navidad.sbq
+
+razona si!
+
+colegio periodo navidad.
+colegio situacion S?
+
+# Una alumna habia pedido calor y su madre viene a verla
+a105 pedido calor.
+v1 es_un visita, v1 visitante ana_madre, v1 zona a105, v1 hora t1800, v1 acompanado_por nadie.
+
+# Ascensores: ya no hay servicio normal, solo cierre
+ascensor_a accion A?
+ascensor_b accion A?
+ascensor_a decision A?
+
+# La calefaccion: la peticion de calor (confort) pierde frente al cierre
+a105_calef accion A?
+a105_calef conflicto M?
+a105_calef se_impone M?
+a105_calef decision A?
+a105_calef se_impone M, M nombre N, a105_calef provocado_por X, X situacion M?
+# Y todas las demas habitaciones, sin conflicto, se apagan
+a101_calef accion A?
+c420_aire accion A?
+
+# La visita de la madre: familia directa (norma) pierde frente al cierre
+v1 situacion S?
+v1 conflicto M?
+v1 se_impone M, M nombre N, M origen X?
+v1 decision A?
+
+# Los servicios no abren, aunque sea una hora de comida
+ahora dia lunes.
+ahora hora t1400.
+comedor sirve_ahora S?
+Z sirve_ahora S?
+# y no hay periodo de cobro definido
+colegio facturacion F?
+
+D empate M?
+D decision_dudosa si?

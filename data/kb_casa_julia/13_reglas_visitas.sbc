@@ -1,0 +1,37 @@
+# Visitas.
+#
+# Una visita es un EVENTO que pone el escenario:
+#   v1 es_un visita, v1 visitante marcos_amigo, v1 zona cafeteria, v1 hora t2315,
+#   v1 acompanado_por nadie.
+# (acompanado_por nadie es un hecho positivo: no hay negacion en el motor.)
+#
+# Normas: madre, padre y hermana suben a la habitacion. El hermano solo si
+# viene con su madre o su padre. El resto, ni familia, solo las zonas de visitas
+# (entrada, cafeteria, capilla y salas de estudio con reserva). Los chicos que
+# no son familia se van a las 23:00.
+
+# ---- Situaciones: que significa cada dato segun quien viene y a donde ----
+V situacion familia_directa <- V es_un visita, V visitante X, X parentesco P, P hereda_de familia_directa.
+V situacion hermano_acompanado <- V es_un visita, V visitante X, X parentesco P, P hereda_de familia_condicionada, V acompanado_por Y, Y parentesco Q, Q hereda_de progenitor.
+V situacion hermano_sin_progenitores <- V es_un visita, V visitante X, X parentesco P, P hereda_de familia_condicionada, V acompanado_por nadie, V zona Z, Z tipo zona_residencial.
+V situacion visita_no_familiar_residencia <- V es_un visita, V visitante X, X parentesco P, P hereda_de no_familiar, V zona Z, Z tipo zona_residencial.
+V situacion hora_chicos <- V es_un visita, V visitante X, X parentesco P, P hereda_de no_familiar_chico, V hora T, T en_franja noche_visitas.
+V situacion zona_visitas <- V es_un visita, V zona Z, Z tipo zona_visitas.
+V situacion sala_reservada <- V es_un visita, V zona Z, Z tipo sala_estudio, V con_reserva R, R sala Z.
+V situacion sala_sin_reserva <- V es_un visita, V zona Z, Z tipo sala_estudio, V con_reserva ninguna.
+
+# ---- Que se hace con cada una ----
+V permitir_por familia_directa <- V situacion familia_directa.
+V permitir_por hermano_acompanado <- V situacion hermano_acompanado.
+V permitir_por zona_visitas <- V situacion zona_visitas.
+V permitir_por sala_reservada <- V situacion sala_reservada.
+V denegar_por sala_sin_reserva <- V situacion sala_sin_reserva.
+V denegar_por hermano_sin_progenitores <- V situacion hermano_sin_progenitores.
+V denegar_por visita_no_familiar_residencia <- V situacion visita_no_familiar_residencia.
+V denegar_por hora_chicos <- V situacion hora_chicos.
+# con el colegio cerrado no entra nadie
+V denegar_por cierre_colegio <- V es_un visita, colegio situacion cierre_colegio.
+
+# Si una visita va a una zona residencial, graba la camara que vigila los
+# ascensores (cualquier camara que vigile un ascensor, sin nombrarla).
+C grabar_por acceso_residencial, C provocado_por V <- V es_un visita, V zona Z, Z tipo zona_residencial, C vigila A, A es_un ascensor.

@@ -1,0 +1,68 @@
+# Consultas sobre el colegio, sin ninguna situacion especial. Primero sin razonar
+# (solo lo escrito), despues razonando (lo deducido) para ver que aporta cada modo.
+#   uv run -m sbc data/kb_casa_julia data/kb_casa_julia/consultas.sbq
+
+# ---- Sin razonar: solo contesta con lo que esta escrito tal cual ----
+
+# Lo que hay directamente en la planta calle
+X esta_en planta_calle?
+# Donde duerme Lucia
+lucia duerme_en H?
+# Estas dos NO salen sin razonar: hay que deducirlas
+a105 dentro_de pabellon_a?
+lucia vive_en B?
+a105 contiene X?
+
+# ---- Razonando: ahora usa las reglas ----
+razona si!
+
+# Estructura: una habitacion esta en su planta, en su pabellon y en el colegio
+a105 dentro_de X?
+lucia vive_en B?
+# Las habitaciones no repiten sus muebles: salen de la clase
+a105 contiene X?
+a420 contiene X?
+# Vecinas de pared
+lucia vecina_de B?
+# La sala de planta de una habitacion
+b216 sala_de_planta S?
+
+# Pasos entre zonas (puerta escrita en un sentido, valida en los dos)
+X conecta_con recibidor?
+X conecta_con a_1?
+
+# Clases: la cafeteria es zona de visitas y zona de comida, no de estudio
+cafeteria tipo C?
+biblioteca_a tipo C?
+estudio_grande tipo C?
+a105 tipo zona_residencial?
+cafeteria tipo zona_residencial?
+
+# Que hay en cada sitio
+cafeteria contiene X?
+X esta_en lavanderia?
+
+# Parentescos: quien puede subir a la habitacion
+madre hereda_de C?
+hermano hereda_de C?
+amigo hereda_de C?
+primero con_limite si?
+segundo con_limite si?
+
+# Categorias de prioridad: el orden completo sale de cada escalon
+vida prevalece_sobre C?
+C prevalece_sobre ahorro?
+
+# Aparatos de una habitacion, y de todas las plantas del pabellon C
+X esta_en a105?
+c420_aire tipo aparato_clima?
+C tipo alarma_incendio, C esta_en P, P esta_en pabellon_c?
+
+# Cuentas que hace el motor con las tablas: dos circulos de trece
+n13 menos_2 R?
+n1 menos_2 R?
+k5 mayor_que k4?
+k4 mayor_que k5?
+
+# Horario: sin periodo ni hora no se sabe que esta abierto
+Z sirve_ahora S?

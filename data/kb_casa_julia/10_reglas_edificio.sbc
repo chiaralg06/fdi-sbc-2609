@@ -1,0 +1,41 @@
+# Reglas generales del edificio. No nombran ninguna habitacion, pabellon ni
+# persona concretos, asi que valen aunque se anada otro pabellon o una planta.
+
+# Un paso se puede cruzar en los dos sentidos. Uso dos reglas sobre
+# acceso_a en vez de una regla que se llame a si misma: con razona si! una
+# regla recursiva en circulo no termina.
+X conecta_con Y <- X acceso_a Y.
+X conecta_con Y <- Y acceso_a X.
+
+# Paredes compartidas, tambien en los dos sentidos.
+X toca_con Y <- X pared_con Y.
+X toca_con Y <- Y pared_con X.
+
+# X dentro_de Y: esta directamente en Y o en algo que esta dentro de Y.
+# Sube siempre (habitacion -> planta -> pabellon -> colegio), asi que termina.
+X dentro_de Y <- X esta_en Y.
+X dentro_de Z <- X esta_en Y, Y dentro_de Z.
+
+# C hereda_de D: subclase directa o indirecta.
+C hereda_de D <- C subclase_de D.
+C hereda_de E <- C subclase_de D, D hereda_de E.
+
+# X tipo C: X es de la clase C o de alguna subclase. La recursion BAJA desde la
+# clase en vez de subir desde X: asi para buscar, por ejemplo, las alarmas no se
+# recorren todos los objetos del colegio. Con razona si! se nota muchisimo.
+X tipo C <- X es_un C.
+X tipo C <- D subclase_de C, X tipo D.
+
+# Lo que lleva cada habitacion o zona sale de su clase (01): no se repite
+# para cada una de las 240 habitaciones.
+H contiene X <- H es_un C, C contiene X.
+
+# En que pabellon vive una alumna: se deduce de su habitacion.
+A vive_en B <- A duerme_en H, H dentro_de B, B es_un pabellon.
+
+# Que sala de planta le toca a cada habitacion (la de su misma planta).
+H sala_de_planta S <- H esta_en P, S es_un sala_de_planta, S esta_en P.
+
+# Vecinas de pared: quien duerme al lado de quien. No esta escrito en ningun
+# sitio, sale de juntar donde duerme cada una con las paredes de las habitaciones.
+A vecina_de B <- A duerme_en H1, H1 toca_con H2, B duerme_en H2.

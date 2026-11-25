@@ -1,0 +1,11 @@
+papel_a_3 dentro_de X? -> SI
+I situacion S? -> SI
+L notificar_por M, L provocado_por I, I situacion M? -> SI
+limpiadora_a pendiente I? -> SI
+limpiadora_b pendiente I? -> SI
+limpiadora_c pendiente I? -> SI
+limpiadora_comun pendiente I? -> NO
+limpiadora_extra pendiente I? -> SI
+limpiadora_a pendiente I? -> SI
+a105 sala_de_planta S? -> SI
+a105 contiene X? -> SI

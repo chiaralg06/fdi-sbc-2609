@@ -1,0 +1,29 @@
+{"consulta": "ascensor_a accion A", "soluciones": [{"A": "habilitar"}]}
+{"consulta": "a105_calef accion A", "soluciones": [{"A": "encender"}]}
+{"consulta": "b216_aire accion A", "soluciones": [{"A": "apagar"}, {"A": "encender"}]}
+{"consulta": "b216_aire conflicto M", "soluciones": [{"M": "pedido_alumna"}, {"M": "ventana_abierta"}]}
+{"consulta": "b216_aire se_impone M", "soluciones": [{"M": "pedido_alumna"}]}
+{"consulta": "b216_aire decision A", "soluciones": [{"A": "encender"}]}
+{"consulta": "A notificar_por ventana_abierta, A provocado_por H", "soluciones": [{"A": "carmen", "H": "b216"}]}
+{"consulta": "P situacion incendio", "soluciones": [{"P": "a_1"}]}
+{"consulta": "ascensor_a accion A", "soluciones": [{"A": "bloquear"}, {"A": "habilitar"}]}
+{"consulta": "ascensor_a conflicto M", "soluciones": [{"M": "incendio"}, {"M": "servicio_normal"}]}
+{"consulta": "ascensor_a se_impone M", "soluciones": [{"M": "incendio"}]}
+{"consulta": "ascensor_a decision A", "soluciones": [{"A": "bloquear"}]}
+{"consulta": "ascensor_b accion A", "soluciones": [{"A": "habilitar"}]}
+{"consulta": "ascensor_b decision A", "soluciones": []}
+{"consulta": "a105_calef conflicto M", "soluciones": [{"M": "incendio"}, {"M": "pedido_alumna"}]}
+{"consulta": "a105_calef decision A", "soluciones": [{"A": "apagar"}]}
+{"consulta": "a101_calef accion A", "soluciones": [{"A": "apagar"}]}
+{"consulta": "b216_aire decision A", "soluciones": [{"A": "encender"}]}
+{"consulta": "recepcion notificar_por M", "soluciones": [{"M": "incendio"}]}
+{"consulta": "D notificar_por incendio, D tipo direccion", "soluciones": [{"D": "directora_1"}, {"D": "subdirectora_1"}]}
+{"consulta": "A notificar_por incendio, A es_un alumna", "soluciones": [{"A": "lucia"}, {"A": "paula"}]}
+{"consulta": "ascensor_a se_impone M, M nombre N, ascensor_a provocado_por X, X situacion M", "soluciones": [{"M": "incendio", "N": "\"Suena la alarma de incendio\"", "X": "a_1"}]}
+{"consulta": "a105_calef se_impone M, M nombre N, a105_calef provocado_por X, X situacion M", "soluciones": [{"M": "incendio", "N": "\"Suena la alarma de incendio\"", "X": "a_1"}]}
+{"consulta": "ascensor_a decision A", "soluciones": [{"A": "bloquear"}]}
+{"consulta": "ascensor_b decision A", "soluciones": [{"A": "bloquear"}]}
+{"consulta": "ascensor_c decision A", "soluciones": [{"A": "bloquear"}]}
+{"consulta": "A notificar_por incendio, A es_un alumna", "soluciones": [{"A": "carmen"}, {"A": "elena"}, {"A": "lucia"}, {"A": "paula"}]}
+{"consulta": "D empate M", "soluciones": []}
+{"consulta": "D decision_dudosa si", "soluciones": []}

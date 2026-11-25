@@ -1,0 +1,35 @@
+# Escenario 10: sabado por la noche, curso normal. Hay cena (el domingo y los
+# festivos no), el gimnasio y la cafeteria estan abiertos, y el amigo de Lucia
+# tiene que irse de la cafeteria a las 23:00.
+#   uv run -m sbc data/kb_casa_julia data/kb_casa_julia/escenarios/10_sabado_noche.sbq
+
+razona si!
+
+colegio periodo curso.
+colegio facturacion F?
+ahora dia sabado.
+ahora hora t2130.
+
+# Que ofrece ahora cada zona
+Z sirve_ahora S?
+comedor sirve_ahora cena?
+comedor sirve_ahora desayuno_finde?
+
+# El amigo de Lucia en la cafeteria a las 21:30 y a las 23:00
+v1 es_un visita, v1 visitante marcos_amigo, v1 zona cafeteria, v1 hora t2130, v1 acompanado_por nadie.
+v2 es_un visita, v2 visitante marcos_amigo, v2 zona cafeteria, v2 hora t2300, v2 acompanado_por nadie.
+V es_un visita, V accion A?
+V es_un visita, V conflicto M?
+v2 se_impone M, M nombre N, v2 situacion M?
+v2 decision A?
+
+# Irene (primero) en sabado tiene la hora de sus padres, 23:30
+l1 es_un llegada, l1 alumna irene, l1 dia sabado, l1 hora t2330, l1 vale ninguno.
+l1 limite_aplicable T?
+l1 situacion S?
+
+# Un festivo se comporta como un domingo para el comedor
+festivo en_grupo con_cena?
+
+D empate M?
+D decision_dudosa si?

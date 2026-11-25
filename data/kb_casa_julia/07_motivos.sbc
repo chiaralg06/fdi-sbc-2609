@@ -1,0 +1,85 @@
+# Acciones, motivos y prioridades.
+#
+# Todo lo que "debe pasar" se guarda como  SUJETO verbo_por MOTIVO  (por
+# ejemplo  ascensor_a bloquear_por incendio ). La accion lleva siempre pegado
+# su motivo, y el motivo es una situacion con nombre legible que se puede
+# seguir hasta lo que la provoco (regla origen, en 18).
+#
+# Si dos motivos piden acciones opuestas sobre el mismo sujeto, gana el de
+# categoria mas alta. Por eso dos motivos que puedan chocar no pueden ser de
+# la misma categoria (la regla "empate" de 18 lo vigila).
+
+# ---- Acciones ----
+encender_por verbo encender.
+apagar_por verbo apagar.
+habilitar_por verbo habilitar.
+bloquear_por verbo bloquear.
+permitir_por verbo permitir.
+denegar_por verbo denegar.
+confirmar_por verbo confirmar.
+reproducir_por verbo reproducir.
+silenciar_por verbo silenciar.
+notificar_por verbo notificar.
+solicitar_por verbo solicitar.
+grabar_por verbo grabar.
+
+# ---- Acciones opuestas ----
+encender_por opuesto apagar_por, apagar_por opuesto encender_por.
+habilitar_por opuesto bloquear_por, bloquear_por opuesto habilitar_por.
+permitir_por opuesto denegar_por, denegar_por opuesto permitir_por.
+confirmar_por opuesto denegar_por, denegar_por opuesto confirmar_por.
+reproducir_por opuesto silenciar_por, silenciar_por opuesto reproducir_por.
+
+# ---- Categorias, de mas a menos importante ----
+# Solo pongo cada una con la siguiente; el resto lo saca prevalece_sobre.
+vida por_encima_de cierre.
+cierre por_encima_de norma.
+norma por_encima_de recurso.
+recurso por_encima_de estudio.
+estudio por_encima_de servicio.
+servicio por_encima_de confort.
+confort por_encima_de ahorro.
+
+# ---- Motivos ----
+incendio categoria vida, incendio nombre "Suena la alarma de incendio".
+
+cierre_colegio categoria cierre, cierre_colegio nombre "El colegio está cerrado por vacaciones".
+
+# Normas del colegio (visitas, entradas y vales)
+familia_directa categoria norma, familia_directa nombre "La visita es familia directa (madre, padre o hermana)".
+hermano_acompanado categoria norma, hermano_acompanado nombre "El hermano viene con su madre o su padre".
+hermano_sin_progenitores categoria norma, hermano_sin_progenitores nombre "El hermano no puede subir sin sus padres".
+visita_no_familiar_residencia categoria norma, visita_no_familiar_residencia nombre "Las visitas que no son familia no suben a las habitaciones".
+hora_chicos categoria norma, hora_chicos nombre "Los chicos que no son familia se van a las 23:00".
+sala_sin_reserva categoria norma, sala_sin_reserva nombre "Las visitas solo pueden usar una sala de estudio con reserva".
+llegada_tardia categoria norma, llegada_tardia nombre "Llega después de las 00:00".
+fuera_de_limite categoria norma, fuera_de_limite nombre "Llega después de su hora límite".
+vale_pendiente categoria norma, vale_pendiente nombre "Falta firmar el vale".
+vale_tardio categoria norma, vale_tardio nombre "El vale se ha firmado al llegar, no antes".
+
+# Limites de los recursos (maquinas, salas, saldo)
+saldo_insuficiente categoria recurso, saldo_insuficiente nombre "No quedan círculos suficientes en la tarjeta".
+maquina_ocupada categoria recurso, maquina_ocupada nombre "Otra alumna ya tiene esa máquina a esa hora".
+doble_reserva categoria recurso, doble_reserva nombre "La sala ya estaba reservada a esa hora por una fila anterior".
+sobreaforo categoria recurso, sobreaforo nombre "El grupo no cabe en la sala".
+
+# Estudio y convivencia
+examen_vecina categoria estudio, examen_vecina nombre "Una vecina de pared tiene examen mañana".
+comida_en_zona_estudio categoria estudio, comida_en_zona_estudio nombre "No se puede comer ni beber en zonas de estudio".
+ruido_en_zona_estudio categoria estudio, ruido_en_zona_estudio nombre "Hay ruido en una zona de estudio".
+
+# Servicios (lo normal del dia a dia)
+zona_visitas categoria servicio, zona_visitas nombre "Es una zona abierta a visitas".
+sala_reservada categoria servicio, sala_reservada nombre "La visita tiene reserva en esa sala de estudio".
+acceso_residencial categoria servicio, acceso_residencial nombre "Una visita va a una zona de habitaciones: se graba la zona de ascensores".
+servicio_normal categoria servicio, servicio_normal nombre "El colegio está abierto y el ascensor da servicio".
+uso_correcto categoria servicio, uso_correcto nombre "Hay saldo para usar la máquina".
+reserva_registrada categoria servicio, reserva_registrada nombre "La reserva está apuntada en el Excel".
+papel_agotado categoria servicio, papel_agotado nombre "Se ha acabado el papel higiénico de la planta".
+cubo_lleno categoria servicio, cubo_lleno nombre "El cubo de basura de la planta está lleno".
+ropa_acumulada categoria servicio, ropa_acumulada nombre "El cubo de ropa de la planta está lleno".
+
+# Comodidad y ahorro
+ocio categoria confort, ocio nombre "Alguien quiere poner música".
+pedido_alumna categoria confort, pedido_alumna nombre "La alumna ha pedido calor o frío en su habitación".
+ventana_abierta categoria ahorro, ventana_abierta nombre "La ventana está abierta con el clima puesto".

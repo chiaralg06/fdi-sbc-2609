@@ -1,0 +1,52 @@
+# Escenario 2: viernes, sabado y domingo. Las de primero tienen la hora que
+# fijaron sus padres (Lucia la 1:00, Irene las 23:30) y el domingo vuelve a ser
+# la medianoche. Ademas, varias salidas que necesitan vale antes de irse.
+#   uv run -m sbc data/kb_casa_julia data/kb_casa_julia/escenarios/2_finde_hora_padres.sbq
+
+razona si!
+
+# Viernes: Lucia llega a las 00:30, dentro de su limite (01:00), con vale antes.
+l1 es_un llegada, l1 alumna lucia, l1 dia viernes, l1 hora t0030, l1 vale antes.
+# Viernes: Lucia llega a las 01:30, pasado su limite, y firma el vale al llegar.
+l2 es_un llegada, l2 alumna lucia, l2 dia viernes, l2 hora t0130, l2 vale al_llegar.
+# Viernes: Irene (limite 23:30) llega a las 00:00: pasa su limite, pero no es
+# despues de las 12, asi que no hace falta vale.
+l3 es_un llegada, l3 alumna irene, l3 dia viernes, l3 hora t0000, l3 vale ninguno.
+# Sabado: Irene llega a las 23:00, dentro de su limite.
+l4 es_un llegada, l4 alumna irene, l4 dia sabado, l4 hora t2300, l4 vale ninguno.
+# Domingo: la hora limite de Lucia vuelve a ser las 00:00. Llega a las 00:30 sin vale.
+l5 es_un llegada, l5 alumna lucia, l5 dia domingo, l5 hora t0030, l5 vale ninguno.
+
+# La misma alumna tiene limites distintos segun el dia
+l1 limite_aplicable T?
+l5 limite_aplicable T?
+l3 limite_aplicable T?
+
+# Situaciones de cada llegada
+l1 situacion S?
+l2 situacion S?
+l3 situacion S?
+l4 situacion S?
+l5 situacion S?
+
+# Salidas
+# Irene duerme fuera sin vale
+s1 es_un salida, s1 alumna irene, s1 pernocta si, s1 vale ninguno.
+# Carmen volvera a la 1:00 pero ya firmo
+s2 es_un salida, s2 alumna carmen, s2 llegada_prevista t0100, s2 vale antes.
+# Paula volvera a las 23:00: no necesita vale
+s3 es_un salida, s3 alumna paula, s3 llegada_prevista t2300, s3 vale ninguno.
+# Elena volvera a la 1:30 y no ha firmado
+s4 es_un salida, s4 alumna elena, s4 llegada_prevista t0130, s4 vale ninguno.
+
+S situacion vale_pendiente, S es_un salida?
+recepcion solicitar_por M, recepcion provocado_por E?
+
+# A quien se avisa de cada llegada fuera de limite
+# (cada aviso se empareja con el evento que lo provoco usando "E situacion M")
+D notificar_por M, D provocado_por E, E situacion M, D tipo directora?
+P notificar_por fuera_de_limite, P provocado_por E, E situacion fuera_de_limite, P familiar_de A?
+
+# Ninguna decision contradictoria
+D empate M?
+D decision_dudosa si?

@@ -1,0 +1,12 @@
+# Traza de explicabilidad (escenario 10, sabado noche).
+# Traza de explicacion: por que se deniega la visita de Marcos a las 23:00
+razona si!
+colegio periodo curso.
+ahora dia sabado.
+ahora hora t2130.
+
+
+v1 es_un visita, v1 visitante marcos_amigo, v1 zona cafeteria, v1 hora t2130, v1 acompanado_por nadie.
+v2 es_un visita, v2 visitante marcos_amigo, v2 zona cafeteria, v2 hora t2300, v2 acompanado_por nadie.
+explica si!
+v2 decision A?

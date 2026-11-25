@@ -1,0 +1,18 @@
+lavadora_g1 coste P? -> SI
+lavadora_p1 coste P? -> SI
+secadora_1 coste P? -> SI
+u1 saldo_final R? -> SI
+u2 saldo_final R? -> SI
+u3 saldo_final R? -> SI
+u4 saldo_final R? -> SI
+u5 saldo_final R? -> SI
+U es_un uso, U situacion S? -> SI
+U es_un uso, U accion A? -> SI
+U es_un uso, U conflicto M? -> SI
+U es_un uso, U se_impone M? -> SI
+u5 decision A? -> SI
+U derivar_a M? -> SI
+recepcion solicitar_por M, recepcion provocado_por U? -> SI
+u5 se_impone M, M nombre N, u5 situacion M? -> SI
+D empate M? -> NO
+D decision_dudosa si? -> NO

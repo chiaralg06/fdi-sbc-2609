@@ -1,0 +1,20 @@
+{"consulta": "colegio situacion S", "soluciones": [{"S": "cierre_colegio"}]}
+{"consulta": "ascensor_a accion A", "soluciones": [{"A": "bloquear"}]}
+{"consulta": "ascensor_b accion A", "soluciones": [{"A": "bloquear"}]}
+{"consulta": "ascensor_a decision A", "soluciones": []}
+{"consulta": "a105_calef accion A", "soluciones": [{"A": "apagar"}, {"A": "encender"}]}
+{"consulta": "a105_calef conflicto M", "soluciones": [{"M": "cierre_colegio"}, {"M": "pedido_alumna"}]}
+{"consulta": "a105_calef se_impone M", "soluciones": [{"M": "cierre_colegio"}]}
+{"consulta": "a105_calef decision A", "soluciones": [{"A": "apagar"}]}
+{"consulta": "a105_calef se_impone M, M nombre N, a105_calef provocado_por X, X situacion M", "soluciones": [{"M": "cierre_colegio", "N": "\"El colegio está cerrado por vacaciones\"", "X": "colegio"}]}
+{"consulta": "a101_calef accion A", "soluciones": [{"A": "apagar"}]}
+{"consulta": "c420_aire accion A", "soluciones": [{"A": "apagar"}]}
+{"consulta": "v1 situacion S", "soluciones": [{"S": "familia_directa"}]}
+{"consulta": "v1 conflicto M", "soluciones": [{"M": "cierre_colegio"}, {"M": "familia_directa"}]}
+{"consulta": "v1 se_impone M, M nombre N, M origen X", "soluciones": [{"M": "cierre_colegio", "N": "\"El colegio está cerrado por vacaciones\"", "X": "colegio"}]}
+{"consulta": "v1 decision A", "soluciones": [{"A": "denegar"}]}
+{"consulta": "comedor sirve_ahora S", "soluciones": []}
+{"consulta": "Z sirve_ahora S", "soluciones": []}
+{"consulta": "colegio facturacion F", "soluciones": []}
+{"consulta": "D empate M", "soluciones": []}
+{"consulta": "D decision_dudosa si", "soluciones": []}

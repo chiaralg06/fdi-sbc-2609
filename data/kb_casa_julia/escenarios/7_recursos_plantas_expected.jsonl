@@ -1,0 +1,11 @@
+{"consulta": "papel_a_3 dentro_de X", "soluciones": [{"X": "a_3"}, {"X": "colegio"}, {"X": "pabellon_a"}, {"X": "sala_a_3"}]}
+{"consulta": "I situacion S", "soluciones": [{"I": "basura_b_2", "S": "cubo_lleno"}, {"I": "papel_a_3", "S": "papel_agotado"}, {"I": "papel_b_1", "S": "papel_agotado"}, {"I": "ropa_c_4", "S": "ropa_acumulada"}]}
+{"consulta": "L notificar_por M, L provocado_por I, I situacion M", "soluciones": [{"L": "limpiadora_a", "M": "papel_agotado", "I": "papel_a_3"}, {"L": "limpiadora_b", "M": "cubo_lleno", "I": "basura_b_2"}, {"L": "limpiadora_b", "M": "papel_agotado", "I": "papel_b_1"}, {"L": "limpiadora_c", "M": "ropa_acumulada", "I": "ropa_c_4"}]}
+{"consulta": "limpiadora_a pendiente I", "soluciones": [{"I": "papel_a_3"}]}
+{"consulta": "limpiadora_b pendiente I", "soluciones": [{"I": "basura_b_2"}, {"I": "papel_b_1"}]}
+{"consulta": "limpiadora_c pendiente I", "soluciones": [{"I": "ropa_c_4"}]}
+{"consulta": "limpiadora_comun pendiente I", "soluciones": []}
+{"consulta": "limpiadora_extra pendiente I", "soluciones": [{"I": "papel_a_3"}]}
+{"consulta": "limpiadora_a pendiente I", "soluciones": [{"I": "papel_a_3"}]}
+{"consulta": "a105 sala_de_planta S", "soluciones": [{"S": "sala_a_1"}]}
+{"consulta": "a105 contiene X", "soluciones": [{"X": "armario"}, {"X": "bano_interior"}, {"X": "cama"}, {"X": "escritorio"}, {"X": "estanteria"}, {"X": "mesita_de_noche"}, {"X": "nevera_pequena"}]}

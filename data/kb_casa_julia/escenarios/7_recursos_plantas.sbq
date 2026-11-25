@@ -1,0 +1,33 @@
+# Escenario 7: salas de planta. Se acaba el papel, se llenan los cubos. El aviso
+# va a la limpiadora del pabellon donde esta el elemento; si se anade otra
+# limpiadora a un pabellon, tambien le llega sin tocar ninguna regla.
+#   uv run -m sbc data/kb_casa_julia data/kb_casa_julia/escenarios/7_recursos_plantas.sbq
+
+razona si!
+
+# Donde esta el rollo de papel de la planta 3 del pabellon A: se deduce subiendo
+papel_a_3 dentro_de X?
+
+# Estado de las salas de planta
+papel_a_3 estado papel_agotado.
+basura_b_2 estado cubo_lleno.
+papel_b_1 estado papel_agotado.
+ropa_c_4 estado ropa_acumulada.
+
+I situacion S?
+
+# A quien avisar de cada cosa
+L notificar_por M, L provocado_por I, I situacion M?
+limpiadora_a pendiente I?
+limpiadora_b pendiente I?
+limpiadora_c pendiente I?
+limpiadora_comun pendiente I?
+
+# Informacion nueva: una segunda limpiadora de refuerzo en el pabellon A
+limpiadora_extra es_un limpiadora, limpiadora_extra limpia pabellon_a.
+limpiadora_extra pendiente I?
+limpiadora_a pendiente I?
+
+# La sala de planta que le toca a una habitacion y lo que lleva la habitacion
+a105 sala_de_planta S?
+a105 contiene X?

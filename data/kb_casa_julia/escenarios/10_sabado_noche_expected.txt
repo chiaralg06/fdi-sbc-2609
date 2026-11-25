@@ -1,0 +1,13 @@
+colegio facturacion F? -> SI
+Z sirve_ahora S? -> SI
+comedor sirve_ahora cena? -> SI
+comedor sirve_ahora desayuno_finde? -> NO
+V es_un visita, V accion A? -> SI
+V es_un visita, V conflicto M? -> SI
+v2 se_impone M, M nombre N, v2 situacion M? -> SI
+v2 decision A? -> SI
+l1 limite_aplicable T? -> SI
+l1 situacion S? -> NO
+festivo en_grupo con_cena? -> NO
+D empate M? -> NO
+D decision_dudosa si? -> NO

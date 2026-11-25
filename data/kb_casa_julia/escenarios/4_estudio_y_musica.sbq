@@ -1,0 +1,72 @@
+# Escenario 4: salas de estudio, biblioteca y convivencia. Reservas en el Excel
+# (aforo y doble reserva), comida en la biblioteca, ruido, y musica contra examen.
+#   uv run -m sbc data/kb_casa_julia data/kb_casa_julia/escenarios/4_estudio_y_musica.sbq
+
+razona si!
+colegio periodo curso.
+
+# Las filas del Excel, de arriba a abajo: r1, r2, r3, r4, r5
+r1 siguiente r2.
+r2 siguiente r3.
+r3 siguiente r4.
+r4 siguiente r5.
+# r1: 4 personas en la sala 1 de 16:00 a 17:00
+r1 es_un reserva, r1 sala estudio_1, r1 personas k4, r1 hora t1600, r1 hora t1630.
+# r2: otras 3 en la misma sala, empezando a las 16:30 (pisa a r1)
+r2 es_un reserva, r2 sala estudio_1, r2 personas k3, r2 hora t1630, r2 hora t1700.
+# r3: 5 personas en la sala 2 (caben 4)
+r3 es_un reserva, r3 sala estudio_2, r3 personas k5, r3 hora t1600.
+# r4: 10 personas en la sala grande (caben 10)
+r4 es_un reserva, r4 sala estudio_grande, r4 personas k10, r4 hora t1600, r4 hora t1630.
+# r5: 11 personas en la sala grande mas tarde (no caben, pero no pisa a nadie)
+r5 es_un reserva, r5 sala estudio_grande, r5 personas k11, r5 hora t1800.
+
+r1 situacion S?
+r2 situacion S?
+r3 situacion S?
+r4 situacion S?
+r5 situacion S?
+
+# Que pasa con cada reserva
+R confirmar_por M?
+R denegar_por M?
+R conflicto M?
+R se_impone M?
+r2 decision A?
+r1 decision A?
+
+# Comida en la biblioteca y en la cafeteria
+c1 es_un consumo, c1 alumna paula, c1 en biblioteca_a.
+c2 es_un consumo, c2 alumna paula, c2 en cafeteria.
+c1 situacion S?
+c2 situacion S?
+A notificar_por M, A provocado_por C?
+c1 derivar_a Z?
+# Ruido en una sala de estudio
+n1 es_un ruido, n1 en estudio_3.
+n1 situacion S?
+recepcion notificar_por M, recepcion provocado_por N?
+
+# Musica contra examen: Lucia (a105) tiene examen manana, Paula duerme en a106
+lucia estado examen_manana.
+m1 es_un musica, m1 en a106.
+m2 es_un musica, m2 en sala_musica.
+m1 accion A?
+m1 conflicto M?
+m1 se_impone M, M nombre N?
+m1 decision A?
+m1 examen_de A?
+m1 derivar_a Z?
+m2 accion A?
+m2 conflicto M?
+m2 decision A?
+
+# Informacion nueva: Carmen (b216) tiene examen. Musica en la habitacion de Irene (b215)
+carmen estado examen_manana.
+m3 es_un musica, m3 en b215.
+m3 decision A?
+m3 examen_de A?
+
+# Ninguna decision contradictoria ni empate
+D empate M?
+D decision_dudosa si?

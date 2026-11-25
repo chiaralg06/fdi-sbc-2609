@@ -1,0 +1,46 @@
+# Estudio y convivencia: reservas de salas, comida en zonas de estudio, ruido
+# y musica frente a examenes.
+#
+# Las reservas son las FILAS del Excel comun. El escenario las pone asi:
+#   r1 es_un reserva, r1 sala estudio_1, r1 personas k4, r1 hora t1600, r1 hora t1630.
+#   r1 siguiente r2.     (r2 es la fila que viene justo despues de r1)
+
+# El orden de las filas: la primera en apuntarse es la que vale. Solo se
+# escribe la fila siguiente; el resto sale de la regla (recursiva por la derecha
+# para que termine con razona si!).
+X antes_que Y <- X siguiente Y.
+X antes_que Z <- X siguiente Y, Y antes_que Z.
+
+# ---- Reservas ----
+R situacion reserva_registrada <- R es_un reserva.
+# Un grupo mayor que la capacidad de la sala no cabe (k5 mayor_que k4 viene de 05_tablas).
+R situacion sobreaforo <- R es_un reserva, R sala S, S capacidad C, R personas K, K mayor_que C.
+# Dos reservas de la misma sala a la misma hora: pierde la que esta mas abajo.
+R2 situacion doble_reserva <- R2 es_un reserva, R1 antes_que R2, R1 sala S, R2 sala S, R1 hora T, R2 hora T.
+
+R confirmar_por reserva_registrada <- R situacion reserva_registrada.
+R denegar_por sobreaforo <- R situacion sobreaforo.
+R denegar_por doble_reserva <- R situacion doble_reserva.
+
+# ---- Comer o beber en una biblioteca o sala de estudio ----
+#   c1 es_un consumo, c1 alumna paula, c1 en biblioteca_a.
+C situacion comida_en_zona_estudio <- C es_un consumo, C en Z, Z tipo zona_estudio.
+A notificar_por comida_en_zona_estudio, A provocado_por C <- C situacion comida_en_zona_estudio, C alumna A.
+# y se la manda a donde si se puede (cafeteria con sus maquinas y microondas, comedor)
+C derivar_a Z <- C situacion comida_en_zona_estudio, Z tipo zona_comida.
+
+# ---- Ruido en una zona de estudio ----
+N situacion ruido_en_zona_estudio <- N es_un ruido, N en Z, Z tipo zona_estudio.
+recepcion notificar_por ruido_en_zona_estudio, recepcion provocado_por N <- N situacion ruido_en_zona_estudio.
+
+# ---- Musica contra examen (dos necesidades que chocan) ----
+# Poner musica es ocio. Si la habitacion de al lado es de alguien con examen
+# manana, esa necesidad es de estudio y gana a la del ocio. La musica en la
+# sala de musica nunca choca, porque no tiene dormitorios pegados.
+#   m1 es_un musica, m1 en a106.     lucia estado examen_manana.
+M situacion ocio <- M tipo fuente_ruido, M en H.
+M situacion examen_vecina, M examen_de A <- M tipo fuente_ruido, M en H1, H1 toca_con H2, A duerme_en H2, A estado examen_manana.
+M reproducir_por ocio <- M situacion ocio.
+M silenciar_por examen_vecina <- M situacion examen_vecina.
+# Si la musica se silencia, se le propone la sala de musica.
+M derivar_a Z <- M decision silenciar, Z es_un sala_de_musica.

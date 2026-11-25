@@ -1,0 +1,18 @@
+{"consulta": "v1 situacion S", "soluciones": [{"S": "familia_directa"}]}
+{"consulta": "v2 situacion S", "soluciones": [{"S": "hermano_sin_progenitores"}]}
+{"consulta": "v3 situacion S", "soluciones": [{"S": "hermano_acompanado"}]}
+{"consulta": "v4 situacion S", "soluciones": [{"S": "visita_no_familiar_residencia"}]}
+{"consulta": "v6 situacion S", "soluciones": [{"S": "zona_visitas"}]}
+{"consulta": "v7 situacion S", "soluciones": [{"S": "hora_chicos"}, {"S": "zona_visitas"}]}
+{"consulta": "v9 situacion S", "soluciones": [{"S": "sala_sin_reserva"}]}
+{"consulta": "V permitir_por M", "soluciones": [{"V": "v1", "M": "familia_directa"}, {"V": "v3", "M": "hermano_acompanado"}, {"V": "v5", "M": "zona_visitas"}, {"V": "v6", "M": "zona_visitas"}, {"V": "v7", "M": "zona_visitas"}, {"V": "v8", "M": "sala_reservada"}]}
+{"consulta": "V denegar_por M", "soluciones": [{"V": "v2", "M": "hermano_sin_progenitores"}, {"V": "v4", "M": "visita_no_familiar_residencia"}, {"V": "v7", "M": "hora_chicos"}, {"V": "v9", "M": "sala_sin_reserva"}]}
+{"consulta": "V conflicto M", "soluciones": [{"V": "v7", "M": "hora_chicos"}, {"V": "v7", "M": "zona_visitas"}]}
+{"consulta": "V se_impone M", "soluciones": [{"V": "v7", "M": "hora_chicos"}]}
+{"consulta": "v7 decision A", "soluciones": [{"A": "denegar"}]}
+{"consulta": "v5 decision A", "soluciones": []}
+{"consulta": "C grabar_por M, C provocado_por V", "soluciones": [{"C": "camara_ascensores", "M": "acceso_residencial", "V": "v1"}, {"C": "camara_ascensores", "M": "acceso_residencial", "V": "v2"}, {"C": "camara_ascensores", "M": "acceso_residencial", "V": "v3"}, {"C": "camara_ascensores", "M": "acceso_residencial", "V": "v4"}]}
+{"consulta": "v7 se_impone M, M nombre N", "soluciones": [{"M": "hora_chicos", "N": "\"Los chicos que no son familia se van a las 23:00\""}]}
+{"consulta": "hora_chicos origen V", "soluciones": [{"V": "v7"}]}
+{"consulta": "D empate M", "soluciones": []}
+{"consulta": "D decision_dudosa si", "soluciones": []}

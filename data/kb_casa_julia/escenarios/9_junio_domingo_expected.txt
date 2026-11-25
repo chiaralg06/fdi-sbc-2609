@@ -1,0 +1,15 @@
+colegio facturacion F? -> SI
+colegio situacion S? -> NO
+Z sirve_ahora S? -> SI
+comedor ofrece S? -> SI
+comedor sirve_ahora cena? -> NO
+gimnasio sirve_ahora horario_gimnasio? -> SI
+recepcion sirve_ahora atencion_24h? -> SI
+ascensor_c decision A? -> NO
+ascensor_c accion A? -> SI
+l1 limite_aplicable T? -> SI
+l1 situacion S? -> NO
+v1 accion A? -> SI
+v1 conflicto M? -> NO
+D empate M? -> NO
+D decision_dudosa si? -> NO

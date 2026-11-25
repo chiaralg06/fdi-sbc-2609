@@ -1,0 +1,40 @@
+# Personas del colegio. Los nombres son ficticios (no hay datos de nadie real)
+# y solo estan las personas que los escenarios necesitan: el resto del colegio
+# (unas 200 alumnas) se razona por clases y por reglas, sin escribirlas una a
+# una. Para anadir a alguien basta con sus hechos; las reglas no cambian.
+#
+# curso: primero, segundo, tercero... (primero tiene hora limite, ver 01).
+# limite_finde: la hora que fijan sus padres para viernes y sabado (solo primero).
+
+lucia es_un alumna, lucia nombre "Lucía", lucia curso primero, lucia limite_finde t0100, lucia duerme_en a105.
+irene es_un alumna, irene nombre "Irene", irene curso primero, irene limite_finde t2330, irene duerme_en b215.
+paula es_un alumna, paula nombre "Paula", paula curso segundo, paula duerme_en a106.
+carmen es_un alumna, carmen nombre "Carmen", carmen curso tercero, carmen duerme_en b216.
+elena es_un alumna, elena nombre "Elena", elena curso cuarto, elena duerme_en c301.
+
+# Paredes compartidas entre habitaciones vecinas (por ellas pasa el ruido)
+a105 pared_con a106.
+b215 pared_con b216.
+
+# Familia y amigos de Lucia (las visitas)
+ana_madre es_un visitante, ana_madre nombre "Ana, madre de Lucía", ana_madre parentesco madre, ana_madre familiar_de lucia.
+pedro_padre es_un visitante, pedro_padre nombre "Pedro, padre de Lucía", pedro_padre parentesco padre, pedro_padre familiar_de lucia.
+sofia_hermana es_un visitante, sofia_hermana nombre "Sofía, hermana de Lucía", sofia_hermana parentesco hermana, sofia_hermana familiar_de lucia.
+javier_hermano es_un visitante, javier_hermano nombre "Javier, hermano de Lucía", javier_hermano parentesco hermano, javier_hermano familiar_de lucia.
+marcos_amigo es_un visitante, marcos_amigo nombre "Marcos, amigo de Lucía", marcos_amigo parentesco amigo.
+laura_amiga es_un visitante, laura_amiga nombre "Laura, amiga de Lucía", laura_amiga parentesco amiga.
+# Familia de Irene: solo su madre
+rosa_madre es_un visitante, rosa_madre nombre "Rosa, madre de Irene", rosa_madre parentesco madre, rosa_madre familiar_de irene.
+
+# Personal
+recepcionista_1 es_un recepcionista, recepcionista_1 nombre "Recepcionista de día".
+recepcionista_2 es_un recepcionista, recepcionista_2 nombre "Recepcionista de noche".
+limpiadora_a es_un limpiadora, limpiadora_a nombre "Limpiadora del pabellón A", limpiadora_a limpia pabellon_a.
+limpiadora_b es_un limpiadora, limpiadora_b nombre "Limpiadora del pabellón B", limpiadora_b limpia pabellon_b.
+limpiadora_c es_un limpiadora, limpiadora_c nombre "Limpiadora del pabellón C", limpiadora_c limpia pabellon_c.
+limpiadora_comun es_un limpiadora, limpiadora_comun nombre "Limpiadora de zonas comunes", limpiadora_comun limpia planta_calle, limpiadora_comun limpia sotano.
+cocinera_1 es_un cocinera, cocinera_1 nombre "Cocinera".
+directora_1 es_un directora, directora_1 nombre "Directora".
+subdirectora_1 es_un subdirectora, subdirectora_1 nombre "Subdirectora".
+monja_1 es_un monja, monja_1 nombre "Hermana de la comunidad".
+monitora_1 es_un monitora, monitora_1 nombre "Monitora de deportes", monitora_1 imparte clases_deporte, clases_deporte en gimnasio.
